@@ -1,0 +1,145 @@
+<template>
+  <v-container class="container--fluid grid-list-md">
+    <v-row>
+      <v-col
+        class="flex-grow-1"
+        cols="12"
+      >
+        <v-alert
+          :value="true"
+          color="info"
+          outlined
+          dense
+        >
+          {{ $t('components.backToTop') }}
+        </v-alert>
+      </v-col>
+      <v-col cols="12">
+        <div class="placeholder-container">
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+          <div>placeholder</div>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+export default {
+  name: 'BackToTopDemo',
+  data: () => ({}),
+};
+</script>
+
+<style scoped>
+.placeholder-container div {
+  margin: 10px;
+}
+</style>
