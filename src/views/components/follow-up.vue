@@ -14,32 +14,40 @@
               <v-divider></v-divider>
               <v-list>
                 <v-list-item>
-                  <v-list-item-content class="ml-5">{{
+                  <v-col cols="3" class="pa-0">
+                  <v-list-item-action-text>{{
                     $t("orders.referredBy")
-                  }}</v-list-item-content>
+                  }}</v-list-item-action-text>
+                  </v-col>
                   <v-list-item-content class="align-end">
                     {{ item.referredBy }}
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
+                  <v-col cols="3" class="pa-0">
                   <v-list-item-action-text>{{ $t("orders.clientName") }}</v-list-item-action-text>
+                  </v-col>
                   <v-list-item-content class="align-end">
                     {{ item.clientName }}
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
+                  <v-col cols="3" class="pa-0">
                   <v-list-item-action-text>{{ $t("orders.productName") }}</v-list-item-action-text>
+                  </v-col>
                   <v-list-item-content>
                     {{ item.productName }}
                   </v-list-item-content>
-                  <v-list-item-action>
+                  <!-- <v-list-item-action>
                     <v-btn icon>
                       <v-icon color="grey lighten-1">mdi-information</v-icon>
                     </v-btn>
-                  </v-list-item-action>
+                  </v-list-item-action> -->
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-content>{{ $t("orders.status") }}</v-list-item-content>
+                  <v-col cols="3" class="pa-0">
+                  <v-list-item-action-text>{{ $t("orders.status") }}</v-list-item-action-text>
+                  </v-col>
                   <v-list-item-content class="align-end">
                     {{ item.status }}
                   </v-list-item-content>
