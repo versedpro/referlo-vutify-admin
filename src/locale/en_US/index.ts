@@ -26,8 +26,8 @@ export default {
   login: {
     titleIn: "Sing In Form",
     titleUn: "Sing Un Form",
-    singIn: "Login",
-    singUp: "Register",
+    login: "Login",
+    register: "Register",
     email: "Email",
     password: "Password",
     confirm: "Confirm"
@@ -36,7 +36,7 @@ export default {
     referredBy: "Referred By",
     clientName: "Client",
     productName: "Product",
-    singUp: "Register",
+    status: "Status",
     email: "Email",
     password: "Password",
     confirm: "Confirm"

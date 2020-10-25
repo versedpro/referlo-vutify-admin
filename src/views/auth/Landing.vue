@@ -14,7 +14,7 @@
             <div class="subheading mb-3 text-center">
               Powered by Vuetify
             </div>
-            <v-btn class="blue lighten-2 mt-5" dark large to="/singin">
+            <v-btn class="blue lighten-2 mt-5" dark large to="/login">
               Get Started
             </v-btn>
           </v-row>
@@ -100,7 +100,7 @@
               Web development has never been easier
             </div>
             <em>Kick-start your application today</em>
-            <v-btn class="blue lighten-2 mt-5" dark large to="/singin">
+            <v-btn class="blue lighten-2 mt-5" dark large to="/login">
               Get Started
             </v-btn>
           </v-row>

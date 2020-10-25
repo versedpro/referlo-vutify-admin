@@ -18,7 +18,7 @@ import { mapGetters } from "vuex";
 import Breadcrumbs from "../widget/AppBreadcrumbs.vue";
 import ErrorLog from "../widget/AppErrorLog.vue";
 import FullScreen from "../widget/AppFullScreen.vue";
-import Localization from "../widget/AppLocalization.vue";
+import Localization from "../widget/app-localization.vue";
 import Notification from "../widget/AppNotification.vue";
 import Profile from "../widget/AppProfile.vue";
 

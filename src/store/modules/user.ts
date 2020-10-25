@@ -55,7 +55,7 @@ const user = {
       try {
         const response = await loginByEmail(payload.email.trim(), payload.password);
         console.log("[vuex.user] LoginByEmail", payload, response);
-        await commit("SET_TOKEN", response.user.token);
+        await commit("SET_TOKEN", response.user["token"]);
         await commit("SET_USER_INFO", response.user);
         await dispatch("GenerateRoutes", response.user);
       } catch (err) {
@@ -74,7 +74,7 @@ const user = {
         }
 
         // Verify returned roles are a non-null array
-        if (response.user.roles && response.user.roles.length === 0) {
+        if (response.user["roles"] && response.user["roles"].length === 0) {
           throw new Error("getInfo: roles must be a non-null array!");
         }
 

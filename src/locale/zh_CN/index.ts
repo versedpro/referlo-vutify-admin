@@ -26,8 +26,8 @@ export default {
   login: {
     titleIn: "登录",
     titleUn: "注册",
-    singIn: "登录",
-    singUp: "注册",
+    login: "登录",
+    register: "注册",
     email: "Email",
     password: "密码",
     confirm: "确认"
@@ -36,7 +36,7 @@ export default {
     referredBy: "轉介人",
     clientName: "客戶",
     productName: "产品",
-    singUp: "Register",
+    status: "状态",
     email: "Email",
     password: "Password",
     confirm: "Confirm"

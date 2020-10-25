@@ -5,14 +5,9 @@
         <v-card class="elevation-5 pa-3">
           <v-card-text>
             <div class="layout column align-center">
-              <img
-                src="img/icons/android-icon-144x144.png"
-                alt="Vue Vuetify Admin Logo"
-                width="120"
-                height="120"
-              />
+              <img src="img/icons/logo.png" alt="Vue Vuetify Admin Logo" width="120" height="120" />
               <h1 class="text-center my-4 primary--text">
-                Vue Vuetify Admin Template
+                AMSL Referlo
               </h1>
             </div>
             <v-form>
@@ -32,42 +27,20 @@
                 :label="$t('login.password')"
                 type="password"
                 required
-                autocomplete="new-password"
-              />
-              <v-text-field
-                v-model="model.confirm"
-                append-icon="mdi-lock"
-                name="confirm"
-                :label="$t('login.confirm')"
-                type="password"
-                required
-                autocomplete="new-password"
+                autocomplete="current-password"
               />
             </v-form>
           </v-card-text>
+          <v-card-text> </v-card-text>
           <v-card-actions>
             <localization />
-            <v-btn icon>
-              <v-icon color="blue">
-                mdi-facebook
-              </v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon color="red">
-                mdi-google
-              </v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon color="light-blue">
-                mdi-twitter
-              </v-icon>
-            </v-btn>
+
             <v-spacer />
-            <v-btn color="primary" outlined to="/singin">
-              {{ $t("login.singIn") }}
+            <v-btn color="primary" outlined to="/register">
+              {{ $t("login.register") }}
             </v-btn>
             <v-btn color="primary" :loading="loading" @click="login">
-              {{ $t("login.singUp") }}
+              {{ $t("login.login") }}
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -77,30 +50,29 @@
 </template>
 
 <script lang="ts">
-import Localization from "../widget/AppLocalization.vue";
-
+import { userAdmin } from "@/api/mock";
 import { defineComponent, reactive, ref } from "@vue/composition-api";
 
 export default defineComponent({
-  name: "SingUp",
   components: {
-    Localization
+    Localization: () => import("../widget/app-localization.vue")
   },
 
   setup() {
     const model = reactive({
-      email: "admin@vvadmin.io",
-      password: "password",
-      confirm: "password"
+      email: userAdmin.email,
+      password: userAdmin.password
     });
 
     const loading = ref(false);
 
-    function login() {
-      loading.value = true;
-      setTimeout(() => {
-        this.$router.push("/home");
-      }, 1000);
+    async function login() {
+      // $store
+      await this.$store.dispatch("LoginByEmail", {
+        email: model.email,
+        password: model.password
+      });
+      await this.$router.push(this.$route.query.redirect || "/");
     }
 
     return {

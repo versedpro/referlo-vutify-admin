@@ -1,38 +1,36 @@
 <template>
   <v-container fluid>
     <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
-      <!-- <template v-slot:header>
-        <v-toolbar class="mb-2" color="indigo darken-5" dark flat>
-          <v-toolbar-title>This is a header</v-toolbar-title>
-        </v-toolbar>
-      </template> -->
-
       <template v-slot:default="props">
         <v-row>
           <v-col v-for="item in props.items" :key="item.name" cols="12" md="6" lg="4" xl="4">
             <v-card>
-              <v-card-title class="subheading font-weight-bold">
-                {{ item.name }}
-              </v-card-title>
+              <v-card-actions>
+                <v-card-title>{{ item.orderNo }}</v-card-title>
+                <v-spacer></v-spacer>
+                <v-card-subtitle>{{ item.orderDate }}</v-card-subtitle>
+              </v-card-actions>
 
               <v-divider></v-divider>
               <v-list>
                 <v-list-item>
-                  <v-list-item-content>{{ $t("orders.referredBy") }}</v-list-item-content>
+                  <v-list-item-content class="ml-5">{{
+                    $t("orders.referredBy")
+                  }}</v-list-item-content>
                   <v-list-item-content class="align-end">
                     {{ item.referredBy }}
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-content>{{ $t("orders.clientName") }}</v-list-item-content>
+                  <v-list-item-action-text>{{ $t("orders.clientName") }}</v-list-item-action-text>
                   <v-list-item-content class="align-end">
-                    {{ item.fat }}
+                    {{ item.clientName }}
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-content>{{ $t("orders.productName") }}</v-list-item-content>
+                  <v-list-item-action-text>{{ $t("orders.productName") }}</v-list-item-action-text>
                   <v-list-item-content>
-                    {{ item.carbs }}
+                    {{ item.productName }}
                   </v-list-item-content>
                   <v-list-item-action>
                     <v-btn icon>
@@ -41,12 +39,21 @@
                   </v-list-item-action>
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-content>Protein:</v-list-item-content>
+                  <v-list-item-content>{{ $t("orders.status") }}</v-list-item-content>
                   <v-list-item-content class="align-end">
-                    {{ item.protein }}
+                    {{ item.status }}
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn small color="blue-grey" to="/follow-up/chat" class="ma-2 white--text">
+                  Follow Up
+                  <v-icon right dark>
+                    mdi-cloud-upload
+                  </v-icon>
+                </v-btn>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>

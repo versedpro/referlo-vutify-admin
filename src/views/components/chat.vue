@@ -24,13 +24,12 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import steps from "@/api/roadmap";
-
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  name: "InfoCenter",
+  name: "Chat",
 
   setup() {
     return {

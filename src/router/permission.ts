@@ -83,7 +83,7 @@ router.beforeEach(async (to, from, next) => {
         next();
       } else {
         logMsg += "\t[!whiteList]";
-        next(`/singin?redirect=${to.path}`);
+        next(`/login?redirect=${to.path}`);
       }
     }
   } catch (err) {

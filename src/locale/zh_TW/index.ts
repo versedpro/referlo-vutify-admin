@@ -26,8 +26,8 @@ export default {
   login: {
     titleIn: "登記",
     titleUn: "注册",
-    singIn: "登入",
-    singUp: "注册",
+    login: "登入",
+    register: "注册",
     email: "電郵",
     password: "密碼",
     confirm: "確認"

@@ -18,7 +18,7 @@ export const loginByEmail = async (email, password) => {
     } else if (userAdmin.email === email && userAdmin.password === password) {
       user = userAdmin;
     }
-    if (!user || !user.token) {
+    if (!user || !user["token"]) {
       throw new Error("User is not found");
     }
   } catch (err) {

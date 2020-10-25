@@ -35,7 +35,13 @@ export const constantRoutes = [
   {
     path: "/landing",
     alias: "/land",
-    component: () => import("@/views/auth/Landing.vue"),
+    component: () => import("@/views/auth/landing.vue"),
+    hidden: true
+  },
+  {
+    path: "/follow-up/chat",
+    alias: "/chat",
+    component: () => import("@/views/components/chat.vue"),
     hidden: true
   },
   {
@@ -102,6 +108,18 @@ export const constantRoutes = [
       }
     ]
   },
+  // {
+  //   path: "/",
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: "/chat",
+  //       component: () => import("@/views/components/chat.vue"),
+  //       name: "Chat",
+  //       meta: { title: "route.followUp", icon: "mdi-palette" }
+  //     }
+  //   ]
+  // },
   {
     path: "/",
     component: Layout,
