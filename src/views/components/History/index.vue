@@ -1,44 +1,43 @@
 <template>
-  <app-center>
-    <template v-slot:page>
-      <p class="warn-content">
-        {{ $t("guide.description") }}
-        <a href="https://github.com/kamranahmedse/driver.js" target="_blank">driver.js.</a>
-      </p>
-      <v-btn class="mx-2" color="success" @click.prevent.stop="guide">
-        {{ $t("guide.button") }}
-      </v-btn>
+  <v-simple-table>
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left"></th>
+          <th class="text-left">
+            Product
+          </th>
+          <th class="text-left">
+            Date
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in desserts" :key="item.name">
+          <td><v-icon color="orange" small>mdi-arrow-right-bold-box</v-icon></td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.date }}</td>
+        </tr>
+      </tbody>
     </template>
-  </app-center>
+  </v-simple-table>
 </template>
 
 <script lang="ts">
-import Driver from "driver.js"; // import driver.js
-import "driver.js/dist/driver.min.css"; // import driver.js css
-import steps from "./defineSteps";
-import AppCenter from "@/views/widget/AppCenter.vue";
-import Vue from "vue";
+import { defineComponent, ref } from "@vue/composition-api";
+import { Items } from "@/demo/api/mock_products";
 
-export default Vue.extend({
-  name: "Guide",
-  components: {
-    AppCenter
-  },
-  data() {
+export default defineComponent({
+  name: "History",
+
+  setup() {
+    const itemsPerPage = ref(4);
+    const desserts = ref(Items);
+
     return {
-      // eslint-disable-next-line no-undef
-      driver: {} as Driver
+      itemsPerPage,
+      desserts
     };
-  },
-
-  mounted() {
-    this.driver = new Driver();
-  },
-  methods: {
-    guide() {
-      this.driver.defineSteps(steps);
-      this.driver.start();
-    }
   }
 });
 </script>

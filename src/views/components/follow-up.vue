@@ -15,9 +15,7 @@
               <v-list>
                 <v-list-item>
                   <v-col cols="3" class="pa-0">
-                  <v-list-item-action-text>{{
-                    $t("orders.referredBy")
-                  }}</v-list-item-action-text>
+                    <v-list-item-action-text>{{ $t("orders.referredBy") }}</v-list-item-action-text>
                   </v-col>
                   <v-list-item-content class="align-end">
                     {{ item.referredBy }}
@@ -25,7 +23,7 @@
                 </v-list-item>
                 <v-list-item>
                   <v-col cols="3" class="pa-0">
-                  <v-list-item-action-text>{{ $t("orders.clientName") }}</v-list-item-action-text>
+                    <v-list-item-action-text>{{ $t("orders.clientName") }}</v-list-item-action-text>
                   </v-col>
                   <v-list-item-content class="align-end">
                     {{ item.clientName }}
@@ -33,7 +31,9 @@
                 </v-list-item>
                 <v-list-item>
                   <v-col cols="3" class="pa-0">
-                  <v-list-item-action-text>{{ $t("orders.productName") }}</v-list-item-action-text>
+                    <v-list-item-action-text>{{
+                      $t("orders.productName")
+                    }}</v-list-item-action-text>
                   </v-col>
                   <v-list-item-content>
                     {{ item.productName }}
@@ -46,7 +46,7 @@
                 </v-list-item>
                 <v-list-item>
                   <v-col cols="3" class="pa-0">
-                  <v-list-item-action-text>{{ $t("orders.status") }}</v-list-item-action-text>
+                    <v-list-item-action-text>{{ $t("orders.status") }}</v-list-item-action-text>
                   </v-col>
                   <v-list-item-content class="align-end">
                     {{ item.status }}
