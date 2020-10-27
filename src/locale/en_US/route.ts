@@ -3,7 +3,7 @@ export default {
   referal: "Referal",
   home: "Point",
   history: "Job History",
-  infoCenter: "Product",
+  products: "Products",
   profile: "Profile",
   followUp: "Orders",
   // pagePermission: 'Page Permission',

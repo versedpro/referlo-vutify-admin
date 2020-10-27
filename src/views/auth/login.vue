@@ -5,17 +5,22 @@
         <v-card class="elevation-5 pa-3">
           <v-card-text>
             <div class="layout column align-center">
-              <img src="img/icons/logo.png" alt="Vue Vuetify Admin Logo" width="120" height="120" />
+              <img
+                src="img/icons/icon-1024x1024.png"
+                alt="Vue Vuetify Admin Logo"
+                width="120"
+                height="120"
+              />
               <h1 class="text-center my-4 primary--text">
                 AMSL Referlo
               </h1>
             </div>
             <v-form>
               <v-text-field
-                v-model="model.email"
-                append-icon="mdi-account"
+                v-model="model.phone"
+                append-icon="mdi-phone"
                 name="email"
-                :label="$t('login.email')"
+                :label="$t('login.phone')"
                 type="email"
                 required
                 autocomplete="username"
@@ -60,7 +65,7 @@ export default defineComponent({
 
   setup() {
     const model = reactive({
-      email: userAdmin.email,
+      phone: userAdmin.phone,
       password: userAdmin.password
     });
 
@@ -68,8 +73,8 @@ export default defineComponent({
 
     async function login() {
       // $store
-      await this.$store.dispatch("LoginByEmail", {
-        email: model.email,
+      await this.$store.dispatch("LoginByPhone", {
+        phone: model.phone,
         password: model.password
       });
       await this.$router.push(this.$route.query.redirect || "/");

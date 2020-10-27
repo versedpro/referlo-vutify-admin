@@ -29,6 +29,7 @@ export default {
     login: "登錄",
     register: "注册",
     email: "電郵",
+    phone: "電話",
     password: "密碼",
     confirm: "確認"
   },
@@ -40,6 +41,14 @@ export default {
     email: "Email",
     password: "Password",
     confirm: "Confirm"
+  },
+  referal: {
+    clientName: "客戶",
+    phone: "電話戶",
+    email: "電郵",
+    address: "地址",
+    productName: "產品",
+    remark: "備註"
   },
   errors: {
     whoops: "哦嚯~!",

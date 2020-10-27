@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-container class="container--fluid grid-list-md text-center">
-      <panel-group />
+    <!-- <v-container class="container--fluid grid-list-md text-center">
+      <panel-group /> -->
 
-      <v-item-group v-model="selected" multiple>
+    <!-- <v-item-group v-model="selected" multiple>
         <v-row>
           <v-col v-for="(item, i) in items" :key="i" cols="12" md="6">
             <v-item v-slot="{ active, toggle }">
@@ -22,8 +22,36 @@
             </v-item>
           </v-col>
         </v-row>
-      </v-item-group>
-    </v-container>
+      </v-item-group> -->
+    <v-card class="mx-auto" max-width="1000" tile>
+      <v-container class="container--fluid grid-list-md text-center">
+        <panel-group />
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>Single-line item</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title>Two-line item</v-list-item-title>
+            <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item three-line>
+          <v-list-item-content>
+            <v-list-item-title>Three-line item</v-list-item-title>
+            <v-list-item-subtitle>
+              Secondary line text Lorem ipsum dolor sit amet,
+            </v-list-item-subtitle>
+            <v-list-item-subtitle>
+              consectetur adipiscing elit.
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-container>
+    </v-card>
   </div>
 </template>
 

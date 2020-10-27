@@ -29,6 +29,7 @@ export default {
     login: "Login",
     register: "Register",
     email: "Email",
+    phone: "Phone",
     password: "Password",
     confirm: "Confirm"
   },
@@ -40,6 +41,14 @@ export default {
     email: "Email",
     password: "Password",
     confirm: "Confirm"
+  },
+  referal: {
+    clientName: "Client",
+    phone: "Phone",
+    email: "Email",
+    address: "Address",
+    productName: "Product",
+    remark: "Remark"
   },
   errors: {
     whoops: "Whoops",

@@ -4,35 +4,15 @@
       title="New Visits"
       icon="mdi-account-multiple"
       color="orange"
-      chart="newVisitis"
-      :start="0"
-      :end="102400"
-      :duration="2600"
+      :value="102400"
     />
-    <panel-group-item
-      title="Messages"
-      icon="mdi-message-bulleted"
-      color="blue"
-      chart="messages"
-      :start="0"
-      :end="81212"
-      :duration="3000"
-    />
-    <panel-group-item
-      title="Shoppings"
-      icon="mdi-cart"
-      color="green"
-      chart="shoppings"
-      :start="0"
-      :end="13600"
-      :duration="3600"
-    />
+    <panel-group-item title="Messages" icon="mdi-message-bulleted" color="blue" :value="81212" />
+    <panel-group-item title="Shoppings" icon="mdi-cart" color="green" :value="13600" />
   </v-row>
 </template>
 
 <script lang="ts">
 import PanelGroupItem from "./PanelGroupItem.vue";
-
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({

@@ -28,6 +28,30 @@ export const loginByEmail = async (email, password) => {
 };
 
 /**
+ * Login by email and password
+ *
+ * @param {String} email user email
+ * @param {String} password user password
+ */
+export const loginByPhone = async (phone, password) => {
+  console.log(`[loginByPhone] email ${phone}`);
+  let user = {};
+  try {
+    if (userEditor.phone === phone && userEditor.password === password) {
+      user = userEditor;
+    } else if (userAdmin.phone === phone && userAdmin.password === password) {
+      user = userAdmin;
+    }
+    if (!user || !user["token"]) {
+      throw new Error("User is not found");
+    }
+  } catch (err) {
+    console.warn(`[loginByPhone] ${err}`);
+  }
+  return { user };
+};
+
+/**
  * Get user information by token
  *
  * @param {String} token user token

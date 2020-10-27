@@ -84,11 +84,11 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: "/info-center",
-        component: () => import("@/views/components/info-center.vue"),
-        name: "InfoCenter",
+        path: "/products",
+        component: () => import("@/views/components/products/index.vue"),
+        name: "Products",
         meta: {
-          title: "route.infoCenter",
+          title: "route.products",
           icon: "mdi-timeline-text",
           noCache: true,
           affix: true
@@ -149,6 +149,18 @@ export const constantRoutes = [
       }
     ]
   },
+  // {
+  //   path: "/",
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: "/products",
+  //       component: () => import("@/views/components/products/index.vue"),
+  //       name: "Products",
+  //       meta: { title: "route.products", icon: "mdi-translate" }
+  //     }
+  //   ]
+  // },
 
   ...authRouter
 ];

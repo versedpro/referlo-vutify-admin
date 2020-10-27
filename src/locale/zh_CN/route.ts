@@ -3,7 +3,7 @@ export default {
   home: "主頁",
   referal: "轉介客戶",
   history: "過往記錄",
-  infoCenter: "資訊中心",
+  products: "資訊中心",
   profile: "个人资料",
   followUp: "订单跟进",
   // pagePermission: 'Page Permission',

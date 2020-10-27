@@ -12,14 +12,9 @@
           <v-list-item-title class="title font-weight-light">
             {{ title }}
           </v-list-item-title>
-          <v-list-item-subtitle>
-            <count-to
-              :start-val="start"
-              :end-val="end"
-              :duration="duration"
-              class="title font-weight-bold"
-            />
-          </v-list-item-subtitle>
+          <v-list-item-title>
+            {{ value }}
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-card>
@@ -27,13 +22,11 @@
 </template>
 
 <script>
-import CountTo from "vue-count-to";
+import { defineComponent } from "@vue/composition-api";
 
-export default {
+export default defineComponent({
   name: "PanelGroupItem",
-  components: {
-    CountTo
-  },
+
   props: {
     title: {
       type: String,
@@ -47,27 +40,19 @@ export default {
       type: String,
       required: true
     },
-    chart: {
-      type: String,
-      required: true
-    },
-    start: {
-      type: Number,
-      required: true
-    },
-    end: {
-      type: Number,
-      required: true
-    },
-    duration: {
+    value: {
       type: Number,
       required: true
     }
   },
-  methods: {
-    handleSetLineChartData(type) {
-      this.$parent.$emit("handleSetLineChartData", type);
-    }
+
+  setup() {
+    // function handleSetLineChartData(type) {
+    //   this.$parent.$emit("handleSetLineChartData", type);
+    //   return {
+    //     handleSetLineChartData
+    //   };
+    // }
   }
-};
+});
 </script>

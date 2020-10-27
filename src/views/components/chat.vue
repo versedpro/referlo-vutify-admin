@@ -1,6 +1,6 @@
 <template>
   <v-container dark style="max-width: 800px;">
-    <v-timeline dense clipped>
+    <v-timeline align-top dense clipped>
       <v-timeline-item fill-dot class="white--text mb-12" color="orange" large>
         <template v-slot:icon>
           <span>JL</span>
@@ -18,13 +18,6 @@
           @click:append-outer="comment"
           @keydown.enter="comment"
         >
-          <!-- <template v-slot:append-outer>
-            <v-btn small fab @click="comment">
-              <v-icon dark>
-                mdi-send
-              </v-icon>
-            </v-btn>
-          </template> -->
         </v-text-field>
       </v-timeline-item>
 
@@ -37,20 +30,24 @@
         </v-timeline-item>
       </v-slide-x-transition>
 
-      <v-timeline-item v-for="(year, i) in years" :key="i" :color="year.color" small>
+      <v-timeline-item v-for="(item, i) in items" :key="i" :color="item.color" small>
         <template v-slot:opposite>
-          <span :class="`headline font-weight-bold ${year.color}--text`" v-text="year.year"></span>
+          <span :class="`headline font-weight-bold ${item.color}--text`" v-text="item.year"></span>
         </template>
-        <div class="py-4">
-          <h2 :class="`headline font-weight-light mb-4 ${year.color}--text`">
-            Lorem ipsum
-          </h2>
-          <div>
-            Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut,
-            sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando
-            voluptatibus, vix an salutandi sententiae.
-          </div>
-        </div>
+        <div>{{ item.timestamp }}</div>
+        <v-card class="mt-2">
+          <!-- <v-card-title class="title">
+            Lorem Ipsum Dolor
+          </v-card-title> -->
+          <v-card-text class="white text--primary">
+            Status: dd
+            <p>
+              <v-chip class="mt-2">
+                Status: dd
+              </v-chip>
+            </p>
+          </v-card-text>
+        </v-card>
       </v-timeline-item>
     </v-timeline>
   </v-container>
@@ -67,7 +64,7 @@ export default defineComponent({
     const events = ref([]);
     const input = ref(null);
     const nonce = ref(0);
-    const years = ref(Items);
+    const items = ref(Items);
 
     const timeline = computed(function() {
       return events.value.slice().reverse();
@@ -96,7 +93,7 @@ export default defineComponent({
       nonce,
       timeline,
       comment,
-      years
+      items
     };
   }
 });

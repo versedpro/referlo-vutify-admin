@@ -1,4 +1,4 @@
-import { loginByEmail, getUserInfo } from "@/api/login";
+import { loginByEmail, loginByPhone, getUserInfo } from "@/api/login";
 
 const user = {
   state: {
@@ -55,6 +55,18 @@ const user = {
       try {
         const response = await loginByEmail(payload.email.trim(), payload.password);
         console.log("[vuex.user] LoginByEmail", payload, response);
+        await commit("SET_TOKEN", response.user["token"]);
+        await commit("SET_USER_INFO", response.user);
+        await dispatch("GenerateRoutes", response.user);
+      } catch (err) {
+        console.warn("[vuex.user] LoginByEmail", err);
+      }
+    },
+
+    LoginByPhone: async ({ commit, dispatch }, payload) => {
+      try {
+        const response = await loginByPhone(payload.phone.trim(), payload.password);
+        console.log("[vuex.user] LoginByPhone", payload, response);
         await commit("SET_TOKEN", response.user["token"]);
         await commit("SET_USER_INFO", response.user);
         await dispatch("GenerateRoutes", response.user);
