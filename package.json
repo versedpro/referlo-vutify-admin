@@ -1,9 +1,9 @@
 {
   "name": "amsl_referlo",
-  "title": "AMSL Referlo",
+  "title": "The Referlo",
   "version": "0.1.1",
   "private": true,
-  "description": "Admin template based on Vue and Vuetify",
+  "description": "The Referlo Web application",
   "author": "NelsonEAX <nelsoneax@gmail.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -35,7 +35,7 @@
     "vue": "^2.6.11",
     "vue-count-to": "^1.0.13",
     "vue-i18n": "^8.17.3",
-    "vue-router": "^3.2.0",
+    "vue-router": "^3.4.8",
     "vue-splitpane": "^1.0.6",
     "vuedraggable": "^2.24.2",
     "vuetify": "^2.3.15",

@@ -26,11 +26,21 @@ export default {
   login: {
     titleIn: "登記",
     titleUn: "注册",
+    appTitle: "REFER ",
     login: "登入",
     register: "注册",
     email: "電郵",
+    phone: "電話",
     password: "密碼",
     confirm: "確認"
+  },
+  referal: {
+    clientName: "客戶",
+    phone: "電話",
+    email: "電郵",
+    address: "地址",
+    productName: "產品",
+    remark: "備註"
   },
   errors: {
     whoops: "哦嚯~!",

@@ -1,61 +1,68 @@
 <template>
-  <div>
-    <!-- <v-container class="container--fluid grid-list-md text-center">
-      <panel-group /> -->
+  <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
+    <v-card-title class="primary justify-center display-1 text-h5 white--text">
+      {{ title }}
+    </v-card-title>
+    <v-container class="grey lighten-5 pa-0">
+      <v-row no-gutters>
+        <v-col v-for="n in 3" :key="n" cols="12" sm="4">
+          <v-card class="pa-2" outlined>
+            <v-card-title class="justify-center text-h4 text--white">
+              {{ score[n - 1] }}
+            </v-card-title>
+            <v-card-text class="text-center text-h6">
+              {{ category[n - 1] }}
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container class="container--fluid grid-list-md text-center">
+      <v-row class="mt-12">
+        <v-col cols="5" offset="1">
+          <v-sheet>
+            <v-icon size="128">mdi-share-circle</v-icon>
+            <h1 class="text-h6 mt-2">{{ menuItem[0] }}</h1>
+          </v-sheet>
+        </v-col>
 
-    <!-- <v-item-group v-model="selected" multiple>
-        <v-row>
-          <v-col v-for="(item, i) in items" :key="i" cols="12" md="6">
-            <v-item v-slot="{ active, toggle }">
-              <v-img
-                :src="`https://cdn.vuetifyjs.com/images/${item.src}`"
-                height="150"
-                class="text-right pa-2"
-                @click="toggle"
-              >
-                <v-btn icon dark>
-                  <v-icon>
-                    {{ active ? "mdi-heart" : "mdi-heart-outline" }}
-                  </v-icon>
-                </v-btn>
-              </v-img>
-            </v-item>
-          </v-col>
-        </v-row>
-      </v-item-group> -->
-    <v-card class="mx-auto" max-width="1000" tile>
-      <v-container class="container--fluid grid-list-md text-center">
-        <panel-group />
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title>Single-line item</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <v-col cols="5">
+          <v-sheet>
+            <v-icon size="128">mdi-information</v-icon>
+            <h1 class="text-h6 mt-2">{{ menuItem[1] }}</h1>
+          </v-sheet>
+        </v-col>
+      </v-row>
 
-        <v-list-item two-line>
-          <v-list-item-content>
-            <v-list-item-title>Two-line item</v-list-item-title>
-            <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
+      <v-row class="mt-12">
+        <v-col cols="5" offset="1">
+          <v-sheet>
+            <v-icon size="128">mdi-information</v-icon>
+            <h1 class="text-h6 mt-2">{{ menuItem[2] }}</h1>
+          </v-sheet>
+        </v-col>
 
-        <v-list-item three-line>
-          <v-list-item-content>
-            <v-list-item-title>Three-line item</v-list-item-title>
-            <v-list-item-subtitle>
-              Secondary line text Lorem ipsum dolor sit amet,
-            </v-list-item-subtitle>
-            <v-list-item-subtitle>
-              consectetur adipiscing elit.
-            </v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-container>
-    </v-card>
-  </div>
+        <v-col cols="5">
+          <v-sheet>
+            <v-icon size="128">mdi-information</v-icon>
+            <h1 class="text-h6 mt-2">{{ menuItem[3] }}</h1>
+          </v-sheet>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <v-footer absolute>
+      <v-card-actions>
+        <h1 class="mr-5 text-h4">1323</h1>
+        <v-divider vertical></v-divider>
+      </v-card-actions>
+    </v-footer>
+  </v-card>
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 import PanelGroup from "./PanelGroup.vue";
 import AppWidget from "@/views/widget/AppWidget.vue";
 
@@ -69,26 +76,21 @@ export default defineComponent({
   },
 
   setup() {
-    const elevations = ref([6, 12, 18]);
-    const items = ref([
-      {
-        src: "backgrounds/bg.jpg"
-      },
-      {
-        src: "backgrounds/md.jpg"
-      },
-      {
-        src: "backgrounds/bg-2.jpg"
-      },
-      {
-        src: "backgrounds/md2.jpg"
-      }
-    ]);
     const selected = ref([]);
+    const score = ref([17, 583, 723]);
+    const category = ref(["努力中", "未成功個案", "已成功個案"]);
+    const title = ref("REFER 佬");
+
+    const menuItem = ref(["轉介客戶", "過往記錄", "資訊中心", "個人資料"]);
+
+    const img1 = ref(require("@/assets/img/customer-support.png"));
 
     return {
-      elevations,
-      items,
+      img1,
+      score,
+      category,
+      title,
+      menuItem,
       selected
     };
   }

@@ -23,8 +23,8 @@ const dark = {
 const themes = [
   {
     light: {
-      // primary: "#02101b",
-      primary: "#e2b95a",
+      primary: "#02101b",
+      // primary: "#e2b95a",
       secondary: "#424242",
       accent: "#82B1FF",
       success: "#4CAF50",

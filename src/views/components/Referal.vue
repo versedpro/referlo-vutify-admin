@@ -1,6 +1,9 @@
 <template>
-  <v-card class="pa-10" max-width="1000">
-    <v-form ref="form" v-model="valid" lazy-validation>
+  <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
+    <v-card-title class="primary justify-center display-1 text-h5 white--text">
+      {{ title }}
+    </v-card-title>
+    <v-form class="mx-12 mt-12" ref="form" v-model="valid" lazy-validation>
       <v-text-field
         v-model="name"
         :counter="10"
@@ -16,13 +19,14 @@
         required
       ></v-text-field>
 
-      <v-select
+      <v-text-field v-model="phone" :label="$t('referal.phone')" required></v-text-field>
+
+      <!-- <v-select
         v-model="select"
-        :items="items"
         :rules="[v => !!v || 'Item is required']"
         :label="$t('referal.phone')"
         required
-      ></v-select>
+      ></v-select> -->
 
       <!-- <v-checkbox
         v-model="checkbox"
@@ -68,6 +72,9 @@ export default defineComponent({
     const items = ref(["Item 1", "Item 2", "Item 3", "Item 4"]);
     const checkbox = ref(false);
 
+    const title = "資訊中心";
+    const phone = ref("");
+
     function validate() {
       this.$refs.form.validate();
     }
@@ -87,6 +94,8 @@ export default defineComponent({
       select,
       items,
       checkbox,
+      title,
+      phone,
       validate,
       reset,
       resetValidation

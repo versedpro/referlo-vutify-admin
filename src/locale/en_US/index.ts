@@ -26,6 +26,7 @@ export default {
   login: {
     titleIn: "Sing In Form",
     titleUn: "Sing Un Form",
+    appTitle: "The Referlo ",
     login: "Login",
     register: "Register",
     email: "Email",

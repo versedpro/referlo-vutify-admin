@@ -26,6 +26,7 @@ export default {
   login: {
     titleIn: "登記",
     titleUn: "注册",
+    appTitle: "REFER ",
     login: "登錄",
     register: "注册",
     email: "電郵",

@@ -26,6 +26,7 @@ export default {
   login: {
     titleIn: "登录",
     titleUn: "注册",
+    appTitle: "REFER ",
     login: "登录",
     register: "注册",
     email: "电邮",
@@ -44,8 +45,8 @@ export default {
   },
   referal: {
     clientName: "客戶",
-    phone: "電話戶",
-    email: "電郵",
+    phone: "电话",
+    email: "电邮",
     address: "地址",
     productName: "產品",
     remark: "備註"

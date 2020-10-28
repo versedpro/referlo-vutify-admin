@@ -5,11 +5,12 @@
  */
 
 import "@mdi/font/css/materialdesignicons.css";
+// import "vuetify/dist/vuetify.min.css";
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
 
 // import { settings } from "@/config";
-import i18n from "@/locale/index";
+// import i18n from "@/locale/index";
 import locales from "@/locale/vuetify";
 import themes from "./vuetifyThemes";
 
@@ -29,7 +30,7 @@ const vuetify = new Vuetify({
   lang: {
     locales,
     // current: settings.locale,
-    current: "en",
+    current: "en"
     // t: (key, ...params) => i18n.t(key, params)
   }
 });

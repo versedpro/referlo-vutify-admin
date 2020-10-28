@@ -1,19 +1,19 @@
 <template>
-  <v-container class="container--fluid fill-height primary">
+  <v-container class="container--fluid fill-height  home-background">
     <v-row no-gutters align="center" justify="center">
       <v-col cols="12" sm="8" md="4" lg="4">
         <v-card class="elevation-5 pa-3">
           <v-card-text>
-            <div class="layout column align-center">
+            <div class="my-10 layout column align-center">
               <img
                 src="img/icons/icon-1024x1024.png"
                 alt="Vue Vuetify Admin Logo"
                 width="120"
                 height="120"
               />
-              <h1 class="text-center my-4 primary--text">
-                AMSL Referlo
-              </h1>
+              <!-- <h1 class="text-center my-4 primary--text">
+                {{ $t("login.appTitle") }}
+              </h1> -->
             </div>
             <v-form>
               <v-text-field
@@ -27,10 +27,11 @@
               />
               <v-text-field
                 v-model="model.password"
-                append-icon="mdi-lock"
-                name="password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                 :label="$t('login.password')"
-                type="password"
+                :type="showPassword ? 'text' : 'password'"
+                @click:append="showPassword = !showPassword"
+                name="password"
                 required
                 autocomplete="current-password"
               />
@@ -70,6 +71,7 @@ export default defineComponent({
     });
 
     const loading = ref(false);
+    const showPassword = ref(false);
 
     async function login() {
       // $store
@@ -83,8 +85,23 @@ export default defineComponent({
     return {
       model,
       loading,
+      showPassword,
       login
     };
   }
 });
 </script>
+
+<style scoped>
+/* html {
+  overflow-y: auto;
+} */
+
+.home-background {
+  background: url("~@/assets/img/amsl_background.png");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+}
+</style>

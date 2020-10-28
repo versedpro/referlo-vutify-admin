@@ -1,55 +1,69 @@
 <template>
-  <v-container dark style="max-width: 800px;">
-    <v-timeline align-top dense clipped>
-      <v-timeline-item fill-dot class="white--text mb-12" color="orange" large>
-        <template v-slot:icon>
-          <span>JL</span>
-        </template>
-        <v-text-field
-          v-model="input"
-          class="mt-4"
-          label="Type a message..."
-          append-outer-icon="mdi-send"
-          flat
-          rounded
-          solo
-          clearable
-          background-color="grey"
-          @click:append-outer="comment"
-          @keydown.enter="comment"
-        >
-        </v-text-field>
-      </v-timeline-item>
-
-      <v-slide-x-transition group>
-        <v-timeline-item v-for="event in timeline" :key="event.id" class="mb-4" color="pink" small>
-          <v-row justify="space-between">
-            <v-col cols="7" v-text="event.text"></v-col>
-            <v-col class="text-right" cols="5" v-text="event.time"></v-col>
-          </v-row>
+  <v-container fluid>
+    <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
+      <v-card-title class="primary justify-center display-1 text-h5 white--text">
+        {{ title }}
+      </v-card-title>
+      <v-timeline class="mr-12" align-top dense clipped>
+        <v-timeline-item fill-dot class="white--text mb-12" color="orange" large>
+          <template v-slot:icon>
+            <span>JL</span>
+          </template>
+          <v-text-field
+            v-model="input"
+            class="mt-4"
+            label="Type a message..."
+            append-outer-icon="mdi-send"
+            flat
+            rounded
+            solo
+            clearable
+            background-color="grey"
+            @click:append-outer="comment"
+            @keydown.enter="comment"
+          >
+          </v-text-field>
         </v-timeline-item>
-      </v-slide-x-transition>
 
-      <v-timeline-item v-for="(item, i) in items" :key="i" :color="item.color" small>
-        <template v-slot:opposite>
-          <span :class="`headline font-weight-bold ${item.color}--text`" v-text="item.year"></span>
-        </template>
-        <div>{{ item.timestamp }}</div>
-        <v-card class="mt-2">
-          <!-- <v-card-title class="title">
+        <v-slide-x-transition group>
+          <v-timeline-item
+            v-for="event in timeline"
+            :key="event.id"
+            class="mb-4"
+            color="pink"
+            small
+          >
+            <v-row justify="space-between">
+              <v-col cols="7" v-text="event.text"></v-col>
+              <v-col class="text-right" cols="5" v-text="event.time"></v-col>
+            </v-row>
+          </v-timeline-item>
+        </v-slide-x-transition>
+
+        <v-timeline-item v-for="(item, i) in items" :key="i" :color="item.color" small>
+          <template v-slot:opposite>
+            <span
+              :class="`headline font-weight-bold ${item.color}--text`"
+              v-text="item.year"
+            ></span>
+          </template>
+          <div>{{ item.timestamp }}</div>
+          <v-card class="mt-2">
+            <!-- <v-card-title class="title">
             Lorem Ipsum Dolor
           </v-card-title> -->
-          <v-card-text class="white text--primary">
-            Status: dd
-            <p>
-              <v-chip class="mt-2">
-                Status: dd
-              </v-chip>
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-timeline-item>
-    </v-timeline>
+            <v-card-text class="white text--primary">
+              Status: dd
+              <p>
+                <v-chip class="mt-2">
+                  Status: dd
+                </v-chip>
+              </p>
+            </v-card-text>
+          </v-card>
+        </v-timeline-item>
+      </v-timeline>
+    </v-card>
   </v-container>
 </template>
 
@@ -65,6 +79,8 @@ export default defineComponent({
     const input = ref(null);
     const nonce = ref(0);
     const items = ref(Items);
+
+    const title = "訂單詳情";
 
     const timeline = computed(function() {
       return events.value.slice().reverse();
@@ -93,7 +109,8 @@ export default defineComponent({
       nonce,
       timeline,
       comment,
-      items
+      items,
+      title
     };
   }
 });
