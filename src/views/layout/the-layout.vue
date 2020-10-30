@@ -2,20 +2,22 @@
   <div class="v-application--wrap">
     <the-layout-drawer />
     <the-layout-toolbar />
-    <the-layout-content />
+    <the-content />
     <the-layout-fab />
     <the-layout-to-top-fab />
-    <the-layout-footer />
+    <!-- <the-layout-bottom-navigation /> -->
+    <!-- <the-layout-footer /> -->
   </div>
 </template>
 
 <script lang="ts">
 import TheLayoutDrawer from "./TheLayoutDrawer.vue";
 import TheLayoutToolbar from "./TheLayoutToolbar.vue";
-import TheLayoutContent from "./TheLayoutContent.vue";
+import TheContent from "./the-content.vue";
 import TheLayoutFab from "./TheLayoutFab.vue";
 import TheLayoutToTopFab from "./TheLayoutToTopFab.vue";
-import TheLayoutFooter from "./TheLayoutFooter.vue";
+// import TheLayoutBottomNavigation from "./the-layout-bottom-navigation.vue";
+// import TheLayoutFooter from "./TheLayoutFooter.vue";
 
 import Vue from "vue";
 
@@ -24,10 +26,11 @@ export default Vue.extend({
   components: {
     TheLayoutDrawer,
     TheLayoutToolbar,
-    TheLayoutContent,
+    TheContent,
     TheLayoutFab,
-    TheLayoutToTopFab,
-    TheLayoutFooter
+    TheLayoutToTopFab
+    // TheLayoutBottomNavigation
+    // TheLayoutFooter
   },
   data: () => ({})
 });

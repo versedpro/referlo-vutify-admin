@@ -87,27 +87,6 @@ export default defineComponent({
     Localization: () => import("../widget/app-localization.vue")
   },
 
-  //   props: {
-  // \   userInfo: unknown,
-
-  //     lblUsername: String,
-  //     lblPassword: String,
-
-  //     loading: boolean,
-  //     btnTextLogin: string,
-
-  //     imageZooSource: unknown,
-  //     imageSource: unknown,
-  //     title: String,
-
-  //     snackbar: boolean,
-  //     y: string,
-  //     x: string,
-  //     mode: string,
-  //     timeout: string,
-  //     text: string
-  //   },
-
   setup() {
     const showPassword = ref(false);
     const KeepmeloggediIn = ref("Keep-me-logged-in");

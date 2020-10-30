@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Layout from "@/views/layout/TheLayout.vue";
+import Layout from "@/views/layout/the-layout.vue";
 
 /* Router Modules */
 import authRouter from "./modules/auth";
