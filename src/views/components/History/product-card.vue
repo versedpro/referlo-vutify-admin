@@ -1,5 +1,7 @@
 <template>
   <v-card>
+    <v-img :aspect-ratio="16 / 9" :src="item.image"></v-img>
+
     <v-card-actions>
       <v-card-title>{{ item.orderNo }}</v-card-title>
       <v-spacer></v-spacer>
@@ -50,17 +52,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
   name: "ProductCard",
 
   props: {
     item: Object
-  }
+  },
 
-  // setup() {
-  //   return {};
-  // }
+  setup() {
+    const image = ref("https://cdn.vuetifyjs.com/images/cards/cooking.png");
+    return { image };
+  }
 });
 </script>
