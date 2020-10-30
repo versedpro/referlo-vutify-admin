@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="400">
+  <v-card class="mx-auto">
     <v-img
       :aspect-ratio="16 / 9"
       :src="item.image"
@@ -12,7 +12,7 @@
       </v-avatar>
       <v-card-title>{{ item.supplierName }}</v-card-title>
       <v-spacer></v-spacer>
-      <h1>{{ item.points }}</h1>
+      <p label class="font-weight-light headline orange--text">{{ item.points }}</p>
     </v-card-actions>
 
     <v-divider></v-divider>
