@@ -1,8 +1,9 @@
 const Items = [
   {
     supplierName: "PCCW",
-    productName: "PCCW",
+    productName: "Broadband",
     image: "/img/products/img1.png",
+    points: "80",
     name: "Broadband",
     date: "2019-04-15",
     orderNo: "100001",
@@ -15,6 +16,7 @@ const Items = [
     supplierName: "PCCW",
     productName: "Telephone line",
     image: "/img/products/img2.png",
+    points: "80",
     name: "CSL Mobile 十月更新極速 4.5G 月費計劃 月費 $173 ~ 8GB 流動數據",
     date: "2019-04-15",
     orderNo: "100001",
@@ -25,8 +27,9 @@ const Items = [
   },
   {
     supplierName: "PCCW",
-    productName: "Telephone line",
+    productName: "Now TV",
     image: "/img/products/img1.png",
+    points: "80",
     name:
       "中國移動香港-CMHK 三重快閃優惠 指定月費加送現金繳費卷 所有月費豁免$18牌照隧道費指定月費加送大灣區數據",
     date: "2019-04-15",

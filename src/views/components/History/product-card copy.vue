@@ -1,25 +1,23 @@
 <template>
-  <v-card class="mx-auto" max-width="400">
-    <v-img
-      :aspect-ratio="16 / 9"
-      :src="item.image"
-      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
-    >
-    </v-img>
+  <v-card>
+    <v-img :aspect-ratio="16 / 9" :src="item.image"></v-img>
+
     <v-card-actions>
       <v-avatar class="mx-5" color="red">
-        <img src="/img/products/hkbn.jpg" alt="John" />
+        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
       </v-avatar>
       <v-card-title>{{ item.supplierName }}</v-card-title>
       <v-spacer></v-spacer>
-      <h1>{{ item.points }}</h1>
+      <v-chip large class="ma-2" label>
+        Label
+      </v-chip>
     </v-card-actions>
 
     <v-divider></v-divider>
     <v-card-text>
       {{ item.productName }}
     </v-card-text>
-    <v-card-text>Valid Until: {{ item.orderDate }} </v-card-text>
+    <v-card-text>Effective Date: {{ item.orderDate }} </v-card-text>
   </v-card>
 </template>
 
