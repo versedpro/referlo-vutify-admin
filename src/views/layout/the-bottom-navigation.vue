@@ -1,5 +1,11 @@
 <template>
-  <v-bottom-navigation :app="$vuetify.breakpoint.xsOnly" :value="value" color="teal" grow>
+  <v-bottom-navigation
+    v-if="$vuetify.breakpoint.smAndDown"
+    :app="$vuetify.breakpoint.smAndDown"
+    :value="value"
+    color="teal"
+    grow
+  >
     <v-btn>
       <span>Recents</span>
 

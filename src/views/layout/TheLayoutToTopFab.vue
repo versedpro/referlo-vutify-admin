@@ -1,6 +1,7 @@
 <template>
   <v-fab-transition>
     <v-btn
+      class="mb-15"
       v-show="fab"
       v-scroll="onScroll"
       fab

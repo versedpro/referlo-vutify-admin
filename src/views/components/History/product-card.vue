@@ -6,20 +6,33 @@
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
     >
     </v-img>
-    <v-card-actions>
-      <v-avatar class="mx-5" color="red">
+    <v-card-actions class="green">
+      <v-avatar class="mx-4" color="red" rounded>
         <img src="/img/products/hkbn.jpg" alt="John" />
       </v-avatar>
       <v-card-title>{{ item.supplierName }}</v-card-title>
       <v-spacer></v-spacer>
-      <p label class="font-weight-light headline orange--text">{{ item.points }}</p>
+      <v-card-title class="font-weight-medium amber--text text-h4">{{ item.points }}</v-card-title>
     </v-card-actions>
 
-    <v-divider></v-divider>
+    <v-card-subtitle class="font-weight-bold">
+      <span class="mr-2">{{ $t("products.product") }}</span>
+      <span>{{ item.productName }}</span>
+    </v-card-subtitle>
     <v-card-text>
-      {{ item.productName }}
+      {{ item.remarks }}
     </v-card-text>
-    <v-card-text>Valid Until: {{ item.orderDate }} </v-card-text>
+
+    <v-card-actions>
+      <v-btn color="ml-2 primary accent-4">
+        {{ $t("products.orderNow") }}
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-card-subtitle class="green--text">
+        <span class="mr-2">{{ $t("products.validUntil") }}</span
+        >{{ item.expiryDate }}
+      </v-card-subtitle>
+    </v-card-actions>
   </v-card>
 </template>
 

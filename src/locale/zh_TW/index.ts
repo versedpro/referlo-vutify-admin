@@ -34,6 +34,12 @@ export default {
     password: "密碼",
     confirm: "確認"
   },
+  products: {
+    product: "產品 / 服務:",
+    orderNow: "立即訂購",
+    serviceProvider: "產品供應商",
+    validUntil: "有效期至:"
+  },
   referal: {
     clientName: "客戶",
     phone: "電話",

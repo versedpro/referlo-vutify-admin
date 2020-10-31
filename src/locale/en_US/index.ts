@@ -43,6 +43,12 @@ export default {
     password: "Password",
     confirm: "Confirm"
   },
+  products: {
+    product: "Product/Service:",
+    orderNow: "Order Now",
+    serviceProvider: "Service Provider",
+    validUntil: "Valid Until:"
+  },
   referal: {
     clientName: "Client",
     phone: "Phone",
