@@ -7,20 +7,27 @@
     grow
   >
     <v-btn>
-      <span>Recents</span>
-
+      <span>優惠</span>
       <v-icon>mdi-history</v-icon>
     </v-btn>
 
     <v-btn>
-      <span>Favorites</span>
-
+      <span>兌換</span>
       <v-icon>mdi-heart</v-icon>
     </v-btn>
 
     <v-btn>
-      <span>Nearby</span>
+      <span>我的ID</span>
+      <v-icon>mdi-map-marker</v-icon>
+    </v-btn>
 
+    <v-btn>
+      <span>我的ID</span>
+      <v-icon>mdi-map-marker</v-icon>
+    </v-btn>
+
+    <v-btn>
+      <span>我的ID</span>
       <v-icon>mdi-map-marker</v-icon>
     </v-btn>
   </v-bottom-navigation>

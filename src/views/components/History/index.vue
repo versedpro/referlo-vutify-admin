@@ -4,7 +4,7 @@
       {{ title }}
     </v-card-title>
 
-    <supplier-slider :suppliers="suppliers"></supplier-slider>
+    <supplier-slider :suppliers="suppliers" @onSelection="handleSelection"></supplier-slider>
 
     <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
       <template v-slot:default="props">
@@ -19,34 +19,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { defineComponent, ref, computed } from "@vue/composition-api";
 import { Items } from "@/demo/api/mock_products";
-import ProductCard from "./product-card.vue";
-import SupplierSlider from "./supplier_slider.vue";
 import { Suppliers } from "@/demo/api/mock_supplier";
 
 export default defineComponent({
   name: "History",
-  model: null,
 
   components: {
-    ProductCard,
-    SupplierSlider
+    ProductCard: () => import("./product-card.vue"),
+    SupplierSlider: () => import("./supplier_slider.vue")
   },
 
   setup() {
     const itemsPerPage = ref(4);
     const title = "資訊中心";
     const model = ref(null);
-    const items = ref(Items);
     const suppliers = ref(Suppliers);
+    const selected = ref([] as Array<string>);
+
+    const items = computed(() => {
+      return selected.value.length > 0
+        ? Items.filter(item => selected.value.some(k => k === item.supplierName))
+        : Items;
+    });
+
+    const handleSelection = s => (selected.value = s);
 
     return {
       itemsPerPage,
       title,
       items,
       suppliers,
-      model
+      model,
+      selected,
+      handleSelection
     };
   }
 });

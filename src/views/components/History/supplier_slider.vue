@@ -6,17 +6,17 @@
       v-model="selection"
       active-class="deep-purple--text text--accent-4"
       multiple
+      mandatory
       column
+      @change="handleChange"
     >
-      <v-chip @click="onSelect" v-for="supplier in suppliers" :key="supplier.id" :value="supplier">
+      <v-chip v-for="supplier in suppliers" :key="supplier.id" :value="supplier">
         <v-avatar left>
           <v-img :src="supplier.imagePath"></v-img>
         </v-avatar>
         {{ supplier.displayName }}
       </v-chip>
     </v-chip-group>
-
-    <!-- {{ selection }} -->
   </v-sheet>
 </template>
 
@@ -27,21 +27,20 @@ export default defineComponent({
   name: "SupplierSlider",
 
   props: {
-    suppliers: Object
+    suppliers: Array
   },
 
-  setup(props) {
+  setup(props, { emit }) {
     const selection = ref([props.suppliers[0]]);
 
-    // const message = computed({
-    //   get: () => props.modelValue,
-    //   set: value => emit("update:modelValue", value)
-    // });
-
-    // function onSelect() {}
+    const handleChange = selected => {
+      const suppliers = selected.map(e => e.displayName) as Array<string>;
+      emit("onSelection", suppliers);
+    };
 
     return {
-      selection
+      selection,
+      handleChange
     };
   }
 });
