@@ -5,6 +5,7 @@
     </v-card-title>
 
     <supplier-slider :suppliers="suppliers" @onSelection="handleSelection"></supplier-slider>
+    <!-- <supplier-select :suppliers="suppliers" @onSelection="handleSelection"></supplier-select> -->
 
     <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
       <template v-slot:default="props">
@@ -28,6 +29,7 @@ export default defineComponent({
 
   components: {
     ProductCard: () => import("./product-card.vue"),
+    // SupplierSelect: () => import("./supplier_select.vue")
     SupplierSlider: () => import("./supplier_slider.vue")
   },
 

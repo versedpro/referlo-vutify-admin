@@ -45,7 +45,7 @@ export default {
   },
   products: {
     product: "产品 / 服务:",
-    orderNow: "立即订购",
+    orderNow: "下订单",
     serviceProvider: "产品供应商",
     validUntil: "有效期至:"
   },

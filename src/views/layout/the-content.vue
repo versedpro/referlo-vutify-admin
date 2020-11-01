@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-sheet tile color="red" class="mx-auto" max-width="900" height="100%">
       <transition name="fade-transform" mode="out-in">
         <keep-alive>
@@ -8,7 +8,7 @@
       </transition>
       <!-- <the-bottom-navigation /> -->
     </v-sheet>
-  </v-content>
+  </v-main>
 </template>
 
 <script lang="ts">

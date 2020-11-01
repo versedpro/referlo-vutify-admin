@@ -36,7 +36,7 @@ export default {
   },
   products: {
     product: "產品 / 服務:",
-    orderNow: "立即訂購",
+    orderNow: "落單",
     serviceProvider: "產品供應商",
     validUntil: "有效期至:"
   },

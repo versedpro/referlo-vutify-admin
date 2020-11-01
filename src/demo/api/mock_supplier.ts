@@ -1,53 +1,38 @@
 const Suppliers = [
   {
     id: "1",
-    displayName: "HKBN",
+    displayName: "PCCW",
     imagePath: "/img/products/pccw.png"
   },
   {
     id: "2",
-    displayName: "Msl",
+    displayName: "HKBN",
     imagePath: "/img/products/hkbn.jpg"
   },
   {
     id: "3",
-    displayName: "Openrice",
+    displayName: "Business service",
     imagePath: "/img/products/hkbn.jpg"
   },
   {
     id: "4",
     displayName: "Chargespot",
-    imagePath: "/img/products/pccw.png"
+    imagePath: "/img/products/chargespot.png"
   },
   {
     id: "5",
-    displayName: "PCCW",
-    imagePath: "/img/products/pccw.png"
+    displayName: "Visa",
+    imagePath: "/img/products/visa.png"
   },
   {
     id: "6",
-    displayName: "CMI",
-    imagePath: "/img/products/pccw.png"
+    displayName: "Master",
+    imagePath: "/img/products/master-card.png"
   },
   {
     id: "7",
-    displayName: "CSL",
-    imagePath: "/img/products/hkbn.jpg"
-  },
-  {
-    id: "8",
-    displayName: "FWD",
-    imagePath: "/img/products/pccw.png"
-  },
-  {
-    id: "9",
-    displayName: "Manulife",
-    imagePath: "/img/products/hkbn.jpg"
-  },
-  {
-    id: "10",
-    displayName: "AIA",
-    imagePath: "/img/products/pccw.png"
+    displayName: "UnionPay",
+    imagePath: "/img/products/union-pay.png"
   }
 ];
 

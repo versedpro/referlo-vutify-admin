@@ -1,14 +1,16 @@
 <template>
   <v-card class="mx-auto">
     <v-img
+      v-if="item.image != null"
       :aspect-ratio="16 / 9"
       :src="item.image"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
     >
     </v-img>
-    <v-card-actions class="green">
-      <v-avatar class="mx-4" color="red" rounded>
-        <img src="/img/products/hkbn.jpg" alt="John" />
+    <v-card-actions class="blue darken-3">
+      <v-avatar class="mx-2" rounded>
+        <img :src="item.avatar" alt="avatar" />
+        <!-- <img src="/img/products/hkbn.jpg" alt="John" /> -->
       </v-avatar>
       <v-card-title>{{ item.supplierName }}</v-card-title>
       <v-spacer></v-spacer>
