@@ -8,7 +8,7 @@
       item-value="displayName"
       label="Servie Provider"
       multiple
-      @change="handleChange"
+      @input="handleChange"
     >
       <template v-slot:prepend-item>
         <v-list-item ripple @click="toggle">
@@ -48,15 +48,6 @@
               {{ selected.length }}
             </v-list-item-subtitle>
           </v-list-item-content>
-
-          <!-- <v-list-item-content v-else>
-            <v-list-item-title>
-              How could you not like fruit?
-            </v-list-item-title>
-            <v-list-item-subtitle>
-              Go ahead, make a selection above!
-            </v-list-item-subtitle>
-          </v-list-item-content> -->
         </v-list-item>
       </template>
     </v-select>
@@ -77,9 +68,9 @@ export default defineComponent({
     const selected = ref([]);
 
     const handleChange = s => {
-      const suppliers = s.map(e => e.displayName) as Array<string>;
-      alert(JSON.stringify(s));
-      emit("onSelection", suppliers);
+      //const suppliers = s.map(e => e.displayName) as Array<string>;
+      //alert(JSON.stringify(s));
+      emit("onSelection", s);
     };
 
     const selectAll = computed(() => {

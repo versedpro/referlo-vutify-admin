@@ -5,9 +5,15 @@
  */
 
 import colors from "vuetify/es5/util/colors";
+// 030710
+// 001E2F
+// primary: "#2196F3",
+
+// DCB456
+// FCDA8B
 
 const dark = {
-  primary: "#2196F3",
+  primary: "#001E2F",
   secondary: "#424242",
   accent: "#FF4081",
   success: "#4CAF50",
@@ -20,12 +26,39 @@ const dark = {
  * Vuetify theme options.
  */
 
+// {
+//   "Primary": {
+//     "50": "#deecfe",
+//     "100": "#b9d0e3",
+//     "200": "#95afc6",
+//     "300": "#718fa9",
+//     "400": "#567994",
+//     "500": "#3a6380",
+//     "600": "#2e5570",
+//     "700": "#1f435b",
+//     "800": "#113146",
+//     "900": "#001e2f"
+//   },
+//   "Secondary": {
+//     "50": "#fef7e3",
+//     "100": "#fde8b8",
+//     "200": "#fcda8b",
+//     "300": "#fbcd5d",
+//     "400": "#fbc13c",
+//     "500": "#f9b729",
+//     "600": "#f8aa26",
+//     "700": "#f79824",
+//     "800": "#f68722",
+//     "900": "#f4691f"
+//   }
+// }
+
 const themes = [
   {
     light: {
       primary: "#02101b",
       // primary: "#e2b95a",
-      secondary: "#424242",
+      secondary: "#FCDA8B",
       accent: "#82B1FF",
       success: "#4CAF50",
       error: "#FF5252",
