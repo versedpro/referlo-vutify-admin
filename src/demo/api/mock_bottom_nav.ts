@@ -14,7 +14,7 @@ const bottomNavData = [
   {
     iconText: "History",
     label: "bottomNavigation.history",
-    icon: "mdi-history",
+    icon: "mdi-database",
     path: "/follow-up"
   },
   {

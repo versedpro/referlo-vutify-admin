@@ -55,6 +55,15 @@ export default {
     points: "積分",
     account: "帳戶"
   },
+  home: {
+    referal: "轉介",
+    referredTotal: "個案總和:",
+    memberSince: "入會年份",
+    processing: "努力中",
+    successful: "已成功個案",
+    unsuccessful: "未成功個案",
+    points: "已獲取積分"
+  },
   errors: {
     whoops: "哦嚯~!",
     back: "返回!",

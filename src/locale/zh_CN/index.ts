@@ -64,6 +64,15 @@ export default {
     points: "积分",
     account: "帐户"
   },
+  home: {
+    referal: "转介",
+    referredTotal: "个案总和:",
+    memberSince: "入会年份",
+    processing: "努力中",
+    successful: "已成功個案",
+    unsuccessful: "未成功個案",
+    points: "已获取积分"
+  },
   errors: {
     whoops: "哦嚯~!",
     back: "返回!",

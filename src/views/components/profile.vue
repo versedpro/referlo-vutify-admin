@@ -40,12 +40,12 @@ import { Items } from "@/demo/api/mock_referrer_list";
 import { defineComponent, ref } from "@vue/composition-api";
 
 import AvatarPicker from "./AvatarPicker1.vue";
-import PanelGroupItem from "./Home/PanelGroupItem.vue";
+// import PanelGroupItem from "./home/PanelGroupItem.vue";
 
 export default defineComponent({
   name: "Profile",
   components: {
-    PanelGroupItem,
+    // PanelGroupItem,
     AvatarPicker
   },
 

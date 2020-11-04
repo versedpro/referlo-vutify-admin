@@ -9,7 +9,10 @@
     <full-screen />
     <notification />
     <localization />
-    <profile />
+    <!-- <profile /> -->
+    <v-btn class="ml-2" icon color="indigo">
+      <v-icon>mdi-logout</v-icon>
+    </v-btn>
   </v-app-bar>
 </template>
 
@@ -20,7 +23,7 @@ import ErrorLog from "../widget/AppErrorLog.vue";
 import FullScreen from "../widget/AppFullScreen.vue";
 import Localization from "../widget/app-localization.vue";
 import Notification from "../widget/AppNotification.vue";
-import Profile from "../widget/AppProfile.vue";
+// import Profile from "../widget/AppProfile.vue";
 
 import Vue from "vue";
 
@@ -31,8 +34,8 @@ export default Vue.extend({
     ErrorLog,
     FullScreen,
     Localization,
-    Notification,
-    Profile
+    Notification
+    // Profile
   },
   data: () => ({}),
   computed: {

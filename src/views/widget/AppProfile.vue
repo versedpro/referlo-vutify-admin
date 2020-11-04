@@ -24,16 +24,6 @@
             <v-list-item-title>{{ name }}</v-list-item-title>
             <v-list-item-subtitle>{{ user }}</v-list-item-subtitle>
           </v-list-item-content>
-
-          <!--<v-list-item-action>-->
-          <!--<v-btn-->
-          <!--:class="fav ? 'red&#45;&#45;text' : ''"-->
-          <!--icon-->
-          <!--@click="fav = !fav"-->
-          <!--&gt;-->
-          <!--<v-icon>mdi-heart</v-icon>-->
-          <!--</v-btn>-->
-          <!--</v-list-item-action>-->
         </v-list-item>
       </v-list>
       <v-divider />

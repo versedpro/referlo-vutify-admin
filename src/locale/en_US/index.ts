@@ -64,6 +64,15 @@ export default {
     points: "Points",
     account: "Account"
   },
+  home: {
+    referal: "Make a referal",
+    referredTotal: "Referral Total:",
+    memberSince: "Member since",
+    processing: "Processing",
+    successful: "Success",
+    unsuccessful: "Unsuccessful",
+    points: "Points"
+  },
   errors: {
     whoops: "Whoops",
     back: "Get me out of here!",

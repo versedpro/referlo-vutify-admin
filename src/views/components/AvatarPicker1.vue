@@ -18,7 +18,7 @@
           <v-card tile flat class="d-flex">
             <v-card-text class="d-flex">
               <v-avatar
-                size="96" 
+                size="96"
                 @click="selectAvatar(avatar)"
                 class="mr-4"
                 :class="{ current: avatar.id === currentAvatar }"
@@ -51,12 +51,11 @@ export default defineComponent({
 
   computed: {
     avatars() {
-    //   return this.$store.state.avatars;
-        return [
-            {path: "img/avatars/13101802.jpg", id: "13101802"},
-            {path: "img/avatars/customer-support.png", id: "customer-support"}
-        ]
-
+      //   return this.$store.state.avatars;
+      return [
+        { path: "img/avatars/13101802.jpg", id: "13101802" },
+        { path: "img/avatars/customer-support.png", id: "customer-support" }
+      ];
     },
 
     show: {

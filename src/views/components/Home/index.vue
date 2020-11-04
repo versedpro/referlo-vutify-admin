@@ -1,8 +1,20 @@
 <template>
   <v-card tile class="mx-auto" height="100%">
-    <v-card-title class="primary justify-center display-1 text-h5 white--text">
-      {{ title }}
-    </v-card-title>
+    <v-card tile class="primary">
+      <v-card-text class="pt-12 text-center">
+        <v-avatar class="profile" color="grey" size="128">
+          <!-- <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img> -->
+          <v-img src="img/avatars/customer-support.png"></v-img>
+        </v-avatar>
+      </v-card-text>
+      <v-card-title class="white--text justify-center">
+        {{ name }}
+      </v-card-title>
+      <v-card-subtitle class="white--text text-center">
+        <span>{{ $t("home.memberSince") }}</span>
+        <span class="ml-1">2019</span>
+      </v-card-subtitle>
+    </v-card>
 
     <v-container class="grey lighten-5 pa-0">
       <v-row no-gutters>
@@ -12,35 +24,34 @@
               {{ score[n - 1] }}
             </v-card-title>
             <v-card-text class="text-center text-h6">
-              {{ category[n - 1] }}
+              {{ $t(category[n - 1]) }}
             </v-card-text>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
 
-    <v-card-actions>
-      <h1 class="mr-5 text-h4">1323</h1>
-      <v-divider vertical></v-divider>
-    </v-card-actions>
+    <v-card-subtitle class="text-center text-h6">
+      {{ $t("home.referredTotal") }} 1323
+    </v-card-subtitle>
+    <v-divider></v-divider>
 
-    <v-card-actions>
-      <h1 class="mr-5 text-h4">已獲取積分</h1>
-      <v-divider vertical></v-divider>
-    </v-card-actions>
+    <v-card-title class="mt-16 mb-8 justify-center text-h6">
+      <span>{{ $t("home.points") }}</span>
+      <span class="ml-2 text-h5 secondary--text text--darken-2 font-weight-medium">{{
+        points
+      }}</span>
+    </v-card-title>
 
-    <v-footer absolute>
-      <v-card-actions>
-        <h1 class="mr-5 text-h4">1323</h1>
-        <v-divider vertical></v-divider>
-      </v-card-actions>
-    </v-footer>
+    <v-card-text class="text-center">
+      <v-btn rounded color="primary" class="px-12">
+        {{ $t("home.referal") }}
+      </v-btn>
+    </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 import PanelGroup from "./PanelGroup.vue";
 import AppWidget from "@/views/widget/AppWidget.vue";
 
@@ -56,20 +67,21 @@ export default defineComponent({
   setup() {
     const selected = ref([]);
     const score = ref([17, 583, 723]);
-    const category = ref(["努力中", "未成功個案", "已成功個案"]);
+    const category = ref(["home.processing", "home.unsuccessful", "home.successful"]);
     const title = ref("REFER 佬");
 
-    const menuItem = ref(["轉介客戶", "過往記錄", "資訊中心", "個人資料"]);
-
-    const img1 = ref(require("@/assets/img/customer-support.png"));
+    // const img1 = ref(require("@/assets/img/customer-support.png"));
+    const name = ref("Joe");
+    const points = ref(10000);
 
     return {
-      img1,
+      // img1,
       score,
       category,
       title,
-      menuItem,
-      selected
+      selected,
+      name,
+      points
     };
   }
 });

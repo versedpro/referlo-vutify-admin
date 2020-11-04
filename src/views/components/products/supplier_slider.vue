@@ -5,7 +5,6 @@
     <v-chip-group
       v-model="selection"
       active-class="deep-purple--text text--accent-4"
-      mobile-breakpoint="smAndDown"
       multiple
       mandatory
       show-arrows
