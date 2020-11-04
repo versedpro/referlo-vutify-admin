@@ -1,49 +1,61 @@
 <template>
-  <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
+  <v-card tile class="mx-auto" height="100%">
     <v-card-title class="primary justify-center display-1 text-h5 white--text">
       {{ title }}
     </v-card-title>
-    <v-simple-table>
-      <template v-slot:default>
-        <!-- <thead>
-          <tr>
-            <th class="text-left"></th>
-            <th class="text-left">
-              Product
-            </th>
-            <th class="text-left">
-              Date
-            </th>
-          </tr>
-        </thead> -->
-        <tbody>
-          <tr v-for="item in desserts" :key="item.name">
-            <td><v-icon color="orange" small>mdi-arrow-right-bold-box</v-icon></td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.date }}</td>
-          </tr>
-        </tbody>
+
+    <supplier-slider :suppliers="suppliers" @onSelection="handleSelection"></supplier-slider>
+    <!-- <supplier-select :suppliers="suppliers" @onSelection="handleSelection"></supplier-select> -->
+
+    <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
+      <template v-slot:default="props">
+        <v-row class="mx-2">
+          <v-col v-for="item in props.items" :key="item.name" cols="12">
+            <product-card :item="item"></product-card>
+          </v-col>
+        </v-row>
       </template>
-    </v-simple-table>
+    </v-data-iterator>
   </v-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { defineComponent, ref, computed } from "@vue/composition-api";
 import { Items } from "@/demo/api/mock_products";
+import { Suppliers } from "@/demo/api/mock_supplier";
 
 export default defineComponent({
-  name: "Product",
+  name: "History",
+
+  components: {
+    ProductCard: () => import("./product-card.vue"),
+    // SupplierSelect: () => import("./supplier_select.vue")
+    SupplierSlider: () => import("./supplier_slider.vue")
+  },
 
   setup() {
     const itemsPerPage = ref(4);
-    const desserts = ref(Items);
     const title = "資訊中心";
+    const model = ref(null);
+    const suppliers = ref(Suppliers);
+    const selected = ref([] as Array<string>);
+
+    const items = computed(() => {
+      return selected.value.length > 0
+        ? Items.filter(item => selected.value.some(k => k === item.supplierName))
+        : Items;
+    });
+
+    const handleSelection = s => (selected.value = s);
 
     return {
       itemsPerPage,
-      desserts,
-      title
+      title,
+      items,
+      suppliers,
+      model,
+      selected,
+      handleSelection
     };
   }
 });

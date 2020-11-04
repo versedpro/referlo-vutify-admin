@@ -1,28 +1,33 @@
 const bottomNavData = [
   {
-    iconText: "優惠",
-    icon: "mdi-gift-outline",
-    path: "/history"
-  },
-  {
-    iconText: "兌換",
-    icon: "mdi-compass-outline",
-    path: "/history"
-  },
-  {
-    iconText: "我的ID",
-    icon: "mdi-view-grid-outline",
+    iconText: "Home",
+    label: "bottomNavigation.home",
+    icon: "mdi-home",
     path: "/home"
   },
   {
-    iconText: "我的ID",
-    icon: "mdi-star-outline",
+    iconText: "Products",
+    label: "bottomNavigation.products",
+    icon: "mdi-tag",
     path: "/products"
   },
   {
-    iconText: "我的ID",
-    icon: "mdi-heart-outline",
-    path: "/history"
+    iconText: "History",
+    label: "bottomNavigation.history",
+    icon: "mdi-history",
+    path: "/follow-up"
+  },
+  {
+    iconText: "Points",
+    label: "bottomNavigation.points",
+    icon: "mdi-gift",
+    path: "/points"
+  },
+  {
+    iconText: "Account",
+    label: "bottomNavigation.account",
+    icon: "mdi-account",
+    path: "/profile"
   }
 ];
 export { bottomNavData };

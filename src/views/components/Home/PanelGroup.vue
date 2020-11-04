@@ -15,6 +15,8 @@
 import PanelGroupItem from "./PanelGroupItem.vue";
 import { defineComponent } from "@vue/composition-api";
 
+// const items;
+
 export default defineComponent({
   name: "PanelGroup",
   components: {

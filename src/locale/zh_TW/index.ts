@@ -48,6 +48,13 @@ export default {
     productName: "產品",
     remark: "備註"
   },
+  bottomNavigation: {
+    home: "主頁",
+    products: "產品",
+    history: "記錄",
+    points: "積分",
+    account: "帳戶"
+  },
   errors: {
     whoops: "哦嚯~!",
     back: "返回!",

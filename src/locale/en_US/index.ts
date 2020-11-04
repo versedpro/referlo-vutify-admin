@@ -57,6 +57,13 @@ export default {
     productName: "Product",
     remark: "Remark"
   },
+  bottomNavigation: {
+    home: "Home",
+    products: "Products",
+    history: "History",
+    points: "Points",
+    account: "Account"
+  },
   errors: {
     whoops: "Whoops",
     back: "Get me out of here!",

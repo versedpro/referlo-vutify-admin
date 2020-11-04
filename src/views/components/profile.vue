@@ -1,33 +1,33 @@
 <template>
-  <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
-    <v-card-title class="primary justify-center display-1 text-h5 white--text">
-      {{ title }}
-    </v-card-title>
-
-    <v-timeline dense>
-      <v-timeline-item v-for="n in 4" :key="n" large>
-        <template v-slot:icon>
-          <v-avatar size="36px">
-            <img alt="Avatar" src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460" />
-            <!-- <v-icon v-else :color="message.color" v-text="message.icon"></v-icon> -->
-          </v-avatar>
-        </template>
-        <template v-slot:opposite>
-          <span>Tus eu perfecto</span>
-        </template>
-        <v-card class="elevation-2">
-          <v-card-title class="headline">
-            Lorem ipsum
-          </v-card-title>
-          <v-card-text
-            >Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut,
-            sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando
-            voluptatibus, vix an salutandi sententiae.</v-card-text
-          >
-        </v-card>
-      </v-timeline-item>
-    </v-timeline>
-  </v-card>
+  <v-container fluid>
+    <v-layout column>
+      <v-card>
+        <v-card-text>
+          <v-flex class="mb-4">
+            <v-avatar size="96" class="mr-4">
+              <img src="/img/static/avatar/a1.jpg" alt="Avatar" />
+            </v-avatar>
+            <v-btn @click="openAvatarPicker">Change Avatar</v-btn>
+          </v-flex>
+          <v-text-field v-model="form.firstName" label="FirstName"></v-text-field>
+          <v-text-field v-model="form.lastName" label="Last Name"></v-text-field>
+          <v-text-field v-model="form.contactEmail" label="Email Address"></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <!-- <v-btn color="primary" :loading="loading" @click.native="update"> -->
+          <v-btn color="primary">
+            <v-icon left dark>check</v-icon>
+            Save Changes
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-layout>
+    <!-- <avatar-picker
+      v-model="showAvatarPicker"
+      :current-avatar="form.avatar"
+      @selected="selectAvatar"
+    ></avatar-picker> -->
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -40,13 +40,21 @@ export default defineComponent({
 
   setup() {
     const items = ref(Items);
-    const tree = ref([]);
-    const title = "个人资料";
+    const showAvatarPicker = ref(false);
+    const loading = ref(false);
+
+    const form = ref({
+      firstName: "John",
+      lastName: "Doe",
+      contactEmail: "john@doe.com",
+      avatar: "MALE_CAUCASIAN_BLOND_BEARD"
+    });
 
     return {
-      tree,
+      showAvatarPicker,
       items,
-      title
+      loading,
+      form
     };
   }
 });

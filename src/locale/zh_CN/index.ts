@@ -57,6 +57,13 @@ export default {
     productName: "產品",
     remark: "備註"
   },
+  bottomNavigation: {
+    home: "主页",
+    products: "产品",
+    history: "记录",
+    points: "积分",
+    account: "帐户"
+  },
   errors: {
     whoops: "哦嚯~!",
     back: "返回!",

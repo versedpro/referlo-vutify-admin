@@ -7,7 +7,7 @@
     grow
   >
     <v-btn v-for="item in bottomnavdata" :key="item.iconText" :to="item.path">
-      <span>{{ item.iconText }}</span>
+      <span>{{ $t(item.label) }}</span>
       <v-icon>{{ item.icon }}</v-icon>
     </v-btn>
   </v-bottom-navigation>
@@ -24,10 +24,6 @@ export default defineComponent({
     const value = ref(1);
     const bottomnavdata = ref(bottomNavData);
     const selection = ref([bottomnavdata[0]]);
-
-    // const handleChange = selected => {
-    //   alert(selection);
-    // };
 
     return {
       value,
