@@ -35,7 +35,7 @@ export const constantRoutes = [
   {
     path: "/landing",
     alias: "/land",
-    component: () => import("@/views/auth/Landing.vue"),
+    component: () => import("@/views/auth/landing.vue"),
     hidden: true
   },
   {

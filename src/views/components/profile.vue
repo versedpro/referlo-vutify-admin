@@ -5,8 +5,9 @@
         <v-card-text>
           <v-flex class="mb-4">
             <v-avatar size="96" class="mr-4">
-              <img src="/img/static/avatar/a1.jpg" alt="Avatar" />
+              <img :src="form.avatarPath" alt="Avatar" />
             </v-avatar>
+            <!-- <div class="v-avatar" style="height: 36px; min-width: 36px; width: 36px;"><img src="https://avatars.githubusercontent.com/u/13101802" alt="name"></div> -->
             <v-btn @click="openAvatarPicker">Change Avatar</v-btn>
           </v-flex>
           <v-text-field v-model="form.firstName" label="FirstName"></v-text-field>
@@ -14,19 +15,22 @@
           <v-text-field v-model="form.contactEmail" label="Email Address"></v-text-field>
         </v-card-text>
         <v-card-actions>
-          <!-- <v-btn color="primary" :loading="loading" @click.native="update"> -->
-          <v-btn color="primary">
-            <v-icon left dark>check</v-icon>
-            Save Changes
+          <v-btn class="ma-2" color="primary" dark>
+            Accept
+            <v-icon dark right>
+              mdi-checkbox-marked-circle
+            </v-icon>
           </v-btn>
+          <!-- <v-btn color="primary" :loading="loading" @click.native="update"> -->
         </v-card-actions>
       </v-card>
     </v-layout>
-    <!-- <avatar-picker
+    <avatar-picker
       v-model="showAvatarPicker"
-      :current-avatar="form.avatar"
+      :current-avatar="form.avatarPath"
       @selected="selectAvatar"
-    ></avatar-picker> -->
+    ></avatar-picker>
+    <!-- <panel-group-item title="Shoppings" icon="mdi-cart" color="green" :value="13600" /> -->
   </v-container>
 </template>
 
@@ -35,26 +39,46 @@ import { Items } from "@/demo/api/mock_referrer_list";
 
 import { defineComponent, ref } from "@vue/composition-api";
 
+import AvatarPicker from "./AvatarPicker1.vue";
+import PanelGroupItem from "./Home/PanelGroupItem.vue";
+
 export default defineComponent({
   name: "Profile",
+  components: {
+    PanelGroupItem,
+    AvatarPicker
+  },
 
   setup() {
     const items = ref(Items);
     const showAvatarPicker = ref(false);
     const loading = ref(false);
+    const avatarPicker = ref(AvatarPicker);
 
     const form = ref({
       firstName: "John",
       lastName: "Doe",
       contactEmail: "john@doe.com",
-      avatar: "MALE_CAUCASIAN_BLOND_BEARD"
+      avatarPath: "img/avatars/customer-support.png"
     });
+
+    function openAvatarPicker() {
+      this.showAvatarPicker = true;
+      console.log("hello");
+    }
+
+    function selectAvatar(avatarPath) {
+      this.form.avatarPath = avatarPath;
+    }
 
     return {
       showAvatarPicker,
       items,
       loading,
-      form
+      form,
+      openAvatarPicker,
+      selectAvatar,
+      avatarPicker
     };
   }
 });
