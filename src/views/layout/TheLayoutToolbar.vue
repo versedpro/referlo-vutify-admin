@@ -10,7 +10,7 @@
     <notification />
     <localization />
     <!-- <profile /> -->
-    <v-btn class="ml-2" icon color="indigo">
+    <v-btn class="ml-2" icon color="indigo" @click="logout">
       <v-icon>mdi-logout</v-icon>
     </v-btn>
   </v-app-bar>
@@ -45,6 +45,10 @@ export default Vue.extend({
     }
   },
   methods: {
+    logout() {
+      this.$store.dispatch("LogOut");
+      this.$router.push("/landing");
+    },
     toggleNavbar() {
       this.$store.dispatch("NavbarToggle");
     }
