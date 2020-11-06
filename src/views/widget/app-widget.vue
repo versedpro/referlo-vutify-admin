@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <v-app-bar v-if="!headerHide" flat dense color="transparent">
+  <v-card flat tile>
+    <!-- <v-app-bar v-if="!headerHide" flat dense color="transparent">
       <v-toolbar-title class="headline">
         {{ title }}
       </v-toolbar-title>
@@ -11,7 +11,7 @@
         </v-btn>
       </slot>
     </v-app-bar>
-    <v-divider v-if="!headerHide" />
+    <v-divider v-if="!headerHide" /> -->
 
     <v-card-text v-if="!paddingHide">
       <slot name="widget-content" />

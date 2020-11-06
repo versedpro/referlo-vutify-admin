@@ -5,17 +5,18 @@
     </v-card-title>
 
     <supplier-slider :suppliers="suppliers" @onSelection="handleSelection"></supplier-slider>
-    <!-- <supplier-select :suppliers="suppliers" @onSelection="handleSelection"></supplier-select> -->
 
-    <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
-      <template v-slot:default="props">
-        <v-row class="mx-2">
-          <v-col v-for="item in props.items" :key="item.name" cols="12">
-            <product-card :item="item"></product-card>
-          </v-col>
-        </v-row>
-      </template>
-    </v-data-iterator>
+    <v-card-text class="pa-0">
+      <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
+        <template v-slot:default="props">
+          <v-row>
+            <v-col v-for="item in props.items" :key="item.name" cols="12">
+              <product-card :item="item"></product-card>
+            </v-col>
+          </v-row>
+        </template>
+      </v-data-iterator>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -29,7 +30,6 @@ export default defineComponent({
 
   components: {
     ProductCard: () => import("./product-card.vue"),
-    // SupplierSelect: () => import("./supplier_select.vue")
     SupplierSlider: () => import("./supplier_slider.vue")
   },
 

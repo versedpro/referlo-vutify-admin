@@ -108,18 +108,22 @@ export const constantRoutes = [
       }
     ]
   },
-  // {
-  //   path: "/",
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: "/chat",
-  //       component: () => import("@/views/components/chat.vue"),
-  //       name: "Chat",
-  //       meta: { title: "route.followUp", icon: "mdi-palette" }
-  //     }
-  //   ]
-  // },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/chat",
+        component: () => import("@/views/components/chat.vue"),
+        name: "Chat",
+        meta: {
+          title: "route.followUp",
+          icon: "mdi-palette",
+          hidden: true
+        }
+      }
+    ]
+  },
   {
     path: "/",
     component: Layout,
@@ -143,7 +147,19 @@ export const constantRoutes = [
     children: [
       {
         path: "/profile",
-        component: () => import("@/views/components/profile.vue"),
+        component: () => import("@/views/components/profile/index.vue"),
+        name: "Profile",
+        meta: { title: "route.profile", icon: "mdi-translate" }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/points",
+        component: () => import("@/views/components/points/index.vue"),
         name: "Profile",
         meta: { title: "route.profile", icon: "mdi-translate" }
       }

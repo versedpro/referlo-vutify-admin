@@ -165,32 +165,55 @@ export function getRaddarChartOption(animationDuration: { animationDuration: num
 
 export function getPieChartOption() {
   return {
+    title: {
+      subtext: "個案",
+      text: "1333",
+      left: "center",
+      top: "45%"
+    },
     tooltip: {
-      trigger: "item",
-      formatter: "{a} <br/>{b} : {c} ({d}%)"
+      show: false,
+      trigger: "none",
+      formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
     legend: {
+      // orient: "vertical",
+      show: false,
+      bottom: "0%",
       left: "center",
-      bottom: "10",
-      data: ["Industries", "Technology", "Forex", "Gold", "Forecasts"]
+      data: ["努力中", "未成功個案", "已成功個案"]
     },
-    calculable: true,
     series: [
       {
-        name: "WEEKLY WRITE ARTICLES",
+        name: "個案",
         type: "pie",
-        roseType: "radius",
-        radius: [15, 95],
-        center: ["50%", "38%"],
+        radius: ["60%", "90%"],
+        hoverAnimation: false,
+        avoidLabelOverlap: true,
+        label: {
+          formatter: "{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%} ",
+          backgroundColor: "#eee",
+          borderColor: "#aaa",
+          borderWidth: 3,
+          borderRadius: 4,
+          show: false
+          // position: "center"
+        },
+        emphasis: {
+          label: {
+            show: false,
+            fontSize: "30",
+            fontWeight: "bold"
+          }
+        },
+        labelLine: {
+          show: false
+        },
         data: [
-          { value: 320, name: "Industries" },
-          { value: 240, name: "Technology" },
-          { value: 149, name: "Forex" },
-          { value: 100, name: "Gold" },
-          { value: 59, name: "Forecasts" }
-        ],
-        animationEasing: "cubicInOut",
-        animationDuration: 2600
+          { value: 17, name: "努力中", backgroundColor: "#ff0000" },
+          { value: 583, name: "未成功個案" },
+          { value: 723, name: "已成功個案" }
+        ]
       }
     ]
   };

@@ -1,47 +1,39 @@
 <template>
   <v-card tile class="mx-auto" height="100%">
-    <v-card tile class="primary">
-      <v-card-text class="pt-12 text-center">
-        <v-avatar class="profile" color="grey" size="128">
-          <!-- <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img> -->
-          <v-img src="img/avatars/customer-support.png"></v-img>
+    <v-card tile class="primary lighten-1">
+      <v-card-text class="pt-8 text-center">
+        <v-avatar color="secondary" size="108" class="rounded-xl">
+          <v-avatar color="primary lighten-1" size="98" class="rounded-xl">
+            <v-img :src="imagePath"></v-img>
+          </v-avatar>
         </v-avatar>
       </v-card-text>
-      <v-card-title class="white--text justify-center">
+
+      <v-card-title class="pt-0 white--text justify-center">
         {{ name }}
       </v-card-title>
-      <v-card-subtitle class="white--text text-center">
+
+      <v-card-subtitle class="secondary--text text-center">
         <span>{{ $t("home.memberSince") }}</span>
         <span class="ml-1">2019</span>
       </v-card-subtitle>
     </v-card>
 
-    <v-container class="grey lighten-5 pa-0">
-      <v-row no-gutters>
-        <v-col v-for="n in 3" :key="n" cols="12" sm="4">
-          <v-card class="pa-2" outlined>
-            <v-card-title class="justify-center text-h4 text--white">
-              {{ score[n - 1] }}
-            </v-card-title>
-            <v-card-text class="text-center text-h6">
-              {{ $t(category[n - 1]) }}
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-
     <v-card-subtitle class="text-center text-h6">
-      {{ $t("home.referredTotal") }} 1323
-    </v-card-subtitle>
-    <v-divider></v-divider>
-
-    <v-card-title class="mt-16 mb-8 justify-center text-h6">
       <span>{{ $t("home.points") }}</span>
-      <span class="ml-2 text-h5 secondary--text text--darken-2 font-weight-medium">{{
-        points
-      }}</span>
-    </v-card-title>
+      <span class="ml-1 text-h6">{{ points }}</span>
+    </v-card-subtitle>
+
+    <v-card-text>
+      <app-widget title="Pie Chart">
+        <option-chart
+          slot="widget-content"
+          height="280px"
+          width="100%"
+          :chart-data="getChartOption('pie')"
+        />
+      </app-widget>
+    </v-card-text>
 
     <v-card-text class="text-center">
       <v-btn rounded color="primary" class="px-12">
@@ -52,16 +44,15 @@
 </template>
 
 <script lang="ts">
-import PanelGroup from "./PanelGroup.vue";
-import AppWidget from "@/views/widget/AppWidget.vue";
-
+import { getPieChartOption } from "@/api/mock";
 import { defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
   name: "Home",
   components: {
-    PanelGroup,
-    AppWidget
+    PanelGroup: () => import("./PanelGroup.vue"),
+    OptionChart: () => import("./option-chart.vue"),
+    AppWidget: () => import("@/views/widget/app-widget.vue")
   },
 
   setup() {
@@ -70,18 +61,30 @@ export default defineComponent({
     const category = ref(["home.processing", "home.unsuccessful", "home.successful"]);
     const title = ref("REFER 佬");
 
-    // const img1 = ref(require("@/assets/img/customer-support.png"));
     const name = ref("Joe");
     const points = ref(10000);
 
+    function getChartOption(option) {
+      switch (option) {
+        case "pie":
+          return getPieChartOption();
+
+        default:
+          return {};
+      }
+    }
+
+    const imagePath = ref("https://avatars0.githubusercontent.com/u/9064066?v=4&s=460");
+
     return {
-      // img1,
       score,
       category,
       title,
       selected,
       name,
-      points
+      points,
+      imagePath,
+      getChartOption
     };
   }
 });

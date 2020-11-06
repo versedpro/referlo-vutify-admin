@@ -1,61 +1,101 @@
 <template>
-  <v-card tile class="mx-auto" height="100%">
+  <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
     <v-card-title class="primary justify-center display-1 text-h5 white--text">
       {{ title }}
     </v-card-title>
+    <v-container fluid>
+      <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
+        <template v-slot:default="props">
+          <v-row>
+            <!-- <v-col v-for="item in props.items" :key="item.name" cols="12" md="6" lg="4" xl="4"> -->
+            <v-col v-for="item in props.items" :key="item.name" cols="12">
+              <v-card>
+                <v-card-actions>
+                  <v-card-title>{{ item.orderNo }}</v-card-title>
+                  <v-spacer></v-spacer>
+                  <v-card-subtitle>{{ item.orderDate }}</v-card-subtitle>
+                </v-card-actions>
 
-    <supplier-slider :suppliers="suppliers" @onSelection="handleSelection"></supplier-slider>
-    <!-- <supplier-select :suppliers="suppliers" @onSelection="handleSelection"></supplier-select> -->
-
-    <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
-      <template v-slot:default="props">
-        <v-row class="mx-2">
-          <v-col v-for="item in props.items" :key="item.name" cols="12">
-            <product-card :item="item"></product-card>
-          </v-col>
-        </v-row>
-      </template>
-    </v-data-iterator>
+                <v-divider></v-divider>
+                <v-list>
+                  <v-list-item>
+                    <v-col cols="3" class="pa-0">
+                      <v-list-item-action-text>{{
+                        $t("orders.referredBy")
+                      }}</v-list-item-action-text>
+                    </v-col>
+                    <v-list-item-content class="align-end">
+                      {{ item.referredBy }}
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-col cols="3" class="pa-0">
+                      <v-list-item-action-text>{{
+                        $t("orders.clientName")
+                      }}</v-list-item-action-text>
+                    </v-col>
+                    <v-list-item-content class="align-end">
+                      {{ item.clientName }}
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-col cols="3" class="pa-0">
+                      <v-list-item-action-text>{{
+                        $t("orders.productName")
+                      }}</v-list-item-action-text>
+                    </v-col>
+                    <v-list-item-content>
+                      {{ item.productName }}
+                    </v-list-item-content>
+                    <!-- <v-list-item-action>
+                    <v-btn icon>
+                      <v-icon color="grey lighten-1">mdi-information</v-icon>
+                    </v-btn>
+                  </v-list-item-action> -->
+                  </v-list-item>
+                  <v-list-item>
+                    <v-col cols="3" class="pa-0">
+                      <v-list-item-action-text>{{ $t("orders.status") }}</v-list-item-action-text>
+                    </v-col>
+                    <v-list-item-content class="align-end">
+                      {{ item.status }}
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn small color="blue-grey" to="/follow-up/chat" class="ma-2 white--text">
+                    Follow Up
+                    <v-icon right dark>
+                      mdi-cloud-upload
+                    </v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+        </template>
+      </v-data-iterator>
+    </v-container>
   </v-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "@vue/composition-api";
-import { Items } from "@/demo/api/mock_products";
-import { Suppliers } from "@/demo/api/mock_supplier";
+import { defineComponent, ref } from "@vue/composition-api";
+import { Items } from "@/demo/api/mock_product_list";
 
 export default defineComponent({
-  name: "History",
-
-  components: {
-    ProductCard: () => import("./product-card.vue"),
-    // SupplierSelect: () => import("./supplier_select.vue")
-    SupplierSlider: () => import("./supplier_slider.vue")
-  },
+  name: "FollowUp",
 
   setup() {
     const itemsPerPage = ref(4);
-    const title = "資訊中心";
-    const model = ref(null);
-    const suppliers = ref(Suppliers);
-    const selected = ref([] as Array<string>);
-
-    const items = computed(() => {
-      return selected.value.length > 0
-        ? Items.filter(item => selected.value.some(k => k === item.supplierName))
-        : Items;
-    });
-
-    const handleSelection = s => (selected.value = s);
+    const items = ref(Items);
+    const title = "過往記錄";
 
     return {
       itemsPerPage,
       title,
-      items,
-      suppliers,
-      model,
-      selected,
-      handleSelection
+      items
     };
   }
 });

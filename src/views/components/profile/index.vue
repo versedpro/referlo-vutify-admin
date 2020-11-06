@@ -39,7 +39,7 @@ import { Items } from "@/demo/api/mock_referrer_list";
 
 import { defineComponent, ref } from "@vue/composition-api";
 
-import AvatarPicker from "./AvatarPicker1.vue";
+import AvatarPicker from "./avatar-picker.vue";
 // import PanelGroupItem from "./home/PanelGroupItem.vue";
 
 export default defineComponent({
