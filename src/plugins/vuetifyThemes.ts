@@ -56,14 +56,16 @@ const dark = {
 const themes = [
   {
     light: {
-      primary: "#02101b",
+      // primary: "#02101b",
       // primary: "#e2b95a",
+      primary: "#001e2f",
       secondary: "#FCDA8B",
       accent: "#82B1FF",
       success: "#4CAF50",
       error: "#FF5252",
       warning: "#FB8C00",
-      info: "#2196F3"
+      info: "#2196F3",
+      gold: "#dcb456"
     },
     dark
   },

@@ -11,9 +11,9 @@
             <v-col v-for="item in props.items" :key="item.name" cols="12">
               <v-card>
                 <v-card-actions>
-                  <v-card-title>{{ item.orderNo }}</v-card-title>
+                  <v-card-title class="pa-0">{{ item.orderNo }}</v-card-title>
                   <v-spacer></v-spacer>
-                  <v-card-subtitle>{{ item.orderDate }}</v-card-subtitle>
+                  <v-card-subtitle class="pa-0">{{ item.orderDate }}</v-card-subtitle>
                 </v-card-actions>
 
                 <v-divider></v-divider>

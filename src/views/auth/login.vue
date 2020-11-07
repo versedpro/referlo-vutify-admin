@@ -1,8 +1,11 @@
 <template>
-  <v-container class="container--fluid fill-height  home-background">
+  <v-container
+    class="container--fluid fill-height  home-background"
+    :style="{ padding: $vuetify.breakpoint.smAndDown ? 0 : 12 }"
+  >
     <v-row no-gutters align="center" justify="center">
       <v-col cols="12" sm="8" md="4" lg="4">
-        <v-card class="elevation-5 pa-3">
+        <v-card class="elevation-5 pa-3" :class="{ isMobile: $vuetify.breakpoint.smAndDown }">
           <v-card-text>
             <div class="my-10 layout column align-center">
               <img
@@ -103,5 +106,8 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   background-position: center center;
+}
+.isMobile {
+  box-shadow: none !important;
 }
 </style>

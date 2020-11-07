@@ -10,8 +10,16 @@
       <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
         <template v-slot:default="props">
           <v-row>
-            <v-col v-for="item in props.items" :key="item.name" cols="12">
-              <product-card :item="item"></product-card>
+            <v-col
+              v-for="item in props.items"
+              :key="item.name"
+              cols="12"
+              :class="{ 'pa-1': $vuetify.breakpoint.smAndDown }"
+            >
+              <product-card
+                :item="item"
+                :class="{ 'pa-0': $vuetify.breakpoint.smAndDown }"
+              ></product-card>
             </v-col>
           </v-row>
         </template>
