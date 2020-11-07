@@ -5,10 +5,10 @@
     </v-app-bar-nav-icon>
     <breadcrumbs />
     <v-spacer />
-    <error-log />
+    <!-- <error-log /> -->
     <full-screen />
     <notification />
-    <localization />
+    <localization class="ml-4" />
     <!-- <profile /> -->
     <v-btn class="ml-2" icon color="indigo" @click="logout">
       <v-icon>mdi-logout</v-icon>
@@ -19,7 +19,7 @@
 <script lang="ts">
 import { mapGetters } from "vuex";
 import Breadcrumbs from "../widget/AppBreadcrumbs.vue";
-import ErrorLog from "../widget/AppErrorLog.vue";
+// import ErrorLog from "../widget/AppErrorLog.vue";
 import FullScreen from "../widget/AppFullScreen.vue";
 import Localization from "../widget/app-localization.vue";
 import Notification from "../widget/AppNotification.vue";
@@ -31,7 +31,7 @@ export default Vue.extend({
   name: "TheLayoutToolbar",
   components: {
     Breadcrumbs,
-    ErrorLog,
+    // ErrorLog,
     FullScreen,
     Localization,
     Notification
