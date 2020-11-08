@@ -165,6 +165,19 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/industry",
+        component: () => import("@/views/components/industry/index.vue"),
+        name: "Industry",
+        meta: {title: "route.industry", icon: "mdi-translate"}
+      }
+    ]
+  },
+
   // {
   //   path: "/",
   //   component: Layout,

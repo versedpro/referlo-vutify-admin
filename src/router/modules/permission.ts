@@ -14,19 +14,19 @@ const permissionRouter = {
   children: [
     {
       path: "admin",
-      component: () => import("@/views/components/Permission/Admin.vue"),
+      component: () => import("@/views/components/permission/Admin.vue"),
       name: "PermissionAdmin",
       meta: { title: "route.permission.admin", roles: ["admin"], noCache: true }
     },
     {
       path: "editor",
-      component: () => import("@/views/components/Permission/Editor.vue"),
+      component: () => import("@/views/components/permission/Editor.vue"),
       name: "PermissionEditor",
       meta: { title: "route.permission.editor", roles: ["editor"], noCache: true }
     },
     {
       path: "visitor",
-      component: () => import("@/views/components/Permission/Visitor.vue"),
+      component: () => import("@/views/components/permission/Visitor.vue"),
       name: "PermissionVisitor",
       meta: { title: "route.permission.visitor", roles: ["visitor"], noCache: true }
     }
