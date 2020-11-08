@@ -78,9 +78,7 @@
       </v-data-iterator>
     </v-container>
     <v-list v-else two-line>
-      <v-list-item-group
-        multiple
-      >
+      <v-list-item-group multiple>
         <template v-for="(item, index) in items">
           <v-list-item :key="item.orderNo">
             <template>
@@ -89,22 +87,30 @@
 
                 <v-row>
                   <v-col class="display-inline">
-                    <v-list-item-action-text>{{ $t("orders.referredBy") }}:</v-list-item-action-text>
+                    <v-list-item-action-text>
+                      {{ $t("orders.referredBy") }}:
+                    </v-list-item-action-text>
                     <v-list-item-content
                       class="text--primary"
                       v-text="item.referredBy"
                     ></v-list-item-content>
-                    <v-list-item-action-text>{{ $t("orders.clientName") }}:</v-list-item-action-text>
+                    <v-list-item-action-text>
+                      {{ ` ` + $t("orders.clientName") }}:
+                    </v-list-item-action-text>
                     <v-list-item-content
                       class="text--primary"
                       v-text="item.clientName"
                     ></v-list-item-content>
-                    <v-list-item-action-text> {{ $t("orders.productName") }}:</v-list-item-action-text>
+                    <v-list-item-action-text>
+                      {{ ` ` + $t("orders.productName") }}:
+                    </v-list-item-action-text>
                     <v-list-item-content
                       class="text--primary"
                       v-text="item.productName"
                     ></v-list-item-content>
-                    <v-list-item-action-text> {{ $t("orders.status") }}:</v-list-item-action-text>
+                    <v-list-item-action-text>
+                      {{ ` ` + $t("orders.status") }}:
+                    </v-list-item-action-text>
                     <v-list-item-content
                       class="text--primary"
                       v-text="item.status"
@@ -124,10 +130,7 @@
             </template>
           </v-list-item>
 
-          <v-divider
-            v-if="index < items.length - 1"
-            :key="index"
-          ></v-divider>
+          <v-divider v-if="index < items.length - 1" :key="index"></v-divider>
         </template>
       </v-list-item-group>
     </v-list>
@@ -156,7 +159,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.display-inline div,span {
+.display-inline div,
+span {
   display: inline;
 }
 </style>
