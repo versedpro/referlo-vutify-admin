@@ -1,9 +1,9 @@
 <template>
   <v-bottom-navigation
-    v-if="$vuetify.breakpoint.xsOnly"
-    :app="$vuetify.breakpoint.xsOnly"
+    v-if="$vuetify.breakpoint.smAndDown"
+    :app="$vuetify.breakpoint.smAndDown"
     :value="value"
-    color="primary"
+    color="gold"
     grow
     mandatory
     ><!-- active-class="secondary" -->
