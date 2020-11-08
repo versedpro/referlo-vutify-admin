@@ -45,7 +45,7 @@
             <localization />
 
             <v-spacer />
-            <v-btn color="primary" outlined to="/register">
+            <v-btn color="primary back-gold" outlined to="/register">
               {{ $t("login.register") }}
             </v-btn>
             <v-btn color="primary" :loading="loading" @click="login">
@@ -110,5 +110,8 @@ export default defineComponent({
 .isMobile {
   box-shadow: none !important;
   background-color: #f5fbff;
+}
+.text--back-gold {
+  background-color: #dcb456;
 }
 </style>

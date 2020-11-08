@@ -3,7 +3,7 @@
     <v-card-title class="primary justify-center display-1 text-h5 white--text">
       {{ title }}
     </v-card-title>
-    <v-container fluid>
+    <v-container v-if="!$vuetify.breakpoint.xsOnly" fluid>
       <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
         <template v-slot:default="props">
           <v-row>
@@ -77,6 +77,60 @@
         </template>
       </v-data-iterator>
     </v-container>
+    <v-list v-else two-line>
+      <v-list-item-group
+        multiple
+      >
+        <template v-for="(item, index) in items">
+          <v-list-item :key="item.orderNo">
+            <template>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.orderNo"></v-list-item-title>
+
+                <v-row>
+                  <v-col class="display-inline">
+                    <v-list-item-action-text>{{ $t("orders.referredBy") }}:</v-list-item-action-text>
+                    <v-list-item-content
+                      class="text--primary"
+                      v-text="item.referredBy"
+                    ></v-list-item-content>
+                    <v-list-item-action-text>{{ $t("orders.clientName") }}:</v-list-item-action-text>
+                    <v-list-item-content
+                      class="text--primary"
+                      v-text="item.clientName"
+                    ></v-list-item-content>
+                    <v-list-item-action-text> {{ $t("orders.productName") }}:</v-list-item-action-text>
+                    <v-list-item-content
+                      class="text--primary"
+                      v-text="item.productName"
+                    ></v-list-item-content>
+                    <v-list-item-action-text> {{ $t("orders.status") }}:</v-list-item-action-text>
+                    <v-list-item-content
+                      class="text--primary"
+                      v-text="item.status"
+                    ></v-list-item-content>
+                  </v-col>
+                </v-row>
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-list-item-action-text v-text="item.orderDate"></v-list-item-action-text>
+                <v-btn small color="blue-grey" to="/follow-up/chat" class="ma-2 white--text">
+                  <v-icon center dark>
+                    mdi-cloud-upload
+                  </v-icon>
+                </v-btn>
+              </v-list-item-action>
+            </template>
+          </v-list-item>
+
+          <v-divider
+            v-if="index < items.length - 1"
+            :key="index"
+          ></v-divider>
+        </template>
+      </v-list-item-group>
+    </v-list>
   </v-card>
 </template>
 
@@ -100,3 +154,9 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+.display-inline div,span {
+  display: inline;
+}
+</style>
