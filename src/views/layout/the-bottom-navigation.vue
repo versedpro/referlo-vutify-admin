@@ -1,7 +1,7 @@
 <template>
   <v-bottom-navigation
-    v-if="$vuetify.breakpoint.smAndDown"
-    :app="$vuetify.breakpoint.smAndDown"
+    v-if="$vuetify.breakpoint.xsOnly"
+    :app="$vuetify.breakpoint.xsOnly"
     :value="value"
     color="primary"
     grow

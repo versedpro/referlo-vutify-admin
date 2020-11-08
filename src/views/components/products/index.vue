@@ -14,11 +14,11 @@
               v-for="item in props.items"
               :key="item.name"
               cols="12"
-              :class="{ 'pa-1': $vuetify.breakpoint.smAndDown }"
+              :class="{ 'pa-1': $vuetify.breakpoint.xsOnly }"
             >
               <product-card
                 :item="item"
-                :class="{ 'pa-0': $vuetify.breakpoint.smAndDown }"
+                :class="{ 'pa-0': $vuetify.breakpoint.xsOnly }"
               ></product-card>
             </v-col>
           </v-row>
