@@ -153,6 +153,18 @@ export const constantRoutes = [
       }
     ]
   },
+    {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/profile2",
+        component: () => import("@/views/components/profile2.vue"),
+        name: "Profile",
+        meta: { title: "route.profile", icon: "mdi-translate" }
+      }
+    ]
+  },
   {
     path: "/",
     component: Layout,
@@ -165,19 +177,6 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "/industry",
-        component: () => import("@/views/components/industry/index.vue"),
-        name: "Industry",
-        meta: {title: "route.industry", icon: "mdi-translate"}
-      }
-    ]
-  },
-
   // {
   //   path: "/",
   //   component: Layout,

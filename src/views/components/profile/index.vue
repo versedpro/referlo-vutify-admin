@@ -21,7 +21,7 @@
           <v-text-field v-model="form.contactEmail" label="Email Address"></v-text-field>
         </v-card-text>
         <v-card-actions class="primary">
-          <v-btn outlined rounded class="ma-2" color="secondary darken-2" dark>
+          <v-btn outlined rounded class="ma-2" color="secondary darken-2" dark to="/profile2">
             Accept
             <v-icon dark right>
               mdi-checkbox-marked-circle

@@ -1,7 +1,40 @@
 const Items = [
   {
     name: "Alex",
+    file: "mdi-account",
     children: [
+      {
+        name: "Joe Blog",
+        file: "mdi-account-child"
+      },
+      {
+        name: "Will Smith",
+        file: "mdi-account-child"
+      },
+      {
+        name: "Joe Blog",
+        file: "mdi-account-child"
+      },
+      {
+        name: "Will Smith",
+        file: "mdi-account-child"
+      },
+      {
+        name: "Joe Blog",
+        file: "mdi-account-child"
+      },
+      {
+        name: "Will Smith",
+        file: "mdi-account-child"
+      },
+      {
+        name: "Joe Blog",
+        file: "mdi-account-child"
+      },
+      {
+        name: "Will Smith",
+        file: "mdi-account-child"
+      },
       {
         name: "Joe Blog",
         file: "mdi-account-child"
@@ -14,6 +47,7 @@ const Items = [
   },
   {
     name: "Billy",
+    file: "mdi-account",
     children: [
       {
         name: "Joe Blog",

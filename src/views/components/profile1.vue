@@ -3,7 +3,6 @@
     <v-card-title class="primary justify-center display-1 text-h5 white--text">
       {{ title }}
     </v-card-title>
-
     <v-timeline dense>
       <v-timeline-item v-for="n in 4" :key="n" large>
         <template v-slot:icon>
