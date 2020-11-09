@@ -80,48 +80,57 @@
     <v-list v-else two-line>
       <v-list-item-group multiple>
         <template v-for="(item, index) in items">
-          <v-list-item :key="item.orderNo">
+          <v-list-item :key="item.orderNo" class="pa-1">
             <template>
-              <v-list-item-content>
+              <v-list-item-avatar class="me-0 my-0">
                 <v-list-item-title v-text="item.orderNo"></v-list-item-title>
-
+              </v-list-item-avatar>
+              <v-list-item-content class="display-inline pa-0">
                 <v-row>
-                  <v-col class="display-inline">
-                    <v-list-item-action-text>
+                  <v-col cols="7" class="pa-1">
+                    <v-list-item-action-text class="d-inline">
                       {{ $t("orders.referredBy") }}:
                     </v-list-item-action-text>
-                    <v-list-item-content
-                      class="text--primary"
+                    <v-list-item-subtitle
+                      class="text--primary pa-0 d-inline"
                       v-text="item.referredBy"
-                    ></v-list-item-content>
-                    <v-list-item-action-text>
-                      {{ ` ` + $t("orders.clientName") }}:
+                    ></v-list-item-subtitle>
+                  </v-col>
+                  <v-col cols="5" class="pa-1">
+                    <v-list-item-action-text class="d-inline">
+                      {{ $t("orders.clientName") }}:
                     </v-list-item-action-text>
-                    <v-list-item-content
-                      class="text--primary"
+                    <v-list-item-subtitle
+                      class="text--primary pa-0 d-inline"
                       v-text="item.clientName"
-                    ></v-list-item-content>
-                    <v-list-item-action-text>
-                      {{ ` ` + $t("orders.productName") }}:
+                    ></v-list-item-subtitle>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="7" class="pa-1">
+                    <v-list-item-action-text class="d-inline">
+                      {{ $t("orders.productName") }}:
                     </v-list-item-action-text>
-                    <v-list-item-content
-                      class="text--primary"
+                    <v-list-item-subtitle
+                      class="text--primary pa-0 d-inline"
                       v-text="item.productName"
-                    ></v-list-item-content>
-                    <v-list-item-action-text>
-                      {{ ` ` + $t("orders.status") }}:
+                    ></v-list-item-subtitle>
+                  </v-col>
+                  <v-col cols="5" class="pa-1">
+                    <v-list-item-action-text class="d-inline">
+                      {{ $t("orders.status") }}:
                     </v-list-item-action-text>
-                    <v-list-item-content
-                      class="text--primary"
+                    <v-list-item-subtitle
+                      class="text--primary pa-0 d-inline"
                       v-text="item.status"
-                    ></v-list-item-content>
+                    ></v-list-item-subtitle>
                   </v-col>
                 </v-row>
               </v-list-item-content>
 
-              <v-list-item-action>
+              <v-list-item-action class="ma-0">
                 <v-list-item-action-text v-text="item.orderDate"></v-list-item-action-text>
-                <v-btn small color="blue-grey" to="/follow-up/chat" class="ma-2 white--text">
+                <v-btn x-small color="blue-grey" to="/follow-up/chat" class="ma-1 white--text">
                   <v-icon center dark>
                     mdi-cloud-upload
                   </v-icon>
@@ -159,8 +168,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.display-inline div,
-span {
-  display: inline;
+.display-inline {
+  display: inline !important;
 }
 </style>

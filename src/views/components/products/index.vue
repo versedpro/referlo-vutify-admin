@@ -14,12 +14,10 @@
               v-for="item in props.items"
               :key="item.name"
               cols="12"
-              :class="{ 'pa-1': $vuetify.breakpoint.xsOnly }"
+              :class="{ 'pa-0': $vuetify.breakpoint.xsOnly }"
             >
-              <product-card
-                :item="item"
-                :class="{ 'pa-0': $vuetify.breakpoint.xsOnly }"
-              ></product-card>
+              <product-card v-if="!$vuetify.breakpoint.xsOnly" :item="item"></product-card>
+              <product-mobile v-else :item="item"></product-mobile>
             </v-col>
           </v-row>
         </template>
@@ -38,6 +36,7 @@ export default defineComponent({
 
   components: {
     ProductCard: () => import("./product-card.vue"),
+    ProductMobile: () => import("./product-mobile.vue"),
     SupplierSlider: () => import("./supplier_slider.vue")
   },
 
