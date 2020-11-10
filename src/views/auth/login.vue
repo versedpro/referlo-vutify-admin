@@ -1,8 +1,11 @@
 <template>
-  <v-container class="container--fluid fill-height  home-background">
+  <v-container
+    class="container--fluid fill-height  home-background"
+    :style="{ padding: $vuetify.breakpoint.xsOnly ? 0 : 12 }"
+  >
     <v-row no-gutters align="center" justify="center">
       <v-col cols="12" sm="8" md="4" lg="4">
-        <v-card class="elevation-5 pa-3">
+        <v-card class="elevation-5 pa-3" :class="{ isMobile: $vuetify.breakpoint.xsOnly }">
           <v-card-text>
             <div class="my-10 layout column align-center">
               <img
@@ -42,7 +45,7 @@
             <localization />
 
             <v-spacer />
-            <v-btn color="primary" outlined to="/register">
+            <v-btn color="primary back-gold" outlined to="/register">
               {{ $t("login.register") }}
             </v-btn>
             <v-btn color="primary" :loading="loading" @click="login">
@@ -103,5 +106,12 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   background-position: center center;
+}
+.isMobile {
+  box-shadow: none !important;
+  background-color: #f5fbff;
+}
+.text--back-gold {
+  background-color: #dcb456;
 }
 </style>

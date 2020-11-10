@@ -38,3 +38,9 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+.v-chip.v-chip--outlined.v-chip.v-chip {
+  background-color: #fcda8b !important;
+}
+</style>

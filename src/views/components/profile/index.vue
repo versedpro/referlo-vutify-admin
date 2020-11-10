@@ -8,12 +8,12 @@
               <!-- <v-icon>
         mdi-pencil
       </v-icon> -->
-            <v-avatar color="secondary darken-2" size="108">
-            <v-avatar size="96" class="mx-4" color="primary lighten-1">
-              <img :src="form.avatarPath" alt="Avatar" />
-            </v-avatar>
-            </v-avatar>
-            <!-- <div class="v-avatar" style="height: 36px; min-width: 36px; width: 36px;"><img src="https://avatars.githubusercontent.com/u/13101802" alt="name"></div> -->
+              <v-avatar color="secondary darken-2" size="108">
+                <v-avatar size="96" class="mx-4" color="primary lighten-1">
+                  <img :src="form.avatarPath" alt="Avatar" />
+                </v-avatar>
+              </v-avatar>
+              <!-- <div class="v-avatar" style="height: 36px; min-width: 36px; width: 36px;"><img src="https://avatars.githubusercontent.com/u/13101802" alt="name"></div> -->
             </v-btn>
           </v-flex>
           <v-text-field v-model="form.firstName" label="FirstName"></v-text-field>
@@ -91,12 +91,13 @@ export default defineComponent({
 </script>
 <style>
 .theme--light.v-label {
-    color: #c1a357 !important;
+  color: #c1a357 !important;
 }
 .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-    border-color: #c1a357 !important;
+  border-color: #c1a357 !important;
 }
-.theme--light.v-input input, .theme--light.v-input textarea {
-    color: #f6f6f6 !important;
+.theme--light.v-input input,
+.theme--light.v-input textarea {
+  color: #f6f6f6 !important;
 }
 </style>

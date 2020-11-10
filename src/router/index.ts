@@ -35,7 +35,7 @@ export const constantRoutes = [
   {
     path: "/landing",
     alias: "/land",
-    component: () => import("@/views/auth/Landing.vue"),
+    component: () => import("@/views/auth/landing.vue"),
     hidden: true
   },
   {
@@ -51,7 +51,7 @@ export const constantRoutes = [
       {
         path: "/home",
         alias: "/",
-        component: () => import("@/views/components/Home/index.vue"),
+        component: () => import("@/views/components/home/index.vue"),
         name: "Home",
         meta: {
           title: "route.home",
@@ -68,7 +68,7 @@ export const constantRoutes = [
     children: [
       {
         path: "/history",
-        component: () => import("@/views/components/History/index.vue"),
+        component: () => import("@/views/components/history/index.vue"),
         name: "History",
         meta: {
           title: "route.history",
@@ -153,7 +153,7 @@ export const constantRoutes = [
       }
     ]
   },
-    {
+  {
     path: "/",
     component: Layout,
     children: [

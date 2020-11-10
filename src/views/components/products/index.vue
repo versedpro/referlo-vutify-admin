@@ -10,8 +10,14 @@
       <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
         <template v-slot:default="props">
           <v-row>
-            <v-col v-for="item in props.items" :key="item.name" cols="12">
-              <product-card :item="item"></product-card>
+            <v-col
+              v-for="item in props.items"
+              :key="item.name"
+              cols="12"
+              :class="{ 'pa-0': $vuetify.breakpoint.xsOnly }"
+            >
+              <product-card v-if="!$vuetify.breakpoint.xsOnly" :item="item"></product-card>
+              <product-mobile v-else :item="item"></product-mobile>
             </v-col>
           </v-row>
         </template>
@@ -30,6 +36,7 @@ export default defineComponent({
 
   components: {
     ProductCard: () => import("./product-card.vue"),
+    ProductMobile: () => import("./product-mobile.vue"),
     SupplierSlider: () => import("./supplier_slider.vue")
   },
 
