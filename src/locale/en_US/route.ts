@@ -4,6 +4,7 @@ export default {
   home: "Point",
   history: "Job History",
   products: "Products",
+  industries: "Product1",
   profile: "Profile",
   followUp: "Orders",
   // pagePermission: 'Page Permission',

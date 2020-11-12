@@ -7,7 +7,8 @@ const Items = [
     remarks: null,
     avatar: "/img/products/pccw.png",
     expiryDate: "2020-12-01",
-    status: "Received"
+    status: "Received",
+    industry: 55
   },
   {
     supplierName: "PCCW",
@@ -17,7 +18,8 @@ const Items = [
     remarks: null,
     avatar: "/img/products/pccw.png",
     expiryDate: "2021-10-01",
-    status: "Received"
+    status: "Received",
+    industry: 55
   },
   {
     supplierName: "PCCW",
@@ -27,7 +29,8 @@ const Items = [
     remarks: null,
     avatar: "/img/products/pccw.png",
     expiryDate: "2021-10-01",
-    status: "Received"
+    status: "Received",
+    industry: 55
   },
   {
     supplierName: "Chargespot",
@@ -37,7 +40,8 @@ const Items = [
     remarks: "Monthly Coupon",
     avatar: "/img/products/chargespot.png",
     expiryDate: "2020-12-31",
-    status: "Received"
+    status: "Received",
+    industry: 230
   },
   {
     supplierName: "Visa",
@@ -47,7 +51,8 @@ const Items = [
     remarks: null,
     avatar: "/img/products/visa.png",
     expiryDate: "2020-12-31",
-    status: "Received"
+    status: "Received",
+    industry: 43
   }
 ];
 

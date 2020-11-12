@@ -9318,6 +9318,11 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
+splitpanes@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.npm.taobao.org/splitpanes/download/splitpanes-2.3.4.tgz#6a9ec72903f4a22700f14c32fa37c8a2fb318777"
+  integrity sha1-ap7HKQP0oicA8Uwy+jfIovsxh3c=
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
