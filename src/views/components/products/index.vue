@@ -1,29 +1,17 @@
 <template>
-  <v-card class="pa-0" height="100%">
-    <v-card-title> ff </v-card-title>
-    <v-card-text class="grey pa-4">
-      <v-expansion-panels inset>
-        <v-expansion-panel v-for="(item, i) in industries" :key="i">
-          <v-expansion-panel-header class="pa-0">
-            <v-list dense>
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon> mdi-flag</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.industryName"></v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-card-text>
+  <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
+    <!-- Hot Deals -->
+    <v-card class="ma-2">
+      <v-card-title class="justify-center"> Hot Deals </v-card-title>
+      <v-card-text> dfdsf </v-card-text>
+    </v-card>
+    <!-- Products group by industry -->
+    <v-card class="ma-2">
+      <v-card-title> ff </v-card-title>
+      <v-card-text class="grey pa-4">
+        <industry-panels :industries="industries"></industry-panels>
+      </v-card-text>
+    </v-card>
   </v-card>
 </template>
 
@@ -32,7 +20,11 @@ import { defineComponent, ref } from "@vue/composition-api";
 import { industries as Industries } from "@/demo/api/mock_industry";
 
 export default defineComponent({
-  name: "History",
+  name: "Products",
+
+  components: {
+    IndustryPanels: () => import("./industry-panels.vue")
+  },
 
   setup() {
     const itemsPerPage = ref(4);
