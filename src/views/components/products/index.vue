@@ -1,6 +1,8 @@
 <template>
   <v-card class="pa-0" height="100%">
-    <v-card-title> ff </v-card-title>
+    <v-card-title class="primary justify-center display-1 text-h5 white--text">
+      {{ title }}
+    </v-card-title>
     <v-card-text class="grey pa-4">
       <v-expansion-panels inset>
         <v-expansion-panel v-for="(item, i) in industries" :key="i">
@@ -17,9 +19,7 @@
             </v-list>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            {{ item.title }}
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
