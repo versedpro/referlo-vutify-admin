@@ -50,7 +50,7 @@
     <!-- <v-footer color="primary lighten-1" fixed app> -->
     <v-footer inset app>
       <v-card-text class="text-center">
-        <v-btn outlined rounded class="mr-4">
+        <v-btn @click="referPeopleDialog = !referPeopleDialog" outlined rounded class="mr-4">
           {{ $t("home.referPeople") }}
         </v-btn>
 
@@ -59,18 +59,26 @@
         </v-btn>
       </v-card-text>
     </v-footer>
+
+    <refer-people
+      link="abc.com"
+      :show="referPeopleDialog"
+      @close="referPeopleDialog = false"
+    ></refer-people>
   </v-card>
 </template>
 
 <script lang="ts">
 import { getPieChartOption } from "@/api/mock";
 import { defineComponent, ref } from "@vue/composition-api";
+import ReferPeople from "./ReferPeople.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
     OptionChart: () => import("./option-chart.vue"),
-    AppWidget: () => import("@/views/widget/app-widget.vue")
+    AppWidget: () => import("@/views/widget/app-widget.vue"),
+    ReferPeople
   },
 
   setup() {
@@ -91,6 +99,8 @@ export default defineComponent({
       }
     ];
 
+    const referPeopleDialog = ref(false);
+
     function getChartOption(option) {
       switch (option) {
         case "pie":
@@ -107,7 +117,8 @@ export default defineComponent({
       toggle_exclusive,
       ads,
       person,
-      getChartOption
+      getChartOption,
+      referPeopleDialog
     };
   }
 });
