@@ -1,45 +1,64 @@
 <template>
   <v-card tile class="mx-auto" height="100%">
-    <v-card tile class="primary lighten-1">
-      <v-card-text class="pt-8 text-center">
-        <v-avatar color="secondary" size="108" class="rounded-xl">
-          <v-avatar color="primary lighten-1" size="98" class="rounded-xl">
-            <v-img :src="imagePath"></v-img>
-          </v-avatar>
-        </v-avatar>
-      </v-card-text>
+    <v-system-bar absolute light color="rgba(0, 30, 47, 0.7)">
+      <v-icon class="gold--text">mdi-message</v-icon>
+      <span class="white--text">Ads.</span>
+    </v-system-bar>
 
-      <v-card-title class="pt-0 white--text justify-center">
-        {{ name }}
-      </v-card-title>
+    <!-- The carousel -->
+    <v-carousel height="auto" hide-delimiter-background show-arrows-on-hover cycle>
+      <v-carousel-item v-for="(item, i) in ads" :key="i">
+        <v-img :src="item.src" :aspect-ratio="1.91 / 1"></v-img>
+      </v-carousel-item>
+    </v-carousel>
 
-      <v-card-subtitle class="secondary--text text-center">
-        <span>{{ $t("home.memberSince") }}</span>
-        <span class="ml-1">2019</span>
-      </v-card-subtitle>
-    </v-card>
+    <v-list subheader class="primary">
+      <v-list-item>
+        <v-list-item-avatar>
+          <v-img :alt="`${person.title} avatar`" :src="person.avatar"></v-img>
+        </v-list-item-avatar>
 
-    <v-card-subtitle class="text-center text-h6">
-      <span>{{ $t("home.points") }}</span>
-      <span class="ml-1 text-h6">{{ points }}</span>
-    </v-card-subtitle>
+        <v-list-item-content>
+          <v-list-item-title class="white--text">{{ person.name }}</v-list-item-title>
+          <v-list-item-subtitle class="gold--text">
+            <span>{{ $t("home.memberSince") }}</span>
+            <span class="ml-1">{{ person.memberSince }}</span>
+          </v-list-item-subtitle>
+        </v-list-item-content>
+
+        <v-list-item-action>
+          <v-chip class="text-h6" color="transparent" text-color="gold">
+            <v-icon left> mdi-coin </v-icon>
+            {{ person.points }}
+          </v-chip>
+        </v-list-item-action>
+      </v-list-item>
+    </v-list>
 
     <v-card-text>
       <app-widget title="Pie Chart">
         <option-chart
           slot="widget-content"
-          height="280px"
+          height="240px"
           width="100%"
           :chart-data="getChartOption('pie')"
         />
       </app-widget>
     </v-card-text>
 
-    <v-card-text class="text-center">
-      <v-btn rounded color="primary" class="px-12">
-        {{ $t("home.referal") }}
-      </v-btn>
-    </v-card-text>
+    <!-- The footer -->
+    <!-- <v-footer color="primary lighten-1" fixed app> -->
+    <v-footer inset app>
+      <v-card-text class="text-center">
+        <v-btn outlined rounded class="mr-4">
+          {{ $t("home.referPeople") }}
+        </v-btn>
+
+        <v-btn outlined rounded class="ml-4">
+          {{ $t("home.referProduct") }}
+        </v-btn>
+      </v-card-text>
+    </v-footer>
   </v-card>
 </template>
 
@@ -50,19 +69,27 @@ import { defineComponent, ref } from "@vue/composition-api";
 export default defineComponent({
   name: "Home",
   components: {
-    PanelGroup: () => import("./PanelGroup.vue"),
     OptionChart: () => import("./option-chart.vue"),
     AppWidget: () => import("@/views/widget/app-widget.vue")
   },
 
   setup() {
-    const selected = ref([]);
-    const score = ref([17, 583, 723]);
-    const category = ref(["home.processing", "home.unsuccessful", "home.successful"]);
-    const title = ref("REFER 佬");
+    const person = {
+      name: "Joe",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
+      memberSince: 2020,
+      points: 10000,
+      score: [17, 583, 723]
+    };
 
-    const name = ref("Joe");
-    const points = ref(10000);
+    const ads = [
+      {
+        src: "/img/products/csl1.png"
+      },
+      {
+        src: "/img/products/csl2.png"
+      }
+    ];
 
     function getChartOption(option) {
       switch (option) {
@@ -74,16 +101,12 @@ export default defineComponent({
       }
     }
 
-    const imagePath = ref("https://avatars0.githubusercontent.com/u/9064066?v=4&s=460");
+    const toggle_exclusive = ref(2);
 
     return {
-      score,
-      category,
-      title,
-      selected,
-      name,
-      points,
-      imagePath,
+      toggle_exclusive,
+      ads,
+      person,
       getChartOption
     };
   }

@@ -1,65 +1,64 @@
 <template>
-  <v-card tile class="mx-auto" height="100%">
-    <v-card-title class="primary justify-center display-1 text-h5 white--text">
-      {{ title }}
-    </v-card-title>
-
-    <supplier-slider :suppliers="suppliers" @onSelection="handleSelection"></supplier-slider>
-
-    <v-card-text class="pa-0">
-      <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" hide-default-footer>
-        <template v-slot:default="props">
-          <v-row>
-            <v-col
-              v-for="item in props.items"
-              :key="item.name"
-              cols="12"
-              :class="{ 'pa-0': $vuetify.breakpoint.xsOnly }"
-            >
-              <product-card v-if="!$vuetify.breakpoint.xsOnly" :item="item"></product-card>
-              <product-mobile v-else :item="item"></product-mobile>
-            </v-col>
-          </v-row>
-        </template>
-      </v-data-iterator>
+  <v-card class="pa-0" height="100%">
+    <v-card-title> ff </v-card-title>
+    <v-card-text class="grey pa-4">
+      <v-expansion-panels inset>
+        <v-expansion-panel v-for="(item, i) in industries" :key="i">
+          <v-expansion-panel-header class="pa-0">
+            <v-list dense>
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon> mdi-flag</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.industryName"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "@vue/composition-api";
-import { Items } from "@/demo/api/mock_products";
-import { Suppliers } from "@/demo/api/mock_supplier";
+import { defineComponent, ref } from "@vue/composition-api";
+import { industries as Industries } from "@/demo/api/mock_industry";
 
 export default defineComponent({
   name: "History",
-
-  components: {
-    ProductCard: () => import("./product-card.vue"),
-    ProductMobile: () => import("./product-mobile.vue"),
-    SupplierSlider: () => import("./supplier_slider.vue")
-  },
 
   setup() {
     const itemsPerPage = ref(4);
     const title = "資訊中心";
     const model = ref(null);
-    const suppliers = ref(Suppliers);
+    const industries = ref(Industries);
     const selected = ref([] as Array<string>);
 
-    const items = computed(() => {
-      return selected.value.length > 0
-        ? Items.filter(item => selected.value.some(k => k === item.supplierName))
-        : Items;
-    });
+    const selection = ref([]);
+    const isLoading = ref(false);
+    const tree = ref([]);
+    const types = ref([]);
+    const selectionType = ref("leaf");
 
-    const handleSelection = s => (selected.value = s);
+    const handleSelection = (s) => (selected.value = s);
 
     return {
+      selectionType,
+      selection,
+      isLoading,
+      tree,
+      types,
       itemsPerPage,
       title,
-      items,
-      suppliers,
+      // items,
+      industries,
       model,
       selected,
       handleSelection

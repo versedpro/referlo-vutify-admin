@@ -65,6 +65,8 @@ export default {
     account: "Account"
   },
   home: {
+    referProduct: "Refer Product",
+    referPeople: "Refer People",
     referal: "Make a referal",
     referredTotal: "Referral Total:",
     memberSince: "Member since",

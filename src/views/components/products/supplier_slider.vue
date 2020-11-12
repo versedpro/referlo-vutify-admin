@@ -33,8 +33,9 @@ export default defineComponent({
   setup(props, { emit }) {
     const selection = ref([props.suppliers[0]]);
 
-    const handleChange = selected => {
-      const suppliers = selected.map(e => e.displayName) as Array<string>;
+    const handleChange = (selected) => {
+      const suppliers = selected.map((e) => e.displayName) as Array<string>;
+      // eslint-disable-next-line vue/custom-event-name-casing
       emit("onSelection", suppliers);
     };
 

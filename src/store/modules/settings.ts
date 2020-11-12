@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { settings as defaultSettings, version } from "@/config_ts";
 
 import { setVuetifyThemeDark, setVuetifyTheme } from "@/plugins/vuetify";
@@ -14,18 +15,18 @@ const settings = {
   getters: {
     version: () => version,
     // version: () => "0.0.1",
-    locale: state => state.locale,
-    toolbarDense: state => state.dense,
-    navbarDense: state => state.navbar.dense,
-    navbarShow: state => state.navbar.show,
-    navbarLogo: state => state.navbar.logo,
-    fullscreenBtn: state => state.fullscreen.btn,
-    fullscreenShow: state => state.fullscreen.show,
-    settingsPanelBtn: state => state.settingsPanel.btn,
-    settingsPanelShow: state => state.settingsPanel.show,
-    footerShow: state => state.footer,
-    themeIndex: state => state.theme.index,
-    themeDark: state => state.theme.dark
+    locale: (state) => state.locale,
+    toolbarDense: (state) => state.dense,
+    navbarDense: (state) => state.navbar.dense,
+    navbarShow: (state) => state.navbar.show,
+    navbarLogo: (state) => state.navbar.logo,
+    fullscreenBtn: (state) => state.fullscreen.btn,
+    fullscreenShow: (state) => state.fullscreen.show,
+    settingsPanelBtn: (state) => state.settingsPanel.btn,
+    settingsPanelShow: (state) => state.settingsPanel.show,
+    footerShow: (state) => state.footer,
+    themeIndex: (state) => state.theme.index,
+    themeDark: (state) => state.theme.dark
   },
 
   mutations: {
@@ -48,19 +49,19 @@ const settings = {
     THEME_TOGGLE: (state, payload) => {
       state.theme.index = payload.index;
     },
-    THEME_DARK_TOGGLE: state => {
+    THEME_DARK_TOGGLE: (state) => {
       state.theme.dark = !state.theme.dark;
     },
-    TOOLBAR_DENSE_TOGGLE: state => {
+    TOOLBAR_DENSE_TOGGLE: (state) => {
       state.dense = !state.dense;
     },
-    NAVBAR_DENSE_TOGGLE: state => {
+    NAVBAR_DENSE_TOGGLE: (state) => {
       state.navbar.dense = !state.navbar.dense;
     },
-    NAVBAR_LOGO_TOGGLE: state => {
+    NAVBAR_LOGO_TOGGLE: (state) => {
       state.navbar.logo = !state.navbar.logo;
     },
-    NAVBAR_TOGGLE: state => {
+    NAVBAR_TOGGLE: (state) => {
       state.navbar.show = !state.navbar.show;
     },
     NAVBAR_STATE: (state, payload) => {
@@ -72,16 +73,16 @@ const settings = {
     FULLSCREEN_BTN: (state, payload) => {
       state.fullscreen.btn = payload.state;
     },
-    SETTINGS_PANEL_BTN_TOGGLE: state => {
+    SETTINGS_PANEL_BTN_TOGGLE: (state) => {
       state.settingsPanel.btn = !state.settingsPanel.btn;
     },
-    SETTINGS_PANEL_TOGGLE: state => {
+    SETTINGS_PANEL_TOGGLE: (state) => {
       state.settingsPanel.show = !state.settingsPanel.show;
     },
     SETTINGS_PANEL_STATE: (state, payload) => {
       state.settingsPanel.show = payload.state;
     },
-    FOOTER_TOGGLE: state => {
+    FOOTER_TOGGLE: (state) => {
       state.footer = !state.footer;
     }
   },
@@ -94,14 +95,14 @@ const settings = {
       context.commit("THEME_TOGGLE", payload);
       await setVuetifyTheme(payload.index);
     },
-    ThemeDarkToggle: async context => {
+    ThemeDarkToggle: async (context) => {
       context.commit("THEME_DARK_TOGGLE");
       await setVuetifyThemeDark(context.state.theme.dark);
     },
-    ToolbarDenseToggle: async context => {
+    ToolbarDenseToggle: async (context) => {
       context.commit("TOOLBAR_DENSE_TOGGLE");
     },
-    NavbarDenseToggle: async context => {
+    NavbarDenseToggle: async (context) => {
       context.commit("NAVBAR_DENSE_TOGGLE");
     },
     NavbarLogoToggle: async (context, payload) => {
@@ -128,10 +129,10 @@ const settings = {
     SettingsPanelState: async (context, payload) => {
       context.commit("SETTINGS_PANEL_STATE", payload);
     },
-    SettingsPanelDefault: async context => {
+    SettingsPanelDefault: async (context) => {
       context.commit("SET_SETTINGS", getDefaultSettings());
     },
-    FooterToggle: async context => {
+    FooterToggle: async (context) => {
       context.commit("FOOTER_TOGGLE");
     }
   }

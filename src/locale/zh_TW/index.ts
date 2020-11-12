@@ -49,13 +49,15 @@ export default {
     remark: "備註"
   },
   bottomNavigation: {
-    home: "主頁",
-    products: "產品",
-    history: "記錄",
-    points: "積分",
+    home: "我係Refer佬",
+    products: "Refer嘢",
+    history: "Refer佬記錄",
+    points: "Refer佬金幣",
     account: "帳戶"
   },
   home: {
+    referProduct: "我有嘢Refer",
+    referPeople: "我有人Refer",
     referal: "轉介",
     referredTotal: "個案總和:",
     memberSince: "入會年份",

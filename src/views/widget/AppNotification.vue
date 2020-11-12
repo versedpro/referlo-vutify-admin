@@ -24,9 +24,7 @@
 
         <v-list-item-action>
           <v-btn icon ripple>
-            <v-icon color="grey lighten-1">
-              mdi-information
-            </v-icon>
+            <v-icon color="grey lighten-1"> mdi-information </v-icon>
           </v-btn>
         </v-list-item-action>
       </v-list-item>
@@ -39,6 +37,7 @@
 <script>
 export default {
   name: "AppNotification",
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   data: () => ({
     items: [
       {

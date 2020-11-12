@@ -1,6 +1,6 @@
 <template>
   <v-container
-    class="container--fluid fill-height  home-background"
+    class="container--fluid fill-height home-background"
     :style="{ padding: $vuetify.breakpoint.xsOnly ? 0 : 12 }"
   >
     <v-row no-gutters align="center" justify="center">

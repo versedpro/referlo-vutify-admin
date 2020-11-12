@@ -65,6 +65,8 @@ export default {
     account: "帐户"
   },
   home: {
+    referProduct: "服务轉介",
+    referPeople: "会员轉介",
     referal: "转介",
     referredTotal: "个案总和:",
     memberSince: "入会年份",

@@ -65,7 +65,8 @@ const themes = [
       error: "#FF5252",
       warning: "#FB8C00",
       info: "#2196F3",
-      gold: "#dcb456"
+      gold: "#dcb456",
+      ads: "rgba(255, 0, 0, 0.5)"
     },
     dark
   },

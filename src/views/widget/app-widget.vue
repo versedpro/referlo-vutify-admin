@@ -35,6 +35,7 @@ export default {
     headerHide: Boolean,
     paddingHide: Boolean
   },
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   data: () => ({})
 };
 </script>

@@ -37,7 +37,7 @@ export default {
       return title;
     },
     getBreadcrumb() {
-      let matched = this.$route.matched.filter(item => item.name);
+      let matched = this.$route.matched.filter((item) => item.name);
 
       const first = matched[0];
       if (first && first.name.trim().toLocaleLowerCase() !== "home") {
@@ -45,7 +45,7 @@ export default {
       }
 
       this.levelList = matched.filter(
-        item => item.meta && item.meta.title && item.meta.breadcrumb !== false
+        (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
       );
     },
     pathCompile(path) {

@@ -23,9 +23,7 @@
         <v-card-actions class="primary">
           <v-btn outlined rounded class="ma-2" color="secondary darken-2" dark to="/profile2">
             Accept
-            <v-icon dark right>
-              mdi-checkbox-marked-circle
-            </v-icon>
+            <v-icon dark right> mdi-checkbox-marked-circle </v-icon>
           </v-btn>
           <!-- <v-btn color="primary" :loading="loading" @click.native="update"> -->
         </v-card-actions>

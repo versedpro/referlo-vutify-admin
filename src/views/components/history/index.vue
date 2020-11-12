@@ -66,9 +66,7 @@
                   <v-spacer></v-spacer>
                   <v-btn small color="blue-grey" to="/follow-up/chat" class="ma-2 white--text">
                     Follow Up
-                    <v-icon right dark>
-                      mdi-cloud-upload
-                    </v-icon>
+                    <v-icon right dark> mdi-cloud-upload </v-icon>
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -131,9 +129,7 @@
               <v-list-item-action class="ma-0">
                 <v-list-item-action-text v-text="item.orderDate"></v-list-item-action-text>
                 <v-btn x-small color="blue-grey" to="/follow-up/chat" class="ma-1 white--text">
-                  <v-icon center dark>
-                    mdi-cloud-upload
-                  </v-icon>
+                  <v-icon center dark> mdi-cloud-upload </v-icon>
                 </v-btn>
               </v-list-item-action>
             </template>
