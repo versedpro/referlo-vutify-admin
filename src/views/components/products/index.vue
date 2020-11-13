@@ -15,11 +15,22 @@
                 <v-list-item-content>
                   <v-list-item-title v-text="item.industryName"></v-list-item-title>
                 </v-list-item-content>
+                <v-list-item-action class="my-1">
+                  <v-list-item-subtitle class="font-weight-medium amber--text text-h4" style="line-height: 2rem;">
+                    {{ item.points }}
+                  </v-list-item-subtitle>
+                </v-list-item-action>
               </v-list-item>
             </v-list>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            {{ item.title }}
+            <template>
+              <v-row>
+                <v-col v-for="item in item.products" :key="item.productName" cols="12" class="pa-0">
+                  <product-expansion :item="item"></product-expansion>
+                </v-col>
+              </v-row>
+            </template>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -32,7 +43,10 @@ import { defineComponent, ref } from "@vue/composition-api";
 import { industries as Industries } from "@/demo/api/mock_industry";
 
 export default defineComponent({
-  name: "History",
+  name: "Product",
+  components: {
+    ProductExpansion: () => import("./product-expansion.vue")
+  },
 
   setup() {
     const itemsPerPage = ref(4);

@@ -61,11 +61,11 @@ export default defineComponent({
     const selected = ref(null as number);
 
     const products = computed(() => {
-      return selected.value > 0 ? Items.filter(item => selected.value === item.industry) : Items;
+      return selected.value > 0 ? Items.filter((item) => selected.value === item.industry) : Items;
     });
     const selectedItem = null as number;
 
-    const handleChange = s => {
+    const handleChange = (s) => {
       selected.value = industries.value[s].id;
     };
 
