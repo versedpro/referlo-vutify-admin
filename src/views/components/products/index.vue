@@ -1,40 +1,17 @@
 <template>
-  <v-card class="pa-0" height="100%">
-    <v-card-title class="primary justify-center display-1 text-h5 white--text">
-      {{ title }}
-    </v-card-title>
-    <v-card-text class="grey pa-4">
-      <v-expansion-panels inset>
-        <v-expansion-panel v-for="(item, i) in industries" :key="i">
-          <v-expansion-panel-header class="pa-0">
-            <v-list dense>
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon> mdi-flag</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.industryName"></v-list-item-title>
-                </v-list-item-content>
-                <v-list-item-action class="my-1">
-                  <v-list-item-subtitle class="font-weight-medium amber--text text-h4" style="line-height: 2rem;">
-                    {{ item.points }}
-                  </v-list-item-subtitle>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <template>
-              <v-row>
-                <v-col v-for="item in item.products" :key="item.productName" cols="12" class="pa-0">
-                  <product-expansion :item="item"></product-expansion>
-                </v-col>
-              </v-row>
-            </template>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-card-text>
+  <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
+    <!-- Hot Deals -->
+    <v-card class="ma-2">
+      <v-card-title class="justify-center"> Hot Deals </v-card-title>
+      <v-card-text> dfdsf </v-card-text>
+    </v-card>
+    <!-- Products group by industry -->
+    <v-card class="ma-2">
+      <v-card-title class="primary justify-center display-1 text-h5 white--text"> ff </v-card-title>
+      <v-card-text class="grey pa-4">
+        <industry-panels :industries="industries"></industry-panels>
+      </v-card-text>
+    </v-card>
   </v-card>
 </template>
 
@@ -43,9 +20,10 @@ import { defineComponent, ref } from "@vue/composition-api";
 import { industries as Industries } from "@/demo/api/mock_industry";
 
 export default defineComponent({
-  name: "Product",
+  name: "Products",
+
   components: {
-    ProductExpansion: () => import("./product-expansion.vue")
+    IndustryPanels: () => import("./industry-panels.vue")
   },
 
   setup() {
