@@ -7,7 +7,7 @@
     </v-card>
     <!-- Products group by industry -->
     <v-card class="ma-2">
-      <v-card-title> ff </v-card-title>
+      <v-card-title class="primary justify-center display-1 text-h5 white--text"> ff </v-card-title>
       <v-card-text class="grey pa-4">
         <industry-panels :industries="industries"></industry-panels>
       </v-card-text>

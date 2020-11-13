@@ -4,19 +4,49 @@
       <v-expansion-panel-header class="pa-0">
         <v-list dense>
           <v-list-item>
-            <v-list-item-icon>
+            <v-list-item-icon class="my-4">
               <v-icon> mdi-flag</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title v-text="item.industryName"></v-list-item-title>
+              <v-list-item-title
+                v-text="item.industryName"
+                :class="{ MobileMax: $vuetify.breakpoint.xsOnly }"
+              ></v-list-item-title>
             </v-list-item-content>
+            <v-list-item-action>
+              <v-list-item-subtitle
+                v-html="item.points"
+                class="font-weight-bold amber--text text-h4"
+                style="line-height: 2rem"
+              ></v-list-item-subtitle>
+            </v-list-item-action>
           </v-list-item>
         </v-list>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.
+        <v-row>
+          <v-col v-for="(product, i) in item.products" :key="i" cols="12" class="py-0">
+            <v-divider></v-divider>
+            <v-card class="mx-auto" flat tile>
+              <v-list one-line class="pa-0">
+                <template>
+                  <v-list-item :key="product.productName">
+                    <v-list-item-content>
+                      <v-list-item-title v-html="product.productName"></v-list-item-title>
+                    </v-list-item-content>
+                    <v-list-item-action class="ma-1">
+                      <v-list-item-subtitle
+                        class="font-weight-medium amber--text text--lighten-2 text-h5"
+                      >
+                        {{ item.points }}
+                      </v-list-item-subtitle>
+                    </v-list-item-action>
+                  </v-list-item>
+                </template>
+              </v-list>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -29,7 +59,7 @@ export default defineComponent({
   name: "IndustryPanels",
 
   props: {
-    industries: Object
+    industries: Array
   },
 
   setup() {
@@ -38,3 +68,8 @@ export default defineComponent({
   }
 });
 </script>
+<style scoped>
+.MobileMax {
+  max-width: 100px !important;
+}
+</style>
