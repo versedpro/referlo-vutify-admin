@@ -54,9 +54,11 @@
           {{ $t("home.referPeople") }}
         </v-btn>
 
-        <v-btn outlined rounded class="ml-4">
-          {{ $t("home.referProduct") }}
-        </v-btn>
+        <router-link class="refer-products" :to="{ name: 'Products' }">
+          <v-btn outlined rounded class="ml-4">
+            {{ $t("home.referProduct") }}
+          </v-btn>
+        </router-link>
       </v-card-text>
     </v-footer>
 
@@ -123,3 +125,8 @@ export default defineComponent({
   }
 });
 </script>
+<style scoped>
+footer /deep/ a.refer-products {
+  text-decoration: none;
+}
+</style>

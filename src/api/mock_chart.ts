@@ -165,6 +165,11 @@ export function getRaddarChartOption(animationDuration: { animationDuration: num
 
 export function getPieChartOption() {
   return {
+    color: [
+      'black',
+      'grey',
+      'gold'
+    ],
     title: {
       subtext: "個案",
       text: "1333",
@@ -177,10 +182,10 @@ export function getPieChartOption() {
       formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
     legend: {
-      // orient: "vertical",
-      show: false,
-      bottom: "0%",
-      left: "center",
+      orient: "vertical",
+      // show: false,
+      // bottom: "0%",
+      left: "10",
       data: ["努力中", "未成功個案", "已成功個案"]
     },
     series: [
