@@ -1,5 +1,5 @@
 <template>
-  <v-card tile class="mx-auto" height="100%">
+  <v-card tile class="mx-auto grey lighten-4" height="100%">
     <v-system-bar absolute light color="rgba(0, 30, 47, 0.1)">
       <v-icon class="gold--text lighten-4">fas fa-ad</v-icon>
     </v-system-bar>
@@ -34,7 +34,7 @@
       </v-list-item>
     </v-list>
 
-    <v-card-text class="py-0 green">
+    <v-card-text class="pa-0 mx-0 white">
       <app-widget title="Pie Chart">
         <option-chart
           slot="widget-content"
@@ -45,10 +45,10 @@
       </app-widget>
     </v-card-text>
 
-    <v-card-text class="text-center">
-      <v-btn small> {{ Normal }} </v-btn>
-      <v-btn small> Normal </v-btn>
-      <v-btn small> Normal </v-btn>
+    <v-card-text class="text-center pb-16 white">
+      <v-btn x-small class="px-4" color="gold"> {{ legend[0] }} </v-btn>
+      <v-btn x-small class="mx-8 px-4" color="primary"> {{ legend[1] }} </v-btn>
+      <v-btn x-small class="px-4" color="grey"> {{ legend[2] }} </v-btn>
     </v-card-text>
 
     <!-- The footer -->
@@ -69,8 +69,9 @@
 
 <script lang="ts">
 import { ads, person, getPieChartOption } from "./json-data";
-import { defineComponent, ref } from "@vue/composition-api";
 import { ReferloChartInfo } from "@/types"; // Our interface
+
+import { defineComponent, computed, ref, getCurrentInstance } from "@vue/composition-api";
 
 export default defineComponent({
   name: "Home",
@@ -86,6 +87,7 @@ export default defineComponent({
   setup() {
     const showLinkDialog = ref(false);
     const url = ref("abc.com");
+    const vm = getCurrentInstance();
 
     function getChartOption() {
       const chart: ReferloChartInfo = {
@@ -116,12 +118,24 @@ export default defineComponent({
       this.$router.push("/products");
     }
 
+    const legendCompleted = computed(() => vm.$i18n.t("home.referred", [person.score[0]]));
+    const legendWIP = computed(() => vm.$i18n.t("home.referred", [person.score[1]]));
+
+    const legend = computed(() => [
+      vm.$i18n.t("home.completed", [person.score[2]]),
+      vm.$i18n.t("home.wip", [person.score[1]]),
+      vm.$i18n.t("home.referred", [person.score[0]])
+    ]);
+
     return {
       ads,
       person,
       getChartOption,
       showLinkDialog,
       url,
+      legendCompleted,
+      legendWIP,
+      legend,
       referPeople,
       referProduct
     };
