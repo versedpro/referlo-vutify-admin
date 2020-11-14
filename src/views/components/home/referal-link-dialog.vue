@@ -1,9 +1,9 @@
 <template>
-  <v-dialog :value="show" @click:outside="$emit('close')" width="500">
+  <v-dialog :value="show" max-width="480px" @click:outside="closeDialog">
     <v-card>
       <v-card-title class="py-1 px-3">
         <v-spacer></v-spacer>
-        <v-btn text icon color="primary" @click="$emit('close')">
+        <v-btn text icon color="primary" @click="closeDialog">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-card-title>
@@ -20,7 +20,7 @@
           @click:append="copyLink"
         ></v-text-field>
       </v-card-text>
-      <v-snackbar :value="copied">Link copied</v-snackbar>
+      <v-snackbar timeout="2000" v-model="copied">Link copied</v-snackbar>
     </v-card>
   </v-dialog>
 </template>
@@ -29,20 +29,28 @@
 import { defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
-  name: "ReferPeople",
+  name: "ReferalLinkDialog",
 
   props: {
     show: Boolean,
     link: String
   },
-  setup() {
+
+  setup(props) {
     const copied = ref(false);
-    function copyLink() {
-      navigator.clipboard.writeText(this.link);
-      this.copied = true;
+
+    function closeDialog() {
+      this.$emit("close");
     }
+
+    function copyLink() {
+      navigator.clipboard.writeText(props.link);
+      copied.value = true;
+    }
+
     return {
       copyLink,
+      closeDialog,
       copied
     };
   }

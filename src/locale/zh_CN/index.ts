@@ -68,11 +68,11 @@ export default {
     referProduct: "服务轉介",
     referPeople: "会员轉介",
     referal: "转介",
-    referredTotal: "个案总和:",
+    referalTotal: "Refer个案",
     memberSince: "入会年份",
-    processing: "努力中",
-    successful: "已成功個案",
-    unsuccessful: "未成功個案",
+    wip: "跟进中 {0}",
+    referred: "已Refer {0}",
+    completed: "已成功 {0}",
     points: "已获取积分"
   },
   errors: {

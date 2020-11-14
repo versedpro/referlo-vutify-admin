@@ -1,5 +1,6 @@
 // import 'normalize.css/normalize.css';
 import "vuetify/dist/vuetify.min.css";
+
 // import 'roboto-fontface/css/roboto/roboto-fontface.css';
 
 import Vue from "vue";
@@ -23,7 +24,7 @@ new Vue({
   store,
   i18n,
   vuetify,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount("#app");
 
 // export { i18n };

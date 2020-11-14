@@ -45,12 +45,12 @@
             <localization />
 
             <v-spacer />
-            <v-btn color="primary back-gold" outlined to="/register">
+            <!-- <v-btn color="primary back-gold" outlined to="/register">
               {{ $t("login.register") }}
-            </v-btn>
-            <v-btn color="primary" :loading="loading" @click="login">
-              {{ $t("login.login") }}
-            </v-btn>
+            </v-btn> -->
+            <app-button-gold :text="$t('login.register')" @on-click="register"> </app-button-gold>
+
+            <app-button :text="$t('login.login')" @on-click="login"> </app-button>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -64,6 +64,8 @@ import { defineComponent, reactive, ref } from "@vue/composition-api";
 
 export default defineComponent({
   components: {
+    AppButton: () => import("@/views/widget/app-button.vue"),
+    AppButtonGold: () => import("@/views/widget/app-button-gold.vue"),
     Localization: () => import("../widget/app-localization.vue")
   },
 
@@ -85,11 +87,17 @@ export default defineComponent({
       await this.$router.push(this.$route.query.redirect || "/");
     }
 
+    function register() {
+      console.log("register");
+      // kk
+    }
+
     return {
       model,
       loading,
       showPassword,
-      login
+      login,
+      register
     };
   }
 });

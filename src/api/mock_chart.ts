@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const lineChartData = {
   newVisitis: {
     expectedData: [100, 120, 161, 134, 105, 160, 165],
@@ -165,11 +166,7 @@ export function getRaddarChartOption(animationDuration: { animationDuration: num
 
 export function getPieChartOption() {
   return {
-    color: [
-      'black',
-      'grey',
-      'gold'
-    ],
+    color: ["black", "grey", "gold"],
     title: {
       subtext: "個案",
       text: "1333",

@@ -21,8 +21,11 @@
 </template>
 
 <script>
-export default {
+import { defineComponent, ref } from "@vue/composition-api";
+
+export default defineComponent({
   name: "AppWidget",
+
   props: {
     title: {
       type: String,
@@ -31,11 +34,17 @@ export default {
     icon: {
       type: String,
       default: "mdi-dots-vertical"
-    },
-    headerHide: Boolean,
-    paddingHide: Boolean
+    }
   },
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  data: () => ({})
-};
+
+  setup() {
+    const headerHide = ref(false);
+    const paddingHide = ref(false);
+
+    return {
+      headerHide,
+      paddingHide
+    };
+  }
+});
 </script>

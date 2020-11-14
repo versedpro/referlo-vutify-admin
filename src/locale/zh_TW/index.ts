@@ -49,21 +49,21 @@ export default {
     remark: "備註"
   },
   bottomNavigation: {
-    home: "我係Refer佬",
-    products: "Refer嘢",
-    history: "Refer佬記錄",
-    points: "Refer佬金幣",
+    home: "我係<br/>Refer佬",
+    products: "我有嘢<br/>Refer",
+    history: "Refer佬<br/>記錄",
+    points: "Refer佬<br/>金幣",
     account: "帳戶"
   },
   home: {
     referProduct: "我有嘢Refer",
     referPeople: "我有人Refer",
     referal: "轉介",
-    referredTotal: "個案總和:",
+    referalTotal: "Refer個案",
     memberSince: "入會年份",
-    processing: "努力中",
-    successful: "已成功個案",
-    unsuccessful: "未成功個案",
+    wip: "跟進中 {0}",
+    referred: "已Refer {0}",
+    completed: "已成功 {0}",
     points: "已獲取積分"
   },
   errors: {

@@ -1,10 +1,7 @@
-/**
- * vva v0.0.5
- * (c) 2019 NelsonEAX
- * @license MIT
- */
-
+/* eslint-disable */
 import "@mdi/font/css/materialdesignicons.css";
+import "@fortawesome/fontawesome-free/css/all.css";
+
 // import "vuetify/dist/vuetify.min.css";
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
@@ -25,7 +22,7 @@ const vuetify = new Vuetify({
     themes: themes[0]
   },
   icons: {
-    iconfont: "mdi"
+    iconfont: "mdi" || "fa"
   },
   lang: {
     locales,

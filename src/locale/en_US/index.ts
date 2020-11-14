@@ -68,11 +68,11 @@ export default {
     referProduct: "Refer Product",
     referPeople: "Refer People",
     referal: "Make a referal",
-    referredTotal: "Referral Total:",
+    referalTotal: "Referral(s)",
     memberSince: "Member since",
-    processing: "Processing",
-    successful: "Success",
-    unsuccessful: "Unsuccessful",
+    wip: "WIP {0}",
+    referred: "Referred {0}",
+    completed: "Completed: {0}",
     points: "Points"
   },
   errors: {

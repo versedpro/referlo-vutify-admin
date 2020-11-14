@@ -4,11 +4,17 @@
     :app="$vuetify.breakpoint.smAndDown"
     :value="value"
     color="gold"
+    height="72"
     grow
+    dark
     mandatory
-    ><!-- active-class="secondary" -->
+  >
+    <!-- :style="{
+        backgroundColor: 'green !important',
+        color: 'white'
+      }" -->
     <v-btn v-for="item in bottomnavdata" :key="item.id" @click="navigateTo(item.route)">
-      <span>{{ $t(item.label) }}</span>
+      <span v-html="$t(item.label)"></span>
       <v-icon>{{ item.icon }}</v-icon>
     </v-btn>
   </v-bottom-navigation>
