@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer class="yellow lighten-3" width="250" light>
+  <v-navigation-drawer class="primary lighten-3" width="250" light>
     <v-list dense rounded>
       <v-list-item v-for="item in items" :key="item.title" link>
         <v-list-item-icon>

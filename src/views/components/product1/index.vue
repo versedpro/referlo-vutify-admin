@@ -21,17 +21,17 @@
 
     <v-sheet height="100%">
       <splitpanes class="default-theme" style="height: 100%">
-        <pane size="30" min-size="30" max-size="30" class="gold">
+        <pane size="30" min-size="30" max-size="30" class="primary">
           <industry-list :industries="industries"></industry-list>
         </pane>
         <pane size="70">
-          <v-item-group active-class="primary">
+          <v-item-group active-class="gold">
             <v-container>
               <v-row>
                 <v-col v-for="(item, i) in products" :key="i" cols="12" md="6">
-                  <v-card class="pa-2 d-flex justify-center">
-                    <v-card-subtitle v-html="item.productName"></v-card-subtitle>
-                  </v-card>
+                  <v-alert class="pa-2 d-flex justify-center gold" border="left">
+                    <v-card-subtitle class="primary--text" v-html="item.productName"></v-card-subtitle>
+                  </v-alert>
                 </v-col>
               </v-row>
             </v-container>

@@ -1,11 +1,31 @@
 <template>
-  <v-list dense dark class="transparent">
-    <v-list-item-group v-model="selectedItem" active-class="blue" multiple>
-      <v-list-item v-for="(item, i) in industries" :key="i" class="mb-2">
-        <v-list-item-content :class="{ 'pa-5': $vuetify.breakpoint.smAndUp }">
-          <v-list-item-title dark v-text="item.industryName"></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+  <v-list two-line dense dark class="transparent">
+    <v-list-item-group v-model="selectedItem" active-class="primary--text gold" multiple>
+      <template v-for="(item, i) in industries">
+        <v-list-item :key="i" class="mb-2">
+          <template v-slot:default="{ active }">
+            <v-list-item-content :class="{ 'pa-5': $vuetify.breakpoint.smAndUp }">
+              <v-list-item-icon class="ma-0">
+              <v-icon class="mr-3" v-if="!active"
+                color="gold" 
+              >mdi-city
+              </v-icon>
+              <v-icon
+              class="mr-3"
+                v-else
+                color="primary"
+              >mdi-city  
+              </v-icon>
+              <v-list-item-title class="gold--text" dark v-text="item.industryName"></v-list-item-title>
+              </v-list-item-icon>
+            </v-list-item-content>
+          </template>
+        </v-list-item>
+        <v-divider
+          v-if="i < item.length - 1"
+          :key="i"
+        ></v-divider>
+      </template>
     </v-list-item-group>
   </v-list>
 </template>
