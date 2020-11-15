@@ -5,6 +5,8 @@ export default {
   history: "Job History",
   products: "Products",
   industries: "Product1",
+  product1: "Product1",
+  product2: "Product2",
   profile: "Profile",
   followUp: "Orders",
   // pagePermission: 'Page Permission',

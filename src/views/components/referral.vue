@@ -43,9 +43,7 @@
         Reset Form
       </v-btn> -->
 
-      <v-btn color="warning" @click="resetValidation">
-        Reset Validation
-      </v-btn>
+      <v-btn color="warning" @click="resetValidation"> Reset Validation </v-btn>
     </v-form>
   </v-card>
 </template>
@@ -60,13 +58,13 @@ export default defineComponent({
     const valid = ref(true);
     const name = ref("");
     const nameRules = ref([
-      v => !!v || "Name is required",
-      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length <= 10) || "Name must be less than 10 characters"
     ]);
     const email = ref("");
     const emailRules = ref([
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ]);
     const select = ref(null);
     const items = ref(["Item 1", "Item 2", "Item 3", "Item 4"]);

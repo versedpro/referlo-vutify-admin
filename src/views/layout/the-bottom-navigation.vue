@@ -9,10 +9,6 @@
     dark
     mandatory
   >
-    <!-- :style="{
-        backgroundColor: 'green !important',
-        color: 'white'
-      }" -->
     <v-btn v-for="item in bottomnavdata" :key="item.id" @click="navigateTo(item.route)">
       <span v-html="$t(item.label)"></span>
       <v-icon>{{ item.icon }}</v-icon>
@@ -22,10 +18,44 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
-import { navItems } from "@/api/bottom-navigation";
+// import { navItems } from "@/api/bottom-navigation";
+
+const navItems = [
+  {
+    id: "Home",
+    label: "bottomNavigation.home",
+    icon: "mdi-home",
+    route: "/home"
+  },
+  {
+    id: "Products",
+    label: "bottomNavigation.products",
+    icon: "mdi-tag",
+    route: "/product2"
+  },
+  {
+    id: "History",
+    label: "bottomNavigation.history",
+    icon: "mdi-database",
+    route: "/history"
+  },
+  {
+    id: "Points",
+    label: "bottomNavigation.points",
+    icon: "mdi-gift",
+    route: "/points"
+  },
+  {
+    id: "Account",
+    label: "bottomNavigation.account",
+    icon: "mdi-account",
+    route: "/profile"
+  }
+];
 
 export default defineComponent({
   name: "TheBottomNavigation",
+
   components: {},
   setup() {
     const value = ref(0);

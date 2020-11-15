@@ -4,11 +4,6 @@ export interface ReferloChartInfo {
     referred: number;
     completed: number;
   };
-  legend?: {
-    wip: string;
-    referred: string;
-    completed: string;
-  };
   title?: {
     text: string;
     subtext: string;

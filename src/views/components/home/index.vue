@@ -1,5 +1,5 @@
 <template>
-  <v-card tile class="mx-auto grey lighten-4" height="100%">
+  <v-card tile class="mx-auto" color="backgroundColor" height="100%">
     <v-system-bar absolute light color="rgba(0, 30, 47, 0.1)">
       <v-icon class="gold--text lighten-4">fas fa-ad</v-icon>
     </v-system-bar>
@@ -34,6 +34,7 @@
       </v-list-item>
     </v-list>
 
+    <!-- The chart -->
     <v-card-text class="pa-0 mx-0 white">
       <app-widget title="Pie Chart">
         <option-chart
@@ -47,23 +48,28 @@
 
     <v-card-text class="text-center pb-16 white">
       <v-btn x-small class="px-4" color="gold"> {{ legend[0] }} </v-btn>
-      <v-btn x-small class="mx-8 px-4" color="primary"> {{ legend[1] }} </v-btn>
+      <v-btn x-small class="px-4 mx-6" color="primary"> {{ legend[1] }} </v-btn>
       <v-btn x-small class="px-4" color="grey"> {{ legend[2] }} </v-btn>
     </v-card-text>
 
     <!-- The footer -->
-    <v-footer inset>
-      <v-card-text class="text-center py-6">
-        <app-button-gold class="mr-4" :text="$t('home.referPeople')" @on-click="referPeople" />
-        <app-button class="ml-4" :text="$t('home.referProduct')" @on-click="referProduct" />
+    <v-footer
+      color="gold lighten-1"
+      app="$vuetify.breakpoint.smAndDown"
+      absolute="$vuetify.breakpoint.smAndUp"
+    >
+      <v-card-text class="text-center pt-4 pb-6">
+        <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
+        <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
       </v-card-text>
     </v-footer>
 
-    <referal-link-dialog
+    <!-- The dialog -->
+    <referral-link-dialog
       :link="url"
       :show="showLinkDialog"
-      @close="showLinkDialog = false"
-    ></referal-link-dialog>
+      @close="closeDialog"
+    ></referral-link-dialog>
   </v-card>
 </template>
 
@@ -78,10 +84,9 @@ export default defineComponent({
 
   components: {
     AppButton: () => import("@/views/widget/app-button.vue"),
-    AppButtonGold: () => import("@/views/widget/app-button-gold.vue"),
     AppWidget: () => import("@/views/widget/app-widget.vue"),
     OptionChart: () => import("./option-chart.vue"),
-    ReferalLinkDialog: () => import("./referal-link-dialog.vue")
+    ReferralLinkDialog: () => import("./referral-link-dialog.vue")
   },
 
   setup() {
@@ -89,53 +94,54 @@ export default defineComponent({
     const url = ref("abc.com");
     const vm = getCurrentInstance();
 
-    function getChartOption() {
+    const backgroundColor = computed(() => {
+      return "gold";
+    });
+
+    const legend = computed(() => [
+      vm.$i18n.t("home.completed", person.score.slice(2, 3)),
+      vm.$i18n.t("home.wip", person.score.slice(1, 2)),
+      vm.$i18n.t("home.referred", person.score.slice(0, 1))
+    ]);
+
+    const closeDialog = () => {
+      showLinkDialog.value = false;
+    };
+
+    const getChartOption = () => {
       const chart: ReferloChartInfo = {
         data: {
-          referred: 17,
-          wip: 583,
-          completed: 723
+          referred: person.score[0],
+          wip: person.score[1],
+          completed: person.score[2]
         },
-        legend: {
-          referred: this.$t("home.referred", [17]),
-          wip: this.$t("home.wip", [583]),
-          completed: this.$t("home.completed", [723])
-        },
+
         title: {
           text: "1333",
-          subtext: this.$t("home.referalTotal")
+          subtext: vm.$tc("home.referalTotal")
         }
       };
 
       return getPieChartOption(chart);
-    }
+    };
 
-    function referPeople() {
+    const referPeople = () => {
       showLinkDialog.value = true;
-    }
+    };
 
-    function referProduct() {
-      this.$router.push("/products");
-    }
-
-    const legendCompleted = computed(() => vm.$i18n.t("home.referred", [person.score[0]]));
-    const legendWIP = computed(() => vm.$i18n.t("home.referred", [person.score[1]]));
-
-    const legend = computed(() => [
-      vm.$i18n.t("home.completed", [person.score[2]]),
-      vm.$i18n.t("home.wip", [person.score[1]]),
-      vm.$i18n.t("home.referred", [person.score[0]])
-    ]);
+    const referProduct = () => {
+      vm.$router.push("/products");
+    };
 
     return {
       ads,
       person,
-      getChartOption,
+      backgroundColor,
       showLinkDialog,
       url,
-      legendCompleted,
-      legendWIP,
       legend,
+      closeDialog,
+      getChartOption,
       referPeople,
       referProduct
     };

@@ -40,11 +40,13 @@ export default {
   name: "AppFullScreen",
   computed: {
     ...mapGetters(["fullscreenShow"]),
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     toggleFullScreenIcon() {
       return this.fullscreenShow ? "mdi-fullscreen-exit" : "mdi-fullscreen";
     }
   },
   methods: {
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     toggleFullScreen() {
       this.$store.dispatch("FullscreenToggle", { state: toggleFullScreen() });
     }

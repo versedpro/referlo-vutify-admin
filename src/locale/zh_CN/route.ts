@@ -4,6 +4,8 @@ export default {
   referal: "轉介客戶",
   history: "過往記錄",
   products: "資訊中心",
+  product1: "Product1",
+  product2: "Product2",
   profile: "个人资料",
   followUp: "订单跟进",
   // pagePermission: 'Page Permission',

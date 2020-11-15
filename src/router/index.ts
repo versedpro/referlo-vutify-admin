@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from "vue";
 import Router from "vue-router";
 
@@ -102,10 +103,27 @@ export const constantRoutes = [
     children: [
       {
         path: "/product1",
-        component: () => import("@/views/components/product1.vue"),
+        component: () => import("@/views/components/product1/index.vue"),
         name: "Product1",
         meta: {
-          title: "route.industries",
+          title: "route.product1",
+          icon: "mdi-timeline-text",
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/product2",
+        component: () => import("@/views/components/product2/index.vue"),
+        name: "Product2",
+        meta: {
+          title: "route.product2",
           icon: "mdi-timeline-text",
           noCache: true,
           affix: true
@@ -147,7 +165,7 @@ export const constantRoutes = [
     children: [
       {
         path: "/referal",
-        component: () => import("@/views/components/Referal.vue"),
+        component: () => import("@/views/components/referral.vue"),
         name: "Referal",
         meta: {
           title: "route.referal",

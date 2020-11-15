@@ -29,7 +29,7 @@
 import { defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
-  name: "ReferalLinkDialog",
+  name: "ReferralLinkDialog",
 
   props: {
     show: Boolean,

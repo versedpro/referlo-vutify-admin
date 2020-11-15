@@ -4,7 +4,6 @@ export function getPieChartOption(referlo: ReferloChartInfo): unknown {
   const options = {
     color: ["grey", "#001e2f", "#dcb456"],
     title: {
-      // show: false,
       text: referlo.title.text,
       textStyle: {
         color: "#001e2f",
@@ -31,48 +30,7 @@ export function getPieChartOption(referlo: ReferloChartInfo): unknown {
       bottom: "10",
       left: "center",
       itemGap: 50,
-      selectedMode: false,
-      // backgroundColor: "red",
-      formatter: function (name: string) {
-        switch (name) {
-          case "completed":
-            return referlo.legend.completed;
-          case "referred":
-            return referlo.legend.referred;
-          case "wip":
-            return referlo.legend.wip;
-        }
-        return name;
-      },
-      data: [
-        {
-          name: "completed",
-          icon: "roundRect",
-          textStyle: {
-            color: "#dcb456",
-            fontSize: 14,
-            fontWeight: "bold"
-          }
-        },
-        {
-          name: "wip",
-          icon: "roundRect",
-          textStyle: {
-            color: "#001e2f",
-            fontSize: 14,
-            fontWeight: "bold"
-          }
-        },
-        {
-          name: "referred",
-          icon: "roundRect",
-          textStyle: {
-            color: "grey",
-            fontSize: 14,
-            fontWeight: "bold"
-          }
-        }
-      ]
+      selectedMode: false
     },
     series: [
       {
@@ -83,19 +41,11 @@ export function getPieChartOption(referlo: ReferloChartInfo): unknown {
         hoverAnimation: false,
         avoidLabelOverlap: true,
         label: {
-          // formatter: "{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%} ",
-          // backgroundColor: "#eee",
-          borderColor: "#f00",
-          borderWidth: 1,
-          // borderRadius: 4,
-          show: false,
-          position: "outside"
+          show: false
         },
         emphasis: {
           label: {
-            show: false,
-            fontSize: "30",
-            fontWeight: "bold"
+            show: false
           }
         },
         labelLine: {
