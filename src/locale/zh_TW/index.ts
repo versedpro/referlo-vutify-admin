@@ -32,8 +32,7 @@ export default {
     email: "電郵",
     phone: "電話",
     password: "密碼",
-    confirm: "確認",
-    confirmPassword: "Confirm Password"
+    confirm: "確認"
   },
   products: {
     product: "產品 / 服務:",
@@ -56,6 +55,13 @@ export default {
     points: "Refer佬<br/>金幣",
     account: "帳戶"
   },
+  history: {
+    title: "Refer佬記錄",
+    wip: "跟進中",
+    referred: "已Refer",
+    completed: "已成功",
+    points: "已获取积分"
+  },
   home: {
     referProduct: "我有嘢Refer",
     referPeople: "我有人Refer",
@@ -66,6 +72,12 @@ export default {
     referred: "已Refer {0}",
     completed: "已成功 {0}",
     points: "已獲取積分"
+  },
+  points: {
+    title: "Refer佬金幣",
+    claimed: "已領取",
+    unclaimed: "未領取",
+    points: "已获取积分"
   },
   errors: {
     whoops: "哦嚯~!",

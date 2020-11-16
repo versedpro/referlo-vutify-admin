@@ -75,8 +75,8 @@ export default {
   },
   points: {
     title: "Refer佬金幣",
-    claimed: "已領取",
-    unclaimed: "未領取",
+    claimed: "已換領金幣",
+    unclaimed: "未領領金幣",
     points: "已获取积分"
   },
   errors: {

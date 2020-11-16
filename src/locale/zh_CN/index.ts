@@ -32,8 +32,7 @@ export default {
     email: "电邮",
     phone: "电话",
     password: "密码",
-    confirm: "确认",
-    confirmPassword: "Confirm Password"
+    confirm: "确认"
   },
   orders: {
     referredBy: "轉介人",
@@ -65,6 +64,13 @@ export default {
     points: "积分",
     account: "帐户"
   },
+  history: {
+    title: "Refer佬记录",
+    wip: "跟进中",
+    referred: "已Refer",
+    completed: "已成功",
+    points: "已获取积分"
+  },
   home: {
     referProduct: "服务轉介",
     referPeople: "会员轉介",
@@ -74,6 +80,12 @@ export default {
     wip: "跟进中 {0}",
     referred: "已Refer {0}",
     completed: "已成功 {0}",
+    points: "已获取积分"
+  },
+  points: {
+    title: "Refer佬金币",
+    claimed: "已换领金币",
+    unclaimed: "未领领金币",
     points: "已获取积分"
   },
   errors: {

@@ -38,7 +38,8 @@
       </template>
     </v-toolbar>
 
-    <order-history :items="items"></order-history>
+    <points-table :items="items"></points-table>
+    <!-- <order-history :items="items"></order-history> -->
   </v-card>
 </template>
 
@@ -50,7 +51,7 @@ export default defineComponent({
   name: "FollowUp",
 
   components: {
-    // PointsTable: () => import("./points-table.vue"),
+    PointsTable: () => import("./points-table.vue"),
     ReferloAvatar: () => import("@/views/widget/referlo-avatar.vue")
   },
 

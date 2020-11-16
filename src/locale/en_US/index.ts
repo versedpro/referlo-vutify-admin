@@ -32,8 +32,7 @@ export default {
     email: "Email",
     phone: "Phone",
     password: "Password",
-    confirm: "Confirm",
-    confirmPassword: "Confirm Passsword"
+    confirm: "Confirm"
   },
   orders: {
     referredBy: "Referred By",
@@ -65,6 +64,13 @@ export default {
     points: "Points",
     account: "Account"
   },
+  history: {
+    title: "My Referlo",
+    wip: "WIP",
+    referred: "Referred",
+    completed: "Completed",
+    points: "已获取积分"
+  },
   home: {
     referProduct: "Refer Product",
     referPeople: "Refer People",
@@ -75,6 +81,12 @@ export default {
     referred: "Referred {0}",
     completed: "Completed: {0}",
     points: "Points"
+  },
+  points: {
+    title: "Referlo Points",
+    claimed: "Claim",
+    unclaimed: "Unclaimed",
+    points: "已获取积分"
   },
   errors: {
     whoops: "Whoops",
