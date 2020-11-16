@@ -2,7 +2,7 @@
   <v-list flat suheader three-line>
     <v-list-item-group v-model="selected" active-class="pink--text">
       <template v-for="(item, index) in items">
-        <v-list-item :key="item.orderNo">
+        <v-list-item :key="item.orderNo" to="/follow-up/chat">
           <v-list-item-content>
             <v-list-item-title v-text="item.orderDate"></v-list-item-title>
 

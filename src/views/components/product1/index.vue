@@ -17,7 +17,7 @@
           <v-card-text>{{ text }}</v-card-text>
         </v-card>
       </v-tab-item>
-    </v-tabs-items> -->
+    </v-tabs-items>
     <v-container class="grey lighten-5 pa-0">
       <v-row no-gutters>
         <v-col cols="6" md="3">
@@ -27,14 +27,16 @@
           <v-card class="pa-2" outlined tile> Products </v-card>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
 
     <v-sheet height="100%">
       <splitpanes class="default-theme" style="height: 100%">
         <pane size="30" min-size="30" max-size="30" class="primary">
+          <div><v-alert border="bottom top" colored-border color="gold" class="pa-2 rounded-0" dense> Industries </v-alert></div>
           <industry-list :industries="industries"></industry-list>
         </pane>
         <pane size="70">
+          <div><v-alert border="bottom top" colored-border color="gold" class="pa-2 rounded-0" dense> Products &amp; Suppliers</v-alert></div>
           <v-item-group active-class="gold">
             <v-container d-md-flex>
               <v-col cols="12" md="6" class="pa-0">

@@ -18,7 +18,7 @@
         </v-card>
       </v-tab-item>
     </v-tabs-items> -->
-    <v-container class="grey lighten-5 pa-0">
+    <!-- <v-container class="grey lighten-5 pa-0">
       <v-row no-gutters>
         <v-col cols="6" md="3">
           <v-card class="pa-2" outlined tile> Industries </v-card>
@@ -27,14 +27,16 @@
           <v-card class="pa-2" outlined tile> Products </v-card>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
 
     <v-sheet height="100%">
       <splitpanes class="default-theme" style="height: 100%">
         <pane size="30" min-size="30" max-size="30" class="transparent">
+          <v-card class="pa-2" outlined tile> Industries </v-card>
           <industry-list :industries="industries"></industry-list>
         </pane>
         <pane size="70">
+          <v-card class="pa-2" outlined tile> Products &amp; Suppliers  </v-card>
           <v-item-group active-class="gold">
             <v-container d-md-flex>
               <v-col cols="12" md="6" class="pa-0">

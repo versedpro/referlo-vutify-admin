@@ -6,17 +6,9 @@
           <template v-slot:default="{ active }">
             <v-list-item-content :class="{ 'pa-5': $vuetify.breakpoint.smAndUp }">
               <v-list-item-icon class="ma-0">
-              <v-icon class="mr-3" v-if="!active"
-                color="gold" 
-              >mdi-city
-              </v-icon>
-              <v-icon
-              class="mr-3"
-                v-else
-                color="primary"
-              >mdi-city  
-              </v-icon>
-              <v-list-item-title
+                <v-icon class="mr-3" v-if="!active" color="gold">mdi-city </v-icon>
+                <v-icon class="mr-3" v-else color="primary">mdi-city </v-icon>
+                <v-list-item-title
                   v-if="!active"
                   class="gold--text"
                   v-text="item.industryName"
@@ -30,10 +22,7 @@
             </v-list-item-content>
           </template>
         </v-list-item>
-        <v-divider
-          v-if="i < item.length - 1"
-          :key="i"
-        ></v-divider>
+        <v-divider v-if="i < item.length - 1" :key="i"></v-divider>
       </template>
     </v-list-item-group>
   </v-list>
