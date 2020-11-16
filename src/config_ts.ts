@@ -32,7 +32,8 @@ export const ttl = /* 7 * 24 * 60 * */ 60;
  * @description Default application settings.
  */
 export const settings = {
-  locale: "en",
+  locale: process.env.VUE_APP_I18N_LOCALE || 'hk',
+  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'hk',
   dense: true,
   footer: true,
   navbar: {
