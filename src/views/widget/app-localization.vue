@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { locales } from "@/locale";
+import { locales } from "@/locale/available";
 import { defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({

@@ -9,9 +9,7 @@ import VueI18n from "vue-i18n";
 
 import { settings } from "@/config_ts";
 import vuetify from "@/locale/vuetify";
-import en from "./en_US";
-import zh from "./zh_CN";
-import zhHant from "./zh_TW";
+import { en, zh, zhHant } from "./available"
 
 Vue.use(VueI18n);
 
@@ -31,35 +29,12 @@ const messages = {
 };
 
 /**
- * Available locales
- */
-export const locales = [
-  {
-    title: "繁體",
-    locale: "hk",
-    display: "繁",
-    abbr: "HKG"
-  },
-  {
-    title: "簡體",
-    locale: "zh",
-    display: "簡",
-    abbr: "CHN"
-  },
-  {
-    title: "English",
-    locale: "en",
-    display: "Eng",
-    abbr: "ENG"
-  }
-];
-
-/**
  * VueI18n instance
  */
 const i18n = new VueI18n({
   // set locale options: en_US | zh_CN | zh_TW
   locale: settings.locale,
+  fallbackLocale: settings.fallbackLocale,
   // set locale messages
   messages
 });
@@ -72,8 +47,7 @@ const i18n = new VueI18n({
 export async function setLocale(locale) {
   if (i18n.locale !== locale) {
     console.log(`[Locale] Set to "${locale}"`);
-    // i18n.locale = locale || settings.locale;
-    i18n.locale = locale || "en";
+    i18n.locale = locale || settings.locale;
   } else {
     console.warn(`[Locale] "${locale}" is current`);
   }
