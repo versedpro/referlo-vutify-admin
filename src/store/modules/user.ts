@@ -1,4 +1,4 @@
-import { loginByEmail, loginByPhone, getUserInfo } from "@/api/login";
+import { loginByEmail, loginByPhone, getUserInfo, confirmAccess } from "@/api/login";
 
 const user = {
   state: {
@@ -6,6 +6,7 @@ const user = {
     roles: [],
     user: "",
     name: "",
+    phone: "",
     avatar: "",
     status: "",
     code: "",
@@ -20,6 +21,7 @@ const user = {
     roles: state => state.roles,
     name: state => state.name,
     user: state => state.user,
+    phone: state => state.phone,
     avatar: state => state.avatar,
     status: state => state.status,
     introduction: state => state.introduction,
@@ -33,6 +35,7 @@ const user = {
         state.roles = [];
         state.user = "";
         state.name = "";
+        state.phone = "",
         state.avatar = "";
         state.code = "";
       } else {
@@ -40,12 +43,16 @@ const user = {
         state.roles = payload.roles || state.roles;
         state.user = payload.user || state.user;
         state.name = payload.name || state.name;
+        state.phone = payload.phone || state.phone;
         state.avatar = payload.avatar || state.avatar;
         state.code = payload.code || state.code;
       }
     },
     SET_TOKEN: (state, token) => {
       state.token = token;
+    },
+    SET_CONFIRM: (state, value) => {
+      state.confirmPassword = value;
     }
   },
 
@@ -102,6 +109,20 @@ const user = {
         await commit("SET_USER_INFO", { logout: true });
       } catch (err) {
         console.warn("[vuex.user] LogOut", err);
+      }
+    },
+
+    ConfirmAccess: async ({ commit, state }, payload) => {
+      try {
+        const response = await confirmAccess(payload.phone, payload.password);
+        console.log("[vuex.user] Confirm password", payload, response);
+        if (response) {
+          await commit("SET_CONFIRM", true);
+        } else {
+          await commit("SET_CONFIRM", false)
+        }
+      } catch (error) {
+        console.warn("[vuex.user] Confirm Access", error);
       }
     }
 

@@ -1,8 +1,8 @@
 <template>
-  <v-card class="mx-auto pa-0" max-width="800" height="100%" tile>
-    <v-card-title class="primary justify-center display-1 text-h5 white--text">
+  <v-card class="mx-auto pa-0" height="100%" tile>
+    <!-- <v-card-title class="primary justify-center display-1 text-h5 white--text">
       {{ title }}
-    </v-card-title>
+    </v-card-title> -->
     <template>
       <v-timeline dense>
         <v-timeline-item

@@ -74,3 +74,24 @@ export const getUserInfo = async token => {
   }
   return { user };
 };
+
+/**
+ * Get user information by token
+ *
+ * @param {String} token user token
+ */
+export const confirmAccess = async (phone, password) => {
+  console.log(`[confirmAccess] password ${password}`);
+  try {
+    if (userEditor.phone === phone && userEditor.password === password) {
+      return true;
+    } else if (userAdmin.phone === phone && userAdmin.password === password) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.warn(`[confirmAccess] ${err}`);
+  }
+};
+
