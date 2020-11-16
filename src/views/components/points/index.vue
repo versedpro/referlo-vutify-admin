@@ -37,8 +37,17 @@
         </v-tabs>
       </template>
     </v-toolbar>
+    <v-tabs-items v-model="tab">
+      <v-tab-item
+        v-for="item in tabItems"
+        :key="item"
+      >
+        <points-table v-if="item == $t('points.unclaimed')" :items="items"></points-table>
+        <points-table v-else :items="level1"></points-table>
+      </v-tab-item>
+    </v-tabs-items>
 
-    <points-table :items="items"></points-table>
+    
     <!-- <order-history :items="items"></order-history> -->
   </v-card>
 </template>
@@ -69,6 +78,8 @@ export default defineComponent({
       return [vm.$t("points.unclaimed"), vm.$t("points.claimed")];
     });
 
+    const tab = ref(null);
+
     return {
       panel,
       title,
@@ -76,7 +87,8 @@ export default defineComponent({
       level1,
       level2,
       readonly,
-      tabItems
+      tabItems,
+      tab
     };
   }
 });
