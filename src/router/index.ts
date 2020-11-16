@@ -136,6 +136,23 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
+        path: "/product3",
+        component: () => import("@/views/components/product3/index.vue"),
+        name: "Product3",
+        meta: {
+          title: "route.product3",
+          icon: "mdi-timeline-text",
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
         path: "/follow-up",
         component: () => import("@/views/components/follow-up.vue"),
         name: "FollowUp",

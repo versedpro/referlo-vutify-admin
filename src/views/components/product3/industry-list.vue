@@ -1,6 +1,6 @@
 <template>
   <v-list two-line dense dark class="transparent">
-    <v-list-item-group v-model="selectedItem" active-class="primary--text gold" multiple>
+    <v-list-item-group v-model="selectedItem" active-class="primary--text transparent" multiple>
       <template v-for="(item, i) in industries">
         <v-list-item :key="i" class="mb-2">
           <template v-slot:default="{ active }">
