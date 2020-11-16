@@ -15,7 +15,11 @@
           </v-flex>
           <v-text-field class="profile" v-model="form.firstName" label="FirstName"></v-text-field>
           <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
-          <v-text-field class="profile" v-model="form.contactEmail" label="Email Address"></v-text-field>
+          <v-text-field
+            class="profile"
+            v-model="form.contactEmail"
+            label="Email Address"
+          ></v-text-field>
         </v-card-text>
         <v-card-actions class="primary" v-if="!seeInfo">
           <!-- <v-btn outlined rounded class="ma-2" color="secondary darken-2" dark to="/profile2">
@@ -26,11 +30,15 @@
           <v-row justify="center">
             <v-dialog v-model="accessConfirmDialog" persistent max-width="290">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn outlined color="gold ma-2 text--gold" dark v-bind="attrs" v-on="on">SeeInfo</v-btn>
+                <v-btn outlined color="gold ma-2 text--gold" dark v-bind="attrs" v-on="on"
+                  >SeeInfo</v-btn
+                >
               </template>
               <v-card>
                 <v-form ref="formPassword" lazy-validation>
-                  <v-card-title class="headline text--gold">{{ $t("login.confirmPassword") }}</v-card-title>
+                  <v-card-title class="headline text--gold">{{
+                    $t("login.confirmPassword")
+                  }}</v-card-title>
                   <v-card-text>
                     <v-text-field
                       v-model="password"
@@ -125,8 +133,8 @@ export default defineComponent({
     }
 
     const rules = ref([
-      value => !!value || 'Required.',
-      value => (value && value.length >= 3) || 'Min 3 characters',
+      (value) => !!value || "Required.",
+      (value) => (value && value.length >= 3) || "Min 3 characters"
     ]);
 
     return {
@@ -155,7 +163,7 @@ export default defineComponent({
 .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
   border-color: #c1a357 !important;
 }
-.profile input{
+.profile input {
   color: #f6f6f6 !important;
 }
 </style>

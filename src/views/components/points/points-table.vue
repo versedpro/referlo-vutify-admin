@@ -3,15 +3,9 @@
     <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-left">
-            Date
-          </th>
-          <th class="text-left">
-            Product
-          </th>
-          <th class="text-left">
-            Points
-          </th>
+          <th class="text-left">Date</th>
+          <th class="text-left">Product</th>
+          <th class="text-left">Points</th>
         </tr>
       </thead>
       <tbody>

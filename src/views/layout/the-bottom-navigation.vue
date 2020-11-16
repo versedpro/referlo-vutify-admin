@@ -31,7 +31,7 @@ const navItems = [
     id: "Products",
     label: "bottomNavigation.products",
     icon: "mdi-tag",
-    route: "/product2"
+    route: "/product1"
   },
   {
     id: "History",
@@ -42,7 +42,7 @@ const navItems = [
   {
     id: "Points",
     label: "bottomNavigation.points",
-    icon: "mdi-gift",
+    icon: "mdi-currency-usd-circle",
     route: "/points"
   },
   {

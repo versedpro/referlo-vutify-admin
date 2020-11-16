@@ -9,6 +9,8 @@ export default {
   product2: "Product2",
   profile: "Profile",
   followUp: "Orders",
+  about: "About Us",
+  contact: "Contact Us",
   // pagePermission: 'Page Permission',
   // rolePermission: 'Role Permission',
   permissions: "Permission",

@@ -1,5 +1,5 @@
 <template>
-  <v-btn rounded class="px-6" color="primary" @click="handleClick">
+  <v-btn rounded class="px-3" color="primary" @click="handleClick">
     {{ text }}
   </v-btn>
 </template>

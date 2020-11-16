@@ -18,29 +18,17 @@
         </v-card>
       </v-tab-item>
     </v-tabs-items> -->
-     <v-container class="grey lighten-5 pa-0">
-    <v-row no-gutters>
-      <v-col cols="6" md="3">
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          Industries
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="9">
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          Products
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
-    
+    <v-container class="grey lighten-5 pa-0">
+      <v-row no-gutters>
+        <v-col cols="6" md="3">
+          <v-card class="pa-2" outlined tile> Industries </v-card>
+        </v-col>
+        <v-col cols="12" md="9">
+          <v-card class="pa-2" outlined tile> Products </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+
     <v-sheet height="100%">
       <splitpanes class="default-theme" style="height: 100%">
         <pane size="30" min-size="30" max-size="30" class="primary">
@@ -49,20 +37,26 @@
         <pane size="70">
           <v-item-group active-class="gold">
             <v-container d-md-flex>
-              <v-col cols="12" md="6" class=" pa-0">
+              <v-col cols="12" md="6" class="pa-0">
                 <v-col v-for="(item, i) in products" :key="i" class="pb-1 pa-0 pr-md-1">
                   <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                    <v-card-subtitle class="primary--text" v-html="item.productName"></v-card-subtitle>
+                    <v-card-subtitle
+                      class="primary--text"
+                      v-html="item.productName"
+                    ></v-card-subtitle>
                   </v-alert>
                 </v-col>
               </v-col>
-              <v-col cols="12" md="6" class=" pa-0">
+              <v-col cols="12" md="6" class="pa-0">
                 <v-col v-for="(item, i) in products" :key="i" class="pb-1 pa-0">
                   <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                    <v-card-subtitle class="primary--text" v-html="item.supplierName"></v-card-subtitle>
+                    <v-card-subtitle
+                      class="primary--text"
+                      v-html="item.supplierName"
+                    ></v-card-subtitle>
                   </v-alert>
                 </v-col>
-                </v-col>
+              </v-col>
             </v-container>
           </v-item-group>
         </pane>

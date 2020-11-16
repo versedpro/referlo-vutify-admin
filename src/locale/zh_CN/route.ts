@@ -8,6 +8,8 @@ export default {
   product2: "Product2",
   profile: "个人资料",
   followUp: "订单跟进",
+  about: "About Us",
+  contact: "Contact Us",
   // pagePermission: 'Page Permission',
   // rolePermission: 'Role Permission',
   permissions: "权限",

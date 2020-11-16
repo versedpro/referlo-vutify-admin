@@ -27,7 +27,7 @@
 
         <v-list-item-action>
           <v-chip class="text-h6" color="transparent" text-color="gold">
-            <v-icon left> mdi-bitcoin </v-icon>
+            <v-icon left> mdi-currency-usd-circle-outline </v-icon>
             {{ person.points }}
           </v-chip>
         </v-list-item-action>
@@ -46,19 +46,21 @@
       </app-widget>
     </v-card-text>
 
-    <v-card-text class="text-center pb-16 white">
+    <v-card-text class="text-center mt-0 pb-4 white">
       <v-btn x-small class="px-4" color="gold"> {{ legend[0] }} </v-btn>
       <v-btn x-small class="px-4 mx-6" color="primary"> {{ legend[1] }} </v-btn>
       <v-btn x-small class="px-4" color="grey"> {{ legend[2] }} </v-btn>
     </v-card-text>
 
     <!-- The footer -->
-    <v-footer
-      color="gold lighten-1"
-      app="$vuetify.breakpoint.smAndDown"
-      absolute="$vuetify.breakpoint.smAndUp"
-    >
-      <v-card-text class="text-center pt-4 pb-6">
+    <v-footer v-if="$vuetify.breakpoint.smAndDown" color="gold lighten-1" app>
+      <v-card-text class="text-center py-2">
+        <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
+        <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
+      </v-card-text>
+    </v-footer>
+    <v-footer v-else color="gold lighten-1" absolute>
+      <v-card-text class="text-center py-2">
         <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
         <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
       </v-card-text>
@@ -98,6 +100,10 @@ export default defineComponent({
       return "gold";
     });
 
+    const absolute = computed(() => {
+      return !vm.$vuetify.breakpoint.smAndDown;
+    });
+
     const legend = computed(() => [
       vm.$i18n.t("home.completed", person.score.slice(2, 3)),
       vm.$i18n.t("home.wip", person.score.slice(1, 2)),
@@ -130,11 +136,12 @@ export default defineComponent({
     };
 
     const referProduct = () => {
-      vm.$router.push("/products");
+      vm.$router.push("/product1");
     };
 
     return {
       ads,
+      absolute,
       person,
       backgroundColor,
       showLinkDialog,
