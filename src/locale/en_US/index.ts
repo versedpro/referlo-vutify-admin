@@ -32,7 +32,8 @@ export default {
     email: "Email",
     phone: "Phone",
     password: "Password",
-    confirm: "Confirm"
+    confirm: "Confirm",
+    confirmPassword: "Confirm Passsword"
   },
   orders: {
     referredBy: "Referred By",

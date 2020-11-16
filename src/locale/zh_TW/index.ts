@@ -32,7 +32,8 @@ export default {
     email: "電郵",
     phone: "電話",
     password: "密碼",
-    confirm: "確認"
+    confirm: "確認",
+    confirmPassword: "Confirm Password"
   },
   products: {
     product: "產品 / 服務:",

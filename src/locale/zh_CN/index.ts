@@ -32,7 +32,8 @@ export default {
     email: "电邮",
     phone: "电话",
     password: "密码",
-    confirm: "确认"
+    confirm: "确认",
+    confirmPassword: "Confirm Password"
   },
   orders: {
     referredBy: "轉介人",
