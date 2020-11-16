@@ -36,7 +36,7 @@
           <industry-list :industries="industries"></industry-list>
         </pane>
         <pane size="70">
-          <v-card class="pa-2" outlined tile> Products &amp; Suppliers  </v-card>
+          <v-card class="pa-2" outlined tile> Products &amp; Suppliers </v-card>
           <v-item-group active-class="gold">
             <v-container d-md-flex>
               <v-col cols="12" md="6" class="pa-0">

@@ -45,7 +45,6 @@
       </v-tab-item>
     </v-tabs-items>
 
-    
     <!-- <order-history :items="items"></order-history> -->
   </v-card>
 </template>

@@ -1,79 +1,62 @@
 <template>
-  <v-container fluid>
-    <v-layout column>
-      <v-card>
-        <v-card-text class="primary">
-          <v-flex class="mb-4">
-            <v-btn depressed @click="openAvatarPicker" class="transparent pa-0" height="100%">
-              <v-avatar color="secondary darken-2" size="108">
-                <v-avatar size="96" class="mx-4" color="primary lighten-1">
-                  <img :src="form.avatarPath" alt="Avatar" />
-                </v-avatar>
-              </v-avatar>
-              <!-- <div class="v-avatar" style="height: 36px; min-width: 36px; width: 36px;"><img src="https://avatars.githubusercontent.com/u/13101802" alt="name"></div> -->
-            </v-btn>
-          </v-flex>
-          <v-text-field class="profile" v-model="form.firstName" label="FirstName"></v-text-field>
-          <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
-          <v-text-field
-            class="profile"
-            v-model="form.contactEmail"
-            label="Email Address"
-          ></v-text-field>
-        </v-card-text>
-        <v-card-actions class="primary" v-if="!seeInfo">
-          <!-- <v-btn outlined rounded class="ma-2" color="secondary darken-2" dark to="/profile2">
-            Accept
-            <v-icon dark right> mdi-checkbox-marked-circle </v-icon>
-          </v-btn> -->
-          <!-- <v-btn color="gold" class="ma-2" @click="showInfo">See</v-btn> -->
-          <v-row justify="center">
-            <v-dialog v-model="accessConfirmDialog" persistent max-width="290">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn outlined color="gold ma-2 text--gold" dark v-bind="attrs" v-on="on"
-                  >SeeInfo</v-btn
-                >
-              </template>
-              <v-card>
-                <v-form ref="formPassword" lazy-validation>
-                  <v-card-title class="headline text--gold">{{
-                    $t("login.confirmPassword")
-                  }}</v-card-title>
-                  <v-card-text>
-                    <v-text-field
-                      v-model="password"
-                      :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                      :label="$t('login.password')"
-                      :type="showPassword ? 'text' : 'password'"
-                      @click:append="showPassword = !showPassword"
-                      name="password"
-                      required
-                      autocomplete="current-password"
-                      :rules="rules"
-                    />
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="accessConfirmDialog = false">
-                      Cancel
-                    </v-btn>
-                    <v-btn color="green darken-1" text @click="confirmPassword">Confirm</v-btn>
-                  </v-card-actions>
-                </v-form>
-              </v-card>
-            </v-dialog>
-          </v-row>
-        </v-card-actions>
-      </v-card>
-      <profile-second v-if="seeInfo"></profile-second>
-    </v-layout>
-    <avatar-picker
-      v-model="showAvatarPicker"
-      :current-avatar="form.avatarPath"
-      @selected="selectAvatar"
-    ></avatar-picker>
-    <!-- <panel-group-item title="Shoppings" icon="mdi-cart" color="green" :value="13600" /> -->
-  </v-container>
+  <v-card>
+    <v-list-item>
+      <v-list-item-avatar size="128" color="gold">
+        <v-img class="pa-2" alt="xx" :src="form.avatarPath"></v-img>
+      </v-list-item-avatar>
+
+      <v-list-item-content class="ma-0">
+        <v-list-item-title class="primary--text">ABB</v-list-item-title>
+        <v-list-item-title class="primary--text">ABB</v-list-item-title>
+        <!-- <v-list-item-subtitle class="gold--text">
+              <span>{{ $t("home.memberSince") }}</span>
+              <span class="ml-1">{{ person.memberSince }}</span>
+            </v-list-item-subtitle> -->
+      </v-list-item-content>
+    </v-list-item>
+
+    <v-card-action>
+      <v-btn
+        fab
+        depressed
+        color="gold"
+        @click="openAvatarPicker"
+        class="transparent pa-0"
+        width="128"
+        height="128"
+      >
+        <v-avatar size="120" class="mx-4" color="primary lighten-1">
+          <img :src="form.avatarPath" alt="Avatar" />
+        </v-avatar>
+      </v-btn>
+
+      <h1>ddd</h1>
+    </v-card-action>
+
+    <v-card-text>
+      <v-btn
+        fab
+        depressed
+        color="gold"
+        @click="openAvatarPicker"
+        class="transparent pa-0"
+        width="128"
+        height="128"
+      >
+        <v-avatar size="120" class="mx-4" color="primary lighten-1">
+          <img :src="form.avatarPath" alt="Avatar" />
+        </v-avatar>
+      </v-btn>
+
+      <v-text-field class="profile" v-model="form.firstName" label="FirstName"></v-text-field>
+      <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
+      <v-text-field
+        class="profile"
+        v-model="form.contactEmail"
+        label="Email Address"
+      ></v-text-field>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -86,11 +69,11 @@ import AvatarPicker from "./avatar-picker.vue";
 
 export default defineComponent({
   name: "Profile",
-  components: {
-    // PanelGroupItem,
-    AvatarPicker,
-    ProfileSecond: () => import("../profile2.vue")
-  },
+  // components: {
+  //   // PanelGroupItem,
+  //   AvatarPicker,
+  //   ProfileSecond: () => import("../profile2.vue")
+  // },
 
   setup() {
     const items = ref(Items);
@@ -107,7 +90,7 @@ export default defineComponent({
       firstName: "John",
       lastName: "Doe",
       contactEmail: "john@doe.com",
-      avatarPath: "img/avatars/customer-support.png"
+      avatarPath: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
     });
 
     function openAvatarPicker() {

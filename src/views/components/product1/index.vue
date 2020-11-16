@@ -4,39 +4,22 @@
       <h1 class="font-weight-bold display-3 gold--text">Products</h1>
     </v-card-title>
 
-    <!-- <v-tabs fixed-tabs v-model="tab" background-color="transparent" color="basil">
-      <v-tab v-for="item in items" :key="item">
-        {{ item }}
-      </v-tab>
-    </v-tabs>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item v-for="item in items" :key="item">
-        <v-card color="basil" flat>
-          <v-card-title>{{ tab }}</v-card-title>
-          <v-card-text>{{ text }}</v-card-text>
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
-    <v-container class="grey lighten-5 pa-0">
-      <v-row no-gutters>
-        <v-col cols="6" md="3">
-          <v-card class="pa-2" outlined tile> Industries </v-card>
-        </v-col>
-        <v-col cols="12" md="9">
-          <v-card class="pa-2" outlined tile> Products </v-card>
-        </v-col>
-      </v-row>
-    </v-container> -->
-
     <v-sheet height="100%">
       <splitpanes class="default-theme" style="height: 100%">
         <pane size="30" min-size="30" max-size="30" class="primary">
-          <div><v-alert border="bottom top" colored-border color="gold" class="pa-2 rounded-0" dense> Industries </v-alert></div>
+          <div>
+            <v-alert border="bottom top" colored-border color="gold" class="pa-2 rounded-0" dense>
+              Industries
+            </v-alert>
+          </div>
           <industry-list :industries="industries"></industry-list>
         </pane>
         <pane size="70">
-          <div><v-alert border="bottom top" colored-border color="gold" class="pa-2 rounded-0" dense> Products &amp; Suppliers</v-alert></div>
+          <div>
+            <v-alert border="bottom top" colored-border color="gold" class="pa-2 rounded-0" dense>
+              Products &amp; Suppliers</v-alert
+            >
+          </div>
           <v-item-group active-class="gold">
             <v-container d-md-flex>
               <v-col cols="12" md="6" class="pa-0">
