@@ -31,9 +31,8 @@
 
       <template v-slot:extension>
         <v-tabs grow v-model="tab" background-color="transparent" dark color="gold">
-          <v-tab v-for="item in tabItems" :key="item">
-            {{ item }}
-          </v-tab>
+          <v-tab>{{ $t("points.unclaimed") }}</v-tab>
+          <v-tab>{{ $t("points.claimed") }}</v-tab>
         </v-tabs>
       </template>
     </v-toolbar>
