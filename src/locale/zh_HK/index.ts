@@ -27,30 +27,57 @@ export default {
     titleIn: "登記",
     titleUn: "注册",
     appTitle: "REFER ",
-    login: "登錄",
+    login: "登入",
     register: "注册",
     email: "電郵",
     phone: "電話",
     password: "密碼",
-    confirm: "確認",
-    confirmPassword: "Confirm Password"
+    confirm: "確認"
   },
-  orders: {
-    referredBy: "轉介人",
-    clientName: "客戶",
-    productName: "產品",
-    status: "状态",
-    email: "Email",
-    password: "Password",
-    confirm: "Confirm"
+  products: {
+    product: "產品 / 服務:",
+    orderNow: "落單",
+    serviceProvider: "產品供應商",
+    validUntil: "有效期至:"
   },
   referal: {
     clientName: "客戶",
-    phone: "電話戶",
+    phone: "電話",
     email: "電郵",
     address: "地址",
     productName: "產品",
     remark: "備註"
+  },
+  bottomNavigation: {
+    home: "我係<br/>Refer佬",
+    products: "我有嘢<br/>Refer",
+    history: "Refer佬<br/>記錄",
+    points: "Refer佬<br/>金幣",
+    account: "帳戶"
+  },
+  history: {
+    title: "Refer佬記錄",
+    wip: "跟進中",
+    referred: "已Refer",
+    completed: "已成功",
+    points: "已获取积分"
+  },
+  home: {
+    referProduct: "我有嘢Refer",
+    referPeople: "我有人Refer",
+    referal: "轉介",
+    referalTotal: "Refer個案",
+    memberSince: "入會年份",
+    wip: "跟進中 {0}",
+    referred: "已Refer {0}",
+    completed: "已成功 {0}",
+    points: "已獲取積分"
+  },
+  points: {
+    title: "Refer佬金幣",
+    claimed: "已領取",
+    unclaimed: "未領取",
+    points: "已获取积分"
   },
   errors: {
     whoops: "哦嚯~!",
