@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="primary">
     <v-list-item>
       <v-list-item-avatar size="128" color="gold">
         <v-img class="pa-2" alt="xx" :src="form.avatarPath"></v-img>
@@ -15,23 +15,19 @@
       </v-list-item-content>
     </v-list-item>
     <v-card-title>{{ url() }}</v-card-title>
-    <v-card-action>
-      <v-btn
-        fab
-        depressed
-        color="gold"
-        @click="openAvatarPicker"
-        class="transparent pa-0"
-        width="128"
-        height="128"
-      >
-        <v-avatar size="120" class="mx-4" color="primary lighten-1">
-          <img :src="form.avatarPath" alt="Avatar" />
-        </v-avatar>
-      </v-btn>
+    <v-card-text>
+       <v-flex>
+        <v-btn depressed @click="openAvatarPicker" class="transparent pa-0" height="100%">
+          <v-avatar color="secondary darken-2" size="108">
+            <v-avatar size="120" class="mx-4" color="primary lighten-1">
+                <img :src="form.avatarPath" alt="Avatar" />
+            </v-avatar>
+          </v-avatar>
+        </v-btn>
+      </v-flex>
 
-      <h1>ddd</h1>
-    </v-card-action>
+      <h1 class="white--text">Edit</h1>
+    </v-card-text>
 
     <v-card-text>
       <!-- <v-btn
@@ -56,6 +52,14 @@
         label="Email Address"
       ></v-text-field>
     </v-card-text>
+    <v-expansion-panels accordion>
+        <v-expansion-panel>
+          <v-expansion-panel-header class="gold primary--text">Profile Detail</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <profile-2></profile-2>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
   </v-card>
 </template>
 
@@ -65,15 +69,17 @@ import { Items } from "@/demo/api/mock_referrer_list";
 import { defineComponent, ref } from "@vue/composition-api";
 
 import AvatarPicker from "./avatar-picker.vue";
+import Profile2 from "@/views/components/profile2.vue";
 // import PanelGroupItem from "./home/PanelGroupItem.vue";
 
 export default defineComponent({
   name: "Profile",
-  // components: {
-  //   // PanelGroupItem,
-  //   AvatarPicker,
-  //   ProfileSecond: () => import("../profile2.vue")
-  // },
+  components: {
+    Profile2
+    // PanelGroupItem,
+    //AvatarPicker,
+    //ProfileSecond: () => import("../profile2.vue")
+  },
 
   setup() {
     const items = ref(Items);
