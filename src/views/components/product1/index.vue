@@ -12,7 +12,7 @@
               Industries
             </v-alert>
           </div>
-          <industry-list :industries="industries"></industry-list>
+          <industry-list :industries="industries" @onSelection="handleSelection"></industry-list>
         </pane>
         <pane size="70">
           <div>
@@ -21,26 +21,28 @@
             >
           </div>
           <v-item-group active-class="gold">
-            <v-container d-md-flex>
-              <v-col cols="12" md="6" class="pa-0">
-                <v-col v-for="(item, i) in products" :key="i" class="pb-1 pa-0 pr-md-1">
-                  <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                    <v-card-subtitle
-                      class="primary--text"
-                      v-html="item.productName"
-                    ></v-card-subtitle>
-                  </v-alert>
-                </v-col>
+            <v-container d-md-flex class="pt-0">
+              <v-col cols="12" md="6" class="pt-0">
+                <v-row v-for="(item, i) in productsIndustries" :key="i">
+                  <v-col v-for="(product) in item.products" :key="product" cols="12" class="">
+                    <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
+                      <v-card-subtitle
+                        class="primary--text"
+                      >{{ product.productName }}</v-card-subtitle>
+                    </v-alert>
+                  </v-col>
+                </v-row>
               </v-col>
-              <v-col cols="12" md="6" class="pa-0">
-                <v-col v-for="(item, i) in products" :key="i" class="pb-1 pa-0">
-                  <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                    <v-card-subtitle
-                      class="primary--text"
-                      v-html="item.supplierName"
-                    ></v-card-subtitle>
-                  </v-alert>
-                </v-col>
+              <v-col cols="12" md="6" class="pt-0">
+                <v-row v-for="(item, i) in productsIndustries" :key="i">
+                  <v-col v-for="(product) in item.products" :key="product" cols="12" class="">
+                    <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
+                      <v-card-subtitle
+                        class="primary--text"
+                      >{{ product.supplierName }}</v-card-subtitle>
+                    </v-alert>
+                  </v-col>
+                </v-row>
               </v-col>
             </v-container>
           </v-item-group>
@@ -54,7 +56,6 @@
 import "splitpanes/dist/splitpanes.css";
 
 import { computed, defineComponent, ref } from "@vue/composition-api";
-import { Items } from "@/demo/api/mock_products";
 import { industries as Industries } from "./json-data";
 
 // *** components
@@ -74,32 +75,30 @@ export default defineComponent({
     const title = "資訊中心";
 
     const industries = ref(Industries);
-    const selected = ref(null as number);
+    const selected = ref([] as Array<number>);
 
-    const products = computed(() => {
-      return selected.value > 0 ? Items.filter((item) => selected.value === item.industry) : Items;
+    const productsIndustries = computed(() => {
+      return selected.value.length > 0 ? Industries.filter((item) => selected.value.some(k => k === item.industryId)) : Industries;
     });
-    const selectedItem = null as number;
-
-    const handleChange = (s) => {
-      selected.value = industries.value[s].industryId;
-    };
+    const selectedItem = ref(null as number);
 
     const tab = ref(0);
     const items = ref(["Hot Deal", "All Products"]);
 
     const text = ref("Lorem ipsum dolor sit amet, consect");
 
+    const handleSelection = s => (selected.value = s);
+
     return {
       title,
       industries,
       selected,
       selectedItem,
-      products,
-      handleChange,
+      productsIndustries,
       tab,
       items,
-      text
+      text,
+      handleSelection
     };
   }
 });

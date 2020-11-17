@@ -1,8 +1,8 @@
 <template>
   <v-list two-line dense dark class="transparent">
-    <v-list-item-group v-model="selectedItem" active-class="primary--text gold" multiple>
+    <v-list-item-group v-model="selectedItem" active-class="primary--text gold" @change="handleChange" multiple>
       <template v-for="(item, i) in industries">
-        <v-list-item :key="i" class="mb-2">
+        <v-list-item :key="item.industryId" :value="item" class="mb-2">
           <template v-slot:default="{ active }">
             <v-list-item-content :class="{ 'pa-5': $vuetify.breakpoint.smAndUp }">
               <v-list-item-icon class="ma-0">
@@ -35,16 +35,23 @@ export default defineComponent({
   name: "IndustryList",
 
   props: {
-    industries: Object
+    industries: Array
   },
 
-  setup(props) {
-    const selectedItem = ref([] as Array<number>);
+  setup(props, {emit}) {
+    const selectedItem = ref([]);
     const items = ref(props.industries);
+
+    const handleChange = (selected) => {
+      const industries = selected.map((e) => e.industryId) as Array<any>;
+      // eslint-disable-next-line vue/custom-event-name-casing
+      emit("onSelection", industries);
+    };
 
     return {
       selectedItem,
-      items
+      items,
+      handleChange
     };
   }
 });
