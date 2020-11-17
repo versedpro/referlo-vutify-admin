@@ -10,9 +10,9 @@ NProgress.configure({ showSpinner: false }); // NProgress Configuration
  * Generate white list
  */
 const whiteList = ["/landing", "/land"]
-  .concat(Array.from(authRouter, route => route.path))
-  .concat(Array.from(authRouter, route => route.alias))
-  .filter(route => route); // remove undefined element
+  .concat(Array.from(authRouter, (route) => route.path))
+  .concat(Array.from(authRouter, (route) => route.alias))
+  .filter((route) => route); // remove undefined element
 console.log("[router.whiteList]", whiteList);
 
 /**
@@ -24,7 +24,7 @@ console.log("[router.whiteList]", whiteList);
 function hasPermission(roles, permissionRoles) {
   if (roles.includes("admin")) return true;
   if (!permissionRoles) return true;
-  return roles.some(role => permissionRoles.includes(role));
+  return roles.some((role) => permissionRoles.includes(role));
 }
 
 router.beforeEach(async (to, from, next) => {
@@ -32,7 +32,7 @@ router.beforeEach(async (to, from, next) => {
   let logMsg = "[router.beforeEach]";
   try {
     // show registration if user has referral key
-    if (to.path === '/registration' && to.query.key) {
+    if (to.path === "/registration" && to.query.key) {
       next();
       return;
     }

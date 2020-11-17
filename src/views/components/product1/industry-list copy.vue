@@ -48,7 +48,7 @@ export default defineComponent({
     const items = ref(props.industries);
 
     const handleChange = (selected) => {
-      const industries = selected.map((e) => e.industryId) as Array<unknown>;
+      const industries = selected.map((e) => e.industryId) as Array<any>;
       // eslint-disable-next-line vue/custom-event-name-casing
       emit("onSelection", industries);
     };
