@@ -44,7 +44,10 @@ export default {
     confirm: "Confirm"
   },
   products: {
+    title: "Referlo Product & Service",
     product: "Product/Service:",
+    hotProducts: "Hot Deal",
+    allProducts: "All Products",
     orderNow: "Order Now",
     serviceProvider: "Service Provider",
     validUntil: "Valid Until:"

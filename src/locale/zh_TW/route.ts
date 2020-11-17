@@ -6,6 +6,8 @@ export default {
   products: "資訊中心",
   product1: "Product1",
   product2: "Product2",
+  product3: "Product3",
+  product4: "Product4",
   profile: "個人資料",
   followUp: "訂單跟進",
   about: "About Us",

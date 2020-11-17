@@ -7,6 +7,8 @@ export default {
   industries: "Product1",
   product1: "Product1",
   product2: "Product2",
+  product3: "Product3",
+  product4: "Product4",
   profile: "Profile",
   followUp: "Orders",
   about: "About Us",

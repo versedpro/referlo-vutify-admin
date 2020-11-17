@@ -35,7 +35,10 @@ export default {
     confirm: "確認"
   },
   products: {
+    title: "Refer佬 產品 / 服務",
     product: "產品 / 服務:",
+    hotProducts: "熱門服務",
+    allProducts: "所有服務",
     orderNow: "落單",
     serviceProvider: "產品供應商",
     validUntil: "有效期至:"
@@ -63,7 +66,7 @@ export default {
     points: "已获取积分"
   },
   home: {
-    referProduct: "我有嘢Refer",
+    referProduct: "我有嘢Refer1",
     referPeople: "我有人Refer",
     referal: "轉介",
     referalTotal: "Refer個案",

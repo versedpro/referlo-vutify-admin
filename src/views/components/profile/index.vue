@@ -14,7 +14,7 @@
             </v-list-item-subtitle> -->
       </v-list-item-content>
     </v-list-item>
-
+    <v-card-title>{{ url() }}</v-card-title>
     <v-card-action>
       <v-btn
         fab
@@ -34,7 +34,7 @@
     </v-card-action>
 
     <v-card-text>
-      <v-btn
+      <!-- <v-btn
         fab
         depressed
         color="gold"
@@ -46,7 +46,7 @@
         <v-avatar size="120" class="mx-4" color="primary lighten-1">
           <img :src="form.avatarPath" alt="Avatar" />
         </v-avatar>
-      </v-btn>
+      </v-btn> -->
 
       <v-text-field class="profile" v-model="form.firstName" label="FirstName"></v-text-field>
       <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
@@ -85,6 +85,12 @@ export default defineComponent({
     const showPassword = ref(false);
     const password = ref("");
     const formPassword = ref(null);
+    function url() {
+      const y = location.host;
+      // const x = JSON.stringify(process.env);
+
+      return "url" + y;
+    }
 
     const form = ref({
       firstName: "John",
@@ -134,7 +140,8 @@ export default defineComponent({
       showPassword,
       confirmPassword,
       formPassword,
-      rules
+      rules,
+      url
     };
   }
 });

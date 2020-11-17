@@ -24,22 +24,22 @@
             <v-container d-md-flex class="pt-0">
               <v-col cols="12" md="6" class="pt-0">
                 <v-row v-for="(item, i) in productsIndustries" :key="i">
-                  <v-col v-for="(product) in item.products" :key="product" cols="12" class="">
+                  <v-col v-for="product in item.products" :key="product" cols="12" class="">
                     <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                      <v-card-subtitle
-                        class="primary--text"
-                      >{{ product.productName }}</v-card-subtitle>
+                      <v-card-subtitle class="primary--text">{{
+                        product.productName
+                      }}</v-card-subtitle>
                     </v-alert>
                   </v-col>
                 </v-row>
               </v-col>
               <v-col cols="12" md="6" class="pt-0">
                 <v-row v-for="(item, i) in productsIndustries" :key="i">
-                  <v-col v-for="(product) in item.products" :key="product" cols="12" class="">
+                  <v-col v-for="product in item.products" :key="product" cols="12" class="">
                     <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                      <v-card-subtitle
-                        class="primary--text"
-                      >{{ product.supplierName }}</v-card-subtitle>
+                      <v-card-subtitle class="primary--text">{{
+                        product.supplierName
+                      }}</v-card-subtitle>
                     </v-alert>
                   </v-col>
                 </v-row>
@@ -78,7 +78,9 @@ export default defineComponent({
     const selected = ref([] as Array<number>);
 
     const productsIndustries = computed(() => {
-      return selected.value.length > 0 ? Industries.filter((item) => selected.value.some(k => k === item.industryId)) : Industries;
+      return selected.value.length > 0
+        ? Industries.filter((item) => selected.value.some((k) => k === item.industryId))
+        : [];
     });
     const selectedItem = ref(null as number);
 
@@ -87,7 +89,7 @@ export default defineComponent({
 
     const text = ref("Lorem ipsum dolor sit amet, consect");
 
-    const handleSelection = s => (selected.value = s);
+    const handleSelection = (s) => (selected.value = s);
 
     return {
       title,

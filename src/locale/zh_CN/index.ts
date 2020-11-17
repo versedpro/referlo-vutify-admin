@@ -44,7 +44,10 @@ export default {
     confirm: "Confirm"
   },
   products: {
+    title: "Refer佬 产品 / 服务",
     product: "产品 / 服务:",
+    hotProducts: "热门服务",
+    allProducts: "所有服务",
     orderNow: "下订单",
     serviceProvider: "产品供应商",
     validUntil: "有效期至:"
