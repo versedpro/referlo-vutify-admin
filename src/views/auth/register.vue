@@ -11,19 +11,33 @@
                 width="120"
                 height="120"
               />
-              <h1 class="text-center my-4 primary--text">
-                Vue Vuetify Admin Template
-              </h1>
+              <h1 class="text-center my-4 primary--text">Register</h1>
             </div>
             <v-form>
               <v-text-field
                 v-model="model.email"
-                append-icon="mdi-account"
+                append-icon="mdi-at"
                 name="email"
                 :label="$t('login.email')"
                 type="email"
                 required
                 autocomplete="username"
+              />
+              <v-text-field
+                v-model="model.name"
+                append-icon="mdi-account"
+                name="name"
+                :label="$t('login.name')"
+                type="text"
+                required
+              />
+              <v-text-field
+                v-model="model.address"
+                append-icon="mdi-email"
+                name="address"
+                :label="$t('login.address')"
+                type="text"
+                required
               />
               <v-text-field
                 v-model="model.password"
@@ -48,19 +62,13 @@
           <v-card-actions>
             <localization />
             <v-btn icon>
-              <v-icon color="blue">
-                mdi-facebook
-              </v-icon>
+              <v-icon color="blue"> mdi-facebook </v-icon>
             </v-btn>
             <v-btn icon>
-              <v-icon color="red">
-                mdi-google
-              </v-icon>
+              <v-icon color="red"> mdi-google </v-icon>
             </v-btn>
             <v-btn icon>
-              <v-icon color="light-blue">
-                mdi-twitter
-              </v-icon>
+              <v-icon color="light-blue"> mdi-twitter </v-icon>
             </v-btn>
             <v-spacer />
             <v-btn color="primary" outlined to="/login">
@@ -91,12 +99,19 @@ export default defineComponent({
     const model = reactive({
       email: "admin@vvadmin.io",
       password: "password",
-      confirm: "password"
+      name: "admin",
+      address: "Address",
+      confirm: "password",
+      key: ""
     });
 
     const loading = ref(false);
 
     function login() {
+      if (this.$route.query.key) {
+        model.key = this.$route.query.key;
+      }
+      console.log(model);
       loading.value = true;
       setTimeout(() => {
         this.$router.push("/home");

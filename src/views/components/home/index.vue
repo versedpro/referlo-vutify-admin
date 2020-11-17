@@ -68,7 +68,7 @@
 
     <!-- The dialog -->
     <referral-link-dialog
-      :link="url"
+      :link="referPeopleUrl"
       :show="showLinkDialog"
       @close="closeDialog"
     ></referral-link-dialog>
@@ -93,7 +93,6 @@ export default defineComponent({
 
   setup() {
     const showLinkDialog = ref(false);
-    const url = ref("abc.com");
     const vm = getCurrentInstance();
 
     const backgroundColor = computed(() => {
@@ -109,6 +108,10 @@ export default defineComponent({
       vm.$i18n.t("home.wip", person.score.slice(1, 2)),
       vm.$i18n.t("home.referred", person.score.slice(0, 1))
     ]);
+
+    const referPeopleUrl = computed(() => {
+      return `${location.host}/registration?key=sdfsfsd`;
+    });
 
     const closeDialog = () => {
       showLinkDialog.value = false;
@@ -145,7 +148,7 @@ export default defineComponent({
       person,
       backgroundColor,
       showLinkDialog,
-      url,
+      referPeopleUrl,
       legend,
       closeDialog,
       getChartOption,
