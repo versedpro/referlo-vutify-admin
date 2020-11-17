@@ -31,6 +31,12 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start();
   let logMsg = "[router.beforeEach]";
   try {
+    // show registration if user has referral key
+    if (to.path === '/registration' && to.query.key) {
+      next();
+      return;
+    }
+
     // determine if there has token
     if (store.getters.token) {
       logMsg += "\t[token]";
