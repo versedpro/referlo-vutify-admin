@@ -26,7 +26,8 @@
                 <v-row v-for="(item, i) in productsIndustries" :key="i">
                   <v-col v-for="product in item.products" :key="product" cols="12" class="">
                     <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                      <v-card-subtitle class="primary--text" @click="toDetail">{{ product.productName }}</v-card-subtitle>
+                      <!-- <v-card-subtitle class="primary--text">{{ product.productName }}</v-card-subtitle> -->
+                      <detail-dialog :product="product"></detail-dialog>
                     </v-alert>
                   </v-col>
                 </v-row>
@@ -35,7 +36,9 @@
                 <v-row v-for="(item, i) in productsIndustries" :key="i">
                   <v-col v-for="product in item.products" :key="product" cols="12" class="">
                     <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                      <v-card-subtitle class="primary--text">{{ product.supplierName }}</v-card-subtitle>
+                      <v-card-subtitle class="primary--text">
+                        {{ product.supplierName }}
+                      </v-card-subtitle>
                     </v-alert>
                   </v-col>
                 </v-row>
@@ -57,6 +60,7 @@ import { industries as Industries } from "./json-data";
 // *** components
 import { Splitpanes, Pane } from "splitpanes";
 import IndustryList from "./industry-list.vue";
+import DetailDialog from "./detail-dialog.vue";
 
 export default defineComponent({
   name: "Product1",
@@ -64,7 +68,8 @@ export default defineComponent({
   components: {
     Splitpanes,
     Pane,
-    IndustryList
+    IndustryList,
+    DetailDialog
   },
 
   setup() {
@@ -72,13 +77,13 @@ export default defineComponent({
 
     const industries = ref(Industries);
     const selected = ref([] as Array<number>);
+    selected.value = Industries.map((item) => item.industryId);
 
     const productsIndustries = computed(() => {
       return selected.value.length > 0
         ? Industries.filter((item) => selected.value.some((k) => k === item.industryId))
         : [];
     });
-    const selectedItem = ref(null as number);
 
     const tab = ref(0);
     const items = ref(["Hot Deal", "All Products"]);
@@ -95,7 +100,6 @@ export default defineComponent({
       title,
       industries,
       selected,
-      selectedItem,
       productsIndustries,
       tab,
       items,

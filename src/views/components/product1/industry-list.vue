@@ -1,6 +1,11 @@
 <template>
   <v-list two-line dense dark class="transparent">
-    <v-list-item-group v-model="selectedItem" active-class="primary--text gold" @change="handleChange" multiple>
+    <v-list-item-group
+      v-model="selectedItem"
+      active-class="primary--text gold"
+      @change="handleChange"
+      multiple
+    >
       <template v-for="(item, i) in industries">
         <v-list-item :key="item.industryId" :value="item" class="mb-2">
           <template v-slot:default="{ active }">
@@ -38,8 +43,8 @@ export default defineComponent({
     industries: Array
   },
 
-  setup(props, {emit}) {
-    const selectedItem = ref([]);
+  setup(props, { emit }) {
+    const selectedItem = ref(props.industries);
     const items = ref(props.industries);
 
     const handleChange = (selected) => {

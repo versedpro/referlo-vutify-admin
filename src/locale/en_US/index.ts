@@ -58,7 +58,9 @@ export default {
     email: "Email",
     address: "Address",
     productName: "Product",
-    remark: "Remark"
+    remark: "Remark",
+    points: "Points",
+    supplierName: "Supplier"
   },
   bottomNavigation: {
     home: "Home",
