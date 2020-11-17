@@ -44,7 +44,7 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const selectedItem = ref([]);
+    const selectedItem = ref(props.industries);
     const items = ref(props.industries);
 
     const handleChange = (selected) => {
