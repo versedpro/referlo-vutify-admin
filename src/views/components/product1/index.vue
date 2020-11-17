@@ -26,7 +26,6 @@
                 <v-row v-for="(item, i) in productsIndustries" :key="i">
                   <v-col v-for="product in item.products" :key="product" cols="12" class="">
                     <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                      <!-- <v-card-subtitle class="primary--text">{{ product.productName }}</v-card-subtitle> -->
                       <detail-dialog :product="product"></detail-dialog>
                     </v-alert>
                   </v-col>
