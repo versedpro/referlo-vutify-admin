@@ -2,9 +2,16 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <template v-slot:activator="{ on, attrs }">
-        <v-card-subtitle class="primary--text" v-bind="attrs" v-on="on">
-          {{ product.productName }}
-        </v-card-subtitle>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title v-bind="attrs" v-on="on" class="text-center">
+              {{ product.productName }}
+            </v-list-item-title>
+            <v-list-item-subtitle class="text-center">
+              {{ product.supplierName }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
       </template>
       <v-card>
         <v-toolbar dark color="gold">

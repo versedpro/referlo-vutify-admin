@@ -22,26 +22,12 @@
           </div>
           <v-item-group active-class="gold">
             <v-container d-md-flex class="pt-0">
-              <v-col cols="12" md="6" class="pt-0">
-                <v-row v-for="(item, i) in productsIndustries" :key="i">
-                  <v-col v-for="product in item.products" :key="product" cols="12" class="">
-                    <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                      <!-- <v-card-subtitle class="primary--text">{{ product.productName }}</v-card-subtitle> -->
-                      <detail-dialog :product="product"></detail-dialog>
-                    </v-alert>
-                  </v-col>
-                </v-row>
-              </v-col>
-              <v-col cols="12" md="6" class="pt-0">
-                <v-row v-for="(item, i) in productsIndustries" :key="i">
-                  <v-col v-for="product in item.products" :key="product" cols="12" class="">
-                    <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                      <v-card-subtitle class="primary--text">
-                        {{ product.supplierName }}
-                      </v-card-subtitle>
-                    </v-alert>
-                  </v-col>
-                </v-row>
+              <v-col cols="12" md="6" class="pt-0" v-for="(item, i) in productsIndustries" :key="i">
+                <v-col v-for="product in item.products" :key="product" cols="12" class="">
+                  <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
+                    <detail-dialog :product="product"></detail-dialog>
+                  </v-alert>
+                </v-col>
               </v-col>
             </v-container>
           </v-item-group>
