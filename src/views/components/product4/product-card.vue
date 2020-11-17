@@ -1,6 +1,6 @@
 <template>
   <v-card class="my-auto pb-0 red" height="fill-height" width="100%">
-    <v-navigation-drawer permanent width="fill-height" color="transparent">
+    <v-navigation-drawer permanent width="fill-width" height="100vh" color="transparent">
       <v-row class="fill-height" no-gutters>
         <v-navigation-drawer dark width="180" permanent>
           <v-list-item class="px-2">

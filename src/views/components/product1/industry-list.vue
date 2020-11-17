@@ -6,7 +6,7 @@
           <template v-slot:default="{ active }">
             <v-list-item-content :class="{ 'pa-5': $vuetify.breakpoint.smAndUp }">
               <v-list-item-icon class="ma-0">
-                <v-icon class="mr-3" v-if="!active" color="gold">mdi-city </v-icon>
+                <v-icon :elevation="3" class="mr-3" v-if="!active" color="gold">mdi-city </v-icon>
                 <v-icon class="mr-3" v-else color="primary">mdi-city </v-icon>
                 <v-list-item-title
                   v-if="!active"
