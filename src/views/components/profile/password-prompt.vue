@@ -1,30 +1,21 @@
 <template>
   <v-dialog :value="show" persistent max-width="290" @click:outside="handleCancel">
     <v-card>
-      <v-card-title>Test Title</v-card-title>
-      <!-- <v-form ref="formPassword" lazy-validation>
-        <v-card-title class="headline text--gold">{{
-          $t("login.confirm") + $t("login.password")
-        }}</v-card-title>
-        <v-card-text>
-          <v-text-field
-            v-model="password"
-            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-            :label="$t('login.password')"
-            :type="showPassword ? 'text' : 'password'"
-            @click:append="showPassword = !showPassword"
-            name="password"
-            required
-            autocomplete="current-password"
-            :rules="rules"
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="accessConfirmDialog = false"> Cancel </v-btn>
-          <v-btn color="green darken-1" text @click="confirmPassword">Confirm</v-btn>
-        </v-card-actions>
-      </v-form> -->
+      <v-card-title class="headline text--gold">{{
+        $t("login.confirm") + $t("login.password")
+      }}</v-card-title>
+      <v-card-text>
+        <v-text-field
+          v-model="password"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :label="$t('login.password')"
+          :type="showPassword ? 'text' : 'password'"
+          @click:append="showPassword = !showPassword"
+          name="password"
+          required
+          autocomplete="current-password"
+        />
+      </v-card-text>
 
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -47,37 +38,26 @@ export default defineComponent({
   setup() {
     const password = ref("");
     const formPassword = ref(null);
+    const showPassword = ref(false);
 
     function handleCancel() {
       this.$emit("on-close");
     }
 
     function handleConfirm() {
-      this.$emit("on-confirm");
+      if (password.value == "abcd1234") {
+        this.$emit("on-confirm");
+      } else {
+        this.$emit("on-close");
+      }
     }
-
-    // async function confirmPassword() {
-    //   if (onboarding.value == 1) {
-    //     onboarding.value = 0;
-    //     return;
-    //   }
-    //   if (!formPassword.value.validate()) return;
-    //   const phone = this.$store.getters.phone;
-    //   await this.$store.dispatch("ConfirmAccess", {
-    //     phone: phone,
-    //     password: this.password
-    //   });
-    //   if (this.$store.state.user.confirmPassword) {
-    //     this.accessConfirmDialog = false;
-    //     next();
-    //   }
-    // }
 
     return {
       password,
       formPassword,
       handleCancel,
-      handleConfirm
+      handleConfirm,
+      showPassword
     };
   }
 });
