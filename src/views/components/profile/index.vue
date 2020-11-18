@@ -1,9 +1,6 @@
 /* eslint-disable vue/valid-v-slot */
 <template>
-  <v-card>
-    <v-window v-model="step">
-      <v-window-item :value="1">
-          <v-card class="primary tile flat">
+  <v-card class="primary tile flat">
     <v-system-bar class="gold--text" absolute color="transparent">
       <span class="pl-2">{{ $t("profile.memberSince") }}</span>
       <span class="ml-1">2020</span>
@@ -19,9 +16,9 @@
         width="128"
         height="128"
       >
-        <v-avatar size="120" class="mx-4" color="primary lighten-1">
-          <img :src="form.avatarPath" alt="Avatar" />
-        </v-avatar>
+      <v-avatar size="120" class="mx-4" color="primary lighten-1">
+        <img :src="form.avatarPath" alt="Avatar" />
+      </v-avatar>
       </v-btn>
       <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
       <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
@@ -32,23 +29,54 @@
         label="Email Address"
       ></v-text-field>
     </v-card-text>
-          </v-card>
-      </v-window-item>
 
-      <v-window-item :value="2">
+    <v-card-actions class="gold primary--text justify-space-between">
+      <v-btn text @click="prev">
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
+      <v-dialog v-model="accessConfirmDialog" persistent max-width="290">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on">
+            <v-icon color="primary"> mdi-lock </v-icon>
+          </v-btn>
+        </template>
         <v-card>
-          <referrers></referrers>
+          <v-form ref="formPassword" lazy-validation>
+            <v-card-title class="headline text--gold">
+              {{ $t("login.confirm") + $t("login.password") }}
+            </v-card-title>
+            <v-card-text>
+              <v-text-field
+                v-model="password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :label="$t('login.password')"
+                :type="showPassword ? 'text' : 'password'"
+                @click:append="showPassword = !showPassword"
+                name="password"
+                required
+                autocomplete="current-password"
+                :rules="rules"
+              />
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="green darken-1" text @click="accessConfirmDialog = false">
+                Cancel
+              </v-btn>
+              <v-btn color="green darken-1" text @click="confirmPassword">Confirm</v-btn>
+            </v-card-actions>
+          </v-form>
         </v-card>
+      </v-dialog>
+    </v-card-actions>
+
+    <v-window v-model="onboarding" vertical>
+      <v-window-item>
+      </v-window-item>
+      <v-window-item>
+        <referrers :items="Items"></referrers>
       </v-window-item>
     </v-window>
-
-    <v-divider></v-divider>
-
-    <v-card-actions>
-      <v-btn :disabled="step === 1" text @click="step--"> Back </v-btn>
-      <v-spacer></v-spacer>
-      <v-btn :disabled="step === 3" color="primary" depressed @click="step++"> Next </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
@@ -56,7 +84,7 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import { Items } from "./json-data";
 import AvatarPicker from "./avatar-picker.vue";
-import Referrers from "./referrers.vue";
+// import Referrers from "./referrers.vue";
 
 export default defineComponent({
   name: "Profile",
@@ -66,15 +94,15 @@ export default defineComponent({
     Referrers: () => import("./referrers.vue")
   },
 
-    Referrersted: {
+  Referrersted: {
     currentTitle() {
       switch (this.step) {
         case 1:
-          return "Sign-up";
+        return "Sign-up";
         case 2:
-          return "Create a password";
+        return "Create a password";
         default:
-          return "Account created";
+        return "Account created";
       }
     }
   },
@@ -83,7 +111,6 @@ export default defineComponent({
     const showAvatarPicker = ref(false);
     const loading = ref(false);
     const avatarPicker = ref(AvatarPicker);
-    const seeInfo = ref(false);
     const accessConfirmDialog = ref(false);
     const showPassword = ref(false);
     const password = ref("");
@@ -112,11 +139,9 @@ export default defineComponent({
         phone: phone,
         password: this.password
       });
-      this.seeInfo = this.$store.state.user.confirmPassword;
-      if (this.seeInfo) {
-        this.accessConfirmDialog = false;
-        this.next();
-      }
+      
+      this.accessConfirmDialog = false;
+      this.next();
     }
 
     const rules = ref([
@@ -127,12 +152,11 @@ export default defineComponent({
     const openedPanel = ref([]);
 
     function next() {
-      this.onboarding = this.onboarding + 1 === this.length ? 0 : this.onboarding + 1;
+      onboarding.value = 1;
     }
 
     function prev() {
-      this.onboarding = this.onboarding - 1 < 0 ? this.length - 1 : this.onboarding - 1;
-      this.seeInfo = false;
+      onboarding.value = 0;
     }
 
     return {
@@ -152,7 +176,6 @@ export default defineComponent({
       openedPanel,
       next,
       prev,
-      seeInfo,
       accessConfirmDialog
     };
   }
@@ -160,13 +183,13 @@ export default defineComponent({
 </script>
 
 <style>
-.theme--light.v-label {
-  color: #c1a357 !important;
-}
-.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-  border-color: #c1a357 !important;
-}
-.profile input {
-  color: #f6f6f6 !important;
-}
+  .theme--light.v-label {
+    color: #c1a357 !important;
+  }
+  .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
+    border-color: #c1a357 !important;
+  }
+  .profile input {
+    color: #f6f6f6 !important;
+  }
 </style>
