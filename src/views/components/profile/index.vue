@@ -1,6 +1,9 @@
 /* eslint-disable vue/valid-v-slot */
 <template>
-  <v-card class="primary tile flat">
+  <v-card>
+    <v-window v-model="step">
+      <v-window-item :value="1">
+          <v-card class="primary tile flat">
     <v-system-bar class="gold--text" absolute color="transparent">
       <span class="pl-2">{{ $t("profile.memberSince") }}</span>
       <span class="ml-1">2020</span>
@@ -29,21 +32,23 @@
         label="Email Address"
       ></v-text-field>
     </v-card-text>
-
-    <v-card-actions class="gold primary--text justify-space-between">
-      <v-btn text @click="prev">
-        <v-icon>mdi-chevron-left</v-icon>
-      </v-btn>
-    </v-card-actions>
-
-    <v-window v-model="onboarding" vertical>
-      <v-window-item>
-        <v-alert>test1</v-alert>
+          </v-card>
       </v-window-item>
-      <v-window-item>
-        <v-alert>test2</v-alert>
+
+      <v-window-item :value="2">
+        <v-card>
+          <referrers></referrers>
+        </v-card>
       </v-window-item>
     </v-window>
+
+    <v-divider></v-divider>
+
+    <v-card-actions>
+      <v-btn :disabled="step === 1" text @click="step--"> Back </v-btn>
+      <v-spacer></v-spacer>
+      <v-btn :disabled="step === 3" color="primary" depressed @click="step++"> Next </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -51,15 +56,28 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import { Items } from "./json-data";
 import AvatarPicker from "./avatar-picker.vue";
-// import Referrers from "./referrers.vue";
+import Referrers from "./referrers.vue";
 
 export default defineComponent({
   name: "Profile",
+  step: 1,
 
-  // components: {
-  //   Referrers: () => import("./referrers.vue")
-  // },
+  components: {
+    Referrers: () => import("./referrers.vue")
+  },
 
+    Referrersted: {
+    currentTitle() {
+      switch (this.step) {
+        case 1:
+          return "Sign-up";
+        case 2:
+          return "Create a password";
+        default:
+          return "Account created";
+      }
+    }
+  },
   setup() {
     const onboarding = ref(0);
     const showAvatarPicker = ref(false);
