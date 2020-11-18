@@ -30,6 +30,7 @@ export default {
     login: "登录",
     register: "注册",
     email: "电邮",
+    name: "Alias",
     phone: "电话",
     password: "密码",
     confirm: "确认"

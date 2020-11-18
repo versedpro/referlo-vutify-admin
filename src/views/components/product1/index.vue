@@ -25,7 +25,7 @@
               <v-col cols="12" md="6" class="pt-0" v-for="(item, i) in productsIndustries" :key="i">
                 <v-col v-for="product in item.products" :key="product" cols="12" class="">
                   <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                    <detail-dialog :product="product"></detail-dialog>
+                    <orders-dialog :product="product"></orders-dialog>
                   </v-alert>
                 </v-col>
               </v-col>
@@ -46,7 +46,7 @@ import { industries as Industries } from "./json-data";
 // *** components
 import { Splitpanes, Pane } from "splitpanes";
 import IndustryList from "./industry-list.vue";
-import DetailDialog from "./detail-dialog.vue";
+// import OrdersDialog from "./orders-dialog.vue";
 
 export default defineComponent({
   name: "Product1",
@@ -55,7 +55,7 @@ export default defineComponent({
     Splitpanes,
     Pane,
     IndustryList,
-    DetailDialog
+    OrdersDialog: () => import("./orders-dialog.vue")
   },
 
   setup() {

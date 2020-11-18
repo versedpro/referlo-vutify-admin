@@ -110,7 +110,12 @@ export default defineComponent({
     ]);
 
     const referPeopleUrl = computed(() => {
-      return `${location.host}/registration?key=sdfsfsd`;
+      const host = `${location.host}`;
+      const protocol = host.includes("localhost") ? "http://" : "https://";
+      // const url = protocol + host + "}/registration?key=sdfsfsd";
+
+      return protocol + host + "/registration?key=sdfsfsd";
+      // return `https://${location.host}/registration?key=sdfsfsd`;
     });
 
     const closeDialog = () => {

@@ -30,7 +30,7 @@ export default {
     login: "Login",
     register: "Register",
     email: "Email",
-    name: "Name",
+    name: "Alias",
     address: "Address",
     phone: "Phone",
     password: "Password",

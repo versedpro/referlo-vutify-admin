@@ -15,13 +15,12 @@
             </div>
             <v-form>
               <v-text-field
-                v-model="model.email"
-                append-icon="mdi-at"
-                name="email"
-                :label="$t('login.email')"
-                type="email"
+                v-model="model.phone"
+                append-icon="mdi-phone"
+                name="phone"
+                :label="$t('login.phone')"
+                type="text"
                 required
-                autocomplete="username"
               />
               <v-text-field
                 v-model="model.name"
@@ -31,13 +30,15 @@
                 type="text"
                 required
               />
+
               <v-text-field
-                v-model="model.address"
-                append-icon="mdi-email"
-                name="address"
-                :label="$t('login.address')"
-                type="text"
+                v-model="model.email"
+                append-icon="mdi-at"
+                name="email"
+                :label="$t('login.email')"
+                type="email"
                 required
+                autocomplete="username"
               />
               <v-text-field
                 v-model="model.password"
@@ -61,15 +62,7 @@
           </v-card-text>
           <v-card-actions>
             <localization />
-            <v-btn icon>
-              <v-icon color="blue"> mdi-facebook </v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon color="red"> mdi-google </v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon color="light-blue"> mdi-twitter </v-icon>
-            </v-btn>
+
             <v-spacer />
             <v-btn color="primary" outlined to="/login">
               {{ $t("login.login") }}
@@ -102,6 +95,7 @@ export default defineComponent({
       name: "admin",
       address: "Address",
       confirm: "password",
+      phone: "12345678",
       key: ""
     });
 

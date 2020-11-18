@@ -28,6 +28,7 @@ export default {
     titleUn: "注册",
     appTitle: "REFER ",
     login: "登入",
+    name: "Alias",
     register: "注册",
     email: "電郵",
     phone: "電話",

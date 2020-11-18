@@ -102,111 +102,10 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: "/products",
-        component: () => import("@/views/components/products/index.vue"),
-        name: "Products",
-        meta: {
-          title: "route.products",
-          icon: "mdi-timeline-text",
-          noCache: true,
-          affix: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "/product2",
-        component: () => import("@/views/components/product2/index.vue"),
-        name: "Product2",
-        meta: {
-          title: "route.product2",
-          icon: "mdi-timeline-text",
-          noCache: true,
-          affix: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "/product3",
-        component: () => import("@/views/components/product3/index.vue"),
-        name: "Product3",
-        meta: {
-          title: "route.product3",
-          icon: "mdi-timeline-text",
-          noCache: true,
-          affix: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "/product4",
-        component: () => import("@/views/components/product4/index.vue"),
-        name: "Product4",
-        meta: {
-          title: "route.product4",
-          icon: "mdi-timeline-text",
-          noCache: true,
-          affix: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "/follow-up",
-        component: () => import("@/views/components/follow-up.vue"),
-        name: "FollowUp",
-        meta: { title: "route.followUp", icon: "mdi-palette" }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "/chat",
-        component: () => import("@/views/components/chat.vue"),
-        name: "Chat",
-        meta: {
-          title: "route.followUp",
-          icon: "mdi-palette",
-          hidden: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "/referal",
-        component: () => import("@/views/components/referral.vue"),
-        name: "Referal",
-        meta: {
-          title: "route.referal",
-          icon: "mdi-text-subject",
-          noCache: true,
-          affix: true
-        }
+        path: "/points",
+        component: () => import("@/views/components/points/index.vue"),
+        name: "Points",
+        meta: { title: "route.points", icon: "mdi-translate" }
       }
     ]
   },
@@ -227,25 +126,109 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: "/points",
-        component: () => import("@/views/components/points/index.vue"),
-        name: "Profile",
-        meta: { title: "route.profile", icon: "mdi-translate" }
+        path: "/about-us",
+        component: () => import("@/views/components/about-us.vue"),
+        name: "About",
+        meta: { title: "About Us", icon: "mdi-translate" }
       }
     ]
   },
-  // {
-  //   path: "/",
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: "/products",
-  //       component: () => import("@/views/components/products/index.vue"),
-  //       name: "Products",
-  //       meta: { title: "route.products", icon: "mdi-translate" }
-  //     }
-  //   ]
-  // },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/contact-us",
+        component: () => import("@/views/components/contact-us.vue"),
+        name: "Contact",
+        meta: { title: "Countact US", icon: "mdi-translate" }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/products",
+        component: () => import("@/views/components/products/index.vue"),
+        name: "Products",
+        meta: {
+          hidden: true,
+          title: "Test1",
+          icon: "mdi-timeline-text",
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/product2",
+        component: () => import("@/views/components/product2/index.vue"),
+        title: "Test2",
+        meta: {
+          title: "Test2",
+          icon: "mdi-timeline-text",
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/product3",
+        component: () => import("@/views/components/product3/index.vue"),
+        name: "Test3",
+        meta: {
+          title: "Test3",
+          icon: "mdi-timeline-text",
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/product4",
+        component: () => import("@/views/components/product4/index.vue"),
+        title: "Test4",
+        meta: {
+          title: "Test4",
+          icon: "mdi-timeline-text",
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
+        path: "/follow-up",
+        component: () => import("@/views/components/follow-up.vue"),
+        name: "Test5",
+        meta: {
+          title: "Test5",
+          icon: "mdi-palette"
+        }
+      }
+    ]
+  },
 
   ...authRouter
 ];

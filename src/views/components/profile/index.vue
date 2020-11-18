@@ -41,7 +41,7 @@
 
     <v-window v-model="onboarding" vertical>
       <v-window-item>
-        <v-alert class="rounded-0" height="25vh">test1</v-alert>
+        <v-alert class="rounded-0" height="25vh">Locked</v-alert>
       </v-window-item>
       <v-window-item>
         <referrers :items="Items"></referrers>
@@ -113,7 +113,6 @@ export default defineComponent({
       onboarding,
       showAvatarPicker,
       Items,
-      // loading,
       lockIcon,
       form,
       openAvatarPicker,

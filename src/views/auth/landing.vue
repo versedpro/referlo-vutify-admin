@@ -11,12 +11,8 @@
             <h1 class="white--text mb-2 display-1 text-center">
               {{ info.title }}
             </h1>
-            <div class="subheading mb-3 text-center">
-              Powered by Vuetify
-            </div>
-            <v-btn class="blue lighten-2 mt-5" dark large to="/login">
-              Get Started
-            </v-btn>
+            <div class="subheading mb-3 text-center">Powered by Vuetify</div>
+            <v-btn class="blue lighten-2 mt-5" dark large to="/login"> Get Started </v-btn>
           </v-row>
         </v-parallax>
       </section>
@@ -25,12 +21,8 @@
         <v-row align="center">
           <v-col cols="12" class="text-center">
             <div class="text-center">
-              <h2 class="headline">
-                The best way to start developing
-              </h2>
-              <span class="subheading">
-                Cras facilisis mi vitae nunc
-              </span>
+              <h2 class="headline">The best way to start developing</h2>
+              <span class="subheading"> Cras facilisis mi vitae nunc </span>
             </div>
           </v-col>
           <v-col cols="12">
@@ -44,9 +36,7 @@
                       </v-icon>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-center">
-                        Material Design
-                      </div>
+                      <div class="headline text-center">Material Design</div>
                     </v-card-title>
                     <v-card-text>
                       {{ lorem }}
@@ -56,14 +46,10 @@
                 <v-col cols="12" md="4">
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-center">
-                      <v-icon x-large class="blue--text text--lighten-2">
-                        mdi-flash
-                      </v-icon>
+                      <v-icon x-large class="blue--text text--lighten-2"> mdi-flash </v-icon>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">
-                        Fast development
-                      </div>
+                      <div class="headline">Fast development</div>
                     </v-card-title>
                     <v-card-text>
                       {{ lorem }}
@@ -78,9 +64,7 @@
                       </v-icon>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-center">
-                        Completely Open Sourced
-                      </div>
+                      <div class="headline text-center">Completely Open Sourced</div>
                     </v-card-title>
                     <v-card-text>
                       {{ lorem }}
@@ -100,9 +84,7 @@
               Web development has never been easier
             </div>
             <em>Kick-start your application today</em>
-            <v-btn class="blue lighten-2 mt-5" dark large to="/login">
-              Get Started
-            </v-btn>
+            <v-btn class="blue lighten-2 mt-5" dark large to="/login"> Get Started </v-btn>
           </v-row>
         </v-parallax>
       </section>
@@ -113,9 +95,7 @@
             <v-col cols="12" sm="4">
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">
-                    Company info
-                  </div>
+                  <div class="headline">Company info</div>
                 </v-card-title>
                 <v-card-text>
                   {{ lorem }}
@@ -125,9 +105,7 @@
             <v-col cols="12" sm="4" offset-sm="1">
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">
-                    Contact us
-                  </div>
+                  <div class="headline">Contact us</div>
                 </v-card-title>
                 <v-card-text>
                   {{ lorem.slice(0, 100) }}
@@ -135,9 +113,7 @@
                 <v-list class="transparent">
                   <v-list-item>
                     <v-list-item-action>
-                      <v-icon class="blue--text text--lighten-2">
-                        mdi-cellphone
-                      </v-icon>
+                      <v-icon class="blue--text text--lighten-2"> mdi-cellphone </v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                       <v-list-item-title>{{ info.phone }}</v-list-item-title>
@@ -145,9 +121,7 @@
                   </v-list-item>
                   <v-list-item>
                     <v-list-item-action>
-                      <v-icon class="blue--text text--lighten-2">
-                        mdi-map-marker
-                      </v-icon>
+                      <v-icon class="blue--text text--lighten-2"> mdi-map-marker </v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                       <v-list-item-title>{{ info.adres }}</v-list-item-title>
@@ -155,9 +129,7 @@
                   </v-list-item>
                   <v-list-item>
                     <v-list-item-action>
-                      <v-icon class="blue--text text--lighten-2">
-                        mdi-email
-                      </v-icon>
+                      <v-icon class="blue--text text--lighten-2"> mdi-email </v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                       <v-list-item-title>{{ info.email }}</v-list-item-title>
