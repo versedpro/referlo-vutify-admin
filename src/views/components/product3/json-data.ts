@@ -136,4 +136,12 @@ const industries = [
   }
 ];
 
-export { industries };
+const ads = [
+  {
+    src: "/img/products/csl1.png"
+  },
+  {
+    src: "/img/products/csl2.png"
+  }
+];
+export { industries, ads };

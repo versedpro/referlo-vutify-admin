@@ -56,7 +56,17 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function industry(name) {
       const locale = this.$i18n.locale;
-      return locale;
+
+      switch (locale) {
+        case "en":
+          return name.en;
+        case "zh":
+          return name.zh_CN;
+        case "hk":
+          return name.zh_HK;
+      }
+
+      return "Unknown";
     }
 
     return {
