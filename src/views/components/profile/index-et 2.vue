@@ -1,12 +1,12 @@
 /* eslint-disable vue/valid-v-slot */
 <template>
-  <v-card class="primary tile flat">
+  <v-card class="tile flat" height="100%">
     <v-system-bar class="gold--text" absolute color="transparent">
       <span class="pl-2">{{ $t("profile.memberSince") }}</span>
       <span class="ml-1">2020</span>
     </v-system-bar>
 
-    <v-card-text class="pt-16 text-center">
+    <v-card-text class="pt-16 text-center primary">
       <v-btn
         fab
         depressed
@@ -30,63 +30,55 @@
       ></v-text-field>
     </v-card-text>
 
-    <v-card-actions class="gold primary--text justify-space-between">
-      <v-btn text @click="prev">
-        <v-icon>mdi-chevron-left</v-icon>
-      </v-btn>
-      <v-btn text @click="next">
-        <v-icon>mdi-chevron-left</v-icon>
+    <v-card-actions class="gold primary--text">
+      <span>Referrers</span>
+      <v-spacer></v-spacer>
+
+      <v-btn class="mr-2 text--primary" icon @click="next">
+        <v-icon>{{ lockIcon }}</v-icon>
       </v-btn>
     </v-card-actions>
 
     <v-window v-model="onboarding" vertical>
       <v-window-item>
-        <v-alert>test1</v-alert>
+        <v-alert class="rounded-0" height="25vh">test1</v-alert>
       </v-window-item>
       <v-window-item>
-        <v-alert>test2</v-alert>
-        <referrers items="Items"></referrers>
+        <referrers :items="Items"></referrers>
       </v-window-item>
     </v-window>
+
+    <v-card-text>
+      <password-prompt
+        :show="showPasswordPrompt"
+        @on-close="showPasswordPrompt = false"
+        @on-confirm="handleConfirmPassword"
+      >
+      </password-prompt>
+    </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { defineComponent, ref, computed } from "@vue/composition-api";
 import { Items } from "./json-data";
-import AvatarPicker from "./avatar-picker.vue";
-// import Referrers from "./referrers.vue";
 
 export default defineComponent({
   name: "Profile",
-  step: 1,
 
   components: {
+    PasswordPrompt: () => import("./password-prompt.vue"),
     Referrers: () => import("./referrers.vue")
   },
 
-  Referrersted: {
-    currentTitle() {
-      switch (this.step) {
-        case 1:
-          return "Sign-up";
-        case 2:
-          return "Create a password";
-        default:
-          return "Account created";
-      }
-    }
-  },
   setup() {
     const onboarding = ref(0);
     const showAvatarPicker = ref(false);
-    const loading = ref(false);
-    const avatarPicker = ref(AvatarPicker);
-    const seeInfo = ref(false);
-    const accessConfirmDialog = ref(false);
-    const showPassword = ref(false);
-    const password = ref("");
-    const formPassword = ref(null);
+    const showPasswordPrompt = ref(false);
+
+    const lockIcon = computed(() => {
+      return onboarding.value != 0 ? "mdi-lock-open-outline" : "mdi-lock";
+    });
 
     const form = ref({
       firstName: "John",
@@ -104,54 +96,31 @@ export default defineComponent({
       this.form.avatarPath = avatarPath;
     }
 
-    async function confirmPassword() {
-      if (!formPassword.value.validate()) return;
-      const phone = this.$store.getters.phone;
-      await this.$store.dispatch("ConfirmAccess", {
-        phone: phone,
-        password: this.password
-      });
-      this.seeInfo = this.$store.state.user.confirmPassword;
-      if (this.seeInfo) {
-        this.accessConfirmDialog = false;
-        this.next();
+    function next() {
+      if (onboarding.value == 1) {
+        onboarding.value = 0;
+      } else {
+        showPasswordPrompt.value = true;
       }
     }
 
-    const rules = ref([
-      (value) => !!value || "Required.",
-      (value) => (value && value.length >= 3) || "Min 3 characters"
-    ]);
-
-    const openedPanel = ref([]);
-
-    function next() {
+    function handleConfirmPassword() {
+      showPasswordPrompt.value = false;
       onboarding.value = 1;
-    }
-
-    function prev() {
-      onboarding.value = 0;
     }
 
     return {
       onboarding,
       showAvatarPicker,
       Items,
-      loading,
+      // loading,
+      lockIcon,
       form,
       openAvatarPicker,
       selectAvatar,
-      avatarPicker,
-      password,
-      showPassword,
-      confirmPassword,
-      formPassword,
-      rules,
-      openedPanel,
-      next,
-      prev,
-      seeInfo,
-      accessConfirmDialog
+      showPasswordPrompt,
+      handleConfirmPassword,
+      next
     };
   }
 });

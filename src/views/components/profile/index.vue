@@ -31,43 +31,11 @@
     </v-card-text>
 
     <v-card-actions class="gold primary--text">
+      <span>Referrers</span>
       <v-spacer></v-spacer>
-      <v-dialog v-model="accessConfirmDialog" persistent max-width="290" v-if="onboarding == 0">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on">
-            <v-icon>mdi-lock</v-icon>
-          </v-btn>
-        </template>
-        <v-card>
-          <v-form ref="formPassword" lazy-validation>
-            <v-card-title class="headline text--gold">{{
-              $t("login.confirm") + $t("login.password")
-            }}</v-card-title>
-            <v-card-text>
-              <v-text-field
-                v-model="password"
-                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :label="$t('login.password')"
-                :type="showPassword ? 'text' : 'password'"
-                @click:append="showPassword = !showPassword"
-                name="password"
-                required
-                autocomplete="current-password"
-                :rules="rules"
-              />
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="green darken-1" text @click="accessConfirmDialog = false">
-                Cancel
-              </v-btn>
-              <v-btn color="green darken-1" text @click="confirmPassword">Confirm</v-btn>
-            </v-card-actions>
-          </v-form>
-        </v-card>
-      </v-dialog>
-      <v-btn v-else text @click="next">
-        <v-icon>mdi-lock-open-outline</v-icon>
+
+      <v-btn class="mr-2 text--primary" icon @click="next">
+        <v-icon>{{ lockIcon }}</v-icon>
       </v-btn>
     </v-card-actions>
 
@@ -79,30 +47,38 @@
         <referrers :items="Items"></referrers>
       </v-window-item>
     </v-window>
+
+    <v-card-text>
+      <password-prompt
+        :show="showPasswordPrompt"
+        @on-close="showPasswordPrompt = false"
+        @on-confirm="handleConfirmPassword"
+      >
+      </password-prompt>
+    </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { defineComponent, ref, computed } from "@vue/composition-api";
 import { Items } from "./json-data";
-import AvatarPicker from "./avatar-picker.vue";
 
 export default defineComponent({
   name: "Profile",
 
   components: {
+    PasswordPrompt: () => import("./password-prompt.vue"),
     Referrers: () => import("./referrers.vue")
   },
 
   setup() {
     const onboarding = ref(0);
     const showAvatarPicker = ref(false);
-    const loading = ref(false);
-    const avatarPicker = ref(AvatarPicker);
-    const accessConfirmDialog = ref(false);
-    const showPassword = ref(false);
-    const password = ref("");
-    const formPassword = ref(null);
+    const showPasswordPrompt = ref(false);
+
+    const lockIcon = computed(() => {
+      return onboarding.value != 0 ? "mdi-lock-open-outline" : "mdi-lock";
+    });
 
     const form = ref({
       firstName: "John",
@@ -120,61 +96,31 @@ export default defineComponent({
       this.form.avatarPath = avatarPath;
     }
 
-    async function confirmPassword() {
-      if (onboarding.value == 1) {
-        onboarding.value = 0;
-        return;
-      }
-      if (!formPassword.value.validate()) return;
-      const phone = this.$store.getters.phone;
-      await this.$store.dispatch("ConfirmAccess", {
-        phone: phone,
-        password: this.password
-      });
-      if (this.$store.state.user.confirmPassword) {
-        this.accessConfirmDialog = false;
-        next();
-      }
-    }
-
-    const rules = ref([
-      (value) => !!value || "Required.",
-      (value) => (value && value.length >= 3) || "Min 3 characters"
-    ]);
-
-    const openedPanel = ref([]);
-
     function next() {
       if (onboarding.value == 1) {
         onboarding.value = 0;
       } else {
-        onboarding.value = 1;
+        showPasswordPrompt.value = true;
       }
-      // return (this.icon = "mdi-lock-open-outline");
     }
 
-    function prev() {
-      onboarding.value = 0;
+    function handleConfirmPassword() {
+      showPasswordPrompt.value = false;
+      onboarding.value = 1;
     }
 
     return {
       onboarding,
       showAvatarPicker,
       Items,
-      loading,
+      // loading,
+      lockIcon,
       form,
       openAvatarPicker,
       selectAvatar,
-      avatarPicker,
-      password,
-      showPassword,
-      confirmPassword,
-      formPassword,
-      rules,
-      openedPanel,
-      next,
-      prev,
-      accessConfirmDialog
+      showPasswordPrompt,
+      handleConfirmPassword,
+      next
     };
   }
 });

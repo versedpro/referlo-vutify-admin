@@ -9,7 +9,7 @@
           :icon="item.file"
           color="secondary darken-2"
         >
-          <v-card class="elevation-2">
+          <v-card class="flat tile mr-6">
             <v-card-subtitle>
               {{ item.name }}
             </v-card-subtitle>
