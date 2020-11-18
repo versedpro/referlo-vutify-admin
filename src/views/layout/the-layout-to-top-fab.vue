@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+// import Vue from "vue";
 import { defineComponent, ref } from "@vue/composition-api";
 export default defineComponent({
   name: "TheLayoutToTopFab",

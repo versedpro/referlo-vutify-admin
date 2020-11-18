@@ -30,18 +30,48 @@
       ></v-text-field>
     </v-card-text>
 
-    <v-card-actions class="gold primary--text">
-      <v-spacer></v-spacer>
-      <v-btn text @click="next">
-        <v-icon v-if="onboarding == 1">mdi-lock-open-outline</v-icon>
-        <v-icon v-else>mdi-lock</v-icon>
+    <v-card-actions class="gold primary--text justify-space-between">
+      <v-btn text @click="prev">
+        <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
+      <v-dialog v-model="accessConfirmDialog" persistent max-width="290">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on">
+            <v-icon color="primary"> mdi-lock </v-icon>
+          </v-btn>
+        </template>
+        <v-card>
+          <v-form ref="formPassword" lazy-validation>
+            <v-card-title class="headline text--gold">
+              {{ $t("login.confirm") + $t("login.password") }}
+            </v-card-title>
+            <v-card-text>
+              <v-text-field
+                v-model="password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :label="$t('login.password')"
+                :type="showPassword ? 'text' : 'password'"
+                @click:append="showPassword = !showPassword"
+                name="password"
+                required
+                autocomplete="current-password"
+                :rules="rules"
+              />
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="green darken-1" text @click="accessConfirmDialog = false">
+                Cancel
+              </v-btn>
+              <v-btn color="green darken-1" text @click="confirmPassword">Confirm</v-btn>
+            </v-card-actions>
+          </v-form>
+        </v-card>
+      </v-dialog>
     </v-card-actions>
 
     <v-window v-model="onboarding" vertical>
-      <v-window-item>
-        <v-alert class="rounded-0" height="25vh">test1</v-alert>
-      </v-window-item>
+      <v-window-item> </v-window-item>
       <v-window-item>
         <referrers :items="Items"></referrers>
       </v-window-item>
@@ -53,21 +83,33 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import { Items } from "./json-data";
 import AvatarPicker from "./avatar-picker.vue";
-import Referrers from "./referrers.vue";
+// import Referrers from "./referrers.vue";
 
 export default defineComponent({
   name: "Profile",
+  step: 1,
 
   components: {
     Referrers: () => import("./referrers.vue")
   },
 
+  Referrersted: {
+    currentTitle() {
+      switch (this.step) {
+        case 1:
+          return "Sign-up";
+        case 2:
+          return "Create a password";
+        default:
+          return "Account created";
+      }
+    }
+  },
   setup() {
     const onboarding = ref(0);
     const showAvatarPicker = ref(false);
     const loading = ref(false);
     const avatarPicker = ref(AvatarPicker);
-    const seeInfo = ref(false);
     const accessConfirmDialog = ref(false);
     const showPassword = ref(false);
     const password = ref("");
@@ -96,11 +138,9 @@ export default defineComponent({
         phone: phone,
         password: this.password
       });
-      this.seeInfo = this.$store.state.user.confirmPassword;
-      if (this.seeInfo) {
-        this.accessConfirmDialog = false;
-        this.next();
-      }
+
+      this.accessConfirmDialog = false;
+      this.next();
     }
 
     const rules = ref([
@@ -111,12 +151,7 @@ export default defineComponent({
     const openedPanel = ref([]);
 
     function next() {
-      if (onboarding.value == 1) {
-        onboarding.value = 0;
-      } else {
-        onboarding.value = 1;
-      }
-      // return (this.icon = "mdi-lock-open-outline");
+      onboarding.value = 1;
     }
 
     function prev() {
@@ -140,7 +175,6 @@ export default defineComponent({
       openedPanel,
       next,
       prev,
-      seeInfo,
       accessConfirmDialog
     };
   }
