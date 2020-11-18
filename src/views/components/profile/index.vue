@@ -1,12 +1,12 @@
 /* eslint-disable vue/valid-v-slot */
 <template>
-  <v-card class="primary tile flat">
+  <v-card class="tile flat" height="100%">
     <v-system-bar class="gold--text" absolute color="transparent">
       <span class="pl-2">{{ $t("profile.memberSince") }}</span>
       <span class="ml-1">2020</span>
     </v-system-bar>
 
-    <v-card-text class="pt-16 text-center">
+    <v-card-text class="pt-16 text-center primary">
       <v-btn
         fab
         depressed
@@ -53,7 +53,6 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import { Items } from "./json-data";
 import AvatarPicker from "./avatar-picker.vue";
-import Referrers from "./referrers.vue";
 
 export default defineComponent({
   name: "Profile",
