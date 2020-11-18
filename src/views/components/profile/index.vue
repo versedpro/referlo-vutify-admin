@@ -6,46 +6,78 @@
       <span class="ml-1">2020</span>
     </v-system-bar>
 
-    <v-card-text class="pt-16 text-center">
-      <v-btn
-        fab
-        depressed
-        color="gold"
-        @click="openAvatarPicker"
-        class="transparent pa-0"
-        width="128"
-        height="128"
-      >
-        <v-avatar size="120" class="mx-4" color="primary lighten-1">
-          <img :src="form.avatarPath" alt="Avatar" />
-        </v-avatar>
-      </v-btn>
-      <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
-      <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
-      <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
-      <v-text-field
-        class="profile"
-        v-model="form.contactEmail"
-        label="Email Address"
-      ></v-text-field>
-    </v-card-text>
+    <v-window v-model="onboarding" vertical>
+      <v-window-item>
+        <v-card color="primary">
+          <v-card-text class="pt-16 text-center">
+            <v-btn
+              fab
+              depressed
+              color="gold"
+              @click="openAvatarPicker"
+              class="transparent pa-0"
+              width="128"
+              height="128"
+            >
+              <v-avatar size="120" class="mx-4" color="primary lighten-1">
+                <img :src="form.avatarPath" alt="Avatar" />
+              </v-avatar>
+            </v-btn>
+            <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
+            <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
+            <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
+            <v-text-field
+              class="profile"
+              v-model="form.contactEmail"
+              label="Email Address"
+            ></v-text-field>
+          </v-card-text>
+        </v-card>
+      </v-window-item>
+      <v-window-item>
+        <referrers :items="Items"></referrers>
+      </v-window-item>
+    </v-window>
 
-    <v-expansion-panels class="mb-16" v-model="openedPanel" accordion flat tile>
-      <v-expansion-panel>
-        <v-expansion-panel-header class="gold primary--text">
-          <template v-slot:default="{ open }">
-            {{ $t("profile.referrers") }}
-            <span v-if="open"> Opened </span>
-          </template>
-          <template v-slot:actions>
+    <v-card-actions class="gold primary--text justify-space-between">
+      <v-btn text @click="prev">
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
+      <v-dialog v-model="accessConfirmDialog" persistent max-width="280">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on">
             <v-icon color="primary"> mdi-lock </v-icon>
-          </template>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <referrers :items="Items"></referrers>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+          </v-btn>
+        </template>
+        <v-card>
+          <v-form ref="formPassword" lazy-validation>
+            <v-card-title class="headline text--gold">
+              {{ $t("login.confirm") + $t("login.password") }}
+            </v-card-title>
+            <v-card-text>
+              <v-text-field
+                v-model="password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :label="$t('login.password')"
+                :type="showPassword ? 'text' : 'password'"
+                @click:append="showPassword = !showPassword"
+                name="password"
+                required
+                autocomplete="current-password"
+                :rules="rules"
+              />
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="green darken-1" text @click="accessConfirmDialog = false">
+                Cancel
+              </v-btn>
+              <v-btn color="green darken-1" text @click="confirmPassword">Confirm</v-btn>
+            </v-card-actions>
+          </v-form>
+        </v-card>
+      </v-dialog>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -53,6 +85,7 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import { Items } from "./json-data";
 import AvatarPicker from "./avatar-picker.vue";
+import Referrers from "./referrers.vue";
 
 export default defineComponent({
   name: "Profile",
@@ -62,9 +95,12 @@ export default defineComponent({
   },
 
   setup() {
+    const onboarding = ref(0);
     const showAvatarPicker = ref(false);
     const loading = ref(false);
     const avatarPicker = ref(AvatarPicker);
+    const seeInfo = ref(false);
+    const accessConfirmDialog = ref(false);
     const showPassword = ref(false);
     const password = ref("");
     const formPassword = ref(null);
@@ -95,6 +131,7 @@ export default defineComponent({
       this.seeInfo = this.$store.state.user.confirmPassword;
       if (this.seeInfo) {
         this.accessConfirmDialog = false;
+        this.next();
       }
     }
 
@@ -105,7 +142,17 @@ export default defineComponent({
 
     const openedPanel = ref([]);
 
+    function next() {
+      this.onboarding = this.onboarding + 1 === this.length ? 0 : this.onboarding + 1;
+    }
+
+    function prev() {
+      this.onboarding = this.onboarding - 1 < 0 ? this.length - 1 : this.onboarding - 1;
+      this.seeInfo = false;
+    }
+
     return {
+      onboarding,
       showAvatarPicker,
       Items,
       loading,
@@ -118,7 +165,11 @@ export default defineComponent({
       confirmPassword,
       formPassword,
       rules,
-      openedPanel
+      openedPanel,
+      next,
+      prev,
+      seeInfo,
+      accessConfirmDialog
     };
   }
 });
