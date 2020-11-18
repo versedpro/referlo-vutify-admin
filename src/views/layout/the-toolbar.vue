@@ -17,17 +17,15 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
 import Breadcrumbs from "../widget/AppBreadcrumbs.vue";
 // import ErrorLog from "../widget/AppErrorLog.vue";
 import FullScreen from "../widget/AppFullScreen.vue";
 import Localization from "../widget/app-localization.vue";
 import Notification from "../widget/AppNotification.vue";
 // import Profile from "../widget/AppProfile.vue";
+import { defineComponent, computed } from "@vue/composition-api";
 
-import Vue from "vue";
-
-export default Vue.extend({
+export default defineComponent({
   name: "TheLayoutToolbar",
   components: {
     Breadcrumbs,
@@ -37,21 +35,30 @@ export default Vue.extend({
     Notification
     // Profile
   },
-  data: () => ({}),
-  computed: {
-    ...mapGetters(["toolbarDense", "navbarShow"]),
-    toggleNavbarIcon() {
-      return this.navbarShow ? "mdi-format-indent-decrease" : "mdi-format-indent-increase";
+
+  setup(_, { root }) {
+    const toolbarDense = computed(() => root.$store.getters.toolbarDense);
+    const navbarShow = computed(() => root.$store.getters.navbarShow);
+    const toggleNavbarIcon = computed(() => {
+      return navbarShow.value ? "mdi-format-indent-decrease" : "mdi-format-indent-increase";
+    });
+
+    function logout() {
+      root.$store.dispatch("LogOut");
+      root.$router.push("/landing");
     }
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch("LogOut");
-      this.$router.push("/landing");
-    },
-    toggleNavbar() {
-      this.$store.dispatch("NavbarToggle");
+
+    function toggleNavbar() {
+      root.$store.dispatch("NavbarToggle");
     }
+
+    return {
+      toolbarDense,
+      navbarShow,
+      toggleNavbarIcon,
+      logout,
+      toggleNavbar
+    };
   }
 });
 </script>

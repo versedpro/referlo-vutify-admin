@@ -13,24 +13,34 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
 import TheLayoutDrawerList from "./the-drawer-list.vue";
+import { defineComponent, computed } from "@vue/composition-api";
 
-import Vue from "vue";
-
-export default Vue.extend({
+export default defineComponent({
   name: "TheLayoutDrawer",
   components: {
     TheLayoutDrawerList
   },
-  data: () => ({}),
-  computed: {
-    ...mapGetters(["permissionRoutes", "navbarDense", "navbarShow", "navbarLogo", "toolbarDense"])
-  },
-  methods: {
-    stateNavbarShow(state: unknown) {
+
+  setup(_, { root }) {
+    const permissionRoutes = computed(() => root.$store.getters.permissionRoutes);
+    const navbarDense = computed(() => root.$store.getters.navbarDense);
+    const navbarShow = computed(() => root.$store.getters.navbarShow);
+    const navbarLogo = computed(() => root.$store.getters.navbarLogo);
+    const toolbarDense = computed(() => root.$store.getters.toolbarDense);
+
+    function stateNavbarShow(state: unknown) {
       this.$store.dispatch("NavbarState", { state });
     }
+
+    return {
+      permissionRoutes,
+      navbarDense,
+      navbarShow,
+      navbarLogo,
+      toolbarDense,
+      stateNavbarShow
+    };
   }
 });
 </script>

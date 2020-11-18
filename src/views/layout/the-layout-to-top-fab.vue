@@ -19,22 +19,29 @@
 
 <script lang="ts">
 import Vue from "vue";
-
-export default Vue.extend({
+import { defineComponent, ref } from "@vue/composition-api";
+export default defineComponent({
   name: "TheLayoutToTopFab",
-  data: () => ({
-    fab: false
-  }),
-  methods: {
-    onScroll() {
+
+  setup(_, { root }) {
+    const fab = ref(false);
+
+    function onScroll() {
       if (typeof window === "undefined") return;
       const top = window.pageYOffset || document.documentElement.offsetTop || 0;
-      this.fab = top > 300;
-    },
-    toTop() {
-      this.$router.push({ hash: "" });
-      this.$vuetify.goTo(0);
+      fab.value = top > 300;
     }
+
+    function toTop() {
+      root.$router.push({ hash: "" });
+      root.$vuetify.goTo(0);
+    }
+
+    return {
+      onScroll,
+      toTop,
+      fab
+    };
   }
 });
 </script>

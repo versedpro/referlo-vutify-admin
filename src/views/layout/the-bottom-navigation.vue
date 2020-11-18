@@ -57,13 +57,13 @@ export default defineComponent({
   name: "TheBottomNavigation",
 
   components: {},
-  setup() {
+  setup(_, { root }) {
     const value = ref(0);
     const bottomnavdata = ref(navItems);
     const selection = ref([bottomnavdata[0]]);
 
     function navigateTo(path: string) {
-      this.$router.push(path);
+      root.$router.push(path);
     }
 
     return {
