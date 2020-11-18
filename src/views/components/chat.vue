@@ -4,8 +4,8 @@
       <v-card-title class="primary justify-center display-1 text-h5 white--text">
         {{ title }}
       </v-card-title>
-      <v-timeline class="mr-12" align-top dense clipped>
-        <v-timeline-item v-for="(item, i) in items" :key="i" :color="item.color" small>
+      <v-timeline  align-top dense clipped>
+        <v-timeline-item  class="mr-12" v-for="(item, i) in items" :key="i" :color="item.color" small>
           <template v-slot:opposite>
             <span
               :class="`headline font-weight-bold ${item.color}--text`"
@@ -31,7 +31,7 @@
           <v-timeline-item
             v-for="event in timeline"
             :key="event.id"
-            class="mb-4"
+            class="mb-4 mr-12"
             color="primary"
             small
           >
@@ -55,24 +55,28 @@
             </v-row> -->
           </v-timeline-item>
         </v-slide-x-transition>
-             <v-timeline-item fill-dot class="primary--text mb-12" color="gold" large>
-          <template v-slot:icon>
-            <span>JL</span>
-          </template>
-          <v-text-field
-            v-model="input"
-            label="Type a message..."
-            append-outer-icon="mdi-send"
-            flat
-            rounded
-            solo
-            clearable
-            background-color="grey"
-            @click:append-outer="comment"
-            @keydown.enter="comment"
-          >
-          </v-text-field>
+        <v-footer height="75" width="100%" class="px-0">
+             <v-timeline-item fill-dot class="primary--text text-center pa-0" color="gold" large>
+                <template v-slot:icon>
+                  <span>JL</span>
+                </template>
+                <v-text-field
+                  v-model="input"
+                  class="mr-12"
+                  label="Type a message..."
+                  append-outer-icon="mdi-send"
+                  flat
+                  rounded
+                  solo
+                  clearable
+                  background-color="grey"
+                  @click:append-outer="comment"
+                  @keydown.enter="comment"
+                >
+                </v-text-field>
         </v-timeline-item>
+        
+        </v-footer>
       </v-timeline>
     </v-card>
   </v-container>
