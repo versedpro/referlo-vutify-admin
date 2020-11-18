@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts">
-import { Items } from "@/demo/api/mock_referrer_list";
+import { Items } from "./json-data";
 
 import { defineComponent, ref } from "@vue/composition-api";
 

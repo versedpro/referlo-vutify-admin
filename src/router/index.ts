@@ -68,6 +68,23 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
+        path: "/product1",
+        component: () => import("@/views/components/product1/index.vue"),
+        name: "Product1",
+        meta: {
+          title: "route.product1",
+          icon: "mdi-timeline-text",
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
         path: "/history",
         component: () => import("@/views/components/history/index.vue"),
         name: "History",
@@ -90,23 +107,6 @@ export const constantRoutes = [
         name: "Products",
         meta: {
           title: "route.products",
-          icon: "mdi-timeline-text",
-          noCache: true,
-          affix: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "/product1",
-        component: () => import("@/views/components/product1/index.vue"),
-        name: "Product1",
-        meta: {
-          title: "route.product1",
           icon: "mdi-timeline-text",
           noCache: true,
           affix: true
@@ -227,18 +227,6 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: "/profile2",
-        component: () => import("@/views/components/profile2.vue"),
-        name: "Profile",
-        meta: { title: "route.profile", icon: "mdi-translate" }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
         path: "/points",
         component: () => import("@/views/components/points/index.vue"),
         name: "Profile",
@@ -263,7 +251,7 @@ export const constantRoutes = [
 ];
 
 export default new Router({
-  mode: 'history', // gh-pages
+  mode: "history", // gh-pages
   //scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 });

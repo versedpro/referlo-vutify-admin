@@ -35,7 +35,7 @@
     </v-list>
 
     <!-- The chart -->
-    <v-card-text class="pa-0 mx-0 white">
+    <v-card-text height="180px" class="pa-0 mx-0">
       <app-widget title="Pie Chart">
         <option-chart
           slot="widget-content"
@@ -46,7 +46,7 @@
       </app-widget>
     </v-card-text>
 
-    <v-card-text class="text-center mt-0 pb-4 white">
+    <v-card-text height="36px" class="text-center">
       <v-btn x-small class="px-4" color="gold"> {{ legend[0] }} </v-btn>
       <v-btn x-small class="px-4 mx-6" color="primary"> {{ legend[1] }} </v-btn>
       <v-btn x-small class="px-4" color="grey"> {{ legend[2] }} </v-btn>

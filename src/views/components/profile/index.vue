@@ -1,36 +1,13 @@
+/* eslint-disable vue/valid-v-slot */
 <template>
-  <v-card class="primary">
-    <v-list-item>
-      <v-list-item-avatar size="128" color="gold">
-        <v-img class="pa-2" alt="xx" :src="form.avatarPath"></v-img>
-      </v-list-item-avatar>
+  <v-card class="primary tile flat">
+    <v-system-bar class="gold--text" absolute color="transparent">
+      <span class="pl-2">{{ $t("profile.memberSince") }}</span>
+      <span class="ml-1">2020</span>
+    </v-system-bar>
 
-      <v-list-item-content class="ma-0">
-        <v-list-item-title class="primary--text">ABB</v-list-item-title>
-        <v-list-item-title class="primary--text">ABB</v-list-item-title>
-        <!-- <v-list-item-subtitle class="gold--text">
-              <span>{{ $t("home.memberSince") }}</span>
-              <span class="ml-1">{{ person.memberSince }}</span>
-            </v-list-item-subtitle> -->
-      </v-list-item-content>
-    </v-list-item>
-    <v-card-title>{{ url() }}</v-card-title>
-    <v-card-text>
-       <v-flex>
-        <v-btn depressed @click="openAvatarPicker" class="transparent pa-0" height="100%">
-          <v-avatar color="secondary darken-2" size="108">
-            <v-avatar size="120" class="mx-4" color="primary lighten-1">
-                <img :src="form.avatarPath" alt="Avatar" />
-            </v-avatar>
-          </v-avatar>
-        </v-btn>
-      </v-flex>
-
-      <h1 class="white--text">Edit</h1>
-    </v-card-text>
-
-    <v-card-text>
-      <!-- <v-btn
+    <v-card-text class="pt-16 text-center">
+      <v-btn
         fab
         depressed
         color="gold"
@@ -42,9 +19,9 @@
         <v-avatar size="120" class="mx-4" color="primary lighten-1">
           <img :src="form.avatarPath" alt="Avatar" />
         </v-avatar>
-      </v-btn> -->
-
-      <v-text-field class="profile" v-model="form.firstName" label="FirstName"></v-text-field>
+      </v-btn>
+      <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
+      <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
       <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
       <v-text-field
         class="profile"
@@ -52,51 +29,45 @@
         label="Email Address"
       ></v-text-field>
     </v-card-text>
-    <v-expansion-panels accordion>
-        <v-expansion-panel>
-          <v-expansion-panel-header class="gold primary--text">Profile Detail</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <profile-2></profile-2>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
+
+    <v-expansion-panels class="mb-16" v-model="openedPanel" accordion flat tile>
+      <v-expansion-panel>
+        <v-expansion-panel-header class="gold primary--text">
+          <template v-slot:default="{ open }">
+            {{ $t("profile.referrers") }}
+            <span v-if="open"> Opened </span>
+          </template>
+          <template v-slot:actions>
+            <v-icon color="primary"> mdi-lock </v-icon>
+          </template>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <referrers :items="Items"></referrers>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </v-card>
 </template>
 
 <script lang="ts">
-import { Items } from "@/demo/api/mock_referrer_list";
-
 import { defineComponent, ref } from "@vue/composition-api";
-
+import { Items } from "./json-data";
 import AvatarPicker from "./avatar-picker.vue";
-import Profile2 from "@/views/components/profile2.vue";
-// import PanelGroupItem from "./home/PanelGroupItem.vue";
 
 export default defineComponent({
   name: "Profile",
+
   components: {
-    Profile2
-    // PanelGroupItem,
-    //AvatarPicker,
-    //ProfileSecond: () => import("../profile2.vue")
+    Referrers: () => import("./referrers.vue")
   },
 
   setup() {
-    const items = ref(Items);
     const showAvatarPicker = ref(false);
     const loading = ref(false);
     const avatarPicker = ref(AvatarPicker);
-    const seeInfo = ref(false);
-    const accessConfirmDialog = ref(false);
     const showPassword = ref(false);
     const password = ref("");
     const formPassword = ref(null);
-    function url() {
-      const y = location.host;
-      // const x = JSON.stringify(process.env);
-
-      return "url" + y;
-    }
 
     const form = ref({
       firstName: "John",
@@ -132,26 +103,27 @@ export default defineComponent({
       (value) => (value && value.length >= 3) || "Min 3 characters"
     ]);
 
+    const openedPanel = ref([]);
+
     return {
       showAvatarPicker,
-      items,
+      Items,
       loading,
       form,
       openAvatarPicker,
       selectAvatar,
       avatarPicker,
-      seeInfo,
       password,
-      accessConfirmDialog,
       showPassword,
       confirmPassword,
       formPassword,
       rules,
-      url
+      openedPanel
     };
   }
 });
 </script>
+
 <style>
 .theme--light.v-label {
   color: #c1a357 !important;

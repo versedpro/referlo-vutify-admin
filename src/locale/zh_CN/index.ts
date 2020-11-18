@@ -91,6 +91,10 @@ export default {
     unclaimed: "未领领金币",
     points: "已获取积分"
   },
+  profile: {
+    memberSince: "入会年份",
+    referrers: "My Referrers"
+  },
   errors: {
     whoops: "哦嚯~!",
     back: "返回!",

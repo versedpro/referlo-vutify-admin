@@ -95,6 +95,10 @@ export default {
     unclaimed: "Unclaimed",
     points: "已获取积分"
   },
+  profile: {
+    memberSince: "Member since",
+    referrers: "My Referrers"
+  },
   errors: {
     whoops: "Whoops",
     back: "Get me out of here!",

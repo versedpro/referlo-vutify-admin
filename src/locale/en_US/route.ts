@@ -1,7 +1,7 @@
 export default {
   // introduction: 'Introduction',
   referal: "Referal",
-  home: "Point",
+  home: "Home",
   history: "Job History",
   products: "Products",
   industries: "Product1",

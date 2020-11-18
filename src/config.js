@@ -39,7 +39,7 @@ module.exports = {
     dense: true,
     footer: true,
     navbar: {
-      show: true,
+      show: false,
       dense: false,
       logo: false
     },

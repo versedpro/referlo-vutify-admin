@@ -1,6 +1,11 @@
 const industries = [
   {
     industryId: 1,
+    name: {
+      en: "Telecom",
+      zh_CN: "电讯",
+      zh_HK: "電訊"
+    },
     industryName: "Telecom",
     rank: 1,
     products: [
@@ -50,6 +55,11 @@ const industries = [
   },
   {
     industryId: 2,
+    name: {
+      en: "ePayment",
+      zh_CN: "电子支付",
+      zh_HK: "電子支付"
+    },
     industryName: "ePayment",
     rank: 2,
     products: [
@@ -78,6 +88,11 @@ const industries = [
   },
   {
     industryId: 3,
+    name: {
+      en: "F & B Service",
+      zh_CN: "餐饮服务",
+      zh_HK: "餐飲服務"
+    },
     industryName: "F & B Service",
     points: 200,
     displayOrder: 3,
@@ -114,6 +129,11 @@ const industries = [
   },
   {
     industryId: 4,
+    name: {
+      en: "Business Service",
+      zh_CN: "商业服务",
+      zh_HK: "商業服務"
+    },
     industryName: "Business Service",
     points: 300,
     displayOrder: 4,

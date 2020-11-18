@@ -1,3 +1,4 @@
+/* eslint-disable */
 import config from "@/config";
 import user from "@/store/modules/user";
 import settings from "@/store/modules/settings";
@@ -32,7 +33,7 @@ class SyncStorage {
    * Vuex subscribe plugin function.
    * @param {Object} store Vuex instance
    */
-  subscribe = async store => {
+  subscribe = async (store) => {
     if (!this.checkStorage()) {
       throw new Error('[vuex.SyncStorage] Invalid "Storage" instance given');
     }
@@ -99,7 +100,7 @@ class SyncStorage {
    * Get current seconds + ttl.
    * @param {Number} ttl Session lifetime
    */
-  getSeconds = ttl => Math.floor(Date.now() / 1000) + (ttl || 0);
+  getSeconds = (ttl) => Math.floor(Date.now() / 1000) + (ttl || 0);
 
   /**
    * Get array of module mutation types.
@@ -203,7 +204,7 @@ class SyncStorage {
   }
 }
 
-export default function(syncStorageOption) {
+export default function (syncStorageOption) {
   const syncStorage = new SyncStorage(syncStorageOption);
   return syncStorage.subscribe;
 }

@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { mapGetters } from "vuex";
-import TheLayoutDrawerList from "./TheLayoutDrawerList.vue";
+import TheLayoutDrawerList from "./the-drawer-list.vue";
 
 import Vue from "vue";
 

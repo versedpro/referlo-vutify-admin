@@ -16,12 +16,12 @@
                 <v-list-item-title
                   v-if="!active"
                   class="gold--text"
-                  v-text="item.industryName"
+                  v-text="industry(item.name)"
                 ></v-list-item-title>
                 <v-list-item-title
                   v-else
                   class="primary--text"
-                  v-text="item.industryName"
+                  v-text="industry(item.name)"
                 ></v-list-item-title>
               </v-list-item-icon>
             </v-list-item-content>
@@ -53,10 +53,17 @@ export default defineComponent({
       emit("onSelection", industries);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    function industry(name) {
+      const locale = this.$i18n.locale;
+      return locale;
+    }
+
     return {
       selectedItem,
       items,
-      handleChange
+      handleChange,
+      industry
     };
   }
 });

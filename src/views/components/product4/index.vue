@@ -39,6 +39,7 @@
     </v-card-text>
     <!-- </v-sheet> -->
 
+    <v-card-text>https://www.hotdeals.com/</v-card-text>
     <product-mobile></product-mobile>
     <!-- <v-tabs-items v-model="tab" class="yellow">
       <v-tab-item class="yellow">
