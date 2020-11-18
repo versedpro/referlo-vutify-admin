@@ -32,13 +32,11 @@
   </v-list>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+<script>
 import { resolve } from "path";
 
-export default defineComponent({
+export default {
   name: "TheLayoutDrawerList",
-
   props: {
     dense: Boolean,
     iconShow: Boolean,
@@ -53,78 +51,59 @@ export default defineComponent({
       default: ""
     }
   },
-
-  setup(props) {
-    const onlyOneChild = ref(null);
-
-    function isExternal(path) {
+  data() {
+    this.onlyOneChild = null;
+    return {};
+  },
+  methods: {
+    isExternal(path) {
       return /^(https?:|mailto:|tel:)/.test(path);
-    }
-
-    function isVisibleItem(item) {
+    },
+    isVisibleItem(item) {
       return (
         this.hasOneVisibleChild(item.children, item) &&
-        (!onlyOneChild.value.children || onlyOneChild.noVisibleChildren) &&
+        (!this.onlyOneChild.children || this.onlyOneChild.noVisibleChildren) &&
         !item.alwaysShow
       );
-    }
-
-    function hasOneVisibleChild(children = [], parent) {
+    },
+    hasOneVisibleChild(children = [], parent) {
       const visibleChildren = children.filter((item) => {
         if (item.hidden) return false;
         // Temp set(will be used if only has one visible child)
-        onlyOneChild.value = item;
+        this.onlyOneChild = item;
         return true;
       });
 
       // When there is only one child router, the child router is displayed by default
       if (visibleChildren.length === 1) {
-        onlyOneChild.value.path = resolve(parent.path, onlyOneChild.value.path);
-        onlyOneChild.value.meta.icon = onlyOneChild.value.meta.icon || parent.meta.icon || "";
+        this.onlyOneChild.path = resolve(parent.path, this.onlyOneChild.path);
+        this.onlyOneChild.meta.icon = this.onlyOneChild.meta.icon || parent.meta.icon || "";
 
         return true;
       }
 
       // Show parent if there are no child router to display
       if (visibleChildren.length === 0) {
-        onlyOneChild.value = { ...parent, noVisibleChildren: true };
+        this.onlyOneChild = { ...parent, noVisibleChildren: true };
         return true;
       }
 
       return false;
-    }
-
-    function resolvePath(path) {
-      if (isExternal(path)) {
+    },
+    resolvePath(path) {
+      if (this.isExternal(path)) {
         return path;
       }
       return resolve(this.basePath, path);
-    }
-
-    function getListIcon(item) {
-      return props.iconShow && item.meta ? item.meta.icon : " ";
-    }
-
-    function getListTitle(item) {
+    },
+    getListIcon(item) {
+      return this.iconShow && item.meta ? item.meta.icon : " ";
+    },
+    getListTitle(item) {
       return item.meta ? this.$t(item.meta.title) : "";
     }
-
-    // function getListTitle({ meta: { title } }) {
-    //   return title ? this.$t(title) : "";
-    // }
-
-    return {
-      onlyOneChild,
-      isExternal,
-      isVisibleItem,
-      hasOneVisibleChild,
-      resolvePath,
-      getListIcon,
-      getListTitle
-      // getVisibleChild
-    };
   }
-});
+};
 </script>
 
 <style>
