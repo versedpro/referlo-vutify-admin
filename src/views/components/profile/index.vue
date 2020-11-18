@@ -37,7 +37,8 @@
       <v-dialog v-model="accessConfirmDialog" persistent max-width="290">
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
-            <v-icon color="primary"> mdi-lock </v-icon>
+            <v-icon v-if="onboarding==1">mdi-lock-open-outline</v-icon>
+        <v-icon v-else>mdi-lock</v-icon>
           </v-btn>
         </template>
         <v-card>
@@ -88,23 +89,9 @@ import AvatarPicker from "./avatar-picker.vue";
 
 export default defineComponent({
   name: "Profile",
-  step: 1,
 
   components: {
     Referrers: () => import("./referrers.vue")
-  },
-
-  Referrersted: {
-    currentTitle() {
-      switch (this.step) {
-        case 1:
-        return "Sign-up";
-        case 2:
-        return "Create a password";
-        default:
-        return "Account created";
-      }
-    }
   },
   setup() {
     const onboarding = ref(0);
