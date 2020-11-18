@@ -32,9 +32,42 @@
 
     <v-card-actions class="gold primary--text">
       <v-spacer></v-spacer>
-      <v-btn text @click="next">
-        <v-icon v-if="onboarding == 1">mdi-lock-open-outline</v-icon>
-        <v-icon v-else>mdi-lock</v-icon>
+      <v-dialog v-model="accessConfirmDialog" persistent max-width="290" v-if="onboarding == 0">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on">
+            <v-icon>mdi-lock</v-icon>
+          </v-btn>
+        </template>
+        <v-card>
+          <v-form ref="formPassword" lazy-validation>
+            <v-card-title class="headline text--gold">{{
+              $t("login.confirm") + $t("login.password")
+            }}</v-card-title>
+            <v-card-text>
+              <v-text-field
+                v-model="password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :label="$t('login.password')"
+                :type="showPassword ? 'text' : 'password'"
+                @click:append="showPassword = !showPassword"
+                name="password"
+                required
+                autocomplete="current-password"
+                :rules="rules"
+              />
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="green darken-1" text @click="accessConfirmDialog = false">
+                Cancel
+              </v-btn>
+              <v-btn color="green darken-1" text @click="confirmPassword">Confirm</v-btn>
+            </v-card-actions>
+          </v-form>
+        </v-card>
+      </v-dialog>
+      <v-btn v-else text @click="next">
+        <v-icon>mdi-lock-open-outline</v-icon>
       </v-btn>
     </v-card-actions>
 
@@ -66,7 +99,6 @@ export default defineComponent({
     const showAvatarPicker = ref(false);
     const loading = ref(false);
     const avatarPicker = ref(AvatarPicker);
-    const seeInfo = ref(false);
     const accessConfirmDialog = ref(false);
     const showPassword = ref(false);
     const password = ref("");
@@ -89,16 +121,19 @@ export default defineComponent({
     }
 
     async function confirmPassword() {
+      if (onboarding.value == 1) {
+        onboarding.value = 0;
+        return;
+      }
       if (!formPassword.value.validate()) return;
       const phone = this.$store.getters.phone;
       await this.$store.dispatch("ConfirmAccess", {
         phone: phone,
         password: this.password
       });
-      this.seeInfo = this.$store.state.user.confirmPassword;
-      if (this.seeInfo) {
+      if (this.$store.state.user.confirmPassword) {
         this.accessConfirmDialog = false;
-        this.next();
+        next();
       }
     }
 
@@ -139,7 +174,6 @@ export default defineComponent({
       openedPanel,
       next,
       prev,
-      seeInfo,
       accessConfirmDialog
     };
   }
