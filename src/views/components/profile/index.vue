@@ -16,9 +16,9 @@
         width="128"
         height="128"
       >
-      <v-avatar size="120" class="mx-4" color="primary lighten-1">
-        <img :src="form.avatarPath" alt="Avatar" />
-      </v-avatar>
+        <v-avatar size="120" class="mx-4" color="primary lighten-1">
+          <img :src="form.avatarPath" alt="Avatar" />
+        </v-avatar>
       </v-btn>
       <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
       <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
@@ -34,45 +34,15 @@
       <v-btn text @click="prev">
         <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
-      <v-dialog v-model="accessConfirmDialog" persistent max-width="290">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on">
-            <v-icon v-if="onboarding==1">mdi-lock-open-outline</v-icon>
+      <v-btn text @click="next">
+        <v-icon v-if="onboarding==1">{{icon}}</v-icon>
         <v-icon v-else>mdi-lock</v-icon>
-          </v-btn>
-        </template>
-        <v-card>
-          <v-form ref="formPassword" lazy-validation>
-            <v-card-title class="headline text--gold">
-              {{ $t("login.confirm") + $t("login.password") }}
-            </v-card-title>
-            <v-card-text>
-              <v-text-field
-                v-model="password"
-                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :label="$t('login.password')"
-                :type="showPassword ? 'text' : 'password'"
-                @click:append="showPassword = !showPassword"
-                name="password"
-                required
-                autocomplete="current-password"
-                :rules="rules"
-              />
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="green darken-1" text @click="accessConfirmDialog = false">
-                Cancel
-              </v-btn>
-              <v-btn color="green darken-1" text @click="confirmPassword">Confirm</v-btn>
-            </v-card-actions>
-          </v-form>
-        </v-card>
-      </v-dialog>
+      </v-btn>
     </v-card-actions>
 
     <v-window v-model="onboarding" vertical>
       <v-window-item>
+        <v-alert class="rounded-0" height="25vh">test1</v-alert>
       </v-window-item>
       <v-window-item>
         <referrers :items="Items"></referrers>
@@ -85,7 +55,7 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import { Items } from "./json-data";
 import AvatarPicker from "./avatar-picker.vue";
-// import Referrers from "./referrers.vue";
+import Referrers from "./referrers.vue";
 
 export default defineComponent({
   name: "Profile",
@@ -93,11 +63,13 @@ export default defineComponent({
   components: {
     Referrers: () => import("./referrers.vue")
   },
+
   setup() {
     const onboarding = ref(0);
     const showAvatarPicker = ref(false);
     const loading = ref(false);
     const avatarPicker = ref(AvatarPicker);
+    const seeInfo = ref(false);
     const accessConfirmDialog = ref(false);
     const showPassword = ref(false);
     const password = ref("");
@@ -126,9 +98,11 @@ export default defineComponent({
         phone: phone,
         password: this.password
       });
-      
-      this.accessConfirmDialog = false;
-      this.next();
+      this.seeInfo = this.$store.state.user.confirmPassword;
+      if (this.seeInfo) {
+        this.accessConfirmDialog = false;
+        this.next();
+      }
     }
 
     const rules = ref([
@@ -140,6 +114,7 @@ export default defineComponent({
 
     function next() {
       onboarding.value = 1;
+      return this.icon = "mdi-lock-open-outline";
     }
 
     function prev() {
@@ -163,6 +138,7 @@ export default defineComponent({
       openedPanel,
       next,
       prev,
+      seeInfo,
       accessConfirmDialog
     };
   }
@@ -170,13 +146,13 @@ export default defineComponent({
 </script>
 
 <style>
-  .theme--light.v-label {
-    color: #c1a357 !important;
-  }
-  .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-    border-color: #c1a357 !important;
-  }
-  .profile input {
-    color: #f6f6f6 !important;
-  }
+.theme--light.v-label {
+  color: #c1a357 !important;
+}
+.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
+  border-color: #c1a357 !important;
+}
+.profile input {
+  color: #f6f6f6 !important;
+}
 </style>
