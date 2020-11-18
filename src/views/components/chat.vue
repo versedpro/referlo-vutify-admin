@@ -5,13 +5,62 @@
         {{ title }}
       </v-card-title>
       <v-timeline class="mr-12" align-top dense clipped>
-        <v-timeline-item fill-dot class="white--text mb-12" color="orange" large>
+        <v-timeline-item v-for="(item, i) in items" :key="i" :color="item.color" small>
+          <template v-slot:opposite>
+            <span
+              :class="`headline font-weight-bold ${item.color}--text`"
+              v-text="item.year"
+            ></span>
+          </template>
+          <div>{{ item.timestamp }}</div>
+          <v-card elevation="6"  class="mt-2 rounded-lg">
+            <!-- <v-card-title class="title">
+            Lorem Ipsum Dolor
+          </v-card-title> -->
+            <v-card-text class="white text--primary">
+              USER NAME
+              <p>
+                <v-chip class="mt-2 gold">
+                  User's Comment
+                </v-chip>
+              </p>
+            </v-card-text>
+          </v-card>
+        </v-timeline-item>
+        <v-slide-x-transition group>
+          <v-timeline-item
+            v-for="event in timeline"
+            :key="event.id"
+            class="mb-4"
+            color="primary"
+            small
+          >
+          <div v-text="event.time"></div>
+          <v-card elevation="6"  class="mt-2 rounded-lg">
+            <!-- <v-card-title class="title">
+            Lorem Ipsum Dolor
+          </v-card-title> -->
+            <v-card-text class="white text--primary">
+              You
+              <p>
+                <v-chip class="mt-2 primary" v-text="event.text">
+                </v-chip>
+              </p>
+            </v-card-text>
+          </v-card>
+            <!-- <v-row justify="space-between">
+              <v-card elevation="6"  class="mt-2 rounded-lg">
+              <v-col cols="7" v-text="event.text"></v-col>
+              <v-col class="text-right" cols="5" v-text="event.time"></v-col>
+            </v-row> -->
+          </v-timeline-item>
+        </v-slide-x-transition>
+             <v-timeline-item fill-dot class="primary--text mb-12" color="gold" large>
           <template v-slot:icon>
             <span>JL</span>
           </template>
           <v-text-field
             v-model="input"
-            class="mt-4"
             label="Type a message..."
             append-outer-icon="mdi-send"
             flat
@@ -23,44 +72,6 @@
             @keydown.enter="comment"
           >
           </v-text-field>
-        </v-timeline-item>
-
-        <v-slide-x-transition group>
-          <v-timeline-item
-            v-for="event in timeline"
-            :key="event.id"
-            class="mb-4"
-            color="pink"
-            small
-          >
-            <v-row justify="space-between">
-              <v-col cols="7" v-text="event.text"></v-col>
-              <v-col class="text-right" cols="5" v-text="event.time"></v-col>
-            </v-row>
-          </v-timeline-item>
-        </v-slide-x-transition>
-
-        <v-timeline-item v-for="(item, i) in items" :key="i" :color="item.color" small>
-          <template v-slot:opposite>
-            <span
-              :class="`headline font-weight-bold ${item.color}--text`"
-              v-text="item.year"
-            ></span>
-          </template>
-          <div>{{ item.timestamp }}</div>
-          <v-card class="mt-2">
-            <!-- <v-card-title class="title">
-            Lorem Ipsum Dolor
-          </v-card-title> -->
-            <v-card-text class="white text--primary">
-              Status: dd
-              <p>
-                <v-chip class="mt-2">
-                  Status: dd
-                </v-chip>
-              </p>
-            </v-card-text>
-          </v-card>
         </v-timeline-item>
       </v-timeline>
     </v-card>

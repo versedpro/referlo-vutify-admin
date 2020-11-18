@@ -2,7 +2,7 @@ const Items = [
   {
     id: "1",
     icon: "mdi-home",
-    color: "cyan",
+    color: "gold",
     timestamp: "2020-10-14 16:15",
     msg: ["dd", "dd"],
     year: "1960"
@@ -10,7 +10,7 @@ const Items = [
   {
     id: "1",
     icon: "mdi-home",
-    color: "green",
+    color: "gold",
     timestamp: "2020-10-14 16:15",
     msg: ["dd", "dd"],
     year: "1970"
@@ -18,7 +18,7 @@ const Items = [
   {
     id: "1",
     icon: "mdi-home",
-    color: "pink",
+    color: "gold",
     timestamp: "2020-10-14 16:15",
     msg: ["dd", "dd"],
     year: "1980"
@@ -26,7 +26,7 @@ const Items = [
   {
     id: "1",
     icon: "mdi-home",
-    color: "amber",
+    color: "gold",
     timestamp: "2020-10-14 16:15",
     msg: ["dd", "dd"],
     year: "1990"
@@ -34,7 +34,7 @@ const Items = [
   {
     id: "1",
     icon: "mdi-home",
-    color: "orange",
+    color: "gold",
     timestamp: "2020-10-14 16:15",
     msg: ["dd", "dd"],
     year: "2000"
