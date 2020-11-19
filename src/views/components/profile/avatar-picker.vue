@@ -3,17 +3,18 @@
     :fullscreen="$vuetify.breakpoint.xs"
     width="500"
     transition="dialog-bottom-transition"
-    v-model="show"
+    :value="show"
+    @click:outside="handleCancel"
   >
     <v-card>
       <v-toolbar dark color="primary">
-        <v-btn icon dark @click="show = false">
-          <v-icon>close</v-icon>
+        <v-btn icon dark @click="handleCancel">
+          <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-toolbar-title>Select an Avatar</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
-      <v-layout row wrap v-if="avatars">
+      <v-layout wrap v-if="avatars">
         <v-flex v-for="avatar in avatars" :key="avatar.id" xs4 sm3 d-flex>
           <v-card tile flat class="d-flex">
             <v-card-text class="d-flex">
@@ -21,7 +22,7 @@
                 size="96"
                 @click="selectAvatar(avatar)"
                 class="mr-4"
-                :class="{ current: avatar.id === currentAvatar }"
+                :class="{ current: avatar.path === currentAvatar }"
               >
                 <img :src="avatar.path" />
               </v-avatar>
@@ -33,8 +34,8 @@
   </v-dialog>
 </template>
 
-<script>
-import { defineComponent } from "@vue/composition-api";
+<script lang="ts">
+import { defineComponent, ref, computed } from "@vue/composition-api";
 export default defineComponent({
   name: "AvatarPicker",
   props: {
@@ -42,37 +43,60 @@ export default defineComponent({
       type: String,
       required: true
     },
+    show: Boolean,
     value: Boolean
   },
 
-  async mounted() {
-    // await this.$store.dispatch("fetchAvatars");
-  },
-
-  computed: {
-    avatars() {
-      //   return this.$store.state.avatars;
+  setup(props, { emit }) {
+    const avatars = computed(() => {
+      // return this.$store.state.avatars;
       return [
         { path: "img/avatars/13101802.jpg", id: "13101802" },
         { path: "img/avatars/customer-support.png", id: "customer-support" }
       ];
-    },
-
-    show: {
-      get() {
-        return this.value;
-      },
-      set(value) {
-        this.$emit("input", value);
-      }
+    });
+    function handleCancel() {
+      this.$emit("on-close");
     }
-  },
 
-  methods: {
-    selectAvatar(avatar) {
-      this.$emit("selected", avatar.path);
-      this.show = false;
+    function selectAvatar(avatar) {
+      emit("selected", avatar.path);
     }
+
+    return {
+      avatars,
+      selectAvatar,
+      handleCancel
+    };
   }
+  // async mounted() {
+  //   // await this.$store.dispatch("fetchAvatars");
+  // },
+
+  // computed: {
+  //   avatars() {
+  //     //   return this.$store.state.avatars;
+  //     return [
+  //       { path: "img/avatars/13101802.jpg", id: "13101802" },
+  //       { path: "img/avatars/customer-support.png", id: "customer-support" }
+  //     ];
+  //   },
+
+  //   show: {
+  //     get() {
+  //       return this.value;
+  //     },
+  //     set(value) {
+  //       this.$emit("input", value);
+  //     }
+  //   }
+  // },
+
+  // methods: {
+  //   selectAvatar(avatar) {
+  //     this.$emit("selected", avatar.path);
+  //     this.show = false;
+  //   }
+  // }
 });
 </script>
