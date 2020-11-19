@@ -56,6 +56,15 @@
       >
       </password-prompt>
     </v-card-text>
+    <v-card-text>
+      <avatar-picker
+        :show="showAvatarPicker"
+        :currentAvatar="form.avatarPath"
+        @selected="selectAvatar"
+        @on-close="showAvatarPicker = false"
+      >
+      </avatar-picker>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -68,7 +77,8 @@ export default defineComponent({
 
   components: {
     PasswordPrompt: () => import("./password-prompt.vue"),
-    Referrers: () => import("./referrers.vue")
+    Referrers: () => import("./referrers.vue"),
+    AvatarPicker: () => import("./avatar-picker.vue")
   },
 
   setup() {
@@ -88,11 +98,12 @@ export default defineComponent({
     });
 
     function openAvatarPicker() {
-      this.showAvatarPicker = true;
+      showAvatarPicker.value = true;
       console.log("hello");
     }
 
     function selectAvatar(avatarPath) {
+      console.log(avatarPath);
       this.form.avatarPath = avatarPath;
     }
 
