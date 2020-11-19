@@ -1,7 +1,8 @@
 <template>
-  <v-dialog :value="show" persistent fullscreen max-width="290" @click:outside="handleCancel">
-    <v-card >
-    <v-card-title class="primary justify-center display-1 text-h5 white--text">
+<v-container fluid>
+  <v-dialog :value="show" persistent fullscreen @click:outside="handleCancel">
+    <v-card class="mx-auto pa-0" max-width="800">
+      <v-card-title class="primary justify-center display-1 text-h5 white--text">
         {{ title }}
       </v-card-title>
       <v-timeline align-top dense clipped>
@@ -58,8 +59,9 @@
             </v-row> -->
           </v-timeline-item>
         </v-slide-x-transition>
-      <v-footer absolute height="75">
-             <v-timeline-item fill-dot class="primary--text text-center pa-0" color="gold" large>
+        <v-footer height="75" width="100%" class="px-0">
+          <v-card-text class="pa-0" height="49">
+          <v-timeline-item  fill-dot class="primary--text text-center pa-0" color="gold" large>
             <template v-slot:icon>
               <span>JL</span>
             </template>
@@ -78,10 +80,12 @@
             >
             </v-text-field>
           </v-timeline-item>
-      </v-footer>
+          </v-card-text>
+        </v-footer>
       </v-timeline>
     </v-card>
   </v-dialog>
+  </v-container>
 </template>
 
 <script lang="ts">
