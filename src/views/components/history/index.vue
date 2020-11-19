@@ -13,7 +13,7 @@
       </template>
     </v-toolbar>
 
-    <order-history :items="items"></order-history>
+    <orders-history :items="items"></orders-history>
   </v-card>
 </template>
 
@@ -25,7 +25,7 @@ export default defineComponent({
   name: "History",
 
   components: {
-    OrderHistory: () => import("./order-history.vue"),
+    OrdersHistory: () => import("./orders-history.vue"),
     ReferloAvatar: () => import("@/views/widget/referlo-avatar.vue")
   },
 
