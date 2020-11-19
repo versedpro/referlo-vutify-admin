@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "@vue/composition-api";
+import { defineComponent, computed } from "@vue/composition-api";
 export default defineComponent({
   name: "AvatarPicker",
   props: {
@@ -69,34 +69,5 @@ export default defineComponent({
       handleCancel
     };
   }
-  // async mounted() {
-  //   // await this.$store.dispatch("fetchAvatars");
-  // },
-
-  // computed: {
-  //   avatars() {
-  //     //   return this.$store.state.avatars;
-  //     return [
-  //       { path: "img/avatars/13101802.jpg", id: "13101802" },
-  //       { path: "img/avatars/customer-support.png", id: "customer-support" }
-  //     ];
-  //   },
-
-  //   show: {
-  //     get() {
-  //       return this.value;
-  //     },
-  //     set(value) {
-  //       this.$emit("input", value);
-  //     }
-  //   }
-  // },
-
-  // methods: {
-  //   selectAvatar(avatar) {
-  //     this.$emit("selected", avatar.path);
-  //     this.show = false;
-  //   }
-  // }
 });
 </script>

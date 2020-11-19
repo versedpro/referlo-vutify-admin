@@ -61,7 +61,8 @@
         :show="showAvatarPicker"
         :currentAvatar="form.avatarPath"
         @selected="selectAvatar"
-        @on-close="showAvatarPicker = false">
+        @on-close="showAvatarPicker = false"
+      >
       </avatar-picker>
     </v-card-text>
   </v-card>
