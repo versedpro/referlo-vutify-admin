@@ -14,7 +14,7 @@
         </v-list-item>
       </template>
       <v-card>
-        <v-toolbar dark color="gold">
+        <!-- <v-toolbar dark color="gold">
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
@@ -23,8 +23,10 @@
           <v-toolbar-items>
             <v-btn dark text @click="dialog = false">Cancel</v-btn>
           </v-toolbar-items>
-        </v-toolbar>
+        </v-toolbar> -->
+        <v-img :src="product.src" :aspect-ratio="1.91 / 1" position="top center"></v-img>
         <v-sheet class="mx-12 mt-12">
+          <v-card-text class="pa-0 mb-6">{{product.productDescription}}</v-card-text>
           <v-text-field
             v-model="productName"
             :label="$t('referal.productName')"
@@ -40,8 +42,11 @@
             :label="$t('referal.points')"
             disabled
           ></v-text-field>
-        </v-sheet>
-        <v-form class="mx-12" ref="form" v-model="valid" lazy-validation>
+           <v-expansion-panels focusable>
+          <v-expansion-panel>
+            <v-expansion-panel-header color="gold">Want to  make an ORDER!</v-expansion-panel-header>
+            <v-expansion-panel-content>
+                <v-form class="mx-12 pb-8" ref="form" v-model="valid" lazy-validation>
           <v-text-field
             v-model="name"
             :rules="nameRules"
@@ -63,10 +68,45 @@
             required
           ></v-text-field>
 
-          <v-btn :disabled="!valid" color="success" class="mr-4" @click="submit">Submit</v-btn>
+          <v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit">Submit</v-btn>
 
-          <v-btn color="warning" @click="reset"> Reset </v-btn>
+          <v-btn color="gold" class="mr-4" @click="reset"> Reset </v-btn>
+
+          <v-btn color="primary"  @click="dialog = false">Cancel</v-btn>
         </v-form>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+      </v-expansion-panels>
+        </v-sheet>
+       
+        <!-- <v-form class="mx-12 pb-8" ref="form" v-model="valid" lazy-validation>
+          <v-text-field
+            v-model="name"
+            :rules="nameRules"
+            :label="$t('referal.clientName')"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            :label="$t('referal.email')"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            v-model="phone"
+            :rules="phoneRules"
+            :label="$t('referal.phone')"
+            required
+          ></v-text-field>
+
+          <v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit">Submit</v-btn>
+
+          <v-btn color="gold" class="mr-4" @click="reset"> Reset </v-btn>
+
+          <v-btn color="primary"  @click="dialog = false">Cancel</v-btn>
+        </v-form> -->
       </v-card>
     </v-dialog>
   </v-row>
