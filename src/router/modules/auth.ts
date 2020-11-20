@@ -5,13 +5,17 @@ const authRouter = [
     path: "/login",
     alias: "/login",
     component: () => import("@/views/auth/login.vue"),
-    hidden: true
+    meta: {
+      hidden: true
+    }
   },
   {
     path: "/register",
     alias: "/registration",
     component: () => import("@/views/auth/register.vue"),
-    hidden: true
+    meta: {
+      hidden: true
+    }
   }
 ];
 

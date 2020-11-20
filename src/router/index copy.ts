@@ -37,13 +37,17 @@ export const constantRoutes = [
     path: "/landing",
     alias: "/land",
     component: () => import("@/views/auth/landing.vue"),
-    hidden: true
+    meta: {
+      hidden: true
+    }
   },
   {
     path: "/follow-up/chat",
     alias: "/chat",
     component: () => import("@/views/components/chat.vue"),
-    hidden: true
+    meta: {
+      hidden: true
+    }
   },
   {
     path: "/",
@@ -260,5 +264,5 @@ export default new Router({
 
 export const asyncRoutes = [
   /** When your routing table is too long, you can split it into small modules */
-  { path: "*", redirect: "/error/404", hidden: true }
+  { path: "*", redirect: "/error/404", meta: { hidden: true }}
 ];

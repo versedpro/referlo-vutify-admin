@@ -1,6 +1,6 @@
 <template>
   <v-list :dense="dense" class="layout-drawer">
-    <div v-for="item in routes.filter((item) => !item.hidden)" :key="item.title">
+    <div v-for="item in visibleRoutes" :key="item.title">
       <v-list-item
         v-if="isVisibleItem(item)"
         :to="resolvePath(getVisibleChild(item))"
@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { computed, defineComponent } from "@vue/composition-api";
 import { resolve } from "path";
 
 export default defineComponent({
@@ -58,11 +58,22 @@ export default defineComponent({
   },
 
   setup(props) {
+    const visibleRoutes = computed(() => {
+      return props.routes.filter((route) => {
+        return !route["meta"] || !route["meta"]["hidden"];
+      });
+    });
+
     function getVisibleChild(item) {
-      const child = item.children.find((x) => !x.hidden);
+      const children = item.children || [];
+
+      const child = children.find(({ meta }) => {
+        return !meta || !meta.hidden;
+      });
 
       if (child) {
         child.path = resolve(item.path, child.path);
+        child.meta = child.meta || {};
         child.meta.icon = child.meta.icon || item.meta.icon || "";
         return child;
       }
@@ -86,15 +97,18 @@ export default defineComponent({
       return resolve(props.basePath, path);
     }
 
-    function getListIcon({ meta: { icon } }) {
-      return props.iconShow && icon ? icon : " ";
+    function getListIcon({ meta }) {
+      meta = meta || {};
+      return props.iconShow && meta.icon ? meta.icon : " ";
     }
 
-    function getListTitle({ meta: { title } }) {
-      return title ? this.$t(title) : "";
+    function getListTitle({ meta }) {
+      meta = meta || {};
+      return meta.title ? this.$t(meta.title) : "";
     }
 
     return {
+      visibleRoutes,
       isVisibleItem,
       resolvePath,
       getListIcon,

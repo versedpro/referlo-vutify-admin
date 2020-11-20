@@ -37,13 +37,17 @@ export const constantRoutes = [
     path: "/landing",
     alias: "/land",
     component: () => import("@/views/auth/landing.vue"),
-    hidden: true
+    meta: {
+      hidden: true
+    }
   },
   {
     path: "/follow-up/chat",
     alias: "/chat",
     component: () => import("@/views/components/chat.vue"),
-    hidden: true
+    meta: {
+      hidden: true
+    }
   },
   {
     path: "/",
@@ -129,7 +133,7 @@ export const constantRoutes = [
         path: "/about-us",
         component: () => import("@/views/components/about-us.vue"),
         name: "About",
-        meta: { title: "About Us", icon: "mdi-translate" }
+        meta: { title: "route.about", icon: "mdi-translate" }
       }
     ]
   },
@@ -141,13 +145,14 @@ export const constantRoutes = [
         path: "/contact-us",
         component: () => import("@/views/components/contact-us.vue"),
         name: "Contact",
-        meta: { title: "Countact US", icon: "mdi-translate" }
+        meta: { title: "route.contact", icon: "mdi-translate" }
       }
     ]
   },
   {
     path: "/",
     component: Layout,
+    meta: { hidden: true },
     children: [
       {
         path: "/products",
@@ -166,6 +171,7 @@ export const constantRoutes = [
   {
     path: "/",
     component: Layout,
+    meta: { hidden: true },
     children: [
       {
         path: "/product2",
@@ -184,6 +190,7 @@ export const constantRoutes = [
   {
     path: "/",
     component: Layout,
+    meta: { hidden: true },
     children: [
       {
         path: "/product3",
@@ -243,5 +250,5 @@ export default new Router({
 
 export const asyncRoutes = [
   /** When your routing table is too long, you can split it into small modules */
-  { path: "*", redirect: "/error/404", hidden: true }
+  { path: "*", redirect: "/error/404", meta: { hidden: true } }
 ];
