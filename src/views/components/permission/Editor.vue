@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import AppCenter from "@/views/widget/AppCenter.vue";
+import AppCenter from "@/views/widget/app-center.vue";
 
 import { defineComponent } from "@vue/composition-api";
 export default defineComponent({

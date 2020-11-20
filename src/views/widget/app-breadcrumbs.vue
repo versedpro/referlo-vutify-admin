@@ -8,64 +8,71 @@
   </v-breadcrumbs>
 </template>
 
-<script>
-// import * as pathToRegexp from "path";
+<script lang="ts">
+import { defineComponent, ref, watch } from "@vue/composition-api";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pathToRegexp = require("path");
 
-export default {
+export default defineComponent({
   name: "AppBreadcrumbs",
-  data: () => ({
-    levelList: null
-  }),
-  watch: {
-    $route() {
-      this.getBreadcrumb();
-    }
-  },
-  created() {
-    this.getBreadcrumb();
-  },
-  methods: {
-    generateTitle(title) {
-      const hasKey = this.$te(`${title}`);
+
+  setup(_, { root }) {
+    const levelList = ref(null);
+
+    watch(
+      () => root.$route,
+      () => getBreadcrumb()
+    );
+
+    getBreadcrumb();
+
+    function generateTitle(title) {
+      const hasKey = root.$te(`${title}`);
       if (hasKey) {
-        const translatedTitle = this.$t(`${title}`);
-        return translatedTitle;
+        return root.$t(`${title}`);
       }
       return title;
-    },
-    getBreadcrumb() {
-      let matched = this.$route.matched.filter((item) => item.name);
+    }
+
+    function getBreadcrumb() {
+      let matched = root.$route.matched.filter((item) => item.name);
 
       const first = matched[0];
       if (first && first.name.trim().toLocaleLowerCase() !== "home") {
         matched = [{ path: "/home", meta: { title: "route.home" } }].concat(matched);
       }
 
-      this.levelList = matched.filter(
+      levelList.value = matched.filter(
         (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
       );
-    },
-    pathCompile(path) {
-      const { params } = this.$route;
+    }
+
+    function pathCompile(path) {
+      const { params } = root.$route;
       const toPath = pathToRegexp.compile(path);
       return toPath(params);
-    },
-    handleLink(item) {
+    }
+
+    function handleLink(item) {
       console.groupCollapsed("handleLink");
       const { redirect, path } = item;
       console.log(`redirect=${redirect}, path=${path}`);
       if (redirect) {
         console.log("redirect");
-        this.$router.push(redirect);
+        root.$router.push(redirect);
         console.groupEnd();
         return;
       }
-      this.$router.push(this.pathCompile(path));
+      root.$router.push(pathCompile(path));
       console.groupEnd();
     }
+
+    return {
+      levelList,
+      generateTitle,
+      handleLink
+    };
   }
-};
+});
 </script>

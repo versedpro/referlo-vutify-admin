@@ -4,7 +4,7 @@
 
 <script>
 import echarts from "echarts";
-import debounce from "@/utils";
+import { debounce } from "@/utils";
 
 require("echarts/theme/macarons"); // echarts theme
 

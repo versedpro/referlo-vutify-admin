@@ -34,12 +34,14 @@
   </v-menu>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, ref } from "@vue/composition-api";
+
+export default defineComponent({
   name: "AppNotification",
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  data: () => ({
-    items: [
+
+  setup() {
+    const items = ref([
       {
         icon: "mdi-folder",
         iconClass: "grey lighten-1 white--text",
@@ -58,8 +60,9 @@ export default {
         title: "Work",
         subtitle: "Jan 28, 2014"
       }
-    ],
-    items2: [
+    ]);
+
+    const items2 = ref([
       {
         icon: "mdi-message",
         iconClass: "blue white--text",
@@ -72,7 +75,12 @@ export default {
         title: "Kitchen remodel",
         subtitle: "Jan 10, 2014"
       }
-    ]
-  })
-};
+    ]);
+
+    return {
+      items,
+      items2
+    };
+  }
+});
 </script>

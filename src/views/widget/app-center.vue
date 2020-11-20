@@ -8,9 +8,10 @@
   </v-container>
 </template>
 
-<script>
-export default {
-  name: "AppCenter",
-  data: () => ({})
-};
+<script lang="ts">
+import { defineComponent } from "@vue/composition-api";
+
+export default defineComponent({
+  name: "AppCenter"
+});
 </script>

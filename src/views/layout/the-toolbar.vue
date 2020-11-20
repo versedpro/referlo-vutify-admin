@@ -5,7 +5,6 @@
     </v-app-bar-nav-icon>
     <breadcrumbs />
     <v-spacer />
-    <!-- <error-log /> -->
     <full-screen />
     <notification />
     <localization class="ml-4" />
@@ -17,12 +16,10 @@
 </template>
 
 <script lang="ts">
-import Breadcrumbs from "../widget/AppBreadcrumbs.vue";
-// import ErrorLog from "../widget/AppErrorLog.vue";
-import FullScreen from "../widget/AppFullScreen.vue";
+import Breadcrumbs from "../widget/app-breadcrumbs.vue";
+import FullScreen from "../widget/app-fullscreen.vue";
 import Localization from "../widget/app-localization.vue";
-import Notification from "../widget/AppNotification.vue";
-// import Profile from "../widget/AppProfile.vue";
+import Notification from "../widget/app-notification.vue";
 import { defineComponent, computed } from "@vue/composition-api";
 
 export default defineComponent({
