@@ -45,8 +45,21 @@ function debounce(func, wait, immediate) {
 }
 
 function toggleFullScreen() {
-  const doc = window.document;
-  const docEl = doc.documentElement;
+  const doc = document as Document & {
+    mozCancelFullScreen(): Promise<void>;
+    webkitExitFullscreen(): Promise<void>;
+    msExitFullscreen(): Promise<void>;
+    mozFullScreenElement(): Promise<void>;
+    webkitFullscreenElement(): Promise<void>;
+    msFullscreenElement(): Promise<void>;
+  };
+
+  const docEl = doc.documentElement as HTMLElement & {
+    mozRequestFullScreen(): Promise<void>;
+    webkitRequestFullscreen(): Promise<void>;
+    msRequestFullscreen(): Promise<void>;
+    webkitRequestFullScreen(): Promise<void>;
+  };
 
   const requestFullScreen =
     docEl.requestFullscreen ||
