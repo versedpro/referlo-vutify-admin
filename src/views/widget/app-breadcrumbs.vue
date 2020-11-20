@@ -40,7 +40,7 @@ export default defineComponent({
 
       const first = matched[0];
       if (first && first.name.trim().toLocaleLowerCase() !== "home") {
-        matched = [{ path: "/home", meta: { title: "route.home" } }].concat(matched);
+        // matched = [{ path: "/home", meta: { title: "route.home" } }].concat(matched);
       }
 
       levelList.value = matched.filter(
