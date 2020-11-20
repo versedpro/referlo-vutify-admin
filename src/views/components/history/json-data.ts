@@ -16,7 +16,7 @@ const Items = [
     supplierName: "PCCW",
     referloId: 100,
     clientName: "Mr. Wong",
-    status: 0
+    status: 1
   },
   {
     orderNo: "100003",
@@ -25,7 +25,7 @@ const Items = [
     supplierName: "Business service",
     referloId: 100,
     clientName: "Mr. X",
-    status: 0
+    status: 2
   },
   {
     orderNo: "100004",
@@ -34,7 +34,7 @@ const Items = [
     supplierName: "Openrice",
     referloId: 100,
     clientName: "Mr. Y",
-    status: 0
+    status: 3
   },
   {
     orderNo: "100005",
@@ -52,7 +52,7 @@ const Items = [
     supplierName: "Openrice",
     referloId: 100,
     clientName: "Mr. Y",
-    status: 0
+    status: 2
   },
   {
     orderNo: "100007",
@@ -61,7 +61,7 @@ const Items = [
     supplierName: "Openrice",
     referloId: 100,
     clientName: "Mr. Y",
-    status: 0
+    status: 1
   },
   {
     orderNo: "100008",
@@ -70,7 +70,7 @@ const Items = [
     supplierName: "Openrice",
     referloId: 100,
     clientName: "Mr. Y",
-    status: 0
+    status: 3
   },
   {
     orderNo: "100009",

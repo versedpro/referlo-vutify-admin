@@ -13,7 +13,11 @@
       </template>
     </v-toolbar>
 
-    <orders-history :items="items"></orders-history>
+    <v-tabs-items v-model="tab">
+      <v-tab-item v-for="(tab, i) in tabItems" :key="i">
+        <orders-history :items="items" :tab="i"></orders-history>
+      </v-tab-item>
+    </v-tabs-items>
   </v-card>
 </template>
 
@@ -40,7 +44,12 @@ export default defineComponent({
     const title = computed(() => vm.$t("history.title") as string);
 
     const tabItems = computed(() => {
-      return [vm.$t("history.wip"), vm.$t("history.referred"), vm.$t("history.completed")];
+      return [
+        vm.$t("history.wip"),
+        vm.$t("history.referred"),
+        vm.$t("history.completed"),
+        vm.$t("history.reject")
+      ];
     });
 
     const sheet = ref(false);

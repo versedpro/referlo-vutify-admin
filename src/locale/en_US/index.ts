@@ -76,7 +76,8 @@ export default {
     wip: "WIP",
     referred: "Referred",
     completed: "Completed",
-    points: "已获取积分"
+    points: "已获取积分",
+    reject: "Reject"
   },
   home: {
     referProduct: "Refer Product",
