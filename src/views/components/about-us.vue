@@ -1,13 +1,11 @@
 <template>
-  <v-card tile class="mx-auto" height="auto">
-    <v-card-title class="primary justify-center display-1 text-h5 white--text">
-      {{ title }}
-    </v-card-title>
-  </v-card>
+  <div class="about">
+    <h1>This is an about page</h1>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   name: "AboutUs",
@@ -15,15 +13,8 @@ export default defineComponent({
   setup() {
     const title = "About Us";
 
-    const selected = ref(null as number);
-
-    const selectedItem = null as number;
-
     return {
-      title,
-
-      selected,
-      selectedItem
+      title
     };
   }
 });

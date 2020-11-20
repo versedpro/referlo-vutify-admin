@@ -172,6 +172,7 @@ export const constantRoutes = [
         component: () => import("@/views/components/product2/index.vue"),
         title: "Test2",
         meta: {
+          hidden: true,
           title: "Test2",
           icon: "mdi-timeline-text",
           noCache: true,
@@ -189,6 +190,7 @@ export const constantRoutes = [
         component: () => import("@/views/components/product3/index.vue"),
         name: "Test3",
         meta: {
+          hidden: true,
           title: "Test3",
           icon: "mdi-timeline-text",
           noCache: true,

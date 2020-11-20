@@ -1,7 +1,11 @@
 <template>
   <v-list :dense="dense" class="layout-drawer">
     <div v-for="item in routes.filter((item) => !item.hidden)" :key="item.title">
-      <v-list-item v-if="isVisibleItem(item)" :to="resolvePath(getVisibleChild(item))" ripple="ripple">
+      <v-list-item
+        v-if="isVisibleItem(item)"
+        :to="resolvePath(getVisibleChild(item))"
+        ripple="ripple"
+      >
         <v-list-item-icon class="layout-drawer__icon">
           <v-icon>{{ getListIcon(getVisibleChild(item)) }}</v-icon>
         </v-list-item-icon>

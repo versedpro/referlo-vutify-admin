@@ -9,7 +9,7 @@
     dark
     mandatory
   >
-    <v-btn v-for="item in bottomnavdata" :key="item.id" @click="navigateTo(item.route)">
+    <v-btn v-for="item in navItems" :key="item.id" @click="navigateTo(item.route)">
       <span v-html="$t(item.label)"></span>
       <v-icon>{{ item.icon }}</v-icon>
     </v-btn>
@@ -18,7 +18,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
-// import { navItems } from "@/api/bottom-navigation";
 
 const navItems = [
   {
@@ -39,12 +38,12 @@ const navItems = [
     icon: "mdi-database",
     route: "/history"
   },
-  {
-    id: "Points",
-    label: "bottomNavigation.points",
-    icon: "mdi-currency-usd-circle",
-    route: "/points"
-  },
+  // {
+  //   id: "Points",
+  //   label: "bottomNavigation.points",
+  //   icon: "mdi-currency-usd-circle",
+  //   route: "/points"
+  // },
   {
     id: "Account",
     label: "bottomNavigation.account",
@@ -59,8 +58,7 @@ export default defineComponent({
   components: {},
   setup(_, { root }) {
     const value = ref(0);
-    const bottomnavdata = ref(navItems);
-    const selection = ref([bottomnavdata[0]]);
+    const selection = ref([navItems[0]]);
 
     function navigateTo(path: string) {
       root.$router.push(path);
@@ -68,7 +66,7 @@ export default defineComponent({
 
     return {
       value,
-      bottomnavdata,
+      navItems,
       selection,
       navigateTo
     };
