@@ -25,6 +25,7 @@ const Items = [
     supplierName: "Business service",
     referloId: 100,
     clientName: "Mr. X",
+    points: 1000,
     status: 2
   },
   {
@@ -52,6 +53,7 @@ const Items = [
     supplierName: "Openrice",
     referloId: 100,
     clientName: "Mr. Y",
+    points: 900,
     status: 2
   },
   {

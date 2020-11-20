@@ -18,8 +18,11 @@
           </v-list-item-action-text>
           <!-- v-text="order.orderNo" -->
           <v-icon v-if="!active" color="grey lighten-1"> mdi-star-outline </v-icon>
-
+          
           <v-icon v-else color="yellow darken-3"> mdi-star </v-icon>
+          <v-list-item-action-text v-if="order.status == 2" class="mb-0 gold--text text-subtitle-1">
+            {{ order.points }}
+          </v-list-item-action-text>
         </v-list-item-action>
       </v-list-item>
     </template>
