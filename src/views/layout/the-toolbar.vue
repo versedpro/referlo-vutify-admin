@@ -1,15 +1,25 @@
 <template>
-  <v-app-bar app :dense="toolbarDense">
+  <!-- <v-app-bar app :dense="toolbarDense" color="primary"> -->
+  <v-app-bar app dense dark>
     <v-app-bar-nav-icon @click.stop="toggleNavbar">
-      <v-icon>{{ toggleNavbarIcon }}</v-icon>
+      <!-- <v-icon>{{ toggleNavbarIcon }}</v-icon> -->
+
+      <v-avatar size="28px" tile>
+        <img src="/img/icons/android-icon-72x72.png" alt="logo" />
+      </v-avatar>
     </v-app-bar-nav-icon>
+
     <breadcrumbs />
+
     <v-spacer />
+
     <full-screen />
-    <notification />
+
     <localization class="ml-4" />
-    <!-- <profile /> -->
-    <v-btn class="ml-2" icon color="indigo" @click="logout">
+
+    <notification />
+
+    <v-btn class="ml-2" icon color="gold" @click="logout">
       <v-icon>mdi-logout</v-icon>
     </v-btn>
   </v-app-bar>

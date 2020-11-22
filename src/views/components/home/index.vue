@@ -79,7 +79,7 @@
 import { ads, person, getPieChartOption } from "./json-data";
 import { ReferloChartInfo } from "@/types"; // Our interface
 
-import { defineComponent, computed, ref, getCurrentInstance } from "@vue/composition-api";
+import { defineComponent, computed, ref } from "@vue/composition-api";
 
 export default defineComponent({
   name: "Home",
@@ -91,31 +91,27 @@ export default defineComponent({
     ReferralLinkDialog: () => import("./referral-link-dialog.vue")
   },
 
-  setup() {
+  setup(_, { root }) {
     const showLinkDialog = ref(false);
-    const vm = getCurrentInstance();
 
     const backgroundColor = computed(() => {
       return "gold";
     });
 
     const absolute = computed(() => {
-      return !vm.$vuetify.breakpoint.smAndDown;
+      return !root.$vuetify.breakpoint.smAndDown;
     });
 
     const legend = computed(() => [
-      vm.$i18n.t("home.completed", person.score.slice(2, 3)),
-      vm.$i18n.t("home.wip", person.score.slice(1, 2)),
-      vm.$i18n.t("home.referred", person.score.slice(0, 1))
+      root.$i18n.t("home.completed", person.score.slice(2, 3)),
+      root.$i18n.t("home.wip", person.score.slice(1, 2)),
+      root.$i18n.t("home.referred", person.score.slice(0, 1))
     ]);
 
     const referPeopleUrl = computed(() => {
       const host = `${location.host}`;
       const protocol = host.includes("localhost") ? "http://" : "https://";
-      // const url = protocol + host + "}/registration?key=sdfsfsd";
-
       return protocol + host + "/registration?key=sdfsfsd";
-      // return `https://${location.host}/registration?key=sdfsfsd`;
     });
 
     const closeDialog = () => {
@@ -132,7 +128,7 @@ export default defineComponent({
 
         title: {
           text: "1333",
-          subtext: vm.$tc("home.referalTotal")
+          subtext: root.$tc("home.referalTotal")
         }
       };
 
@@ -144,7 +140,7 @@ export default defineComponent({
     };
 
     const referProduct = () => {
-      vm.$router.push("/product1");
+      root.$router.push("/product1");
     };
 
     return {
