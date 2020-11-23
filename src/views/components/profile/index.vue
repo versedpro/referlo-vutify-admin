@@ -1,50 +1,62 @@
 /* eslint-disable vue/valid-v-slot */
 <template>
   <v-card class="tile flat" height="100%">
-    <v-system-bar class="gold--text" absolute color="transparent">
-      <span class="pl-2">{{ $t("profile.memberSince") }}</span>
-      <span class="ml-1">2020</span>
-    </v-system-bar>
-
-    <v-card-text class="pt-16 text-center primary">
-      <v-btn
-        fab
-        depressed
-        color="gold"
-        @click="openAvatarPicker"
-        class="transparent pa-0"
-        width="128"
-        height="128"
-      >
-        <v-avatar size="120" class="mx-4" color="primary lighten-1">
-          <img :src="form.avatarPath" alt="Avatar" />
-        </v-avatar>
-      </v-btn>
-      <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
-      <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
-      <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
-      <v-text-field
-        class="profile"
-        v-model="form.contactEmail"
-        label="Email Address"
-      ></v-text-field>
-    </v-card-text>
-
-    <v-card-actions class="gold primary--text">
-      <span>Referrers</span>
-      <v-spacer></v-spacer>
-
-      <v-btn class="mr-2 text--primary" icon @click="next">
-        <v-icon>{{ lockIcon }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-
     <v-window v-model="onboarding" vertical>
       <v-window-item>
+        <v-system-bar class="gold--text" absolute color="transparent">
+          <span class="pl-2">{{ $t("profile.memberSince") }}</span>
+          <span class="ml-1">2020</span>
+        </v-system-bar>
+
+        <v-card-text class="pt-16 text-center primary">
+          <v-btn
+            fab
+            depressed
+            color="gold"
+            @click="openAvatarPicker"
+            class="transparent pa-0"
+            width="128"
+            height="128"
+          >
+            <v-avatar size="120" class="mx-4" color="primary lighten-1">
+              <img :src="form.avatarPath" alt="Avatar" />
+            </v-avatar>
+          </v-btn>
+          <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
+          <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
+          <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
+          <v-text-field
+            class="profile"
+            v-model="form.contactEmail"
+            label="Email Address"
+          ></v-text-field>
+        </v-card-text>
+
+        <v-card-actions class="gold primary--text">
+          <span>Referrers</span>
+          <v-spacer></v-spacer>
+
+          <v-btn class="mr-2 text--primary" icon @click="next">
+            <v-icon>{{ lockIcon }}</v-icon>
+          </v-btn>
+        </v-card-actions>
+
         <v-alert class="rounded-0" height="25vh">Locked</v-alert>
       </v-window-item>
       <v-window-item>
-        <referrers :items="Items"></referrers>
+        <v-card tile class="mx-auto" height="auto">
+          <v-card-title class="primary justify-center display-1 text-h5 white--text">
+            <v-btn text icon color="gold" @click="prev">
+              <v-icon color="gold">mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-spacer></v-spacer>
+            Referrers
+            <v-spacer></v-spacer>
+          </v-card-title>
+          <v-card-text>
+            <referrers :items="Items"></referrers>
+          </v-card-text>
+        </v-card>
       </v-window-item>
     </v-window>
 
@@ -115,6 +127,10 @@ export default defineComponent({
       }
     }
 
+    function prev() {
+      onboarding.value = 0;
+    }
+
     function handleConfirmPassword() {
       showPasswordPrompt.value = false;
       onboarding.value = 1;
@@ -130,7 +146,8 @@ export default defineComponent({
       selectAvatar,
       showPasswordPrompt,
       handleConfirmPassword,
-      next
+      next,
+      prev
     };
   }
 });
