@@ -1,15 +1,17 @@
 <template>
   <v-sheet class="mx-12 mt-12">
-    <v-text-field
-      v-model="item.productName"
-      :label="$t('referal.productName')"
-      disabled
-    ></v-text-field>
-    <v-text-field
-      v-model="item.supplierName"
-      :label="$t('referal.supplierName')"
-      disabled
-    ></v-text-field>
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title>{{ $t("referal.productName") }}</v-list-item-title>
+        <v-list-item-subtitle>{{ order.productName }}</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title>{{ $t("referal.supplierName") }}</v-list-item-title>
+        <v-list-item-subtitle>{{ order.supplierName }}</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
   </v-sheet>
 </template>
 <script lang="ts">
@@ -18,7 +20,10 @@ import { defineComponent, ref } from "@vue/composition-api";
 export default defineComponent({
   name: "OrdersProductDetail",
   props: {
-    order: Object
+    order: {
+      type: Object,
+      default: () => ({})
+    }
   },
   setup(props) {
     const item = ref(props.order);

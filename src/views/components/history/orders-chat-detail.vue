@@ -1,34 +1,8 @@
 <template>
-  <v-dialog v-model="dialog" fullscreen hide-overlay>
-    <template v-slot:activator="{ on, attrs }">
-      <v-list-item three-line v-if="order.status == tab" v-bind="attrs" v-on="on">
-        <v-list-item-content>
-          <v-list-item-title v-text="order.orderDate"></v-list-item-title>
-
-          <v-list-item-subtitle
-            class="text--primary"
-            v-text="order.productName"
-          ></v-list-item-subtitle>
-          <v-list-item-subtitle v-text="order.supplierName"></v-list-item-subtitle>
-        </v-list-item-content>
-
-        <v-list-item-action>
-          <v-list-item-action-text class="mb-0 red--text text-subtitle-1">
-            {{ formatOrder(order.orderNo) }}
-          </v-list-item-action-text>
-          <!-- v-text="order.orderNo" -->
-          <v-icon v-if="!active" color="grey lighten-1"> mdi-star-outline </v-icon>
-          
-          <v-icon v-else color="yellow darken-3"> mdi-star </v-icon>
-          <v-list-item-action-text v-if="order.status == 2" class="mb-0 gold--text text-subtitle-1">
-            {{ order.points }}
-          </v-list-item-action-text>
-        </v-list-item-action>
-      </v-list-item>
-    </template>
+  <v-window-item>
     <v-card class="mx-auto pa-0" max-width="800">
       <v-toolbar dark color="primary">
-        <v-btn icon dark @click="dialog = false">
+        <v-btn icon dark @click="prev">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-toolbar-title class="primary justify-center display-1 text-h5 white--text">
@@ -36,7 +10,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn dark text @click="dialog = false">Cancel</v-btn>
+          <v-btn dark text @click="prev">Cancel</v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <v-tabs grow dark color="gold">
@@ -50,14 +24,14 @@
         </v-tab-item>
       </v-tabs>
     </v-card>
-  </v-dialog>
+  </v-window-item>
 </template>
 
 <script lang="ts">
 import { Items } from "@/demo/api/mock_chats";
 import { defineComponent, ref } from "@vue/composition-api";
 export default defineComponent({
-  name: "OrdersChatDialog",
+  name: "OrdersChatDetail",
 
   components: {
     OrdersChat: () => import("./orders-chat.vue"),
@@ -69,10 +43,10 @@ export default defineComponent({
     show: Boolean,
     value: Boolean
   },
-  setup() {
+  setup(props, { emit }) {
     const active = ref("");
 
-    const dialog = ref(false as boolean);
+    const dialog = ref(true as boolean);
     const items = ref(Items);
 
     const title = "訂單詳情";
@@ -81,12 +55,15 @@ export default defineComponent({
       return "#" + num;
     }
 
+    const prev = () => (emit("click"));
+
     return {
       active,
       items,
       title,
       dialog,
-      formatOrder
+      formatOrder,
+      prev
     };
   }
 });
