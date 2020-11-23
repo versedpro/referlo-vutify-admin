@@ -13,12 +13,12 @@
             <v-card-subtitle>
               {{ item.name }}
             </v-card-subtitle>
-            <!-- <v-card flat v-if="item.children != undefined" class="d-flex flex-wrap py-4">
+            <v-card flat v-if="item.children != undefined" class="d-flex flex-wrap py-4">
               <div v-for="x in item.children" :key="x.name" class="text-center">
                 <v-icon>{{ x.file }}</v-icon>
                 <v-card-subtitle class="pb-0">{{ x.name }}</v-card-subtitle>
               </div>
-            </v-card> -->
+            </v-card>
           </v-card>
         </v-timeline-item>
       </v-timeline>

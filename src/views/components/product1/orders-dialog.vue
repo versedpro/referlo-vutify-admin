@@ -1,21 +1,14 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <v-toolbar
-          dark
-          color="primary"
-        >
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn
-            icon
-            dark
-            @click="dialog = false"
-          >
+      <v-toolbar dark color="primary">
+        <v-spacer></v-spacer>
+        <v-toolbar-items>
+          <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
+        </v-toolbar-items>
+      </v-toolbar>
       <template v-slot:activator="{ on, attrs }">
         <v-list-item two-line>
           <v-list-item-content>
@@ -72,7 +65,7 @@
             disabled
           ></v-text-field>
             </v-col>
-          </v-row> 
+          </v-row>
           <v-text-field
             v-model="productPoints"
             :label="$t('referal.points')"
@@ -117,9 +110,13 @@
                     required
                   ></v-text-field>
 
-                  <v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit"><v-icon left> mdi-check-circle </v-icon>Submit</v-btn>
+                  <v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit"
+                    ><v-icon left> mdi-check-circle </v-icon>Submit</v-btn
+                  >
 
-                  <v-btn color="primary" class="mr-4" @click="reset"><v-icon left> mdi-reload</v-icon>Reset </v-btn>
+                  <v-btn color="primary" class="mr-4" @click="reset"
+                    ><v-icon left> mdi-reload</v-icon>Reset
+                  </v-btn>
 
                   <!-- <v-btn color="primary" @click="dialog = false"
                     ><v-icon left> mdi-close-circle </v-icon>Cancel</v-btn

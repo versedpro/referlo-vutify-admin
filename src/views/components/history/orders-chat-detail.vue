@@ -55,7 +55,7 @@ export default defineComponent({
       return "#" + num;
     }
 
-    const prev = () => (emit("click"));
+    const prev = () => emit("click");
 
     return {
       active,
