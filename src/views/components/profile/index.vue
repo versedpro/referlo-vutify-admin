@@ -93,6 +93,13 @@ export default defineComponent({
     AvatarPicker: () => import("./avatar-picker.vue")
   },
 
+  beforeRouteUpdate(to, from, next) {
+    // if route navigating away from referrer window due to back button
+    if (from.hash === "#referrer") {
+      this.onboarding = 0;
+    }
+    next();
+  },
   setup() {
     const onboarding = ref(0);
     const showAvatarPicker = ref(false);
@@ -129,11 +136,20 @@ export default defineComponent({
 
     function prev() {
       onboarding.value = 0;
+      // if user navigated away using drawer routes
+      // and then came back, he will see referrer window due to keep-alive
+      // so only go one step back if route hash has referrer
+      if (this.$route.hash === "#referrer") {
+        this.$router.back();
+      }
     }
 
     function handleConfirmPassword() {
       showPasswordPrompt.value = false;
       onboarding.value = 1;
+
+      // create a history for back button
+      this.$router.push({ hash: "#referrer" });
     }
 
     return {
