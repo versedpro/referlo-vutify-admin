@@ -1,32 +1,57 @@
 <template>
-  <v-card class="tile flat" height="100%">
-    <v-window v-model="onboarding" vertical>
-      <v-window-item>
-        <person-info :person="form" @on-unlock="unlockReferee"></person-info>
-      </v-window-item>
-
-      <v-window-item>
-        <referrers :items="Items" @on-back-button="onBackButton"></referrers>
-      </v-window-item>
-    </v-window>
-
-    <v-card-text>
-      <password-prompt
-        :show="showPasswordPrompt"
-        @on-close="showPasswordPrompt = false"
-        @on-confirm="handleConfirmPassword"
+  <v-card flat tile>
+    <v-card-text class="pt-16 text-center primary">
+      <v-btn
+        fab
+        depressed
+        color="gold"
+        @click="openAvatarPicker"
+        class="transparent pa-0"
+        width="128"
+        height="128"
       >
-      </password-prompt>
+        <v-avatar size="120" class="mx-4" color="primary lighten-1">
+          <img :src="person.avatarPath" alt="Avatar" />
+        </v-avatar>
+      </v-btn>
+      <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
+      <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
+      <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
+      <v-text-field
+        class="profile"
+        v-model="form.contactEmail"
+        label="Email Address"
+      ></v-text-field>
     </v-card-text>
-    <v-card-text>
-      <avatar-picker
-        :show="showAvatarPicker"
-        :currentAvatar="form.avatarPath"
-        @selected="selectAvatar"
-        @on-close="showAvatarPicker = false"
+
+    <v-card-actions class="gold primary--text">
+      <v-chip class="text-h6" color="transparent" text-color="primary">
+        <v-icon left> mdi-currency-usd-circle-outline </v-icon>
+        10000
+      </v-chip>
+
+      <v-spacer></v-spacer>
+
+      <v-chip class="text-h6" color="transparent" text-color="primary">
+        <v-icon left> mdi-currency-usd-circle-outline </v-icon>
+        10000
+      </v-chip>
+    </v-card-actions>
+
+    <v-card-title class="justify-center pt-12"> My Referees </v-card-title>
+    <v-card-text class="py-0 text-center">
+      <v-btn
+        depressed
+        text
+        height="128px"
+        width="128px"
+        color="primary lighten-2"
+        @click="handleUnlock"
       >
-      </avatar-picker>
+        <v-icon size="128px">mdi-lock-outline</v-icon>
+      </v-btn>
     </v-card-text>
+    <v-card-text class="mt-0 py-0 text-center"> Click to unlock </v-card-text>
   </v-card>
 </template>
 
@@ -35,21 +60,10 @@ import { defineComponent, ref, computed } from "@vue/composition-api";
 import { Items } from "./json-data";
 
 export default defineComponent({
-  name: "Profile",
+  name: "PersonInfo",
 
-  components: {
-    PasswordPrompt: () => import("./password-prompt.vue"),
-    PersonInfo: () => import("./person-info.vue"),
-    Referrers: () => import("./referrers.vue"),
-    AvatarPicker: () => import("./avatar-picker.vue")
-  },
-
-  beforeRouteUpdate(to, from, next) {
-    // if route navigating away from referrer window due to back button
-    if (from.hash === "#referrer") {
-      this.onboarding = 0;
-    }
-    next();
+  props: {
+    person: Object
   },
 
   setup() {
@@ -64,8 +78,7 @@ export default defineComponent({
     const form = ref({
       firstName: "John",
       lastName: "Doe",
-      contactEmail: "john@doe.com",
-      avatarPath: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+      contactEmail: "john@doe.com"
     });
 
     function openAvatarPicker() {
@@ -86,14 +99,6 @@ export default defineComponent({
       }
     }
 
-    function unlockReferee() {
-      showPasswordPrompt.value = true;
-    }
-
-    function onBackButton() {
-      onboarding.value = 0;
-    }
-
     function prev() {
       onboarding.value = 0;
       // if user navigated away using drawer routes
@@ -102,6 +107,10 @@ export default defineComponent({
       if (this.$route.hash === "#referrer") {
         this.$router.back();
       }
+    }
+
+    function handleUnlock() {
+      this.$emit("on-unlock");
     }
 
     function handleConfirmPassword() {
@@ -124,8 +133,7 @@ export default defineComponent({
       handleConfirmPassword,
       next,
       prev,
-      unlockReferee,
-      onBackButton
+      handleUnlock
     };
   }
 });

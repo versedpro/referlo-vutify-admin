@@ -9,34 +9,12 @@
         <v-sheet height="100%">
           <splitpanes class="default-theme" style="height: 100%">
             <pane size="30" min-size="30" max-size="30" class="primary">
-              <div>
-                <v-alert
-                  border="bottom top"
-                  colored-border
-                  color="gold"
-                  class="pa-2 rounded-0"
-                  dense
-                >
-                  Industries
-                </v-alert>
-              </div>
               <industry-list
                 :industries="industries"
                 @onSelection="handleSelection"
               ></industry-list>
             </pane>
             <pane size="70">
-              <div>
-                <v-alert
-                  border="bottom top"
-                  colored-border
-                  color="gold"
-                  class="pa-2 rounded-0"
-                  dense
-                >
-                  Products &amp; Suppliers</v-alert
-                >
-              </div>
               <v-item-group active-class="gold">
                 <v-container d-md-flex class="pt-0">
                   <v-col
@@ -48,7 +26,10 @@
                   >
                     <v-col v-for="product in item.products" :key="product" cols="12" class="">
                       <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                        skddkd
+                        <v-btn text block @click="onProductDetails(product.productName)">
+                          {{ product.productName }}
+                        </v-btn>
+
                         <!-- <orders-dialog :product="product"></orders-dialog> -->
                       </v-alert>
                     </v-col>
@@ -63,7 +44,10 @@
 
     <v-window-item>
       <v-card flat>
-        <v-card-text> This is second window </v-card-text>
+        <product-details @on-back-button="onBackButton"></product-details>
+        <!-- <referrers :items="Items" @on-back-button="onBackButton"></referrers> -->
+
+        <!-- <v-card-text> This is second window </v-card-text> -->
       </v-card>
     </v-window-item>
   </v-window>
@@ -77,7 +61,6 @@ import { industries as Industries } from "./json-data";
 
 // *** components
 import { Splitpanes, Pane } from "splitpanes";
-import IndustryList from "./industry-list.vue";
 
 export default defineComponent({
   name: "Product1",
@@ -85,8 +68,8 @@ export default defineComponent({
   components: {
     Splitpanes,
     Pane,
-    IndustryList
-    // OrdersDialog: () => import("./orders-dialog.vue")
+    IndustryList: () => import("./industry-list.vue"),
+    ProductDetails: () => import("./product-details.vue")
   },
 
   setup() {
@@ -109,12 +92,20 @@ export default defineComponent({
 
     const handleSelection = (s) => {
       selected.value = s;
-      window.value = 1;
     };
 
     // function toDetail() {
     //   this.$router.push("/follow-up/chat");
     // }
+    function onProductDetails(id) {
+      // alert(id);
+      console.log(id);
+      window.value = 1;
+    }
+
+    function onBackButton() {
+      window.value = 0;
+    }
 
     const window = ref(0);
 
@@ -128,7 +119,9 @@ export default defineComponent({
       text,
       handleSelection,
       // toDetail,
-      window
+      window,
+      onProductDetails,
+      onBackButton
     };
   }
 });

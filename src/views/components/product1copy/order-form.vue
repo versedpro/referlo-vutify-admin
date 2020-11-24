@@ -79,9 +79,9 @@ import { computed, defineComponent, ref } from "@vue/composition-api";
 import { industries as Industries } from "./json-data";
 
 // *** components
-import { Splitpanes, Pane } from "splitpanes";
-import IndustryList from "./industry-list.vue";
-import ProductSupplierWindow from "./product-supplier-window.vue";
+// import { Splitpanes, Pane } from "splitpanes";
+// import IndustryList from "./industry-list.vue";
+// import ProductSupplierWindow from "./product-supplier-window.vue";
 // import OrdersDialog from "./orders-dialog.vue";
 
 export default defineComponent({
@@ -91,13 +91,13 @@ export default defineComponent({
     product: Object
   },
 
-  components: {
-    Splitpanes,
-    Pane,
-    IndustryList,
-    ProductSupplierWindow
-    // OrdersDialog: () => import("./orders-dialog.vue")
-  },
+  // components: {
+  //   Splitpanes,
+  //   Pane,
+  //   IndustryList,
+  //   ProductSupplierWindow
+  //   // OrdersDialog: () => import("./orders-dialog.vue")
+  // },
 
   setup() {
     const title = "資訊中心";
