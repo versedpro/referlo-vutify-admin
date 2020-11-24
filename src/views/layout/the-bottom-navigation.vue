@@ -30,7 +30,7 @@ const navItems = [
     id: "Products",
     label: "bottomNavigation.products",
     icon: "mdi-tag",
-    route: "/product1"
+    route: "/products"
   },
   {
     id: "History",
