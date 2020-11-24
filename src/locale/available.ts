@@ -1,5 +1,4 @@
 import en from "./en_US";
-// import zh from "./zh_CN";
 import hk from "./zh_HK";
 
 /**
@@ -12,12 +11,6 @@ const locales = [
     display: "繁",
     abbr: "HKG"
   },
-  // {
-  //   title: "簡體",
-  //   locale: "zh",
-  //   display: "簡",
-  //   abbr: "CHN"
-  // },
   {
     title: "English",
     locale: "en",
