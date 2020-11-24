@@ -35,20 +35,20 @@ export default defineComponent({
     show: Boolean,
     value: Boolean
   },
-  setup() {
+  setup(_, { emit }) {
     const password = ref("");
     const formPassword = ref(null);
     const showPassword = ref(false);
 
     function handleCancel() {
-      this.$emit("on-close");
+      emit("on-close");
     }
 
     function handleConfirm() {
       if (password.value == "abcd1234") {
-        this.$emit("on-confirm");
+        emit("on-confirm");
       } else {
-        this.$emit("on-close");
+        emit("on-close");
       }
     }
 
