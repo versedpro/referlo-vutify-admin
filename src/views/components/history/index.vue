@@ -27,11 +27,8 @@ export default defineComponent({
   },
 
   setup(_, { root }) {
-    const itemsPerPage = ref(4);
-
     const onboarding = ref(0);
     const order = ref(null);
-
     const title = computed(() => root.$t("history.title") as string);
 
     const tabItems = computed(() => {
@@ -43,8 +40,6 @@ export default defineComponent({
       ];
     });
 
-    const sheet = ref(false);
-
     const handleSelectionHistory = (s) => {
       onboarding.value += 1;
       order.value = s.selectedItem;
@@ -54,10 +49,8 @@ export default defineComponent({
     };
 
     return {
-      itemsPerPage,
       title,
       tabItems,
-      sheet,
       onboarding,
       order,
       handleSelectionHistory,

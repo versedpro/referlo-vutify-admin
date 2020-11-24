@@ -1,5 +1,10 @@
 <template>
-  <v-timeline align-top dense clipped>
+  <v-timeline
+    align-top
+    dense
+    clipped
+    :style="{ 'padding-bottom': $vuetify.breakpoint.xsOnly ? '154px' : '82px' }"
+  >
     <v-timeline-item class="mr-12" v-for="(item, i) in items" :key="i" :color="item.color" small>
       <template v-slot:opposite>
         <span :class="`headline font-weight-bold ${item.color}--text`" v-text="item.year"></span>
@@ -33,29 +38,31 @@
         </v-card>
       </v-timeline-item>
     </v-slide-x-transition>
-    <v-footer height="75" width="100%" class="px-0">
-      <v-card-text class="pa-0" height="49">
-        <v-timeline-item fill-dot class="primary--text text-center pa-0" color="gold" large>
-          <template v-slot:icon>
-            <span>JL</span>
-          </template>
-          <v-text-field
-            v-model="input"
-            class="mr-12"
-            label="Type a message..."
-            append-outer-icon="mdi-send"
-            flat
-            rounded
-            solo
-            clearable
-            background-color="grey"
-            @click:append-outer="comment"
-            @keydown.enter="comment"
-          >
-          </v-text-field>
-        </v-timeline-item>
-      </v-card-text>
-    </v-footer>
+    <v-timeline-item
+      fill-dot
+      class="primary--text text-center pt-1 pb-0 comment"
+      color="gold"
+      large
+      :class="{ isMobile: $vuetify.breakpoint.xsOnly }"
+    >
+      <template v-slot:icon>
+        <span>JL</span>
+      </template>
+      <v-text-field
+        v-model="input"
+        class="mr-12"
+        label="Type a message..."
+        append-outer-icon="mdi-send"
+        flat
+        rounded
+        solo
+        clearable
+        background-color="grey"
+        @click:append-outer="comment"
+        @keydown.enter="comment"
+      >
+      </v-text-field>
+    </v-timeline-item>
   </v-timeline>
 </template>
 <script lang="ts">
@@ -101,3 +108,17 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+.comment {
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+  background-color: #eaeaea;
+  width: 102.5vh;
+}
+.isMobile {
+  width: 100% !important;
+  padding-bottom: 72px !important;
+}
+</style>

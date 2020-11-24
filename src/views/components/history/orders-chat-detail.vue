@@ -38,9 +38,6 @@ export default defineComponent({
     value: Boolean
   },
   setup(props, { emit }) {
-    const active = ref("");
-
-    const dialog = ref(true as boolean);
     const items = ref(Items);
 
     const title = "訂單詳情";
@@ -52,10 +49,8 @@ export default defineComponent({
     const prev = () => emit("click");
 
     return {
-      active,
       items,
       title,
-      dialog,
       formatOrder,
       prev
     };
