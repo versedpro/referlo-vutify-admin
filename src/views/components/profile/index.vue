@@ -12,7 +12,7 @@
           <v-btn
             fab
             depressed
-            color="gold"
+            color="red"
             @click="openAvatarPicker"
             class="transparent pa-0"
             width="128"
@@ -33,7 +33,11 @@
         </v-card-text>
 
         <v-card-actions class="gold primary--text">
-          <span>Referrers</span>
+             <v-btn depressed class="transparent">
+            <!-- <v-img max-width="60px" src="/img/products/referral.png"></v-img> -->
+            <v-icon>mdi-account-multiple-plus</v-icon>
+            </v-btn>
+          <!-- <span>Referrers</span> -->
           <v-spacer></v-spacer>
 
           <v-btn class="mr-2 text--primary" icon @click="next">
