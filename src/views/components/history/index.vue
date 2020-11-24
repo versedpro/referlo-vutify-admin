@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, ref, computed } from "@vue/composition-api";
+import { defineComponent, ref, computed } from "@vue/composition-api";
 
 export default defineComponent({
   name: "History",
@@ -26,22 +26,20 @@ export default defineComponent({
     OrdersChatDetail: () => import("./orders-chat-detail.vue")
   },
 
-  setup() {
-    const vm = getCurrentInstance();
-
+  setup(_, { root }) {
     const itemsPerPage = ref(4);
 
     const onboarding = ref(0);
     const order = ref(null);
 
-    const title = computed(() => vm.$t("history.title") as string);
+    const title = computed(() => root.$t("history.title") as string);
 
     const tabItems = computed(() => {
       return [
-        vm.$t("history.wip"),
-        vm.$t("history.referred"),
-        vm.$t("history.completed"),
-        vm.$t("history.reject")
+        root.$t("history.wip"),
+        root.$t("history.referred"),
+        root.$t("history.completed"),
+        root.$t("history.reject")
       ];
     });
 
