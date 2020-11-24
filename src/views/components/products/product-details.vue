@@ -7,25 +7,25 @@
       <v-toolbar-title>Product Detail</v-toolbar-title>
     </v-toolbar>
     <v-img :src="item.src" :aspect-ratio="1.91 / 1" position="top center"></v-img>
-        <v-card-text class="pa-0 mb-6 px-4 primary--text">
-          <v-list two-line class="pa-0">
-            <v-list-item class="pa-0">
-              <v-list-item-content class="pa-0">
-                <v-list-item-title v-text="item.productName"></v-list-item-title>
-                <v-list-item-subtitle v-text="item.supplierName"></v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-spacer></v-spacer>
-                <v-list-item-action-text v-text="item.points"></v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
-            <v-divider class="mb-4 mt-2"></v-divider>
-          </v-list>
-          <p v-html="item.productDescription"></p>
-        </v-card-text>
-    <v-sheet class="mx-4 mt-6">
-      <v-expansion-panels focusable class="pb-4">
-        <v-expansion-panel>
+    <v-card-text class="pa-0 mb-6 px-4 primary--text">
+      <v-list two-line class="pa-0">
+        <v-list-item class="pa-0">
+          <v-list-item-content class="pa-0">
+            <v-list-item-title v-text="item.productName"></v-list-item-title>
+            <v-list-item-subtitle v-text="item.supplierName"></v-list-item-subtitle>
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-spacer></v-spacer>
+            <v-list-item-action-text v-text="item.points"></v-list-item-action-text>
+          </v-list-item-action>
+        </v-list-item>
+        <v-divider class="mb-4 mt-2"></v-divider>
+      </v-list>
+      <p v-html="item.productDescription"></p>
+    </v-card-text>
+    <v-card class="mx-4 mt-6 mb-16" tile flat>
+      <v-expansion-panels v-model="panel" :readonly="readonly">
+        <v-expansion-panel focusable class="mb-4">
           <v-alert
             border="bottom"
             color="gold"
@@ -41,31 +41,46 @@
             </v-expansion-panel-header>
           </v-alert>
           <v-expansion-panel-content>
-            <v-form class="mx-12 pb-8" ref="form" v-model="valid" lazy-validation>
-              <v-text-field v-model="name" :rules="nameRules" :label="$t('referal.clientName')" required></v-text-field>
-              <v-text-field v-model="email" :rules="emailRules" :label="$t('referal.email')" required></v-text-field>
-              <v-text-field v-model="phone" :rules="phoneRules" :label="$t('referal.phone')" required></v-text-field>
-
-              <v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit"
-                    ><v-icon left> mdi-check-circle </v-icon>Submit</v-btn
-                  >
-                  <v-btn color="primary" class="mr-4" @click="reset"
-                    ><v-icon left> mdi-reload</v-icon>Reset
-                  </v-btn>
+            <v-form class="mx-4 mx-sm-12 pb-8" ref="form" v-model="valid" lazy-validation>
+              <v-text-field
+                v-model="name"
+                :rules="nameRules"
+                :label="$t('referal.clientName')"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                :label="$t('referal.email')"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="phone"
+                :rules="phoneRules"
+                :label="$t('referal.phone')"
+                required
+              ></v-text-field>
             </v-form>
+            <v-card-action
+              ><v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit">
+                <v-icon left> mdi-check-circle </v-icon>Submit</v-btn
+              >
+              <v-btn color="primary" class="mr-4" @click="reset">
+                <v-icon left> mdi-reload</v-icon>Reset
+              </v-btn>
+            </v-card-action>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
-    </v-sheet>
+    </v-card>
   </v-card>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
   name: "ProductDetails",
-
   props: {
     item: {
       type: Object,
@@ -74,12 +89,16 @@ export default defineComponent({
   },
 
   setup() {
+    const panel = ref(0);
+    const readonly = ref(false);
     function handleBackButton() {
       this.$emit("on-back-button");
     }
 
     return {
-      handleBackButton
+      handleBackButton,
+      panel,
+      readonly
     };
   }
 });

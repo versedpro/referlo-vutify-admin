@@ -97,7 +97,6 @@ export default defineComponent({
 
     function onProductDetails(item) {
       product.value= item;
-      console.log(item);
       window.value = 1;
     }
 
