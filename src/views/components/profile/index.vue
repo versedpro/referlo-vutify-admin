@@ -18,20 +18,11 @@
       >
       </password-prompt>
     </v-card-text>
-    <v-card-text>
-      <avatar-picker
-        :show="showAvatarPicker"
-        :currentAvatar="form.avatarPath"
-        @selected="selectAvatar"
-        @on-close="showAvatarPicker = false"
-      >
-      </avatar-picker>
-    </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "@vue/composition-api";
+import { defineComponent, ref } from "@vue/composition-api";
 import { Items } from "./json-data";
 
 export default defineComponent({
@@ -40,8 +31,7 @@ export default defineComponent({
   components: {
     PasswordPrompt: () => import("./password-prompt.vue"),
     PersonInfo: () => import("./person-info.vue"),
-    Referrers: () => import("./referrers.vue"),
-    AvatarPicker: () => import("./avatar-picker.vue")
+    Referrers: () => import("./referrers.vue")
   },
 
   beforeRouteUpdate(to, from, next) {
@@ -54,12 +44,7 @@ export default defineComponent({
 
   setup() {
     const onboarding = ref(0);
-    const showAvatarPicker = ref(false);
     const showPasswordPrompt = ref(false);
-
-    const lockIcon = computed(() => {
-      return onboarding.value != 0 ? "mdi-lock-open-outline" : "mdi-lock";
-    });
 
     const form = ref({
       firstName: "John",
@@ -67,16 +52,6 @@ export default defineComponent({
       contactEmail: "john@doe.com",
       avatarPath: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
     });
-
-    function openAvatarPicker() {
-      showAvatarPicker.value = true;
-      console.log("hello");
-    }
-
-    function selectAvatar(avatarPath) {
-      console.log(avatarPath);
-      this.form.avatarPath = avatarPath;
-    }
 
     function next() {
       if (onboarding.value == 1) {
@@ -92,10 +67,7 @@ export default defineComponent({
 
     function onBackButton() {
       onboarding.value = 0;
-    }
 
-    function prev() {
-      onboarding.value = 0;
       // if user navigated away using drawer routes
       // and then came back, he will see referrer window due to keep-alive
       // so only go one step back if route hash has referrer
@@ -114,16 +86,11 @@ export default defineComponent({
 
     return {
       onboarding,
-      showAvatarPicker,
       Items,
-      lockIcon,
       form,
-      openAvatarPicker,
-      selectAvatar,
       showPasswordPrompt,
       handleConfirmPassword,
       next,
-      prev,
       unlockReferee,
       onBackButton
     };

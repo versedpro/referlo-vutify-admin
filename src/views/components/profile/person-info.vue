@@ -1,19 +1,7 @@
 <template>
   <v-card flat tile>
     <v-card-text class="pt-16 text-center primary">
-      <v-btn
-        fab
-        depressed
-        color="gold"
-        @click="openAvatarPicker"
-        class="transparent pa-0"
-        width="128"
-        height="128"
-      >
-        <v-avatar size="120" class="mx-4" color="primary lighten-1">
-          <img :src="person.avatarPath" alt="Avatar" />
-        </v-avatar>
-      </v-btn>
+      <avatar :path="person.avatarPath" @on-change="avatarChanged"></avatar>
       <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
       <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
       <v-text-field class="profile" v-model="form.lastName" label="Last Name"></v-text-field>
@@ -56,8 +44,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "@vue/composition-api";
-import { Items } from "./json-data";
+import { defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
   name: "PersonInfo",
@@ -65,75 +52,29 @@ export default defineComponent({
   props: {
     person: Object
   },
-
+  components: {
+    Avatar: () => import("./avatar.vue")
+  },
   setup() {
-    const onboarding = ref(0);
-    const showAvatarPicker = ref(false);
-    const showPasswordPrompt = ref(false);
-
-    const lockIcon = computed(() => {
-      return onboarding.value != 0 ? "mdi-lock-open-outline" : "mdi-lock";
-    });
-
     const form = ref({
       firstName: "John",
       lastName: "Doe",
-      contactEmail: "john@doe.com"
+      contactEmail: "john@doe.com",
+      avatar: ""
     });
 
-    function openAvatarPicker() {
-      showAvatarPicker.value = true;
-      console.log("hello");
-    }
-
-    function selectAvatar(avatarPath) {
-      console.log(avatarPath);
-      this.form.avatarPath = avatarPath;
-    }
-
-    function next() {
-      if (onboarding.value == 1) {
-        onboarding.value = 0;
-      } else {
-        showPasswordPrompt.value = true;
-      }
-    }
-
-    function prev() {
-      onboarding.value = 0;
-      // if user navigated away using drawer routes
-      // and then came back, he will see referrer window due to keep-alive
-      // so only go one step back if route hash has referrer
-      if (this.$route.hash === "#referrer") {
-        this.$router.back();
-      }
+    function avatarChanged(file) {
+      form.value.avatar = file;
     }
 
     function handleUnlock() {
       this.$emit("on-unlock");
     }
 
-    function handleConfirmPassword() {
-      showPasswordPrompt.value = false;
-      onboarding.value = 1;
-
-      // create a history for back button
-      this.$router.push({ hash: "#referrer" });
-    }
-
     return {
-      onboarding,
-      showAvatarPicker,
-      Items,
-      lockIcon,
       form,
-      openAvatarPicker,
-      selectAvatar,
-      showPasswordPrompt,
-      handleConfirmPassword,
-      next,
-      prev,
-      handleUnlock
+      handleUnlock,
+      avatarChanged
     };
   }
 });
