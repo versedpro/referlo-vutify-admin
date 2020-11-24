@@ -1,30 +1,24 @@
 <template>
-  <v-window-item>
-    <v-card class="mx-auto pa-0" max-width="800">
-      <v-toolbar dark color="primary">
-        <v-btn icon dark @click="prev">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-        <v-toolbar-title class="primary justify-center display-1 text-h5 white--text">
-          {{ title }}
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items>
-          <v-btn dark text @click="prev">Cancel</v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-      <v-tabs grow dark color="gold">
-        <v-tab> Product Detail </v-tab>
-        <v-tab> Orders Chat </v-tab>
-        <v-tab-item>
-          <orders-product-detail :order="order"></orders-product-detail>
-        </v-tab-item>
-        <v-tab-item>
-          <orders-chat :items="items"></orders-chat>
-        </v-tab-item>
-      </v-tabs>
-    </v-card>
-  </v-window-item>
+  <v-card tile class="mx-auto" height="100%">
+    <v-toolbar dark color="primary">
+      <v-btn icon @click="prev">
+        <v-icon large>mdi-chevron-left</v-icon>
+      </v-btn>
+      <v-toolbar-title class="primary justify-center display-1 text-h5 white--text">
+        {{ title }}
+      </v-toolbar-title>
+    </v-toolbar>
+    <v-tabs grow dark color="gold">
+      <v-tab> Product Detail </v-tab>
+      <v-tab> Orders Chat </v-tab>
+      <v-tab-item>
+        <orders-product-detail :order="order"></orders-product-detail>
+      </v-tab-item>
+      <v-tab-item>
+        <orders-chat :items="items"></orders-chat>
+      </v-tab-item>
+    </v-tabs>
+  </v-card>
 </template>
 
 <script lang="ts">
