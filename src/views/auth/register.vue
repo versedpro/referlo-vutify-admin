@@ -58,6 +58,24 @@
                 required
                 autocomplete="new-password"
               />
+              <v-select
+                v-model="model.select"
+                :items="model.sex"
+                :error-messages="selectErrors"
+                label="Sex"
+                required
+                @change="$v.select.$touch()"
+                @blur="$v.select.$touch()"
+              ></v-select>
+              <v-select
+                v-model="model.select"
+                :items="model.age"
+                :error-messages="selectErrors"
+                label="Age Group"
+                required
+                @change="$v.select.$touch()"
+                @blur="$v.select.$touch()"
+              ></v-select>
             </v-form>
           </v-card-text>
           <v-card-actions>
@@ -96,8 +114,20 @@ export default defineComponent({
       address: "Address",
       confirm: "password",
       phone: "12345678",
-      key: ""
+      key: "",
+      select: null,
+      sex: [
+        'Male',
+        'Female',
+        'Not Provided',
+      ],
+      age: [
+        'Below 10',
+        '10-20',
+        '20-30',
+      ],
     });
+      
 
     const loading = ref(false);
 
