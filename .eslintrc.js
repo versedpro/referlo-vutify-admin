@@ -14,13 +14,14 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "typescript/no-var-requires": "off",
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
   },
   overrides: [
     {
-      files: ["**/__tests__/*.{j,t}s?(x)", "**/tests/unit/**/*.spec.{j,t}s?(x)"],
+      files: ["**/__tests__/*.{j,t}s?(x)", "**/tests/unit/**/*.spec.{j,t}s?(x)", "*.ts"],
       env: {
         mocha: true
       }

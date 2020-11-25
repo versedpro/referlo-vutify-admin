@@ -64,13 +64,6 @@ export default {
     points: "Points",
     supplierName: "Supplier"
   },
-  bottomNavigation: {
-    home: "Home",
-    products: "Products",
-    history: "History",
-    points: "Points",
-    account: "Account"
-  },
   history: {
     title: "My Referlo",
     wip: "WIP",

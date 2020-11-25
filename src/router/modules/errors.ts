@@ -1,4 +1,4 @@
-import Layout from "@/views/layout/TheLayout.vue";
+import Layout from "@/views/layout/the-layout.vue";
 import ErrorPage from "@/views/components/ErrorPage.vue";
 
 const errorsRouter = {

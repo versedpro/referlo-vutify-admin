@@ -48,7 +48,7 @@
     </v-window-item>
     <v-window-item>
       <v-card flat>
-        <product-details :item = "product" @on-back-button="onBackButton"></product-details>
+        <product-details :item="product" @on-back-button="onBackButton"></product-details>
       </v-card>
     </v-window-item>
   </v-window>
@@ -96,7 +96,7 @@ export default defineComponent({
     };
 
     function onProductDetails(item) {
-      product.value= item;
+      product.value = item;
       window.value = 1;
     }
 

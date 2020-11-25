@@ -1,4 +1,3 @@
-/* eslint-disable */
 const authRouter = [
   {
     path: "/login",

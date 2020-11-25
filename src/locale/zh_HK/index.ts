@@ -49,13 +49,6 @@ export default {
     productName: "產品",
     remark: "備註"
   },
-  bottomNavigation: {
-    home: "我係<br/>Refer佬",
-    products: "我有嘢<br/>Refer",
-    history: "Refer佬<br/>記錄",
-    points: "Refer佬<br/>金幣",
-    account: "帳戶"
-  },
   history: {
     title: "Refer佬記錄",
     wip: "跟進中",
