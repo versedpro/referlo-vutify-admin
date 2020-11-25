@@ -2,41 +2,56 @@
   <canvas style="width: 300px; height: auto; margin: auto" id="doughnut" />
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import Chart from 'chart.js'
+import { defineComponent, onMounted, ref } from '@vue/composition-api';
+import Chart from 'chart.js';
 
-@Component
-export default class OptionChart extends Vue {
-  @Prop({ default: [] }) readonly labels!: Array<string>
-  @Prop({ default: [] }) readonly colors!: Array<string>
-  @Prop({ default: [] }) readonly data!: Array<number>
-  @Prop({
-    default: () => {
-      return Chart.defaults.doughnut
+export default defineComponent({
+  name: "OptionChart",
+
+  props: {
+    labels: {
+      type: Array,
+      default: () => ([])
+    },
+    colors: {
+      type: Array,
+      default: () => ([])
+    },
+    data: {
+      type: Array,
+      default: () => ([])
+    },
+    options: {
+      type: Object,
+      default: () => ({})
     }
-  })
-  readonly options: any | undefined
+  },
 
-  mounted() {
-    this.createChart({
-      datasets: [
-        {
-          data: this.data,
-          backgroundColor: this.colors
-        }
-      ],
-      labels: this.labels
+  setup(props) {
+    onMounted(() => {
+      createChart({
+        datasets: [
+          {
+            data: props.data,
+            backgroundColor: props.colors
+          }
+        ],
+        labels: props.labels
+      })
     })
-  }
 
-  createChart(chartData: any) {
-    const canvas = document.getElementById('doughnut') as HTMLCanvasElement
-    const options = {
-      type: 'doughnut',
-      data: chartData,
-      options: this.options
+    function createChart(chartData) {
+      const canvas = document.getElementById('doughnut') as HTMLCanvasElement
+      const options = {
+        type: 'doughnut',
+        data: chartData,
+        options: props.options
+      }
+      new Chart(canvas, options)
     }
-    new Chart(canvas, options)
+    return {
+      createChart
+    };
   }
-}
+});
 </script>
