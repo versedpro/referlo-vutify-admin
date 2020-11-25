@@ -9,8 +9,9 @@ export default {
   product4: "Product4",
   profile: "Account",
   about: "About Us",
-  contact: "Contact Usd",
-  latestNews: "LatestNews",
+  contact: "Contact Us",
+  latestNews: "Latest News",
+  HowtoUse: "How To Use",
   permissions: "Permission",
   bottom: {
     home: "Home",
