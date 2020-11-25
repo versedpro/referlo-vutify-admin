@@ -1,10 +1,14 @@
 <template>
-  <div>
+<v-container
+    class="container--fluid fill-height home-background"
+  >
+</v-container>
+  <!-- <div>
     <v-app-bar class="white">
       <v-toolbar-title>{{ info.title }}</v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <section>
+      <section home-background>
         <v-parallax src="img/land/hero.jpeg" height="600">
           <v-row align="center" justify="center" class="white--text flex-column">
             <img src="img/land/vva.png" alt="VVA" height="200" />
@@ -161,7 +165,7 @@
         </v-row>
       </v-footer>
     </v-main>
-  </div>
+  </div> -->
 </template>
 
 <script lang="ts">
@@ -184,3 +188,16 @@ export default defineComponent({
   }
 });
 </script>
+<style scoped>
+/* html {
+  overflow-y: auto;
+} */
+
+.home-background {
+  background: url("~@/assets/img/amsl_background.png");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+}
+</style>

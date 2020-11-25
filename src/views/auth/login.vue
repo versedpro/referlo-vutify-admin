@@ -88,8 +88,7 @@ export default defineComponent({
     }
 
     function register() {
-      console.log("register");
-      // kk
+     this.$router.push(this.$route.query.redirect || "/register");
     }
 
     return {
