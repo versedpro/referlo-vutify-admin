@@ -2,8 +2,8 @@
   <canvas style="width: 300px; height: auto; margin: auto" id="doughnut" />
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@vue/composition-api';
-import Chart from 'chart.js';
+import { defineComponent, onMounted } from "@vue/composition-api";
+import Chart from "chart.js";
 
 export default defineComponent({
   name: "OptionChart",
@@ -11,15 +11,15 @@ export default defineComponent({
   props: {
     labels: {
       type: Array,
-      default: () => ([])
+      default: () => []
     },
     colors: {
       type: Array,
-      default: () => ([])
+      default: () => []
     },
     data: {
       type: Array,
-      default: () => ([])
+      default: () => []
     },
     options: {
       type: Object,
@@ -37,17 +37,17 @@ export default defineComponent({
           }
         ],
         labels: props.labels
-      })
-    })
+      });
+    });
 
     function createChart(chartData) {
-      const canvas = document.getElementById('doughnut') as HTMLCanvasElement
+      const canvas = document.getElementById("doughnut") as HTMLCanvasElement;
       const options = {
-        type: 'doughnut',
+        type: "doughnut",
         data: chartData,
         options: props.options
-      }
-      new Chart(canvas, options)
+      };
+      new Chart(canvas, options);
     }
     return {
       createChart

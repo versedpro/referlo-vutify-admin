@@ -70,8 +70,8 @@
 </template>
 
 <script lang="ts">
-import { ads, person, getPieChartOption } from "./json-data";
-import { ReferloChartInfo } from "@/types"; // Our interface
+import { ads, person } from "./json-data";
+// import { ReferloChartInfo } from "@/types"; // Our interface
 
 import { defineComponent, computed, ref } from "@vue/composition-api";
 
@@ -112,13 +112,9 @@ export default defineComponent({
       showLinkDialog.value = false;
     };
 
-    const chartData = [
-      person.score[0],
-      person.score[1],
-      person.score[2],
-    ];
+    const chartData = [person.score[0], person.score[1], person.score[2]];
 
-    const chartColors = ['grey', '#001e2f', '#dcb456'];
+    const chartColors = ["grey", "#001e2f", "#dcb456"];
 
     const referPeople = () => {
       showLinkDialog.value = true;
