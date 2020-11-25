@@ -1,69 +1,42 @@
 <template>
-  <div :class="className" :style="{ height: height, width: width }" />
+  <canvas style="width: 300px; height: auto; margin: auto" id="doughnut" />
 </template>
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import Chart from 'chart.js'
 
-<script>
-import echarts from "echarts";
-import { debounce } from "@/utils";
-
-require("echarts/theme/macarons"); // echarts theme
-
-export default {
-  name: "OptionChart",
-  props: {
-    className: {
-      type: String,
-      default: "chart"
-    },
-    width: {
-      type: String,
-      default: "100%"
-    },
-    height: {
-      type: String,
-      default: "300px"
-    },
-    chartData: {
-      type: Object,
-      required: true
+@Component
+export default class OptionChart extends Vue {
+  @Prop({ default: [] }) readonly labels!: Array<string>
+  @Prop({ default: [] }) readonly colors!: Array<string>
+  @Prop({ default: [] }) readonly data!: Array<number>
+  @Prop({
+    default: () => {
+      return Chart.defaults.doughnut
     }
-  },
-  data: () => ({
-    chart: null
-  }),
-  watch: {
-    chartData: {
-      deep: true,
-      handler(val) {
-        this.setOptions(val);
-      }
-    }
-  },
+  })
+  readonly options: any | undefined
+
   mounted() {
-    this.initChart();
-    this.resizeHandler = debounce(() => {
-      if (this.chart) {
-        this.chart.resize();
-      }
-    }, 100);
-    window.addEventListener("resize", this.resizeHandler);
-  },
-  beforeDestroy() {
-    if (!this.chart) {
-      return;
-    }
-    window.removeEventListener("resize", this.resizeHandler);
-    this.chart.dispose();
-    this.chart = null;
-  },
-  methods: {
-    setOptions(option = {}) {
-      this.chart.setOption(option);
-    },
-    initChart() {
-      this.chart = echarts.init(this.$el, "macarons");
-      this.setOptions(this.chartData);
-    }
+    this.createChart({
+      datasets: [
+        {
+          data: this.data,
+          backgroundColor: this.colors
+        }
+      ],
+      labels: this.labels
+    })
   }
-};
+
+  createChart(chartData: any) {
+    const canvas = document.getElementById('doughnut') as HTMLCanvasElement
+    const options = {
+      type: 'doughnut',
+      data: chartData,
+      options: this.options
+    }
+    new Chart(canvas, options)
+  }
+}
 </script>

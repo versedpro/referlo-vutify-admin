@@ -41,5 +41,7 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "experimentalDecorators": true,
+  "allowJs": true
 }

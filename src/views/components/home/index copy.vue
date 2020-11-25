@@ -39,11 +39,17 @@
       <app-widget title="Pie Chart">
         <option-chart
           slot="widget-content"
-          :labels="legend"
-          :colors="chartColors"
-          :data="chartData"
+          height="180px"
+          width="100%"
+          :chart-data="getChartOption()"
         />
       </app-widget>
+    </v-card-text>
+
+    <v-card-text height="36px" class="text-center">
+      <v-btn x-small class="px-4" color="gold"> {{ legend[0] }} </v-btn>
+      <v-btn x-small class="px-4 mx-6" color="primary"> {{ legend[1] }} </v-btn>
+      <v-btn x-small class="px-4" color="grey"> {{ legend[2] }} </v-btn>
     </v-card-text>
 
     <!-- The footer -->
@@ -112,13 +118,22 @@ export default defineComponent({
       showLinkDialog.value = false;
     };
 
-    const chartData = [
-      person.score[0],
-      person.score[1],
-      person.score[2],
-    ];
+    const getChartOption = () => {
+      const chart: ReferloChartInfo = {
+        data: {
+          referred: person.score[0],
+          wip: person.score[1],
+          completed: person.score[2]
+        },
 
-    const chartColors = ['grey', '#001e2f', '#dcb456'];
+        title: {
+          text: "1333",
+          subtext: root.$tc("home.referalTotal")
+        }
+      };
+
+      return getPieChartOption(chart);
+    };
 
     const referPeople = () => {
       showLinkDialog.value = true;
@@ -137,8 +152,7 @@ export default defineComponent({
       referPeopleUrl,
       legend,
       closeDialog,
-      chartColors,
-      chartData,
+      getChartOption,
       referPeople,
       referProduct
     };
