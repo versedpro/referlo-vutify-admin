@@ -1,57 +1,50 @@
 <template>
-  <v-window v-model="window" class="elevation-1" vertical>
-    <v-window-item>
-      <v-card tile class="mx-auto" height="100%" color="transparent">
-        <v-card-title class="text-center justify-center py-6">
-          <h1 class="font-weight-bold display-3 gold--text">Products</h1>
-        </v-card-title>
+  <v-card>
+    <v-card-title class="text-center justify-center py-6">
+      <h1 class="font-weight-bold display-3 gold--text">Products</h1>
+    </v-card-title>
 
-        <v-sheet height="100%">
-          <splitpanes class="default-theme" style="height: 100%">
-            <pane size="30" min-size="30" max-size="30" class="primary">
-              <industry-list
-                :industries="industries"
-                @onSelection="handleSelection"
-              ></industry-list>
-            </pane>
-            <pane size="70">
-              <v-item-group active-class="gold">
-                <v-container d-md-flex class="pt-0">
-                  <v-col
-                    cols="12"
-                    md="6"
-                    class="pt-0"
-                    v-for="(item, i) in productsIndustries"
-                    :key="i"
-                  >
-                    <v-col v-for="product in item.products" :key="product" cols="12" class="">
-                      <v-alert class="pa-2 d-flex justify-center gold ma-0" border="left">
-                        <v-list-item two-line @click="onProductDetails(product)">
-                          <v-list-item-content>
-                            <v-list-item-title :product="product" class="text-center">
-                              {{ product.productName }}
-                            </v-list-item-title>
-                            <v-list-item-subtitle class="text-center">
-                              {{ product.supplierName }}
-                            </v-list-item-subtitle>
-                          </v-list-item-content>
-                        </v-list-item>
-                      </v-alert>
+    <products-slider :products="hotProducts"></products-slider>
+
+    <v-window v-model="window" class="elevation-1" vertical>
+      <v-window-item>
+        <v-card tile class="mx-auto" height="100%" color="transparent">
+          <v-sheet height="100%">
+            <splitpanes class="default-theme" style="height: 100%">
+              <pane size="30" min-size="30" max-size="30" class="primary">
+                <industry-list
+                  :industries="industries"
+                  @onSelection="handleSelection"
+                ></industry-list>
+              </pane>
+              <pane size="70">
+                <v-item-group active-class="gold">
+                  <v-container d-md-flex class="pt-0">
+                    <v-col
+                      cols="12"
+                      md="6"
+                      class="pt-0"
+                      v-for="(item, i) in productsIndustries"
+                      :key="i"
+                    >
+                      <v-col v-for="product in item.products" :key="product.productName" cols="12" class="">
+                        <product-card :product="product" @click="onProductDetails(product)"></product-card>
+                      </v-col>
                     </v-col>
-                  </v-col>
-                </v-container>
-              </v-item-group>
-            </pane>
-          </splitpanes>
-        </v-sheet>
-      </v-card>
-    </v-window-item>
-    <v-window-item>
-      <v-card flat>
-        <product-details :item="product" @on-back-button="onBackButton"></product-details>
-      </v-card>
-    </v-window-item>
-  </v-window>
+                  </v-container>
+                </v-item-group>
+              </pane>
+            </splitpanes>
+          </v-sheet>
+        </v-card>
+      </v-window-item>
+      <v-window-item>
+        <v-card flat>
+          <product-details :item="product" @on-back-button="onBackButton"></product-details>
+        </v-card>
+      </v-window-item>
+    </v-window>
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -64,13 +57,15 @@ import { industries as Industries } from "./json-data";
 import { Splitpanes, Pane } from "splitpanes";
 
 export default defineComponent({
-  name: "Product1",
+  name: "Product",
 
   components: {
     Splitpanes,
     Pane,
     IndustryList: () => import("./industry-list.vue"),
-    ProductDetails: () => import("./product-details.vue")
+    ProductDetails: () => import("./product-details.vue"),
+    ProductsSlider: () => import("./products-slider.vue"),
+    ProductCard: () => import("./product-card.vue")
   },
 
   setup() {
@@ -84,6 +79,12 @@ export default defineComponent({
       return selected.value.length > 0
         ? Industries.filter((item) => selected.value.some((k) => k === item.industryId))
         : [];
+    });
+
+    const hotProducts = computed(() => {
+      return industries.value.reduce((products, industry) => {
+        return products.concat(industry.products || []);
+      }, []);
     });
 
     const tab = ref(0);
@@ -120,7 +121,8 @@ export default defineComponent({
       product,
       window,
       onProductDetails,
-      onBackButton
+      onBackButton,
+      hotProducts
     };
   }
 });
