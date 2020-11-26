@@ -29,7 +29,8 @@ export default defineComponent({
         datasets: [
           {
             data: props.data,
-            backgroundColor: props.colors
+            backgroundColor: props.colors,
+            borderWidth: 0
           }
         ],
         labels: props.labels
