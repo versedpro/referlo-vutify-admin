@@ -1,8 +1,8 @@
 <template>
-  <v-card>
+  <v-card tile flat>
     <v-window v-model="window">
       <v-window-item>
-        <v-card tile class="mx-auto" color="backgroundColor" height="100%">
+        <v-card tile flat class="mx-auto" color="backgroundColor" height="100%">
           <v-system-bar absolute light color="rgba(0, 30, 47, 0.1)">
             <v-icon class="gold--text lighten-4">fas fa-ad</v-icon>
           </v-system-bar>
