@@ -18,7 +18,7 @@ const bottomRouter = [
   {
     name: "History",
     path: "/history",
-    title: "route.bottom.products",
+    title: "route.bottom.history",
     meta: {
       icon: "mdi-database"
     }
@@ -26,7 +26,7 @@ const bottomRouter = [
   {
     name: "Profile",
     path: "/profile",
-    title: "route.bottom.products",
+    title: "route.bottom.account",
     meta: {
       icon: "mdi-account"
     }
