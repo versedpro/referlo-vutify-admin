@@ -36,7 +36,7 @@ export default defineComponent({
 
   beforeRouteUpdate(to, from, next) {
     // if route navigating away from referrer window due to back button
-    if (from.hash === "#referrer") {
+    if (from.query._referrer === "referrer") {
       this.onboarding = 0;
     }
     next();
@@ -70,8 +70,9 @@ export default defineComponent({
 
       // if user navigated away using drawer routes
       // and then came back, he will see referrer window due to keep-alive
-      // so only go one step back if route hash has referrer
-      if (this.$route.hash === "#referrer") {
+      // so only go one step back if route query has referrer
+      // can't use hash because scroll-to-top-fab removes hash
+      if (this.$route.query._referrer === "referrer") {
         this.$router.back();
       }
     }
@@ -81,7 +82,7 @@ export default defineComponent({
       onboarding.value = 1;
 
       // create a history for back button
-      this.$router.push({ hash: "#referrer" });
+      this.$router.push({ query: { _referrer: "referrer" } });
     }
 
     return {

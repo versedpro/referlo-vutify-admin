@@ -1,71 +1,88 @@
 <template>
-  <v-card tile class="mx-auto" color="backgroundColor" height="100%">
-    <v-system-bar absolute light color="rgba(0, 30, 47, 0.1)">
-      <v-icon class="gold--text lighten-4">fas fa-ad</v-icon>
-    </v-system-bar>
+  <v-card>
+    <v-window v-model="window">
+      <v-window-item>
+        <v-card tile class="mx-auto" color="backgroundColor" height="100%">
+          <v-system-bar absolute light color="rgba(0, 30, 47, 0.1)">
+            <v-icon class="gold--text lighten-4">fas fa-ad</v-icon>
+          </v-system-bar>
 
-    <!-- The carousel -->
-    <v-carousel height="auto" hide-delimiter-background show-arrows-on-hover cycle>
-      <v-carousel-item v-for="(item, i) in ads" :key="i">
-        <v-img :src="item.src" :aspect-ratio="1.91 / 1"></v-img>
-      </v-carousel-item>
-    </v-carousel>
+          <!-- The carousel -->
+          <v-carousel height="auto" hide-delimiter-background show-arrows-on-hover cycle>
+            <v-carousel-item v-for="(item, i) in ads" :key="i">
+              <v-img
+                @click="onProductDetails"
+                class="cursor-pointer"
+                :src="item.src"
+                :aspect-ratio="1.91 / 1"
+              ></v-img>
+            </v-carousel-item>
+          </v-carousel>
 
-    <v-list subheader class="primary">
-      <v-list-item>
-        <v-list-item-avatar>
-          <v-img :alt="`${person.title} avatar`" :src="person.avatar"></v-img>
-        </v-list-item-avatar>
+          <v-list subheader class="primary">
+            <v-list-item>
+              <v-list-item-avatar>
+                <v-img :alt="`${person.title} avatar`" :src="person.avatar"></v-img>
+              </v-list-item-avatar>
 
-        <v-list-item-content>
-          <v-list-item-title class="white--text">{{ person.name }}</v-list-item-title>
-          <v-list-item-subtitle class="gold--text">
-            <span>{{ $t("home.memberSince") }}</span>
-            <span class="ml-1">{{ person.memberSince }}</span>
-          </v-list-item-subtitle>
-        </v-list-item-content>
+              <v-list-item-content>
+                <v-list-item-title class="white--text">{{ person.name }}</v-list-item-title>
+                <v-list-item-subtitle class="gold--text">
+                  <span>{{ $t("home.memberSince") }}</span>
+                  <span class="ml-1">{{ person.memberSince }}</span>
+                </v-list-item-subtitle>
+              </v-list-item-content>
 
-        <v-list-item-action>
-          <v-chip class="text-h6" color="transparent" text-color="gold">
-            <v-icon left> mdi-currency-usd-circle-outline </v-icon>
-            {{ person.points }}
-          </v-chip>
-        </v-list-item-action>
-      </v-list-item>
-    </v-list>
+              <v-list-item-action>
+                <v-chip class="text-h6" color="transparent" text-color="gold">
+                  <v-icon left> mdi-currency-usd-circle-outline</v-icon>
+                  {{ person.points }}
+                </v-chip>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
 
-    <!-- The chart -->
-    <v-card-text class="pa-0 mx-0 pb-15">
-      <app-widget title="Pie Chart">
-        <option-chart
-          slot="widget-content"
-          :labels="legend"
-          :colors="chartColors"
-          :data="chartData"
-        />
-      </app-widget>
-    </v-card-text>
+          <!-- The chart -->
+          <v-card-text class="pa-0 mx-0 pb-15">
+            <app-widget title="Pie Chart">
+              <option-chart
+                slot="widget-content"
+                :labels="legend"
+                :colors="chartColors"
+                :data="chartData"
+              />
+            </app-widget>
+          </v-card-text>
 
-    <!-- The footer -->
-    <v-footer v-if="$vuetify.breakpoint.smAndDown" color="gold lighten-1" app>
-      <v-card-text class="text-center py-2">
-        <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
-        <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
-      </v-card-text>
-    </v-footer>
-    <v-footer v-else color="gold lighten-1" absolute>
-      <v-card-text class="text-center py-2">
-        <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
-        <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
-      </v-card-text>
-    </v-footer>
+          <!-- The footer -->
+          <v-footer v-if="$vuetify.breakpoint.smAndDown" color="gold lighten-1" app>
+            <v-card-text class="text-center py-2">
+              <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
+              <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
+            </v-card-text>
+          </v-footer>
+          <v-footer v-else color="gold lighten-1" absolute>
+            <v-card-text class="text-center py-2">
+              <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
+              <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
+            </v-card-text>
+          </v-footer>
 
-    <!-- The dialog -->
-    <referral-link-dialog
-      :link="referPeopleUrl"
-      :show="showLinkDialog"
-      @close="closeDialog"
-    ></referral-link-dialog>
+          <!-- The dialog -->
+          <referral-link-dialog
+            :link="referPeopleUrl"
+            :show="showLinkDialog"
+            @close="closeDialog"
+          ></referral-link-dialog>
+        </v-card>
+      </v-window-item>
+
+      <v-window-item>
+        <v-card flat>
+          <product-details :item="product" @on-back-button="onBackButton"></product-details>
+        </v-card>
+      </v-window-item>
+    </v-window>
   </v-card>
 </template>
 
@@ -82,11 +99,13 @@ export default defineComponent({
     AppButton: () => import("@/views/widget/app-button.vue"),
     AppWidget: () => import("@/views/widget/app-widget.vue"),
     OptionChart: () => import("./option-chart.vue"),
-    ReferralLinkDialog: () => import("./referral-link-dialog.vue")
+    ReferralLinkDialog: () => import("./referral-link-dialog.vue"),
+    ProductDetails: () => import("./../products/product-details.vue")
   },
 
   setup(_, { root }) {
     const showLinkDialog = ref(false);
+    const window = ref(0);
 
     const backgroundColor = computed(() => {
       return "gold";
@@ -124,6 +143,25 @@ export default defineComponent({
       root.$router.push("/product1");
     };
 
+    function onProductDetails() {
+      window.value = 1;
+    }
+
+    function onBackButton() {
+      window.value = 0;
+    }
+
+    const product = ref({
+      productName: "Broadband",
+      supplierId: 1,
+      supplierName: "PCCW",
+      points: 80,
+      rank: 1,
+      src: "/img/products/csl1.png",
+      productDescription:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    });
+
     return {
       ads,
       absolute,
@@ -136,7 +174,11 @@ export default defineComponent({
       chartColors,
       chartData,
       referPeople,
-      referProduct
+      referProduct,
+      onProductDetails,
+      window,
+      product,
+      onBackButton
     };
   }
 });
@@ -145,5 +187,8 @@ export default defineComponent({
 <style scoped>
 footer /deep/ a.refer-products {
   text-decoration: none;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>

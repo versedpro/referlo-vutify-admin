@@ -33,7 +33,7 @@ export default defineComponent({
     }
 
     function toTop() {
-      root.$router.push({ hash: "" });
+      root.$router.push({ hash: "", query: { ...root.$route.query } });
       root.$vuetify.goTo(0);
     }
 
