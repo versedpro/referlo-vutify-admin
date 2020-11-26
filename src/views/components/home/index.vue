@@ -11,7 +11,7 @@
           <v-carousel height="auto" hide-delimiter-background show-arrows-on-hover cycle>
             <v-carousel-item v-for="(item, i) in ads" :key="i">
               <v-img
-                @click="onProductDetails(i)"
+                @click="onProductDetails"
                 class="cursor-pointer"
                 :src="item.src"
                 :aspect-ratio="1.91 / 1"
@@ -123,7 +123,7 @@ export default defineComponent({
       root.$router.push("/products");
     };
 
-    function onProductDetails(item) {
+    function onProductDetails() {
       window.value = 1;
     }
 

@@ -2,7 +2,7 @@
   <canvas style="width: 300px; height: auto; margin: auto" id="doughnut" />
 </template>
 <script lang="ts">
-import { defineComponent, onMounted } from "@vue/composition-api";
+import { defineComponent, onMounted, watchEffect } from "@vue/composition-api";
 import Chart from "chart.js";
 
 export default defineComponent({
@@ -24,6 +24,18 @@ export default defineComponent({
   },
 
   setup(props) {
+    watchEffect(() => {
+      createChart({
+        datasets: [
+          {
+            data: props.data,
+            backgroundColor: props.colors,
+            hoverBorderColor: "rgba(255, 255, 255, 1)"
+          }
+        ],
+        labels: props.labels
+      });
+    });
     onMounted(() => {
       createChart({
         datasets: [
