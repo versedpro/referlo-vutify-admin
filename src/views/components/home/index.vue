@@ -125,7 +125,6 @@ export default defineComponent({
 
     function onProductDetails(item) {
       window.value = 1;
-      alert(item);
     }
 
     function onBackButton() {
