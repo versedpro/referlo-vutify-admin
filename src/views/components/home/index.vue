@@ -34,18 +34,7 @@
           </v-card-text>
 
           <!-- The footer -->
-          <v-footer v-if="$vuetify.breakpoint.smAndDown" color="gold lighten-1" app>
-            <v-card-text class="text-center py-2">
-              <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
-              <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
-            </v-card-text>
-          </v-footer>
-          <v-footer v-else color="gold lighten-1" absolute>
-            <v-card-text class="text-center py-2">
-              <app-button class="mr-3" :text="$t('home.referPeople')" @on-click="referPeople" />
-              <app-button class="ml-3" :text="$t('home.referProduct')" @on-click="referProduct" />
-            </v-card-text>
-          </v-footer>
+          <home-footer @on-show="onShowLinkDialog"></home-footer>
 
           <!-- The dialog -->
           <referral-link-dialog
@@ -75,12 +64,12 @@ export default defineComponent({
   name: "Home",
 
   components: {
-    AppButton: () => import("@/views/widget/app-button.vue"),
     AppWidget: () => import("@/views/widget/app-widget.vue"),
     OptionChart: () => import("./option-chart.vue"),
     ReferralLinkDialog: () => import("./referral-link-dialog.vue"),
     ProductDetails: () => import("./../products/product-details.vue"),
-    MembershipInfo: () => import("./membership-info.vue")
+    MembershipInfo: () => import("./membership-info.vue"),
+    HomeFooter: () => import("./home-footer.vue")
   },
 
   setup(_, { root }) {
@@ -115,12 +104,8 @@ export default defineComponent({
 
     const chartColors = ["grey", "#001e2f", "#dcb456"];
 
-    const referPeople = () => {
-      showLinkDialog.value = true;
-    };
-
-    const referProduct = () => {
-      root.$router.push("/products");
+    const onShowLinkDialog = (show) => {
+      showLinkDialog.value = show;
     };
 
     function onProductDetails() {
@@ -153,8 +138,7 @@ export default defineComponent({
       closeDialog,
       chartColors,
       chartData,
-      referPeople,
-      referProduct,
+      onShowLinkDialog,
       onProductDetails,
       window,
       product,
