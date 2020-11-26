@@ -30,7 +30,7 @@ export default defineComponent({
           {
             data: props.data,
             backgroundColor: props.colors,
-            borderWidth: 0
+            hoverBorderColor: "rgba(255, 255, 255, 1)"
           }
         ],
         labels: props.labels
