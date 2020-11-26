@@ -1,13 +1,13 @@
 <template>
   <v-card>
-    <v-card-title class="text-center justify-center py-6">
-      <h1 class="font-weight-bold display-3 gold--text">Products</h1>
-    </v-card-title>
-
-    <products-slider :products="hotProducts"></products-slider>
-
     <v-window v-model="window" class="elevation-1" vertical>
       <v-window-item>
+        <v-card-title class="text-center justify-center py-6">
+          <h1 class="font-weight-bold display-3 gold--text">Products</h1>
+        </v-card-title>
+
+        <products-slider :products="hotProducts"></products-slider>
+
         <v-card tile class="mx-auto" height="100%" color="transparent">
           <v-sheet height="100%">
             <splitpanes class="default-theme" style="height: 100%">
