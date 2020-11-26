@@ -1,8 +1,5 @@
 <template>
-<v-container
-    class="container--fluid fill-height home-background"
-  >
-</v-container>
+  <v-container class="container--fluid fill-height home-background"> </v-container>
   <!-- <div>
     <v-app-bar class="white">
       <v-toolbar-title>{{ info.title }}</v-toolbar-title>

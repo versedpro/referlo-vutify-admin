@@ -20,10 +20,6 @@ export default defineComponent({
     data: {
       type: Array,
       default: () => []
-    },
-    options: {
-      type: Object,
-      default: () => ({})
     }
   },
 
@@ -42,10 +38,21 @@ export default defineComponent({
 
     function createChart(chartData) {
       const canvas = document.getElementById("doughnut") as HTMLCanvasElement;
+
+      const chartOptions = {
+        animation: {
+          duration: 0 // general animation time
+        },
+        hover: {
+          animationDuration: 0 // duration of animations when hovering an item
+        },
+        responsiveAnimationDuration: 0 // animation duration after a resize
+      };
+
       const options = {
         type: "doughnut",
         data: chartData,
-        options: props.options
+        options: chartOptions
       };
       new Chart(canvas, options);
     }

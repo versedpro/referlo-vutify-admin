@@ -1,6 +1,6 @@
 <template>
   <v-card flat tile>
-    <v-card-text class="pt-16 text-center primary">
+    <v-card-text class="pt-8 text-center primary">
       <avatar :path="person.avatarPath" @on-change="avatarChanged"></avatar>
       <v-card-title class="gold--text justify-center">Joe Bloxx</v-card-title>
       <v-card-subtitle class="gold--text justify-center">12345678</v-card-subtitle>
@@ -21,7 +21,7 @@
       <v-spacer></v-spacer>
 
       <v-chip class="text-h6" color="transparent" text-color="primary">
-        <v-icon left> mdi-currency-usd-circle-outline </v-icon>
+        <v-icon left> mdi-human-queue </v-icon>
         10000
       </v-chip>
     </v-card-actions>

@@ -6,7 +6,6 @@
       </v-slide-item>
     </v-slide-group>
   </v-card-text>
-
 </template>
 
 <script lang="ts">

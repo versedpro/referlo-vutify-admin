@@ -27,8 +27,16 @@
                       v-for="(item, i) in productsIndustries"
                       :key="i"
                     >
-                      <v-col v-for="product in item.products" :key="product.productName" cols="12" class="">
-                        <product-card :product="product" @click="onProductDetails(product)"></product-card>
+                      <v-col
+                        v-for="product in item.products"
+                        :key="product.productName"
+                        cols="12"
+                        class=""
+                      >
+                        <product-card
+                          :product="product"
+                          @click="onProductDetails(product)"
+                        ></product-card>
                       </v-col>
                     </v-col>
                   </v-container>

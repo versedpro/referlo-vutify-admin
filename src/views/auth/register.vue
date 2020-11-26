@@ -116,18 +116,9 @@ export default defineComponent({
       phone: "12345678",
       key: "",
       select: null,
-      sex: [
-        'Male',
-        'Female',
-        'Not Provided',
-      ],
-      age: [
-        'Below 10',
-        '10-20',
-        '20-30',
-      ],
+      sex: ["Male", "Female", "Not Provided"],
+      age: ["Below 10", "10-20", "20-30"]
     });
-      
 
     const loading = ref(false);
 

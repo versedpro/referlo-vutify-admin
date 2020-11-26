@@ -11,7 +11,7 @@
           <v-carousel height="auto" hide-delimiter-background show-arrows-on-hover cycle>
             <v-carousel-item v-for="(item, i) in ads" :key="i">
               <v-img
-                @click="onProductDetails"
+                @click="onProductDetails(i)"
                 class="cursor-pointer"
                 :src="item.src"
                 :aspect-ratio="1.91 / 1"
@@ -140,11 +140,12 @@ export default defineComponent({
     };
 
     const referProduct = () => {
-      root.$router.push("/product1");
+      root.$router.push("/products");
     };
 
-    function onProductDetails() {
+    function onProductDetails(item) {
       window.value = 1;
+      alert(item);
     }
 
     function onBackButton() {
