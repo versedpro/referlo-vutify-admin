@@ -19,28 +19,7 @@
             </v-carousel-item>
           </v-carousel>
 
-          <v-list subheader class="primary">
-            <v-list-item>
-              <v-list-item-avatar>
-                <v-img :alt="`${person.title} avatar`" :src="person.avatar"></v-img>
-              </v-list-item-avatar>
-
-              <v-list-item-content>
-                <v-list-item-title class="white--text">{{ person.name }}</v-list-item-title>
-                <v-list-item-subtitle class="gold--text">
-                  <span>{{ $t("home.memberSince") }}</span>
-                  <span class="ml-1">{{ person.memberSince }}</span>
-                </v-list-item-subtitle>
-              </v-list-item-content>
-
-              <v-list-item-action>
-                <v-chip class="text-h6" color="transparent" text-color="gold">
-                  <v-icon left> mdi-currency-usd-circle-outline</v-icon>
-                  {{ person.points }}
-                </v-chip>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
+          <membership-info :person="person"></membership-info>
 
           <!-- The chart -->
           <v-card-text class="pa-0 mx-0 pb-15">
@@ -100,7 +79,8 @@ export default defineComponent({
     AppWidget: () => import("@/views/widget/app-widget.vue"),
     OptionChart: () => import("./option-chart.vue"),
     ReferralLinkDialog: () => import("./referral-link-dialog.vue"),
-    ProductDetails: () => import("./../products/product-details.vue")
+    ProductDetails: () => import("./../products/product-details.vue"),
+    MembershipInfo: () => import("./membership-info.vue")
   },
 
   setup(_, { root }) {
