@@ -4,7 +4,7 @@
       v-model="selectedItem"
       active-class="primary--text gold"
       @change="handleChange"
-      multiple
+      mandatory
     >
       <template v-for="(item, i) in industries">
         <v-list-item :key="item.industryId" :value="item" class="mb-2">
@@ -44,13 +44,12 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const selectedItem = ref(props.industries);
+    const selectedItem = ref(props.industries[0]);
     const items = ref(props.industries);
 
     const handleChange = (selected) => {
-      const industries = selected.map((e) => e.industryId) as Array<unknown>;
       // eslint-disable-next-line vue/custom-event-name-casing
-      emit("onSelection", industries);
+      emit("onSelection", selected.industryId);
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

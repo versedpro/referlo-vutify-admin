@@ -1,8 +1,8 @@
 <template>
-  <v-card>
+  <v-card flat tile>
     <v-window v-model="window" class="elevation-1" vertical>
       <v-window-item>
-        <v-card-title class="text-center justify-center py-6">
+        <v-card-title class="primary text-center justify-center py-6">
           <h1 class="font-weight-bold display-3 gold--text">Products</h1>
         </v-card-title>
 
@@ -13,6 +13,7 @@
           :productsIndustries="productsIndustries"
           @on-industry-selection="handleSelection"
           @on-product-selection="onProductDetails"
+          class="mb-16"
         ></list-panes>
       </v-window-item>
       <v-window-item>
@@ -41,13 +42,11 @@ export default defineComponent({
     const title = "資訊中心";
 
     const industries = ref(Industries);
-    const selected = ref([] as Array<number>);
-    selected.value = Industries.map((item) => item.industryId);
+    const selected = ref(0);
+    selected.value = Industries[0].industryId;
 
     const productsIndustries = computed(() => {
-      return selected.value.length > 0
-        ? Industries.filter((item) => selected.value.some((k) => k === item.industryId))
-        : [];
+      return Industries.filter((item) => item.industryId === selected.value);
     });
 
     const hotProducts = computed(() => {
@@ -97,14 +96,6 @@ export default defineComponent({
 });
 </script>
 <style>
-.splitpanes__splitter {
-  background-color: #cccccc !important;
-  width: 4px !important;
-}
-.splitpanes__pane {
-  background-color: #fff !important;
-}
-
 /* Helper classes */
 .basil {
   background-color: #fffbe6 !important;
