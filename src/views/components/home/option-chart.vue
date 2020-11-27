@@ -49,7 +49,12 @@ export default defineComponent({
       });
     });
 
+    var chart;
+
     function createChart(chartData) {
+      if (chart) {
+        chart.destroy();
+      }
       const canvas = document.getElementById("doughnut") as HTMLCanvasElement;
 
       const chartOptions = {
@@ -67,7 +72,7 @@ export default defineComponent({
         data: chartData,
         options: chartOptions
       };
-      new Chart(canvas, options);
+      chart = new Chart(canvas, options);
     }
     return {
       createChart
