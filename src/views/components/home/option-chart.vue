@@ -30,7 +30,8 @@ export default defineComponent({
           {
             data: props.data,
             backgroundColor: props.colors,
-            hoverBorderColor: "rgba(255, 255, 255, 1)"
+            hoverBorderColor: "rgba(255, 255, 255, 1)",
+            hoverBackgroundColor: props.colors
           }
         ],
         labels: props.labels
@@ -42,7 +43,8 @@ export default defineComponent({
           {
             data: props.data,
             backgroundColor: props.colors,
-            hoverBorderColor: "rgba(255, 255, 255, 1)"
+            hoverBorderColor: "rgba(255, 255, 255, 1)",
+            hoverBackgroundColor: props.colors
           }
         ],
         labels: props.labels
