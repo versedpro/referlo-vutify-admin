@@ -8,43 +8,12 @@
 
         <products-slider :products="hotProducts"></products-slider>
 
-        <v-card tile class="mx-auto" height="100%" color="transparent">
-          <v-sheet height="100%">
-            <splitpanes class="default-theme" style="height: 100%">
-              <pane size="30" min-size="30" max-size="30" class="primary">
-                <industry-list
-                  :industries="industries"
-                  @onSelection="handleSelection"
-                ></industry-list>
-              </pane>
-              <pane size="70">
-                <v-item-group active-class="gold">
-                  <v-container d-md-flex class="pt-0">
-                    <v-col
-                      cols="12"
-                      md="6"
-                      class="pt-0"
-                      v-for="(item, i) in productsIndustries"
-                      :key="i"
-                    >
-                      <v-col
-                        v-for="product in item.products"
-                        :key="product.productName"
-                        cols="12"
-                        class=""
-                      >
-                        <product-card
-                          :product="product"
-                          @click="onProductDetails(product)"
-                        ></product-card>
-                      </v-col>
-                    </v-col>
-                  </v-container>
-                </v-item-group>
-              </pane>
-            </splitpanes>
-          </v-sheet>
-        </v-card>
+        <list-panes
+          :industries="industries"
+          :productsIndustries="productsIndustries"
+          @on-industry-selection="handleSelection"
+          @on-product-selection="onProductDetails"
+        ></list-panes>
       </v-window-item>
       <v-window-item>
         <v-card flat>
@@ -56,24 +25,16 @@
 </template>
 
 <script lang="ts">
-import "splitpanes/dist/splitpanes.css";
-
 import { computed, defineComponent, ref } from "@vue/composition-api";
 import { industries as Industries } from "./json-data";
-
-// *** components
-import { Splitpanes, Pane } from "splitpanes";
 
 export default defineComponent({
   name: "Product",
 
   components: {
-    Splitpanes,
-    Pane,
-    IndustryList: () => import("./industry-list.vue"),
     ProductDetails: () => import("./product-details.vue"),
     ProductsSlider: () => import("./products-slider.vue"),
-    ProductCard: () => import("./product-card.vue")
+    ListPanes: () => import("./list-panes.vue")
   },
 
   setup() {
