@@ -16,8 +16,12 @@ import "./registerServiceWorker";
 
 import CompositionAPI from "@vue/composition-api";
 
+import Axios from 'axios';
+
 Vue.use(CompositionAPI);
 Vue.config.productionTip = false;
+
+Axios.defaults.baseURL = 'http://localhost:5000/api/';
 
 new Vue({
   router,

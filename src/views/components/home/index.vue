@@ -24,7 +24,7 @@
           <!-- The chart -->
           <v-card-text class="pa-0 mx-0 pb-15">
             <app-widget title="Pie Chart">
-              <option-chart
+              <option-chart 
                 slot="widget-content"
                 :labels="legend"
                 :colors="chartColors"
@@ -60,6 +60,8 @@ import { ads, person } from "./json-data";
 
 import { defineComponent, computed, ref } from "@vue/composition-api";
 
+import ApiService from '@/services/apiService';
+
 export default defineComponent({
   name: "Home",
 
@@ -73,6 +75,15 @@ export default defineComponent({
   },
 
   setup(_, { root }) {
+
+    const jsonData = ApiService.getJsonData().then((response) => {
+      console.log(response['data']);
+      return response['data'];
+    }).catch((error) =>{
+       console.log(error.response.data);
+       return null;
+    })
+
     const showLinkDialog = ref(false);
     const window = ref(0);
 
