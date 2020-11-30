@@ -2,9 +2,9 @@
   <v-card flat tile>
     <v-window v-model="window" class="elevation-1" vertical>
       <v-window-item>
-        <v-card-title class="primary text-center justify-center py-6">
-          <h1 class="font-weight-bold display-3 gold--text">Products</h1>
-        </v-card-title>
+        <v-toolbar color="primary" dark flat>
+          <v-toolbar-title class="ml-5"> {{ $t("products.title") }}</v-toolbar-title>
+        </v-toolbar>
 
         <products-slider :products="hotProducts"></products-slider>
 

@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="mx-auto" height="100%" color="transparent">
+  <v-card flat class="mx-auto" color="transparent">
     <v-sheet height="100%">
       <splitpanes class="default-theme" style="100%">
         <pane
@@ -91,5 +91,8 @@ export default defineComponent({
 }
 .default-theme {
   border-top: 2px solid #001e2f !important;
+}
+.v-card.transparent {
+  height: calc(100vh - 240px);
 }
 </style>
