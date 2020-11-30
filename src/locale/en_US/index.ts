@@ -52,7 +52,9 @@ export default {
     allProducts: "All Products",
     orderNow: "Order Now",
     serviceProvider: "Service Provider",
-    validUntil: "Valid Until:"
+    validUntil: "Valid Until:",
+    submit: "Submit",
+    reset: "Reset"
   },
   referal: {
     clientName: "Client",

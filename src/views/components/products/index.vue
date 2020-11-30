@@ -6,7 +6,10 @@
           <v-toolbar-title class="ml-5"> {{ $t("products.title") }}</v-toolbar-title>
         </v-toolbar>
 
-        <products-slider :products="hotProducts"></products-slider>
+        <products-slider
+          :products="hotProducts"
+          @on-product-selection="onProductDetails"
+        ></products-slider>
 
         <list-panes
           :industries="industries"

@@ -36,7 +36,7 @@
             <v-expansion-panel-header hide-actions disable-icon-rotate class="pa-0"
               ><v-row class="pa-0 ma-0 d-flex justify-space-between">
                 <v-icon class="gold--text">mdi-hand-pointing-down</v-icon>
-                <p class="ma-0 gold--text">Order Now</p>
+                <p class="ma-0 gold--text">{{ $t("products.orderNow") }}</p>
               </v-row>
             </v-expansion-panel-header>
           </v-alert>
@@ -60,15 +60,21 @@
                 :label="$t('referal.phone')"
                 required
               ></v-text-field>
+              <v-text-field
+                v-model="remark"
+                :rules="remarkRules"
+                :label="$t('referal.remark')"
+                required
+              ></v-text-field>
             </v-form>
-            <v-card-action
-              ><v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit">
-                <v-icon left> mdi-check-circle </v-icon>Submit</v-btn
-              >
-              <v-btn color="primary" class="mr-4" @click="reset">
-                <v-icon left> mdi-reload</v-icon>Reset
+            <v-card-actions>
+              <v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit">
+                <v-icon left> mdi-check-circle </v-icon>{{ $t("products.submit") }}
               </v-btn>
-            </v-card-action>
+              <v-btn color="primary" class="mr-4" @click="reset">
+                <v-icon left> mdi-reload</v-icon>{{ $t("products.reset") }}
+              </v-btn>
+            </v-card-actions>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -95,10 +101,53 @@ export default defineComponent({
       this.$emit("on-back-button");
     }
 
+    const valid = ref(true);
+    const form = ref(null);
+    const name = ref("");
+    const email = ref("");
+    const phone = ref("");
+    const remark = ref("");
+
+    const nameRules = ref([
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length <= 10) || "Name must be less than 10 characters"
+    ]);
+    const emailRules = ref([
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ]);
+    const phoneRules = ref([
+      (v) => !!v || "Phone Number is required",
+      (v) => (v && v.length <= 15) || "Phone Number must be valid"
+    ]);
+    const remarkRules = ref([
+      (v) => !!v || "Remark is required",
+      (v) => (v && v.length <= 5) || "Remark must be less than 5 characters"
+    ]);
+
+    const submit = () => {
+      form.value.validate();
+    };
+    const reset = () => {
+      form.value.reset();
+    };
+
     return {
       handleBackButton,
       panel,
-      readonly
+      readonly,
+      valid,
+      form,
+      name,
+      email,
+      phone,
+      remark,
+      nameRules,
+      emailRules,
+      phoneRules,
+      remarkRules,
+      submit,
+      reset
     };
   }
 });

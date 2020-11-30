@@ -36,10 +36,15 @@ export default {
     confirm: "確認"
   },
   products: {
+    title: "Referlo Product & Service",
     product: "產品 / 服務:",
     orderNow: "落單",
+    hotProducts: "Hot Deal",
+    allProducts: "All Products",
     serviceProvider: "產品供應商",
-    validUntil: "有效期至:"
+    validUntil: "有效期至:",
+    submit: "Submit",
+    reset: "Reset"
   },
   referal: {
     clientName: "客戶",
