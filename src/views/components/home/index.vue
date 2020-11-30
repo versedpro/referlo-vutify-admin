@@ -24,7 +24,7 @@
           <!-- The chart -->
           <v-card-text class="pa-0 mx-0 pb-15">
             <app-widget title="Pie Chart">
-              <option-chart 
+              <option-chart
                 slot="widget-content"
                 :labels="legend"
                 :colors="chartColors"
@@ -56,11 +56,11 @@
 
 <script lang="ts">
 import { ads, person } from "./json-data";
-// import { ReferloChartInfo } from "@/types"; // Our interface
+import { ReferloChartInfo } from "@/types"; // Our interface
 
-import { defineComponent, computed, ref } from "@vue/composition-api";
+import { defineComponent, computed, ref, onMounted, reactive } from "@vue/composition-api";
 
-import ApiService from '@/services/apiService';
+import { ApiService } from "@/services/apiService";
 
 export default defineComponent({
   name: "Home",
@@ -75,14 +75,19 @@ export default defineComponent({
   },
 
   setup(_, { root }) {
+    const chartJsonData = reactive({
+      data: [] as ReferloChartInfo[]
+    });
 
-    const jsonData = ApiService.getJsonData().then((response) => {
-      console.log(response['data']);
-      return response['data'];
-    }).catch((error) =>{
-       console.log(error.response.data);
-       return null;
-    })
+    const apiService = new ApiService();
+
+    onMounted(() => {
+      getChartOption();
+    });
+
+    const getChartOption = async (): Promise<void> => {
+      chartJsonData.data = await apiService.getPieChartOption();
+    };
 
     const showLinkDialog = ref(false);
     const window = ref(0);
@@ -95,25 +100,41 @@ export default defineComponent({
       return !root.$vuetify.breakpoint.smAndDown;
     });
 
-    const legend = computed(() => [
-      root.$i18n.t("home.completed", person.score.slice(2, 3)),
-      root.$i18n.t("home.wip", person.score.slice(1, 2)),
-      root.$i18n.t("home.referred", person.score.slice(0, 1))
-    ]);
-
     const referPeopleUrl = computed(() => {
       const host = `${location.host}`;
       const protocol = host.includes("localhost") ? "http://" : "https://";
       return protocol + host + "/registration?key=sdfsfsd";
     });
 
+    const legend = computed(() => {
+      let values: Array<any> = [];
+      values[0] = chartJsonData.data["series"] && chartJsonData.data["series"][0].data[0].value;
+      values[1] = chartJsonData.data["series"] && chartJsonData.data["series"][0].data[1].value;
+      values[2] = chartJsonData.data["series"] && chartJsonData.data["series"][0].data[2].value;
+      return [
+        root.$i18n.t("home.completed", values.slice(0, 1)),
+        root.$i18n.t("home.wip", values.slice(1, 2)),
+        root.$i18n.t("home.referred", values.slice(0, 2))
+      ];
+    });
+
+    const chartData = computed(() => {
+      let data: Array<any> = [];
+      data =
+        chartJsonData.data["series"] &&
+        chartJsonData.data["series"][0].data.map((data) => {
+          return data.value;
+        });
+      return data;
+    });
+
+    const chartColors = computed(() => {
+      return chartJsonData.data["color"];
+    });
+
     const closeDialog = () => {
       showLinkDialog.value = false;
     };
-
-    const chartData = [person.score[0], person.score[1], person.score[2]];
-
-    const chartColors = ["grey", "#001e2f", "#dcb456"];
 
     const onShowLinkDialog = (show) => {
       showLinkDialog.value = show;
@@ -139,6 +160,7 @@ export default defineComponent({
     });
 
     return {
+      apiService,
       ads,
       absolute,
       person,

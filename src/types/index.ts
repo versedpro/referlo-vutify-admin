@@ -1,13 +1,18 @@
 export interface ReferloChartInfo {
-  data?: {
-    wip: number;
-    referred: number;
-    completed: number;
-  };
-  title?: {
-    text: string;
-    subtext: string;
-  };
+  // data?: {
+  //   wip: number;
+  //   referred: number;
+  //   completed: number;
+  // };
+  // title?: {
+  //   text: string;
+  //   subtext: string;
+  // };
+  color: Array<any>,
+  legend: Object,
+  series: Array<any>,
+  title: Object,
+  tooltip: object
 }
 
 export interface User {
