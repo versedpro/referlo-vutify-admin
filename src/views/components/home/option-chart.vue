@@ -66,7 +66,10 @@ export default defineComponent({
         hover: {
           animationDuration: 0 // duration of animations when hovering an item
         },
-        responsiveAnimationDuration: 0 // animation duration after a resize
+        responsiveAnimationDuration: 0, // animation duration after a resize,
+        tooltips: {
+          enabled: false
+        }
       };
 
       const options = {
