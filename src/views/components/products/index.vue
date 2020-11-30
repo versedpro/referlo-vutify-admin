@@ -13,7 +13,6 @@
           :productsIndustries="productsIndustries"
           @on-industry-selection="handleSelection"
           @on-product-selection="onProductDetails"
-          class="mb-16"
         ></list-panes>
       </v-window-item>
       <v-window-item>
