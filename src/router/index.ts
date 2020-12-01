@@ -5,6 +5,8 @@ import Router from "vue-router";
 import authRouter from "./modules/auth";
 import drawerRouter from "./modules/drawer";
 
+import moreRouter from "./modules/more";
+
 Vue.use(Router);
 
 /** note: sub-menu only appear when children.length>=1
@@ -51,6 +53,7 @@ export default new Router({
 });
 
 export const asyncRoutes = [
+  moreRouter,
   /** When your routing table is too long, you can split it into small modules */
   { path: "*", redirect: "/error/404", meta: { hidden: true } }
 ];
