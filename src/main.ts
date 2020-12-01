@@ -14,14 +14,13 @@ import store from "./store";
 import "./router/permission";
 import "./registerServiceWorker";
 
-import CompositionAPI from "@vue/composition-api";
+import axios from 'axios'
+axios.defaults.baseURL = 'http://referlo.azurewebsites.net';
 
-import Axios from 'axios';
+import CompositionAPI from "@vue/composition-api";
 
 Vue.use(CompositionAPI);
 Vue.config.productionTip = false;
-
-Axios.defaults.baseURL = 'http://localhost:5000/api/';
 
 new Vue({
   router,

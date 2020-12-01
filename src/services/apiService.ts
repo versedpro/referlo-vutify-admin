@@ -2,8 +2,8 @@ import Axios from "axios"
 import { ReferloChartInfo, User } from "@/types"
 
 export class ApiService {
-  
-  getApiVersion() { 
+
+  getApiVersion() {
     return Axios.get("GetApiVersion");
   }
 
@@ -15,7 +15,7 @@ export class ApiService {
     let response: ReferloChartInfo[] = []
     try {
       const { data } = await Axios({
-        url: `https://referlo.azurewebsites.net/api/GetJsonData`
+        url: "/api/GetJsonData"
       })
 
       response = data

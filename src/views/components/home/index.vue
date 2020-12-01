@@ -57,8 +57,9 @@
 <script lang="ts">
 import { ads, person } from "./json-data";
 import { ReferloChartInfo } from "@/types"; // Our interface
+import { get } from "lodash";
 
-import { defineComponent, computed, ref, onMounted, reactive } from "@vue/composition-api";
+import { defineComponent, computed, ref, reactive } from "@vue/composition-api";
 
 import { ApiService } from "@/services/apiService";
 
@@ -81,13 +82,10 @@ export default defineComponent({
 
     const apiService = new ApiService();
 
-    onMounted(() => {
-      getChartOption();
-    });
-
     const getChartOption = async (): Promise<void> => {
       chartJsonData.data = await apiService.getPieChartOption();
     };
+    getChartOption();
 
     const showLinkDialog = ref(false);
     const window = ref(0);
@@ -107,25 +105,15 @@ export default defineComponent({
     });
 
     const legend = computed(() => {
-      let values: Array<any> = [];
-      values[0] = chartJsonData.data["series"] && chartJsonData.data["series"][0].data[0].value;
-      values[1] = chartJsonData.data["series"] && chartJsonData.data["series"][0].data[1].value;
-      values[2] = chartJsonData.data["series"] && chartJsonData.data["series"][0].data[2].value;
-      return [
-        root.$i18n.t("home.completed", values.slice(0, 1)),
-        root.$i18n.t("home.wip", values.slice(1, 2)),
-        root.$i18n.t("home.referred", values.slice(0, 2))
-      ];
+      return get(chartJsonData.data, "series.0.data", []).map(({ name, value }) => {
+        return root.$i18n.t(`home.${name}`, [value]);
+      });
     });
 
     const chartData = computed(() => {
-      let data: Array<any> = [];
-      data =
-        chartJsonData.data["series"] &&
-        chartJsonData.data["series"][0].data.map((data) => {
-          return data.value;
-        });
-      return data;
+      return get(chartJsonData.data, "series[0].data", []).map((data) => {
+        return data.value;
+      });
     });
 
     const chartColors = computed(() => {
