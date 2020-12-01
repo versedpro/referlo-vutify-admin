@@ -24,3 +24,47 @@ export interface User {
     state: string;
   };
 }
+
+export interface Industry{
+  industryId: number;
+  name: {
+    en: string;
+    zh_CN: string;
+    zh_HK: string;
+  };
+  industryName: string;
+  rank: number;
+  products: Array<Product>;
+}
+
+export interface Product{
+  productName: string;
+  supplierId: number;
+  supplierName: string;
+  points: number;
+  rank: number;
+  src: string;
+  productDescription: string; 
+}
+
+export interface Order{
+  orderNo: string;
+  orderDate: string;
+  productName: string;
+  supplierName: string;
+  referloId: number;
+  referredBy: string;
+  clientName: string;
+  status: number;
+}
+
+export interface Person{
+  name: string;
+  file: string;
+  children: Array<Children>;
+}
+
+export interface Children{
+  name: string;
+  file: string;
+}

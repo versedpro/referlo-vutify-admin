@@ -22,7 +22,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
-import { Items } from "./json-data";
+import { ApiService } from "@/services/apiService";
+import { Order } from "@/types/index";
 
 export default defineComponent({
   name: "OrdersList",
@@ -38,8 +39,18 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const items = ref(Items);
+    // const items = ref(Items);
     const tab = ref(0);
+
+    const apiService = new ApiService();
+
+    const items = ref([] as Order[]);
+    
+    const getOrders = async (): Promise<void> => {
+      const response = await apiService.getOrders();
+      items.value = response;
+    };
+    getOrders();
 
     const handleSelection = (selected) => {
       const currentItems = items.value.filter((item) => {

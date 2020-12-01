@@ -29,7 +29,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from "@vue/composition-api";
-import { industries as Industries } from "./json-data";
+import { ApiService } from "@/services/apiService";
+import {Industry} from "@/types/index";
 
 export default defineComponent({
   name: "Product",
@@ -42,13 +43,20 @@ export default defineComponent({
 
   setup() {
     const title = "資訊中心";
+    const apiService = new ApiService();
 
-    const industries = ref(Industries);
     const selected = ref(0);
-    selected.value = Industries[0].industryId;
+    const industries = ref([] as Industry[]);
+    
+    const getIndustries = async (): Promise<void> => {
+      const response = await apiService.getIndustries();
+      industries.value = response;
+      selected.value = response[0].industryId;
+    };
+    getIndustries();
 
     const productsIndustries = computed(() => {
-      return Industries.filter((item) => item.industryId === selected.value);
+      return industries.value.filter((item) => item.industryId === selected.value);
     });
 
     const hotProducts = computed(() => {
@@ -81,6 +89,7 @@ export default defineComponent({
 
     return {
       title,
+      getIndustries,
       industries,
       selected,
       productsIndustries,

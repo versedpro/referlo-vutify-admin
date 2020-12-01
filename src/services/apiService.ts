@@ -1,5 +1,5 @@
 import Axios from "axios"
-import { ReferloChartInfo, User } from "@/types"
+import { Industry, ReferloChartInfo, Order, Person } from "@/types"
 
 export class ApiService {
 
@@ -19,6 +19,45 @@ export class ApiService {
       })
 
       response = data
+      return response
+    } catch (error) {
+      return response
+    }
+  }
+
+  async getIndustries(): Promise<Industry[]> {
+    let response: Industry[] = []
+    try {
+      const { data } = await Axios({
+        url: "/api/GetIndustries"
+      })
+      response = data.industries;
+      return response
+    } catch (error) {
+      return response
+    }
+  }
+
+  async getOrders(): Promise<Order[]> {
+    let response: Order[] = []
+    try {
+      const { data } = await Axios({
+        url: "/api/GetOrders"
+      })
+      response = data.orders;
+      return response
+    } catch (error) {
+      return response
+    }
+  }
+
+  async getPeople(): Promise<Person[]> {
+    let response: Person[] = []
+    try {
+      const { data } = await Axios({
+        url: "/api/GetPeople"
+      })
+      response = data.people;
       return response
     } catch (error) {
       return response

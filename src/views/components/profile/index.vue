@@ -6,7 +6,7 @@
       </v-window-item>
 
       <v-window-item>
-        <referrers :items="Items" @on-back-button="onBackButton"></referrers>
+        <referrers :items="items" @on-back-button="onBackButton"></referrers>
       </v-window-item>
     </v-window>
 
@@ -23,7 +23,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
-import { Items } from "./json-data";
+import { ApiService } from "@/services/apiService";
+import { Person } from "@/types/index";
 
 export default defineComponent({
   name: "Profile",
@@ -45,6 +46,15 @@ export default defineComponent({
   setup() {
     const onboarding = ref(0);
     const showPasswordPrompt = ref(false);
+
+    const items = ref([] as Person[]);
+    const apiService = new ApiService();
+
+    const getPeople = async (): Promise<void> => {
+      const response = await apiService.getPeople();
+      items.value = response;
+    };
+    getPeople();
 
     const form = ref({
       firstName: "John",
@@ -87,7 +97,7 @@ export default defineComponent({
 
     return {
       onboarding,
-      Items,
+      items,
       form,
       showPasswordPrompt,
       handleConfirmPassword,
