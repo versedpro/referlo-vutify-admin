@@ -117,7 +117,7 @@ export default defineComponent({
       key: "",
       select: null,
       sex: ["Male", "Female", "Not Provided"],
-      age: ["Below 10", "10-20", "20-30"]
+      age: ["Below 10", "10-20", "21-30", "31-40", "41-50", "51-60", "Above 60"]
     });
 
     const loading = ref(false);

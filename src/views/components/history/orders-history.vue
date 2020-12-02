@@ -13,6 +13,8 @@
                 v-text="item.productName"
               ></v-list-item-subtitle>
               <v-list-item-subtitle v-text="item.supplierName"></v-list-item-subtitle>
+              <v-list-item-subtitle >Contact Person</v-list-item-subtitle>
+              <v-list-item-subtitle >Referelo</v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-action>

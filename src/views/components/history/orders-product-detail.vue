@@ -3,15 +3,26 @@
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title>{{ $t("referal.productName") }}</v-list-item-title>
-        <v-list-item-subtitle>{{ order.productName }}</v-list-item-subtitle>
+        <v-list-item-subtitle v-text="order.productName"></v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title>{{ $t("referal.supplierName") }}</v-list-item-title>
-        <v-list-item-subtitle>{{ order.supplierName }}</v-list-item-subtitle>
+        <v-list-item-subtitle v-text="order.supplierName"></v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title>Contact Name</v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title>Contact Details(Phone/Email)</v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+
   </v-sheet>
 </template>
 <script lang="ts">

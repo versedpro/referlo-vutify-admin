@@ -24,8 +24,6 @@
       <p v-html="item.productDescription"></p>
     </v-card-text>
     <v-card class="mx-4 mt-6 mb-16" tile flat>
-      <v-expansion-panels v-model="panel" :readonly="readonly">
-        <v-expansion-panel focusable class="mb-4">
           <v-alert
             border="bottom"
             color="gold"
@@ -33,14 +31,14 @@
             dense
             class="pa-4 ma-0 primary rounded-b-0"
           >
-            <v-expansion-panel-header hide-actions disable-icon-rotate class="pa-0"
+            <v-card-text hide-actions disable-icon-rotate class="pa-0"
               ><v-row class="pa-0 ma-0 d-flex justify-space-between">
                 <v-icon class="gold--text">mdi-hand-pointing-down</v-icon>
                 <p class="ma-0 gold--text">{{ $t("products.orderNow") }}</p>
               </v-row>
-            </v-expansion-panel-header>
+            </v-card-text>
           </v-alert>
-          <v-expansion-panel-content>
+          <v-card-text>
             <v-form class="mx-4 mx-sm-12 pb-8" ref="form" v-model="valid" lazy-validation>
               <v-text-field
                 v-model="name"
@@ -75,9 +73,7 @@
                 <v-icon left> mdi-reload</v-icon>{{ $t("products.reset") }}
               </v-btn>
             </v-card-actions>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
+          </v-card-text>
     </v-card>
   </v-card>
 </template>

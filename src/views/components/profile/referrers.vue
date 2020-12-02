@@ -21,9 +21,9 @@
               {{ item.name }}
             </v-card-title>
             <v-card flat v-if="item.children != undefined" class="d-flex flex-wrap py-4">
-              <div v-for="x in item.children" :key="x.name" class="text-center">
-                <v-icon>{{ x.file }}</v-icon>
-                <v-card-subtitle class="pb-0">{{ x.name }}</v-card-subtitle>
+              <div v-for="x in item.children" :key="x.name" class="text-center  mx-6">
+                <v-badge class="pb-0 primary--text" content="100" overlap><v-icon size="50px">mdi-account-child-circle</v-icon></v-badge>
+                <v-card-subtitle class="">{{ x.name }}</v-card-subtitle>
               </div>
             </v-card>
           </v-card>
