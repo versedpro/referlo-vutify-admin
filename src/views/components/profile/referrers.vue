@@ -16,13 +16,20 @@
           :icon="item.file"
           color="secondary darken-2"
         >
-          <v-card class="flat tile mr-6">
-            <v-card-title>
-              {{ item.name }}
-            </v-card-title>
+          <v-card class="flat tile mr-6 pa-4">
+            <v-card-action class="d-flex justify-space-between">
+              <v-chip class="ma-2 pl-3" color="gold" text-color="white">
+                <v-avatar class="primary"> 100 </v-avatar>
+                {{ item.name }}
+              </v-chip>
+              <span v-if="item.children != undefined">{{ item.children.length }}</span>
+            </v-card-action>
+
             <v-card flat v-if="item.children != undefined" class="d-flex flex-wrap py-4">
-              <div v-for="x in item.children" :key="x.name" class="text-center  mx-6">
-                <v-badge class="pb-0 primary--text" content="100" overlap><v-icon size="50px">mdi-account-child-circle</v-icon></v-badge>
+              <div v-for="x in item.children" :key="x.name" class="text-center mx-6">
+                <v-badge class="pb-0 primary--text" content="100" overlap
+                  ><v-icon size="50px">mdi-account-child-circle</v-icon></v-badge
+                >
                 <v-card-subtitle class="">{{ x.name }}</v-card-subtitle>
               </div>
             </v-card>
