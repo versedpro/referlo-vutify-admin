@@ -14,9 +14,6 @@
                 width="120"
                 height="120"
               />
-              <!-- <h1 class="text-center my-4 primary--text">
-                {{ $t("login.appTitle") }}
-              </h1> -->
             </div>
             <v-form>
               <v-text-field
@@ -45,10 +42,8 @@
             <localization />
 
             <v-spacer />
-            <!-- <v-btn color="primary back-gold" outlined to="/register">
-              {{ $t("login.register") }}
-            </v-btn> -->
-            <app-button-gold :text="$t('login.register')" @on-click="register"> </app-button-gold>
+
+            <!-- <app-button-gold :text="$t('login.register')" @on-click="register"> </app-button-gold> -->
 
             <app-button :text="$t('login.login')" @on-click="login"> </app-button>
           </v-card-actions>
@@ -65,7 +60,7 @@ import { defineComponent, reactive, ref } from "@vue/composition-api";
 export default defineComponent({
   components: {
     AppButton: () => import("@/views/widget/app-button.vue"),
-    AppButtonGold: () => import("@/views/widget/app-button-gold.vue"),
+    // AppButtonGold: () => import("@/views/widget/app-button-gold.vue"),
     Localization: () => import("../widget/app-localization.vue")
   },
 

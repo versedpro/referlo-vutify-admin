@@ -1,13 +1,13 @@
 <template>
   <v-card flat class="mx-auto" color="transparent">
     <v-sheet height="100%">
-      <splitpanes class="default-theme" :style="{ height: $vuetify.breakpoint.smAndDown? 'calc(100vh - 300px)' : 'calc(100vh - 240px)' }">
-        <pane
-          size="30"
-          min-size="30"
-          max-size="30"
-          class="primary py-1"
-        >
+      <splitpanes
+        class="default-theme"
+        :style="{
+          height: $vuetify.breakpoint.smAndDown ? 'calc(100vh - 300px)' : 'calc(100vh - 240px)'
+        }"
+      >
+        <pane size="30" min-size="30" max-size="30" class="primary py-1">
           <industry-list :industries="industries" @onSelection="handleSelection"></industry-list>
         </pane>
         <pane size="70">

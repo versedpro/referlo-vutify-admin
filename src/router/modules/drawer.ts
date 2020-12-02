@@ -64,7 +64,7 @@ const authRouter = [
         meta: { title: "route.profile", icon: "mdi-account" }
       }
     ]
-  },
+  }
   // {
   //   path: "/",
   //   component: Layout,

@@ -17,15 +17,15 @@ const user = {
   },
 
   getters: {
-    token: state => state.token,
-    roles: state => state.roles,
-    name: state => state.name,
-    user: state => state.user,
-    phone: state => state.phone,
-    avatar: state => state.avatar,
-    status: state => state.status,
-    introduction: state => state.introduction,
-    setting: state => state.setting
+    token: (state) => state.token,
+    roles: (state) => state.roles,
+    name: (state) => state.name,
+    user: (state) => state.user,
+    phone: (state) => state.phone,
+    avatar: (state) => state.avatar,
+    status: (state) => state.status,
+    introduction: (state) => state.introduction,
+    setting: (state) => state.setting
   },
 
   mutations: {
@@ -35,8 +35,7 @@ const user = {
         state.roles = [];
         state.user = "";
         state.name = "";
-        state.phone = "",
-        state.avatar = "";
+        (state.phone = ""), (state.avatar = "");
         state.code = "";
       } else {
         state.token = payload.token || state.token;
@@ -119,7 +118,7 @@ const user = {
         if (response) {
           await commit("SET_CONFIRM", true);
         } else {
-          await commit("SET_CONFIRM", false)
+          await commit("SET_CONFIRM", false);
         }
       } catch (error) {
         console.warn("[vuex.user] Confirm Access", error);

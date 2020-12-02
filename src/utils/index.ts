@@ -86,4 +86,4 @@ function toggleFullScreen() {
   return false;
 }
 
-export { toggleFullScreen, debounce }
+export { toggleFullScreen, debounce };
