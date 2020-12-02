@@ -1,9 +1,7 @@
 import route from "./route";
-import components from "@/demo/locale/zh_CN/components";
 
 export default {
   route,
-  components,
   toolbar: {
     appname: "我的应用",
     settings: "设置",

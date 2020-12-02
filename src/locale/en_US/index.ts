@@ -1,9 +1,7 @@
 import route from "./route";
-import * as components from "@/demo/locale/en_US/components";
 
 export default {
   route,
-  components,
   toolbar: {
     appname: "Application",
     settings: "Settings",

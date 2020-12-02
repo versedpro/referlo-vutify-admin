@@ -54,7 +54,7 @@
 import "splitpanes/dist/splitpanes.css";
 
 import { computed, defineComponent, ref } from "@vue/composition-api";
-import { Items } from "@/demo/api/mock_products";
+import { Items } from "@/api/mocks/mock_products";
 import { ads, industries as Industries } from "./json-data";
 
 // *** components

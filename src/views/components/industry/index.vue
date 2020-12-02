@@ -104,7 +104,7 @@
 </template>
 
 <script lang="ts">
-import { Headers, Industries } from "@/demo/api/mock_industry_list";
+import { Headers, Industries } from "@/api/mocks/mock_industry";
 
 import { defineComponent, ref } from "@vue/composition-api";
 

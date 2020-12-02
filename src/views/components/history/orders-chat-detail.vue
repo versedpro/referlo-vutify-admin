@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { Items } from "@/demo/api/mock_chats";
+import { Items } from "@/api/mocks/mock_chats";
 import { defineComponent, ref } from "@vue/composition-api";
 export default defineComponent({
   name: "OrdersChatDetail",
