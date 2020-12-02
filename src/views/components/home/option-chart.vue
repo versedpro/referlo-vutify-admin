@@ -1,5 +1,13 @@
 <template>
-  <canvas style="width: 300px; height: auto; margin: auto" id="doughnut" />
+  <div style="display: flex">
+    <div style="width: 90%">
+      <canvas style="width: 300px; height: auto; margin: auto" id="doughnut"/>
+    </div>
+    <div style="align-self: center">
+      <div style="background-color: gold; width: 30px">16</div>
+      <div style="background-color: green; margin-top: 10px; width: 60px">33</div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, watchEffect } from "@vue/composition-api";
