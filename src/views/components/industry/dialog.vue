@@ -34,8 +34,6 @@
 </template>
 
 <script lang="ts">
-// import { Headers, Industries } from "@/demo/api/mock_industry_list";
-
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({

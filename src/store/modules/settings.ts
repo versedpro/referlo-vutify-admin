@@ -1,12 +1,10 @@
-/* eslint-disable */
-import { settings as defaultSettings, version } from "@/config_ts";
+import { settings as defaultSettings, version } from "@/config";
 
 import { setVuetifyThemeDark, setVuetifyTheme } from "@/plugins/vuetify";
 import { setLocale } from "@/locale";
 
 const getDefaultSettings = () => {
-  const settings = JSON.parse(JSON.stringify(defaultSettings));
-  return settings;
+  return JSON.parse(JSON.stringify(defaultSettings));
 };
 
 const settings = {

@@ -1,5 +1,4 @@
-/* eslint-disable */
-import config from "@/config";
+import { prefix, ttl, storage, version } from "@/config";
 import user from "@/store/modules/user";
 import settings from "@/store/modules/settings";
 
@@ -9,9 +8,9 @@ import settings from "@/store/modules/settings";
 class SyncStorage {
   constructor(option) {
     /** init options */
-    this.storage = (window && window[option.storage]) || (window && window[config.storage]);
-    this.prefix = option.prefix || config.prefix;
-    this.ttl = option.ttl || config.ttl;
+    this.storage = (window && window[option.storage]) || (window && window[storage]);
+    this.prefix = option.prefix || prefix;
+    this.ttl = option.ttl || ttl;
     this.user = "user";
     this.settings = "settings";
 
@@ -22,7 +21,7 @@ class SyncStorage {
 
     console.log(
       "[vuex.SyncStorage] option:",
-      option.storage || config.storage,
+      option.storage || storage,
       this.prefix,
       this.ttl,
       option
@@ -38,10 +37,10 @@ class SyncStorage {
       throw new Error('[vuex.SyncStorage] Invalid "Storage" instance given');
     }
 
-    if (this.checkVersion(config.version)) {
-      console.log(`[vuex.SyncStorage] Current version of the application "${config.version}"`);
+    if (this.checkVersion(version)) {
+      console.log(`[vuex.SyncStorage] Current version of the application "${version}"`);
     } else {
-      console.warn(`[vuex.SyncStorage] Application version updated to "${config.version}"`);
+      console.warn(`[vuex.SyncStorage] Application version updated to "${version}"`);
     }
 
     // init and apply user state from storage

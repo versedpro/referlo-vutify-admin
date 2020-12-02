@@ -4,7 +4,6 @@ import Router from "vue-router";
 /* Router Modules */
 import authRouter from "./modules/auth";
 import drawerRouter from "./modules/drawer";
-
 import moreRouter from "./modules/more";
 
 Vue.use(Router);

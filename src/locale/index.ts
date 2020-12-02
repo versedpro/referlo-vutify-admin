@@ -7,7 +7,7 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 
-import { settings } from "@/config_ts";
+import { settings } from "@/config";
 import vuetify from "@/locale/vuetify";
 import { en, hk } from "./available";
 
