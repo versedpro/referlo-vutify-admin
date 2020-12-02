@@ -18,6 +18,14 @@
         10000
       </v-chip>
 
+      
+      <v-spacer></v-spacer>
+
+      <v-chip class="text-h6" color="transparent" text-color="primary">
+        <v-icon left> mdi-currency-usd </v-icon>
+        10000
+      </v-chip>
+
       <v-spacer></v-spacer>
 
       <v-chip class="text-h6" color="transparent" text-color="primary">

@@ -5,6 +5,7 @@ import Router from "vue-router";
 import authRouter from "./modules/auth";
 import drawerRouter from "./modules/drawer";
 import moreRouter from "./modules/more";
+import mainRouter from "./modules/main"
 
 Vue.use(Router);
 
@@ -53,6 +54,7 @@ export default new Router({
 
 export const asyncRoutes = [
   moreRouter,
+  mainRouter,
   /** When your routing table is too long, you can split it into small modules */
   { path: "*", redirect: "/error/404", meta: { hidden: true } }
 ];

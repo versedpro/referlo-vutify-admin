@@ -19,7 +19,7 @@
           <v-card class="flat tile mr-6 pa-4">
             <v-card-action class="d-flex justify-space-between">
               <v-chip class="ma-2 pl-3" color="gold" text-color="white">
-                <v-avatar class="primary"> 100 </v-avatar>
+                <v-avatar class="primary px-3"> 100 </v-avatar>
                 {{ item.name }}
               </v-chip>
               <span v-if="item.children != undefined">{{ item.children.length }}</span>
