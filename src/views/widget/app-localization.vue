@@ -7,7 +7,8 @@
       ripple
       active
       outlined
-      color="primary"
+       text-color="gold"
+      color="gold"
       @click="setLocale(item.locale)"
     >
       {{ item.display }}
@@ -40,7 +41,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.v-chip.v-chip--outlined.v-chip.v-chip {
+/* .v-chip.v-chip--outlined.v-chip.v-chip {
   background-color: #fcda8b !important;
-}
+} */
 </style>

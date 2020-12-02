@@ -2,7 +2,7 @@
   <v-menu offset-y origin="center center" :nudge-bottom="10" transition="scale-transition">
     <template v-slot:activator="{ on }">
       <v-btn icon text v-on="on">
-        <v-icon>mdi-bell</v-icon>
+        <v-icon color="gold">mdi-bell</v-icon>
       </v-btn>
     </template>
     <v-list class="pa-0" two-line subheader>

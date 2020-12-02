@@ -43,7 +43,7 @@
 
             <v-spacer />
 
-            <!-- <app-button-gold :text="$t('login.register')" @on-click="register"> </app-button-gold> -->
+            <app-button-gold :text="$t('login.register')" @on-click="register"> </app-button-gold>
 
             <app-button :text="$t('login.login')" @on-click="login"> </app-button>
           </v-card-actions>
@@ -60,7 +60,7 @@ import { defineComponent, reactive, ref } from "@vue/composition-api";
 export default defineComponent({
   components: {
     AppButton: () => import("@/views/widget/app-button.vue"),
-    // AppButtonGold: () => import("@/views/widget/app-button-gold.vue"),
+    AppButtonGold: () => import("@/views/widget/app-button-gold.vue"),
     Localization: () => import("../widget/app-localization.vue")
   },
 
