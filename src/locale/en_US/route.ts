@@ -1,17 +1,9 @@
 export default {
-  referal: "Referal",
   home: "Home",
   history: "History",
   products: "Products",
-  industries: "Product1",
-  points: "Points",
-  product3: "Product3",
-  product4: "Product4",
   profile: "Account",
-  about: "About Us",
-  contact: "Contact Us",
   latestNews: "Latest News",
-  HowtoUse: "How To Use",
   permissions: "Permission",
   bottom: {
     home: "Home",
@@ -38,7 +30,12 @@ export default {
     sticky: "Sticky",
     tinymce: "Tinymce"
   },
-  vuetify: "Vuetify UI",
+  more: "More",
+  moreComponents: {
+    about: "About Us",
+    contact: "Contact Us",
+    HowtoUse: "How To Use"
+  },
   errors: "Errors",
   errorPages: {
     page301: "301",

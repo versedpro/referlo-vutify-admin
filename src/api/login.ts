@@ -56,7 +56,7 @@ export const loginByPhone = async (phone, password) => {
  *
  * @param {String} token user token
  */
-export const getUserInfo = async token => {
+export const getUserInfo = async (token) => {
   console.log(`[getUserInfo] token ${token}`);
   let user = {};
   try {
@@ -94,4 +94,3 @@ export const confirmAccess = async (phone, password) => {
     console.warn(`[confirmAccess] ${err}`);
   }
 };
-

@@ -1,20 +1,20 @@
-// import 'normalize.css/normalize.css';
 import "vuetify/dist/vuetify.min.css";
 
+// import 'normalize.css/normalize.css';
 // import 'roboto-fontface/css/roboto/roboto-fontface.css';
 
 import Vue from "vue";
-import vuetify from "./plugins/vuetify";
-import i18n from "./locale"; // Internationalization
+import vuetify from "@/plugins/vuetify";
+import i18n from "@/locale"; // Internationalization
 
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import App from "@/App.vue";
+import router from "@/router";
+import store from "@/store";
 
-import "./router/permission";
-import "./registerServiceWorker";
+import "@/router/permission";
+import "@/registerServiceWorker";
 
-import axios from 'axios'
+import axios from "axios";
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
 import CompositionAPI from "@vue/composition-api";

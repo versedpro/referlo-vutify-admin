@@ -7,7 +7,7 @@ import router, { asyncRoutes, constantRoutes } from "@/router";
  */
 const hasPermission = (roles, route) => {
   if (route.meta && route.meta.roles) {
-    return roles.some(role => route.meta.roles.includes(role));
+    return roles.some((role) => route.meta.roles.includes(role));
   }
   return true;
 };
@@ -20,7 +20,7 @@ const hasPermission = (roles, route) => {
  */
 export const filterAsyncRoutes = (roles, routes) => {
   const res = [];
-  routes.forEach(route => {
+  routes.forEach((route) => {
     const tmp = { ...route };
     if (hasPermission(roles, tmp)) {
       if (tmp.children) {
@@ -39,8 +39,8 @@ const permission = {
   },
 
   getters: {
-    permissionRoutes: state => state.routes,
-    addRoutes: state => state.addRoutes
+    permissionRoutes: (state) => state.routes,
+    addRoutes: (state) => state.addRoutes
   },
 
   mutations: {

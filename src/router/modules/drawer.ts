@@ -6,6 +6,24 @@ const authRouter = [
     component: Layout,
     children: [
       {
+        path: "/latest-news",
+        alias: "/",
+        component: () => import("@/views/components/latest-news.vue"),
+        name: "LatestNews",
+        meta: {
+          title: "route.latestNews",
+          icon: "mdi-translate",
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: Layout,
+    children: [
+      {
         path: "/home",
         alias: "/",
         component: () => import("@/views/components/home/index.vue"),
@@ -65,77 +83,6 @@ const authRouter = [
       }
     ]
   }
-  // {
-  //   path: "/",
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: "/about-us",
-  //       component: () => import("@/views/components/about-us.vue"),
-  //       name: "About",
-  //       meta: { title: "route.about", icon: "mdi-translate" }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: "/",
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: "/contact-us",
-  //       component: () => import("@/views/components/contact-us.vue"),
-  //       name: "Contact",
-  //       meta: { title: "route.contact", icon: "mdi-translate" }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: "/",
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: "/how-to",
-  //       component: () => import("@/views/components/how-to.vue"),
-  //       name: "HowtoUse",
-  //       meta: {
-  //         title: "route.HowtoUse",
-  //         icon: "mdi-translate"
-  //       }
-  //     }
-  //   ]
-  // },
-  //   {
-  //   path: "/",
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: "/latest-news",
-  //       component: () => import("@/views/components/latest-news.vue"),
-  //       name: "LatestNews",
-  //       meta: {
-  //         title: "route.latestNews",
-  //         icon: "mdi-translate"
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: "/",
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: "/product4",
-  //       component: () => import("@/views/components/product4/index.vue"),
-  //       title: "Test4",
-  //       meta: {
-  //         title: "Test4",
-  //         icon: "mdi-timeline-text",
-  //         noCache: true,
-  //         affix: true
-  //       }
-  //     }
-  //   ]
-  // }
 ];
 
 export default authRouter;

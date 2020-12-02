@@ -1,4 +1,4 @@
-import { ReferloChartInfo } from "@/types"; // Our interface
+// import { ReferloChartInfo } from "@/types"; // Our interface
 
 // export function getPieChartOption(referlo: ReferloChartInfo): unknown {
 //   const options = {

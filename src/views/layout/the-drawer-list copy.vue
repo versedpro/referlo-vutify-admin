@@ -65,25 +65,20 @@ export default defineComponent({
     });
 
     function getVisibleChild(item) {
-      let children = item.children || [];
+      const children = item.children || [];
 
-      children = children.filter(({ meta }) => {
+      const child = children.find(({ meta }) => {
         return !meta || !meta.hidden;
       });
 
-      if (children.length === 0) {
-        return { ...item, noVisibleChildren: true };
-      }
-
-      if (children.length === 1) {
-        const child = children.find(() => true);
+      if (child) {
         child.path = resolve(item.path, child.path);
         child.meta = child.meta || {};
         child.meta.icon = child.meta.icon || item.meta.icon || "";
         return child;
       }
 
-      return false;
+      return { ...item, noVisibleChildren: true };
     }
 
     function isExternal(path) {
@@ -92,7 +87,7 @@ export default defineComponent({
 
     function isVisibleItem(item) {
       const child = getVisibleChild(item);
-      return child && (!child.children || child.noVisibleChildren) && !item.alwaysShow;
+      return (!child.children || child.noVisibleChildren) && !item.alwaysShow;
     }
 
     function resolvePath({ path }) {

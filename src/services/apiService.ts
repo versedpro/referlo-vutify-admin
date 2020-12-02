@@ -1,8 +1,7 @@
-import Axios from "axios"
-import { Industry, ReferloChartInfo, Order, Person } from "@/types"
+import Axios from "axios";
+import { Industry, ReferloChartInfo, Order, Person } from "@/types";
 
 export class ApiService {
-
   getApiVersion() {
     return Axios.get("GetApiVersion");
   }
@@ -12,55 +11,55 @@ export class ApiService {
   }
 
   async getPieChartOption(): Promise<ReferloChartInfo[]> {
-    let response: ReferloChartInfo[] = []
+    let response: ReferloChartInfo[] = [];
     try {
       const { data } = await Axios({
-        url: "/api/GetJsonData"
-      })
+        url: "/api/GetPieChartData"
+      });
 
-      response = data
-      return response
+      response = data;
+      return response;
     } catch (error) {
-      return response
+      return response;
     }
   }
 
   async getIndustries(): Promise<Industry[]> {
-    let response: Industry[] = []
+    let response: Industry[] = [];
     try {
       const { data } = await Axios({
         url: "/api/GetIndustries"
-      })
+      });
       response = data.industries;
-      return response
+      return response;
     } catch (error) {
-      return response
+      return response;
     }
   }
 
   async getOrders(): Promise<Order[]> {
-    let response: Order[] = []
+    let response: Order[] = [];
     try {
       const { data } = await Axios({
         url: "/api/GetOrders"
-      })
+      });
       response = data.orders;
-      return response
+      return response;
     } catch (error) {
-      return response
+      return response;
     }
   }
 
   async getPeople(): Promise<Person[]> {
-    let response: Person[] = []
+    let response: Person[] = [];
     try {
       const { data } = await Axios({
         url: "/api/GetPeople"
-      })
+      });
       response = data.people;
-      return response
+      return response;
     } catch (error) {
-      return response
+      return response;
     }
   }
 }

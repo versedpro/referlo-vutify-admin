@@ -30,7 +30,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from "@vue/composition-api";
 import { ApiService } from "@/services/apiService";
-import {Industry} from "@/types/index";
+import { Industry } from "@/types/index";
 
 export default defineComponent({
   name: "Product",
@@ -47,7 +47,7 @@ export default defineComponent({
 
     const selected = ref(0);
     const industries = ref([] as Industry[]);
-    
+
     const getIndustries = async (): Promise<void> => {
       const response = await apiService.getIndustries();
       industries.value = response;

@@ -1,15 +1,9 @@
 export default {
   home: "我係Refer佬",
-  referal: "轉介客戶",
   history: "Refer佬記錄",
-  points: "Refer佬金幣",
   products: "我有嘢Refer",
   profile: "Refer佬資料",
-  followUp: "訂單跟進",
-  about: "關於Refer佬",
-  contact: "聯繫Refer佬",
   latestNews: "最新消息",
-  howTo: "如何使用",
   permissions: "权限",
   bottom: {
     home: "我係<br/>Refer佬",
@@ -36,7 +30,12 @@ export default {
     sticky: "黏贴(Sticky)",
     tinymce: "富文本编辑(Tinymce)"
   },
-  vuetify: "Vuetify UI",
+  more: "更多",
+  moreComponents: {
+    about: "關於Refer佬",
+    contact: "聯繫Refer佬",
+    howTo: "如何使用"
+  },
   errors: "错误",
   errorPages: {
     page301: "301",
