@@ -68,6 +68,8 @@ const themes = [
       warning: "#FB8C00",
       info: "#2196F3",
       gold: "#dcb456",
+      // cream: "#fffdd0",
+      cream: "#f7f2e1",
       ads: "rgba(255, 0, 0, 0.5)"
     },
     dark

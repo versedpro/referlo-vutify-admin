@@ -1,4 +1,6 @@
 <template>
+  <!-- <v-card>
+    <v-divider class="mt-16"></v-divider> -->
   <v-list :dense="dense" class="layout-drawer">
     <div v-for="item in visibleRoutes" :key="item.title">
       <v-list-item
@@ -34,6 +36,7 @@
       </v-list-group>
     </div>
   </v-list>
+  <!-- </v-card> -->
 </template>
 
 <script lang="ts">

@@ -42,17 +42,17 @@ const moreRouter = {
         icon: "mdi-translate"
       }
     },
-    {
-      path: "/product4",
-      component: () => import("@/views/components/product4/index.vue"),
-      title: "Test4",
-      meta: {
-        title: "Test4",
-        icon: "mdi-timeline-text",
-        noCache: true,
-        affix: true
-      }
-    },
+    // {
+    //   path: "/product4",
+    //   component: () => import("@/views/components/product4/index.vue"),
+    //   title: "Test4",
+    //   meta: {
+    //     title: "Test4",
+    //     icon: "mdi-timeline-text",
+    //     noCache: true,
+    //     affix: true
+    //   }
+    // },
     {
       path: "/disclaimer",
       component: () => import("@/views/components/disclaimer.vue"),

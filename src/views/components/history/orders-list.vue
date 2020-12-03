@@ -45,7 +45,7 @@ export default defineComponent({
     const apiService = new ApiService();
 
     const items = ref([] as Order[]);
-    
+
     const getOrders = async (): Promise<void> => {
       const response = await apiService.getOrders();
       items.value = response;

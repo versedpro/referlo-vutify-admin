@@ -1,6 +1,6 @@
 <template>
   <v-main class="pb-0">
-    <v-sheet tile class="mx-auto" max-width="960" height="100%">
+    <v-sheet tile class="mx-auto" max-width="960" height="calc(100vh - 48px">
       <transition name="fade-transform" mode="out-in">
         <keep-alive>
           <router-view />

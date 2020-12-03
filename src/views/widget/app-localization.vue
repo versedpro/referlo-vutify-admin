@@ -7,7 +7,7 @@
       ripple
       active
       outlined
-       text-color="gold"
+      text-color="gold"
       color="gold"
       @click="setLocale(item.locale)"
     >

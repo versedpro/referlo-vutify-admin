@@ -24,56 +24,56 @@
       <p v-html="item.productDescription"></p>
     </v-card-text>
     <v-card class="mx-4 mt-6 mb-16" tile flat>
-          <v-alert
-            border="bottom"
-            color="gold"
-            colored-border
-            dense
-            class="pa-4 ma-0 primary rounded-b-0"
-          >
-            <v-card-text hide-actions disable-icon-rotate class="pa-0"
-              ><v-row class="pa-0 ma-0 d-flex justify-space-between">
-                <v-icon class="gold--text">mdi-hand-pointing-down</v-icon>
-                <p class="ma-0 gold--text">{{ $t("products.orderNow") }}</p>
-              </v-row>
-            </v-card-text>
-          </v-alert>
-          <v-card-text>
-            <v-form class="mx-4 mx-sm-12 pb-8" ref="form" v-model="valid" lazy-validation>
-              <v-text-field
-                v-model="name"
-                :rules="nameRules"
-                :label="$t('referal.clientName')"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                :label="$t('referal.email')"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="phone"
-                :rules="phoneRules"
-                :label="$t('referal.phone')"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="remark"
-                :rules="remarkRules"
-                :label="$t('referal.remark')"
-                required
-              ></v-text-field>
-            </v-form>
-            <v-card-actions>
-              <v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit">
-                <v-icon left> mdi-check-circle </v-icon>{{ $t("products.submit") }}
-              </v-btn>
-              <v-btn color="primary" class="mr-4" @click="reset">
-                <v-icon left> mdi-reload</v-icon>{{ $t("products.reset") }}
-              </v-btn>
-            </v-card-actions>
-          </v-card-text>
+      <v-alert
+        border="bottom"
+        color="gold"
+        colored-border
+        dense
+        class="pa-4 ma-0 primary rounded-b-0"
+      >
+        <v-card-text hide-actions disable-icon-rotate class="pa-0"
+          ><v-row class="pa-0 ma-0 d-flex justify-space-between">
+            <v-icon class="gold--text">mdi-hand-pointing-down</v-icon>
+            <p class="ma-0 gold--text">{{ $t("products.orderNow") }}</p>
+          </v-row>
+        </v-card-text>
+      </v-alert>
+      <v-card-text>
+        <v-form class="mx-4 mx-sm-12 pb-8" ref="form" v-model="valid" lazy-validation>
+          <v-text-field
+            v-model="name"
+            :rules="nameRules"
+            :label="$t('referal.clientName')"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            :label="$t('referal.email')"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="phone"
+            :rules="phoneRules"
+            :label="$t('referal.phone')"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="remark"
+            :rules="remarkRules"
+            :label="$t('referal.remark')"
+            required
+          ></v-text-field>
+        </v-form>
+        <v-card-actions>
+          <v-btn :disabled="!valid" color="gold" class="mr-4" @click="submit">
+            <v-icon left> mdi-check-circle </v-icon>{{ $t("products.submit") }}
+          </v-btn>
+          <v-btn color="primary" class="mr-4" @click="reset">
+            <v-icon left> mdi-reload</v-icon>{{ $t("products.reset") }}
+          </v-btn>
+        </v-card-actions>
+      </v-card-text>
     </v-card>
   </v-card>
 </template>

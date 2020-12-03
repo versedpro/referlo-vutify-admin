@@ -41,8 +41,8 @@ export default {
     allProducts: "All Products",
     serviceProvider: "產品供應商",
     validUntil: "有效期至:",
-    submit: "Submit",
-    reset: "Reset"
+    submit: "落單",
+    reset: "重置"
   },
   referal: {
     clientName: "客戶",
@@ -57,6 +57,7 @@ export default {
     wip: "跟進中",
     referred: "已Refer",
     completed: "已成功",
+    reject: "客戶拒絕",
     points: "已获取积分"
   },
   home: {

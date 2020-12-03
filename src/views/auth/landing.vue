@@ -1,8 +1,8 @@
 <template>
   <v-container class="container--fluid fill-height home-background d-flex align-start">
-      <v-btn icon to="/login">
-        <v-icon large>mdi-chevron-left</v-icon>
-      </v-btn>
+    <v-btn icon to="/login">
+      <v-icon large>mdi-chevron-left</v-icon>
+    </v-btn>
   </v-container>
   <!-- <div>
     <v-app-bar class="white">
@@ -171,9 +171,9 @@
 
 <script lang="ts">
 import { lorem, landingInfo as info } from "@/api/mock";
-import { userAdmin } from "@/api/mock";
+// import { userAdmin } from "@/api/mock";
 
-import { defineComponent, reactive, ref } from "@vue/composition-api";
+import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   setup() {

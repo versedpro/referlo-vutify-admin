@@ -11,7 +11,7 @@
       <v-card-text> Here is the link to your </v-card-text>
       <v-card-text>
         <v-text-field
-          :value="link"
+          :value="referralLink"
           filled
           dense
           readonly
@@ -26,17 +26,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { computed, defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
   name: "ReferralLinkDialog",
 
   props: {
-    show: Boolean,
-    link: String
+    show: Boolean
+    // link: String
   },
 
-  setup(props) {
+  setup() {
     const copied = ref(false);
 
     function closeDialog() {
@@ -44,14 +44,22 @@ export default defineComponent({
     }
 
     function copyLink() {
-      navigator.clipboard.writeText(props.link);
+      navigator.clipboard.writeText(referralLink.value);
+      // navigator.clipboard.writeText(props.link);
       copied.value = true;
     }
+
+    const referralLink = computed(() => {
+      const host = `${location.host}`;
+      const protocol = host.includes("localhost") ? "http://" : "https://";
+      return protocol + host + "/registration?key=sdfsfsd";
+    });
 
     return {
       copyLink,
       closeDialog,
-      copied
+      copied,
+      referralLink
     };
   }
 });

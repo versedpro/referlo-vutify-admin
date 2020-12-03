@@ -1,5 +1,5 @@
 <template>
-  <v-list subheader class="primary">
+  <v-list subheader color="primary">
     <v-list-item>
       <v-list-item-avatar>
         <v-img :alt="`${person.title} avatar`" :src="person.avatar"></v-img>

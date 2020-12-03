@@ -1,7 +1,7 @@
 <template>
   <div style="display: flex">
     <div style="width: 90%">
-      <canvas style="width: 300px; height: auto; margin: auto" id="doughnut"/>
+      <canvas style="width: 300px; height: auto; margin: auto" id="doughnut" />
     </div>
     <div style="align-self: center">
       <div style="background-color: gold; width: 30px">16</div>

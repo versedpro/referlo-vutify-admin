@@ -1,18 +1,5 @@
 <template>
-  <v-card flat tile>
-    <!-- <v-app-bar v-if="!headerHide" flat dense color="transparent">
-      <v-toolbar-title class="headline">
-        {{ title }}
-      </v-toolbar-title>
-      <v-spacer />
-      <slot name="widget-header-action">
-        <v-btn icon>
-          <v-icon>{{ icon }}</v-icon>
-        </v-btn>
-      </slot>
-    </v-app-bar>
-    <v-divider v-if="!headerHide" /> -->
-
+  <v-card flat tile color="transparent">
     <v-card-text v-if="!paddingHide">
       <slot name="widget-content" />
     </v-card-text>
