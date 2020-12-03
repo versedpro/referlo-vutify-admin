@@ -1,5 +1,5 @@
 <template>
-  <v-main class="pb-0">
+  <v-main class="pb-0 grey">
     <v-sheet tile class="mx-auto" max-width="960" height="calc(100vh - 48px">
       <transition name="fade-transform" mode="out-in">
         <keep-alive>
