@@ -2,14 +2,19 @@
   <v-bottom-navigation
     v-if="$vuetify.breakpoint.smAndDown"
     :app="$vuetify.breakpoint.smAndDown"
-    :value="value"
+    v-model="value"
     color="gold"
     height="72"
     grow
     dark
     mandatory
   >
-    <v-btn v-for="item in bottomRouter" :key="item.name" @click="navigateTo(item.path)">
+    <v-btn
+      :value="item.path"
+      v-for="item in bottomRouter"
+      :key="item.name"
+      @click="navigateTo(item.path)"
+    >
       <span v-html="$t(item.title)"></span>
       <v-icon>{{ item.meta.icon }}</v-icon>
     </v-btn>
@@ -17,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { defineComponent, ref, watch } from "@vue/composition-api";
 import bottomRouter from "@/router/modules/bottom.ts";
 
 export default defineComponent({
@@ -25,9 +30,15 @@ export default defineComponent({
 
   components: {},
   setup(_, { root }) {
-    const value = ref(0);
+    const value = ref("");
     const selection = ref([bottomRouter[0]]);
 
+    watch(
+      () => root.$route,
+      () => {
+        value.value = root.$route.path;
+      }
+    );
     function navigateTo(path: string) {
       root.$router.push(path);
     }
