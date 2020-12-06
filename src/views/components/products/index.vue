@@ -6,7 +6,7 @@
           <v-toolbar-title class="ml-5"> {{ $t("products.title") }}</v-toolbar-title>
         </v-toolbar>
 
-        <products-slider :products="hotProducts" @on-product-selection="onProductDetails" />/
+        <products-slider :products="hotProducts" @on-product-selection="onProductDetails" />
 
         <list-panes
           :industries="industries"
@@ -27,7 +27,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from "@vue/composition-api";
 import { ApiService } from "@/services/apiService";
-import { Industry } from "@/types/index";
+import { Industry, Product } from "@/types/index";
 
 export default defineComponent({
   name: "Product",
@@ -71,11 +71,13 @@ export default defineComponent({
     };
 
     function onProductDetails(item) {
+      console.log(item);
       product.value = item;
+      product.value.src = process.env.VUE_APP_API_URL + product.value.src;
       window.value = 1;
     }
 
-    const product = ref({});
+    const product = ref({} as Product);
 
     function onBackButton() {
       window.value = 0;

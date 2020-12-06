@@ -39,7 +39,7 @@ export class ApiService {
       const { data } = await Axios({
         url: "/api/GetIndustries"
       });
-      response = data.industries;
+      response = data;
       return response;
     } catch (error) {
       return response;
@@ -52,7 +52,7 @@ export class ApiService {
       const { data } = await Axios({
         url: "/api/GetOrders"
       });
-      response = data.orders;
+      response = data;
       return response;
     } catch (error) {
       return response;
@@ -76,7 +76,7 @@ export class ApiService {
     let response = null;
     try {
       const { data } = await Axios({
-        url: "/Order",
+        url: "/SalesOrder",
         method: "POST",
         data: orderModel
       });
@@ -86,4 +86,5 @@ export class ApiService {
       return response;
     }
   }
+
 }

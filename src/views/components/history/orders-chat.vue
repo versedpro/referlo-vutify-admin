@@ -66,7 +66,9 @@
   </v-timeline>
 </template>
 <script lang="ts">
-import { defineComponent, ref, computed } from "@vue/composition-api";
+import { defineComponent, ref, computed, onMounted } from "@vue/composition-api";
+import * as signalR from "@aspnet/signalr";
+
 export default defineComponent({
   name: "OrdersChat",
 
@@ -76,30 +78,59 @@ export default defineComponent({
 
   setup() {
     const events = ref([]);
-    const input = ref(null);
+    const input = ref("");
     const nonce = ref(0);
+    const referloId = ref(1);
+    const salesOrderId = ref(1);
+
     const timeline = computed(function () {
       return events.value.slice().reverse();
     });
 
-    function comment() {
-      const time = new Date().toTimeString();
-      this.events.push({
-        id: this.nonce++,
-        text: this.input,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        time: time.replace(/:\d{2}\sGMT-\d{4}\s\((.*)\)/, (match, contents, offset) => {
-          return ` ${contents
-            .split(" ")
-            .map((v) => v.charAt(0))
-            .join("")}`;
-        })
-      });
+    const connection = ref(
+      new signalR.HubConnectionBuilder().withUrl(`${process.env.VUE_APP_API_URL}/chathub`).build()
+    );
 
-      this.input = null;
+    onMounted(() => {
+      connection.value.on(
+        "ReceiveMessage",
+        (operatorName: string, message: string, time: string) => {
+          events.value.push({
+            id: nonce.value++,
+            text: message,
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            time: time
+          });
+        }
+      );
+    });
+
+    function comment() {
+      const text = input.value;
+      const time = new Date().toTimeString();
+      events.value.push({
+        id: nonce.value++,
+        text: input.value,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        time: new Date().toTimeString()
+      });
+      if (connection.value.state === signalR.HubConnectionState.Connected) {
+        connection.value.invoke("SendMessage", referloId.value, salesOrderId.value, text);
+        input.value = null;
+      } else {
+        connection.value
+          .start()
+          .then(() =>
+            connection.value.invoke("SendMessage", referloId.value, salesOrderId.value, text)
+          );
+        input.value = null;
+      }
     }
+
     return {
       events,
+      referloId,
+      salesOrderId,
       input,
       nonce,
       comment,

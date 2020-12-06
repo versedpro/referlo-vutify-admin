@@ -54,6 +54,7 @@ export interface Product {
   productName: string;
   supplierId: number;
   supplierName: string;
+  supplierProductId: number;
   points: number;
   rank: number;
   src: string;

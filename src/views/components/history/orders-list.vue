@@ -45,7 +45,8 @@ export default defineComponent({
     const apiService = new ApiService();
 
     const items = ref([] as Order[]);
-
+    const refImage = ref(`${process.env.VUE_APP_API_URL}/${1}/referlo`);
+    
     const getOrders = async (): Promise<void> => {
       const response = await apiService.getOrders();
       items.value = response;

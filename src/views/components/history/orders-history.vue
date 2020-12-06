@@ -4,22 +4,22 @@
       <v-list-item-group active-class="pink--text" @change="handleChange">
         <template v-for="(item, index) in items">
           <!-- <orders-chat-dialog :key="item.orderNo" :order="item" :tab="tab"></orders-chat-dialog> -->
-          <v-list-item three-line v-if="item.status == tab" :key="item.orderNo">
+          <v-list-item three-line v-if="item.status == tab" :key="item.orderno">
             <v-list-item-content>
-              <v-list-item-title v-text="item.orderDate"></v-list-item-title>
-
-              <v-list-item-subtitle
-                class="text--primary"
-                v-text="item.productName"
-              ></v-list-item-subtitle>
-              <v-list-item-subtitle v-text="item.supplierName"></v-list-item-subtitle>
-              <v-list-item-subtitle >Contact Person</v-list-item-subtitle>
-              <v-list-item-subtitle >Referelo</v-list-item-subtitle>
+              <v-list-item-title v-text="item.orderdate"></v-list-item-title>
+              <v-list-item-title>Product Name</v-list-item-title>
+              <v-list-item-subtitle v-text="item.productname"></v-list-item-subtitle>
+              <v-list-item-title>Supplier Name</v-list-item-title>
+              <v-list-item-subtitle v-text="item.suppliername"></v-list-item-subtitle>
+              <v-list-item-title>Contact Person</v-list-item-title>
+              <v-list-item-subtitle v-text="item.clientname"></v-list-item-subtitle>
+              <v-list-item-title>Reffered By</v-list-item-title>
+              <v-list-item-subtitle v-text="item.referredby"></v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-action>
               <v-list-item-action-text class="mb-0 red--text text-subtitle-1">
-                {{ formatOrder(item.orderNo) }}
+                {{ formatOrder(item.orderno) }}
               </v-list-item-action-text>
               <!-- v-text="item.orderNo" -->
               <v-icon v-if="!active" color="grey lighten-1"> mdi-star-outline </v-icon>
@@ -56,6 +56,7 @@ export default defineComponent({
 
   setup(props, { emit }) {
     // const selected = ref(null);
+    console.log(props.items);
     const showChatDialog = ref(false);
 
     const active = ref(false);
