@@ -1,5 +1,5 @@
 <template>
-  <v-card tile flat color="cream" height="calc(100vh - 48px)">
+  <v-card tile flat>
     <v-window v-model="window">
       <v-window-item>
         <v-card tile flat class="mx-auto" color="transparent" height="100%">
@@ -11,9 +11,9 @@
           <v-carousel height="auto" hide-delimiter-background show-arrows-on-hover cycle>
             <v-carousel-item v-for="(item, i) in ads" :key="i">
               <v-img
-                @click="onProductDetails"
+                @click="onProductDetails(item)"
                 class="cursor-pointer"
-                :src="item.src"
+                :src="item.image_path"
                 :aspect-ratio="1.91 / 1"
               ></v-img>
             </v-carousel-item>
@@ -22,17 +22,18 @@
           <membership-info :person="person"></membership-info>
 
           <!-- The chart -->
-          <v-card-text class="pa-0 mx-0 pb-15" color="transparent">
+          <v-card-text class="pa-0 mx-0 pb-15">
             <app-widget title="Pie Chart">
-              <option-chart slot="widget-content"/>
+              <option-chart slot="widget-content" :data="chartData" />
             </app-widget>
           </v-card-text>
 
           <!-- The footer -->
-          <home-footer @on-show="onShowLinkDialog"></home-footer>
+          <page-footer @on-show="onShowLinkDialog"></page-footer>
 
           <!-- The dialog -->
-          <referral-link-dialog :show="showLinkDialog" @close="closeDialog" />
+          <!-- :link="referPeopleUrl" -->
+          <referral-link-dialog :show="showLinkDialog" @close="closeDialog"></referral-link-dialog>
         </v-card>
       </v-window-item>
 
@@ -46,8 +47,10 @@
 </template>
 
 <script lang="ts">
-import { ads, person } from "./json-data";
-import { defineComponent, computed, ref, reactive, toRefs } from "@vue/composition-api";
+import { ApiService } from "@/services/apiService";
+import { Person, Ad, ProductDetail } from "@/types"; // Our interface
+
+import { defineComponent, computed, ref, onMounted } from "@vue/composition-api";
 
 export default defineComponent({
   name: "Home",
@@ -58,29 +61,66 @@ export default defineComponent({
     ReferralLinkDialog: () => import("./referral-link-dialog.vue"),
     ProductDetails: () => import("./../products/product-details.vue"),
     MembershipInfo: () => import("./membership-info.vue"),
-    HomeFooter: () => import("./home-footer.vue")
+    PageFooter: () => import("./page-footer.vue")
   },
 
   setup(_, { root }) {
-    const window = ref(0);
+    const apiService = new ApiService();
+    const ads = ref([] as Ad[]);
+    const chartData = ref([]);
+    const person = ref<Person>({} as Person);
+    const product = ref<ProductDetail>({} as ProductDetail);
 
-    const data = reactive({
-      showLinkDialog: false
+    onMounted(() => {
+      fetchHomePageData();
     });
+
+    const fetchHomePageData = async (): Promise<void> => {
+      const referloId = 1;
+      const data = await apiService.getHomePageData(referloId);
+      const baseURL = process.env.VUE_APP_API_URL;
+
+      person.value = data.person;
+      person.value.avatar = baseURL + person.value.avatar;
+
+      chartData.value = [
+        data.person.refereal_submit,
+        data.person.referral_wip,
+        data.person.referral_completed
+      ];
+
+      ads.value = data.ads.map((x) => {
+        x.image_path = baseURL + x.image_path;
+        return x;
+      });
+    };
+
+    const showLinkDialog = ref(false);
+    const window = ref(0);
 
     const absolute = computed(() => {
       return !root.$vuetify.breakpoint.smAndDown;
     });
 
+    // const referPeopleUrl = computed(() => {
+    //   const host = `${location.host}`;
+    //   const protocol = host.includes("localhost") ? "http://" : "https://";
+    //   return protocol + host + "/registration?key=sdfsfsd";
+    // });
+
     const closeDialog = () => {
-      data.showLinkDialog = false;
+      showLinkDialog.value = false;
     };
 
     const onShowLinkDialog = (show) => {
-      data.showLinkDialog = show;
+      showLinkDialog.value = show;
     };
 
-    function onProductDetails() {
+    async function onProductDetails(item) {
+      console.log(item);
+      let productDetail = await apiService.getProductDetail(item.supplier_product_id);
+      productDetail.image_path = process.env.VUE_APP_API_URL + productDetail.image_path;
+      product.value = productDetail;
       window.value = 1;
     }
 
@@ -88,28 +128,22 @@ export default defineComponent({
       window.value = 0;
     }
 
-    const product = ref({
-      productName: "Broadband",
-      supplierId: 1,
-      supplierName: "PCCW",
-      points: 80,
-      rank: 1,
-      src: "/img/products/csl1.png",
-      productDescription:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    });
-
     return {
-      ...toRefs(data),
+      apiService,
       ads,
       absolute,
       person,
+      // backgroundColor,
+      showLinkDialog,
+      // referPeopleUrl,
       closeDialog,
-      onShowLinkDialog,
-      onProductDetails,
+      chartData,
       window,
       product,
-      onBackButton
+
+      onBackButton,
+      onProductDetails,
+      onShowLinkDialog
     };
   }
 });

@@ -6,13 +6,13 @@
       </v-btn>
       <v-toolbar-title>Product Detail</v-toolbar-title>
     </v-toolbar>
-    <v-img :src="item.src" :aspect-ratio="1.91 / 1" position="top center"></v-img>
+    <v-img :src="item.image_path" :aspect-ratio="1.91 / 1" position="top center"></v-img>
     <v-card-text class="pa-0 mb-6 px-4 primary--text">
       <v-list two-line class="pa-0">
         <v-list-item class="pa-0">
           <v-list-item-content class="pa-0">
-            <v-list-item-title v-text="item.productName"></v-list-item-title>
-            <v-list-item-subtitle v-text="item.supplierName"></v-list-item-subtitle>
+            <v-list-item-title v-text="item.product_name"></v-list-item-title>
+            <v-list-item-subtitle v-text="item.supplier_name"></v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
             <v-spacer></v-spacer>
@@ -21,7 +21,7 @@
         </v-list-item>
         <v-divider class="mb-4 mt-2"></v-divider>
       </v-list>
-      <p v-html="item.productDescription"></p>
+      <p v-html="item.remarks"></p>
     </v-card-text>
     <v-card class="mx-4 mt-6 mb-16" tile flat>
       <v-alert
@@ -80,6 +80,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
+import { OrderProduct } from "@/types";
+import { ApiService } from "@/services/apiService";
 
 export default defineComponent({
   name: "ProductDetails",
@@ -90,12 +92,15 @@ export default defineComponent({
     }
   },
 
-  setup() {
+  setup(props, { emit }) {
     const panel = ref(0);
     const readonly = ref(false);
+
     function handleBackButton() {
-      this.$emit("on-back-button");
+      emit("on-back-button");
     }
+
+    const apiService = new ApiService();
 
     const valid = ref(true);
     const form = ref(null);
@@ -121,8 +126,20 @@ export default defineComponent({
       (v) => (v && v.length <= 5) || "Remark must be less than 5 characters"
     ]);
 
-    const submit = () => {
-      form.value.validate();
+    const submit = async () => {
+      var isValid = form.value.validate();
+      if (isValid) {
+        var order = {
+          referloId: 1,
+          contactName: name.value,
+          contactPhone: phone.value,
+          contactEmail: email.value,
+          supplierProductId: props.item.supplier_product_id,
+          pointsDefault: props.item.points
+        } as OrderProduct;
+        var responseOrder = await apiService.makeOrder(order);
+        console.log(responseOrder);
+      }
     };
     const reset = () => {
       form.value.reset();

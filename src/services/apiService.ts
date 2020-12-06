@@ -1,22 +1,31 @@
 import Axios from "axios";
-import { Industry, ReferloChartInfo, Order, Person } from "@/types";
+import { Industry, OrderProduct, Order, Person, HomePageData, ProductDetail } from "@/types";
 
 export class ApiService {
   getApiVersion() {
     return Axios.get("GetApiVersion");
   }
 
-  getJsonData() {
-    return Axios.get("GetJsonData");
-  }
-
-  async getPieChartOption(): Promise<ReferloChartInfo[]> {
-    let response: ReferloChartInfo[] = [];
+  async getHomePageData(referloId: number): Promise<HomePageData> {
+    let response: HomePageData;
     try {
       const { data } = await Axios({
-        url: "/api/GetPieChartData"
+        url: "/api/GetHomePageData/" + referloId
       });
 
+      response = data;
+      return response;
+    } catch (error) {
+      return response;
+    }
+  }
+
+  async getProductDetail(suppProdId: number): Promise<ProductDetail> {
+    let response: ProductDetail;
+    try {
+      const { data } = await Axios({
+        url: "/api/GetProductDetail/" + suppProdId
+      });
       response = data;
       return response;
     } catch (error) {
@@ -57,6 +66,21 @@ export class ApiService {
         url: "/api/GetPeople"
       });
       response = data.people;
+      return response;
+    } catch (error) {
+      return response;
+    }
+  }
+
+  async makeOrder(orderModel: OrderProduct): Promise<any> {
+    let response = null;
+    try {
+      const { data } = await Axios({
+        url: "/Order",
+        method: "POST",
+        data: orderModel
+      });
+      response = data;
       return response;
     } catch (error) {
       return response;

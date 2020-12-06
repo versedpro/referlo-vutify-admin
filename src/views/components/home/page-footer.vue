@@ -12,10 +12,12 @@
     </v-card-text>
   </v-footer>
 </template>
+
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
+
 export default defineComponent({
-  name: "HomeFooter",
+  name: "PageFooter",
   components: {
     AppButton: () => import("@/views/widget/app-button.vue")
   },

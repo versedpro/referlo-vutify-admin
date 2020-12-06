@@ -10,51 +10,54 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted } from "@vue/composition-api";
+import { defineComponent, onMounted, watchEffect } from "@vue/composition-api";
 import Chart from "chart.js";
-import { ApiService } from "@/services/apiService";
-import { get } from "lodash";
 
 export default defineComponent({
   name: "OptionChart",
 
-  setup(_, { root }) {
-    const apiService = new ApiService();
-    const getChartOption = async (): Promise<void> => {
-      const chartJsonData = await apiService.getPieChartOption();
-      const dataset = buildDataset(chartJsonData);
-      createChart(dataset);
-    };
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    }
+  },
 
-    onMounted(() => {
-      getChartOption();
-    });
-
-    function buildDataset(apiData) {
-      const labels = get(apiData, "series.0.data", []).map(({ name, value }) => {
-        return root.$i18n.t(`home.${name}`, [value]);
-      });
-      const data = get(apiData, "series[0].data", []).map((data) => {
-        return data.value;
-      });
-      const colors = apiData["color"];
-
-      const dataset = {
+  setup(props) {
+    watchEffect(() => {
+      createChart({
         datasets: [
           {
-            data,
-            backgroundColor: colors,
+            data: props.data,
+            backgroundColor: ["grey", "#001e2f", "#dcb456"],
             hoverBorderColor: "rgba(255, 255, 255, 1)",
-            hoverBackgroundColor: colors
+            hoverBackgroundColor: ["grey", "#001e2f", "#dcb456"]
           }
         ],
-        labels
-      };
+        labels: ["referred", "wip", "completed"]
+      });
+    });
 
-      return dataset;
-    }
+    onMounted(() => {
+      createChart({
+        datasets: [
+          {
+            data: props.data,
+            backgroundColor: ["grey", "#001e2f", "#dcb456"],
+            hoverBorderColor: "rgba(255, 255, 255, 1)",
+            hoverBackgroundColor: ["grey", "#001e2f", "#dcb456"]
+          }
+        ],
+        labels: [`referred ${props.data[0]}`, `wip ${props.data[1]}`, `completed ${props.data[2]}`]
+      });
+    });
+
+    var chart;
 
     function createChart(chartData) {
+      if (chart) {
+        chart.destroy();
+      }
       const canvas = document.getElementById("doughnut") as HTMLCanvasElement;
 
       const chartOptions = {
@@ -75,8 +78,11 @@ export default defineComponent({
         data: chartData,
         options: chartOptions
       };
-      new Chart(canvas, options);
+      chart = new Chart(canvas, options);
     }
+    return {
+      createChart
+    };
   }
 });
 </script>
