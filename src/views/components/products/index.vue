@@ -6,10 +6,7 @@
           <v-toolbar-title class="ml-5"> {{ $t("products.title") }}</v-toolbar-title>
         </v-toolbar>
 
-        <products-slider
-          :products="hotProducts"
-          @on-product-selection="onProductDetails"
-        ></products-slider>
+        <products-slider :products="hotProducts" @on-product-selection="onProductDetails" />/
 
         <list-panes
           :industries="industries"
@@ -67,7 +64,6 @@ export default defineComponent({
 
     const tab = ref(0);
     const items = ref(["Hot Deal", "All Products"]);
-
     const text = ref("Lorem ipsum dolor sit amet, consect");
 
     const handleSelection = (s) => {
