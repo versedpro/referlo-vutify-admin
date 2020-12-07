@@ -109,3 +109,9 @@ export interface Children {
   name: string;
   file: string;
 }
+
+export interface OrderChat{
+  operatorName: string;
+  text: string;
+  date: Date;
+}

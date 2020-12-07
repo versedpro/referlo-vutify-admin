@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { Industry, OrderProduct, Order, Person, HomePageData, ProductDetail } from "@/types";
+import { Industry, OrderProduct, Order, Person, HomePageData, ProductDetail,OrderChat } from "@/types";
 
 export class ApiService {
   getApiVersion() {
@@ -87,4 +87,17 @@ export class ApiService {
     }
   }
 
+  async getChatMessages(orderId: number): Promise<OrderChat[]>{
+    let response = [];
+    try {
+      const { data } = await Axios({
+        url: "/SalesChat/GetComments/" +orderId,
+        method: "GET"
+      });
+      response = data;
+      return response;
+    } catch (error) {
+      return response;
+    }
+  }
 }

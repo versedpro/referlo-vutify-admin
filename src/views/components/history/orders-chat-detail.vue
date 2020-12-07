@@ -15,7 +15,7 @@
         <orders-product-detail :order="order"></orders-product-detail>
       </v-tab-item>
       <v-tab-item>
-        <orders-chat :items="items"></orders-chat>
+        <orders-chat :items="items" :order="order"></orders-chat>
       </v-tab-item>
     </v-tabs>
   </v-card>

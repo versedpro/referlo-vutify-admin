@@ -5,39 +5,23 @@
     clipped
     :style="{ 'padding-bottom': $vuetify.breakpoint.xsOnly ? '154px' : '82px' }"
   >
-    <v-timeline-item class="mr-12" v-for="(item, i) in items" :key="i" :color="item.color" small>
-      <template v-slot:opposite>
-        <span :class="`headline font-weight-bold ${item.color}--text`" v-text="item.year"></span>
-      </template>
-      <div>{{ item.timestamp }}</div>
+    <v-timeline-item
+      v-for="event in timeline"
+      :key="event.id"
+      :class="event.itemClass"
+      :color="event.color"
+      small
+    >
+      <div v-text="event.time"></div>
       <v-card elevation="6" class="mt-2 rounded-lg">
         <v-card-text class="white text--primary">
-          USER NAME
+          {{ event.name }}
           <p>
-            <v-chip class="mt-2 gold"> User's Comment </v-chip>
+            <v-chip :class="event.commentClass" v-text="event.text"> </v-chip>
           </p>
         </v-card-text>
       </v-card>
     </v-timeline-item>
-    <v-slide-x-transition group>
-      <v-timeline-item
-        v-for="event in timeline"
-        :key="event.id"
-        class="mb-4 mr-12"
-        color="primary"
-        small
-      >
-        <div v-text="event.time"></div>
-        <v-card elevation="6" class="mt-2 rounded-lg">
-          <v-card-text class="white text--primary">
-            You
-            <p>
-              <v-chip class="mt-2 primary" v-text="event.text"> </v-chip>
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-timeline-item>
-    </v-slide-x-transition>
     <v-timeline-item
       fill-dot
       class="primary--text text-center pt-1 pb-0 comment"
@@ -68,60 +52,115 @@
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "@vue/composition-api";
 import * as signalR from "@aspnet/signalr";
+import { use } from "chai";
+import user from "@/store/modules/user";
+import { ApiService } from "@/services/apiService";
+import moment from 'moment'
 
 export default defineComponent({
   name: "OrdersChat",
 
   props: {
-    items: Array
+    order: Object
   },
 
-  setup() {
+  setup(props) {
     const events = ref([]);
     const input = ref("");
     const nonce = ref(0);
     const referloId = ref(1);
-    const salesOrderId = ref(1);
-
+    const items = ref([]);
     const timeline = computed(function () {
-      return events.value.slice().reverse();
+      return events.value; //.slice().reverse();
     });
+
+    const apiService = new ApiService();
 
     const connection = ref(
       new signalR.HubConnectionBuilder().withUrl(`${process.env.VUE_APP_API_URL}/chathub`).build()
     );
 
     onMounted(() => {
+      connection.value.start().then(() => {
+        sendOrderId();
+      });
+      getChatMessages();
       connection.value.on(
         "ReceiveMessage",
         (operatorName: string, message: string, time: string) => {
           events.value.push({
             id: nonce.value++,
+            name: operatorName,
             text: message,
+            color: "gold",
+            itemClass: "mr-12",
+            commentClass: "mt-2 gold",
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            time: time
+            time: moment(time).format('MM/DD/YYYY hh:mm:ss')
           });
         }
       );
     });
 
+    const getChatMessages = async () => {
+      console.log(parseInt(props.order.orderno));
+      await apiService.getChatMessages(parseInt(props.order.orderno)).then((messages) => {
+        console.log(messages);
+         for (let i = 0; i < messages.length; i++) {
+           if (messages[i].operatorName === "") {
+            events.value.push({
+              id: nonce.value++,
+              name: "You",
+              text: messages[i].text,
+              color: "primary",
+              itemClass: "mb-4 mr-12",
+              commentClass: "mt-2 primary",
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              time: moment(messages[i].date).format('MM/DD/YYYY hh:mm:ss')
+            });
+          } else {
+            events.value.push({
+              id: nonce.value++,
+              name: messages[i].operatorName,
+              text: messages[i].text,
+              color: "gold",
+              itemClass: "mr-12",
+              commentClass: "mt-2 gold",
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              time: moment(messages[i].date).format('MM/DD/YYYY hh:mm:ss')
+            });
+          }
+         }
+        });
+    }
+
+    function sendOrderId() {
+      connection.value.invoke("AddOrderChat", props.order.orderno);
+    }
+
     function comment() {
       const text = input.value;
-      const time = new Date().toTimeString();
       events.value.push({
         id: nonce.value++,
-        text: input.value,
+        name: "You",
+        text: text,
+        color: "primary",
+        itemClass: "mb-4 mr-12",
+        commentClass: "mt-2 primary",
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        time: new Date().toTimeString()
+        time: moment(new Date().toString()).format('MM/DD/YYYY hh:mm:ss')
       });
+
+      console.log(connection.value.state);
       if (connection.value.state === signalR.HubConnectionState.Connected) {
-        connection.value.invoke("SendMessage", referloId.value, salesOrderId.value, text);
+        connection.value.invoke("SendMessage", referloId.value, props.order.orderno, text);
         input.value = null;
       } else {
+        sendOrderId();
         connection.value
           .start()
           .then(() =>
-            connection.value.invoke("SendMessage", referloId.value, salesOrderId.value, text)
+            connection.value.invoke("SendMessage", referloId.value, props.order.orderno, text)
           );
         input.value = null;
       }
@@ -130,10 +169,11 @@ export default defineComponent({
     return {
       events,
       referloId,
-      salesOrderId,
+      items,
       input,
       nonce,
       comment,
+      getChatMessages,
       timeline
     };
   }
