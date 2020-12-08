@@ -62,7 +62,8 @@ export default {
     productName: "Product",
     remark: "Remark",
     points: "Points",
-    supplierName: "Supplier"
+    supplierName: "Supplier",
+    alias: "Alias"
   },
   history: {
     title: "My Referlo",

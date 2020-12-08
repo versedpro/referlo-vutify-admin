@@ -50,7 +50,8 @@ export default {
     email: "電郵",
     address: "地址",
     productName: "產品",
-    remark: "備註"
+    remark: "備註",
+    alias: "Alias"
   },
   history: {
     title: "Refer佬記錄",
