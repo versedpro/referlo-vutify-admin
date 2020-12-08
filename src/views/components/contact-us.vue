@@ -9,6 +9,7 @@
         v-model="phone"
         :rules="phoneRules"
         :label="$t('referal.phone')"
+        class="gold--text"
         required
       ></v-text-field>
       <v-text-field
@@ -16,6 +17,7 @@
         v-model="alias"
         :rules="aliasRules"
         :label="$t('referal.alias')"
+        class="gold--text"
         required
       ></v-text-field>
       <v-textarea
@@ -24,8 +26,8 @@
         v-model="content"
         :rules="contentRules"
         :label="$t('referal.remark')"
+        class="gold--text"
         required
-
       ></v-textarea>
     </v-form>
     <v-card-actions>
@@ -83,6 +85,8 @@ export default defineComponent({
       valid,
       form,
       content,
+      phone,
+      alias,
       aliasRules,
       phoneRules,
       contentRules,

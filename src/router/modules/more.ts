@@ -16,20 +16,20 @@ const moreRouter = {
       path: "/about-us",
       component: () => import("@/views/components/about-us.vue"),
       name: "About",
-      meta: { title: "route.about", icon: "mdi-translate" }
+      meta: { title: "route.moreComponents.about", icon: "mdi-translate" }
     },
     {
       path: "/contact-us",
       component: () => import("@/views/components/contact-us.vue"),
       name: "Contact",
-      meta: { title: "route.contact", icon: "mdi-translate" }
+      meta: { title: "route.moreComponents.contact", icon: "mdi-translate" }
     },
     {
       path: "/how-to",
       component: () => import("@/views/components/how-to.vue"),
       name: "HowtoUse",
       meta: {
-        title: "route.HowtoUse",
+        title: "route.moreComponents.HowtoUse",
         icon: "mdi-translate"
       }
     },
