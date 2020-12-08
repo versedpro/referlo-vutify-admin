@@ -6,24 +6,6 @@ const authRouter = [
     component: Layout,
     children: [
       {
-        path: "/latest-news",
-        alias: "/",
-        component: () => import("@/views/components/latest-news.vue"),
-        name: "LatestNews",
-        meta: {
-          title: "route.latestNews",
-          icon: "mdi-translate",
-          noCache: true,
-          affix: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: Layout,
-    children: [
-      {
         path: "/home",
         alias: "/",
         component: () => import("@/views/components/home/index.vue"),
